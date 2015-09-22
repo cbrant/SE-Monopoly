@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class MonopolyWindow {
+public class MainWindow {
 
 	private JFrame frame;
 
@@ -15,7 +15,7 @@ public class MonopolyWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MonopolyWindow window = new MonopolyWindow();
+					MainWindow window = new MainWindow();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +27,7 @@ public class MonopolyWindow {
 	/**
 	 * Create the application.
 	 */
-	public MonopolyWindow() {
+	public MainWindow() {
 		initialize();
 	}
 
