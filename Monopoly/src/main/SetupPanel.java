@@ -1,14 +1,89 @@
 package main;
 
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class SetupPanel extends JPanel {
 
+	/*private MainWindow parent;
+	
+	public SetupPanel(MainWindow parent) {
+		this.parent = parent;	//used to access parent later to advance to the next card
+	}*/
+	
+	final static int NUMPLAYERS = 4;
+
+	private JPanel[] panelHolder;
+
+	private JLabel title; 
+	
+	private JPanel[] playerPanels;
+	
+	private JTextField[] playerNames;
+	private JComboBox<String>[] playerPieces;
+	private JComboBox<String>[] playerTypes;
+	
+	public JButton startButton;
+	
 	/**
 	 * Create the panel.
 	 */
 	public SetupPanel() {
 
+		setBounds(100, 100, 650, 725);
+		
+		// set up the panel with an outer grid layout with 6 rows
+		setLayout(new GridLayout(6, 1));
+		panelHolder = new JPanel[6];
+		for (int i = 0; i < 6; ++i) {
+			panelHolder[i] = new JPanel();
+			add(panelHolder[i]);
+		}
+		
+		// title goes on the top grid space
+		title = new JLabel("Game Setup");
+		title.setFont(title.getFont().deriveFont(50.0f));
+		panelHolder[0].add(title);
+		
+		playerNames = new JTextField[NUMPLAYERS];
+		for (int i = 0; i < NUMPLAYERS; ++i) {
+			playerNames[i] = new JTextField("Player " + i + "             ");
+		}
+		
+		String[] pTypes = {"Player", "Computer"};
+		playerTypes = new JComboBox[NUMPLAYERS];
+		for (int i = 0; i < NUMPLAYERS; ++i) {
+			playerTypes[i] = new JComboBox<String>(pTypes);
+		}
+		
+		String[] pieces = { "Car", "Dog", "Shoe", "Hat" };
+		playerPieces = new JComboBox[NUMPLAYERS];
+		for (int i = 0; i < NUMPLAYERS; ++i) {
+			playerPieces[i] = new JComboBox<String>(pieces);
+			playerPieces[i].setSelectedItem(pieces[i]);
+		}
+		
+		// each of the middle rows is split into three columns for player information gathering
+		playerPanels = new JPanel[NUMPLAYERS];
+		for (int i = 0; i < NUMPLAYERS; ++i) {
+			panelHolder[i+1].setLayout(new GridLayout(1, 3));
+			playerPanels[i] = new JPanel();
+			panelHolder[i+1].add(playerPanels[i]);
+			playerPanels[i].add(playerNames[i]);
+			playerPanels[i].add(playerTypes[i]);
+			playerPanels[i].add(playerPieces[i]);
+		}
+		
+		// start game button goes at the bottom of the setup screen
+		startButton = new JButton("Start Game!");
+		panelHolder[5].add(startButton);
+		
 	}
 
 }
