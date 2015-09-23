@@ -5,6 +5,8 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import main.StartPanel;
+
 public class MainWindow {
 
 	static JFrame frame;
@@ -27,9 +29,9 @@ public class MainWindow {
 		};
 		
         //Create the "cards".
-        JPanel card1 = new JPanel();
+        StartPanel card1 = new StartPanel();
         JButton goButton = new JButton("Go!");
-        goButton.addActionListener(l);
+        card1.goButton.addActionListener(l);
         card1.add(goButton);
         
         
@@ -37,7 +39,6 @@ public class MainWindow {
         JButton startButton = new JButton("Start!");
         startButton.addActionListener(l);
         card2.add(startButton);
-        
         
         
         //Create the panel that contains the "cards".
