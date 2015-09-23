@@ -21,13 +21,13 @@ public class StartPanel extends JPanel {
 		 setBounds(100, 100, 650, 725);
 
 		 goButton = new JButton("Go!");
-		 goButton.setBounds(243, 319, 184, 88);
+		 goButton.setBounds(232, 318, 184, 88);
 	     add(goButton);
 	     
 	     JLabel background = new JLabel("");
 	     Image img = new ImageIcon(this.getClass().getResource("/StartScreenBackground.png")).getImage();
 	     background.setIcon(new ImageIcon(img));
-	     background.setBounds(12, 12, 626, 701);
+	     background.setBounds(0, 0, 650, 725);
 	     add(background);
 	        		
 	}

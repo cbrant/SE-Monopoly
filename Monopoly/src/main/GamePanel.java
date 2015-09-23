@@ -25,7 +25,7 @@ public class GamePanel extends JPanel {
 		JLabel background = new JLabel("");
 	     Image img = new ImageIcon(this.getClass().getResource("/GameScreenBackground.png")).getImage();
 	     background.setIcon(new ImageIcon(img));
-	     background.setBounds(12, 12, 626, 701);
+	     background.setBounds(0, 0, 650, 725);
 	     add(background);
 	     
 	     

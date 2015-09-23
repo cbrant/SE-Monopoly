@@ -19,13 +19,13 @@ public class EndPanel extends JPanel {
 		 setBounds(100, 100, 650, 725);
 		 
 		 restartButton = new JButton("Restart");
-		 restartButton.setBounds(244, 579, 187, 92);
+		 restartButton.setBounds(233, 581, 187, 92);
 	     add(restartButton);
 		 
 		 JLabel background = new JLabel("");
 	     Image img = new ImageIcon(this.getClass().getResource("/EndScreenBackground.png")).getImage();
 	     background.setIcon(new ImageIcon(img));
-	     background.setBounds(12, 12, 626, 701);
+	     background.setBounds(0, 0, 650, 725);
 	     add(background);
 
 	}
