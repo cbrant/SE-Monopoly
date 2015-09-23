@@ -1,8 +1,13 @@
 package main;
 
 import javax.swing.JPanel;
+
 import java.awt.GridLayout;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public class StartPanel extends JPanel {
 
@@ -16,9 +21,14 @@ public class StartPanel extends JPanel {
 		 setBounds(100, 100, 650, 725);
 
 		 goButton = new JButton("Go!");
-		 goButton.setBounds(266, 587, 110, 59);
+		 goButton.setBounds(243, 319, 184, 88);
 	     add(goButton);
+	     
+	     JLabel background = new JLabel("");
+	     Image img = new ImageIcon(this.getClass().getResource("/StartScreenBackground.png")).getImage();
+	     background.setIcon(new ImageIcon(img));
+	     background.setBounds(12, 12, 626, 701);
+	     add(background);
 	        		
 	}
-
 }

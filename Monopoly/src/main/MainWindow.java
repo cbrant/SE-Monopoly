@@ -35,19 +35,17 @@ public class MainWindow{
 		
         //Create the "cards".
         StartPanel card1 = new StartPanel();
-        JButton goButton = new JButton("Go!");
         card1.goButton.addActionListener(l);
-        card1.add(goButton);
-        
         
         SetupPanel card2 = new SetupPanel();
+        card2.startButton.addActionListener(l);
         
         GamePanel card3 = new GamePanel();
+        card3.rollButton.addActionListener(l);
         
         EndPanel card4 = new EndPanel();
+        card4.restartButton.addActionListener(l);
        
-        
-        
         //Create the panel that contains the "cards".
         cards = new JPanel(new CardLayout());
         cards.add(card1, STARTPANEL);
