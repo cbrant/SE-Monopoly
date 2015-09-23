@@ -13,9 +13,10 @@ public class StartPanel extends JPanel {
 	 */
 	public StartPanel() {
 		 setLayout(null);
+		 setBounds(100, 100, 650, 725);
 
 		 goButton = new JButton("Go!");
-		 goButton.setBounds(195, 219, 58, 25);
+		 goButton.setBounds(266, 587, 110, 59);
 	     add(goButton);
 	        		
 	}

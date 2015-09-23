@@ -6,13 +6,18 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import main.StartPanel;
+import main.SetupPanel;
+import main.GamePanel;
+import main.EndPanel;
 
-public class MainWindow {
+public class MainWindow{
 
 	static JFrame frame;
 	static JPanel cards;
 	final static String STARTPANEL = "Start Screen";
 	final static String SETUPPANEL = "Setup Screen";
+	final static String GAMEPANEL = "Game Screen";
+	final static String ENDPANEL = "End Screen";
 	
 	public void addComponentToPane(Container pane) {
         
@@ -35,16 +40,20 @@ public class MainWindow {
         card1.add(goButton);
         
         
-        JPanel card2 = new JPanel();
-        JButton startButton = new JButton("Start!");
-        startButton.addActionListener(l);
-        card2.add(startButton);
+        SetupPanel card2 = new SetupPanel();
+        
+        GamePanel card3 = new GamePanel();
+        
+        EndPanel card4 = new EndPanel();
+       
         
         
         //Create the panel that contains the "cards".
         cards = new JPanel(new CardLayout());
         cards.add(card1, STARTPANEL);
         cards.add(card2, SETUPPANEL);
+        cards.add(card3, GAMEPANEL);
+        cards.add(card4, ENDPANEL);
         
         pane.add(cards, BorderLayout.CENTER);
     }
@@ -52,15 +61,14 @@ public class MainWindow {
 	private static void createAndShowGUI() {
         //Create and set up the window.
         frame = new JFrame("MainWindow");
+        frame.setBounds(100, 100, 650, 725);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(100, 100, 251, 257);
         
         //Create and set up the content pane.
         MainWindow window = new MainWindow();
         window.addComponentToPane(frame.getContentPane());
         
         //Display the window.
-        frame.pack();
         frame.setVisible(true);
     }
 	
