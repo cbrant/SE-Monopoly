@@ -38,7 +38,7 @@ public class MainWindow{
         card1.goButton.addActionListener(l);
         
         SetupPanel card2 = new SetupPanel();
-        card2.startButton.addActionListener(l);
+        //card2.startButton.addActionListener(l);
         
         GamePanel card3 = new GamePanel();
         card3.rollButton.addActionListener(l);
@@ -49,7 +49,7 @@ public class MainWindow{
         //Create the panel that contains the "cards".
         cards = new JPanel(new CardLayout());
         cards.add(card1, STARTPANEL);
-        cards.add(card2, SETUPPANEL);
+        //cards.add(card2, SETUPPANEL);
         cards.add(card3, GAMEPANEL);
         cards.add(card4, ENDPANEL);
         
