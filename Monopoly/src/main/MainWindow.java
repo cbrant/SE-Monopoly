@@ -92,7 +92,7 @@ public class MainWindow{
 	{
 		ArrayList<Property> properties = new ArrayList<Property>();
 		//NOTE: You will need to change this to your path so that it will populate
-		String file = "/home/alexander/git/SE-Monopoly/Monopoly/properties.csv";
+		String file = "/home/alexander/git/SE-Monopoly/Monopoly/src/main/properties.csv";
 		try
 		{
 			BufferedReader buffer = new BufferedReader(new FileReader(file));
@@ -102,8 +102,10 @@ public class MainWindow{
 			while((line = buffer.readLine())  != null)
 			{
 				values = line.split(",");
+				for(int i = 0; i < 12; i++)
+					values[i] = values[i].trim();
 				int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4]), Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]), Integer.parseInt(values[8])};
-				p = new Property(values[0], Property.PropertyType.valueOf(values[1]), Integer.parseInt(values[9]),rent, Integer.parseInt(values[10]), Property.PropertyCategory.valueOf(values[8]));
+				p = new Property(values[0], Property.PropertyType.valueOf(values[1]), Integer.parseInt(values[9]),rent, Integer.parseInt(values[10]), Property.PropertyCategory.valueOf(values[11]));
 				System.out.println(p);
 				if(p.getType() == Property.PropertyType.valueOf("NORM"))
 					properties.add(p);
@@ -120,6 +122,7 @@ public class MainWindow{
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();
 		}
 		if(properties.size() != 10)
 			System.out.println("Incorrect number of properties in list, there are " + properties.size());
