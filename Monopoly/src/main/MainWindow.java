@@ -41,7 +41,7 @@ public class MainWindow{
         card2.startButton.addActionListener(l);
         
         GamePanel card3 = new GamePanel();
-        card3.rollButton.addActionListener(l);
+        //card3.rollButton.addActionListener(l);
         
         EndPanel card4 = new EndPanel();
         card4.restartButton.addActionListener(l);

@@ -6,27 +6,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import net.miginfocom.swing.MigLayout;
+import java.awt.GridLayout;
+import javax.swing.JSeparator;
 
 public class GamePanel extends JPanel {
-
-	public JButton rollButton;
 	
 	/**
 	 * Create the panel.
 	 */
 	public GamePanel() {
-		setLayout(null);
 		setBounds(100, 100, 650, 725);
+		setLayout(new MigLayout("", "[50.00]", "[525.00][]"));
 		
-		rollButton = new JButton("Roll");
-	     rollButton.setBounds(254, 221, 158, 108);
-	     add(rollButton);
-		
-		JLabel background = new JLabel("");
+		JSeparator separator = new JSeparator();
+		add(separator, "cell 0 1");
 	     Image img = new ImageIcon(this.getClass().getResource("/GameScreenBackground.png")).getImage();
-	     background.setIcon(new ImageIcon(img));
-	     background.setBounds(0, 0, 650, 725);
-	     add(background);
 	     
 	     
 	}
