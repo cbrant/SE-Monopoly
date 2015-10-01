@@ -22,10 +22,17 @@ public class StartPanel extends JPanel {
 
 	public JButton goButton;
 	
+	private MainWindow parent;
+
+	
 	/**
 	 * Create the panel.
 	 */
-	public StartPanel() {
+
+	public StartPanel(MainWindow par) {
+		
+		this.parent = par;
+		
 		setBackground(new Color(255, 250, 205));
 		 setBounds(100, 100, 650, 725);
 		 GridBagLayout gridBagLayout = new GridBagLayout();
@@ -89,8 +96,6 @@ public class StartPanel extends JPanel {
 	     		 		 		 gbc_lblSamanthaRack.gridx = 1;
 	     		 		 		 gbc_lblSamanthaRack.gridy = 7;
 	     		 		 		 add(lblSamanthaRack, gbc_lblSamanthaRack);
-	     		 		 		 
-	     
-	        		
+	     		 		 		         		
 	}
 }
