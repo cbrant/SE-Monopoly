@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -8,6 +7,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.awt.Color;
 
 public class SetupPanel extends JPanel {
 
@@ -30,8 +30,10 @@ public class SetupPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public SetupPanel(MainWindow par) {
+		
 		this.parent = par;	//used to access outer window and data members (ie. players, etc)
-
+		
+		setBackground(new Color(255, 250, 205));
 		setBounds(100, 100, 650, 725);
 
 		// set up the panel with an outer grid layout with 6 rows
@@ -47,27 +49,27 @@ public class SetupPanel extends JPanel {
 		title.setFont(title.getFont().deriveFont(50.0f));
 		panelHolder[0].add(title);
 
-		playerNames = new JTextField[parent.NUMPLAYERS];
-		for (int i = 0; i < parent.NUMPLAYERS; ++i) {
+		playerNames = new JTextField[MainWindow.NUMPLAYERS];
+		for (int i = 0; i < MainWindow.NUMPLAYERS; ++i) {
 			playerNames[i] = new JTextField(this.parent.players[i].getpName());
 		}
 
 		String[] pTypes = {"Human", "Computer"};
-		playerTypes = new JComboBox[parent.NUMPLAYERS];
-		for (int i = 0; i < parent.NUMPLAYERS; ++i) {
+		playerTypes = new JComboBox[MainWindow.NUMPLAYERS];
+		for (int i = 0; i < MainWindow.NUMPLAYERS; ++i) {
 			playerTypes[i] = new JComboBox<String>(pTypes);
 		}
 
 		String[] pieces = { "Car", "Dog", "Shoe", "Hat" };
-		playerPieces = new JComboBox[parent.NUMPLAYERS];
-		for (int i = 0; i < parent.NUMPLAYERS; ++i) {
+		playerPieces = new JComboBox[MainWindow.NUMPLAYERS];
+		for (int i = 0; i < MainWindow.NUMPLAYERS; ++i) {
 			playerPieces[i] = new JComboBox<String>(pieces);
 			playerPieces[i].setSelectedItem(pieces[i]);
 		}
 
 		// each of the middle rows is split into three columns for player information gathering
-		playerPanels = new JPanel[parent.NUMPLAYERS];
-		for (int i = 0; i < parent.NUMPLAYERS; ++i) {
+		playerPanels = new JPanel[MainWindow.NUMPLAYERS];
+		for (int i = 0; i < MainWindow.NUMPLAYERS; ++i) {
 			panelHolder[i+1].setLayout(new GridLayout(1, 3));
 			playerPanels[i] = new JPanel();
 			panelHolder[i+1].add(playerPanels[i]);

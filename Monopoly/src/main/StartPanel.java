@@ -33,7 +33,7 @@ public class StartPanel extends JPanel {
 		
 		this.parent = par;
 		
-		setBackground(new Color(255, 250, 205));
+		 setBackground(new Color(255, 250, 205));
 		 setBounds(100, 100, 650, 725);
 		 GridBagLayout gridBagLayout = new GridBagLayout();
 		 gridBagLayout.columnWidths = new int[]{200, 200, 200, 0};
@@ -53,7 +53,7 @@ public class StartPanel extends JPanel {
 	     		 		 		 add(lblMonopoly, gbc_lblNewLabel);
 	     		 		 
 	     		 		 		 goButton = new JButton("Go!");
-	     		 		 		 goButton.setFont(new Font("Dialog", Font.BOLD, 21));
+	     		 		 		 goButton.setFont(new Font("Dialog", Font.BOLD, 24));
 	     		 		 		 goButton.setBackground(new Color(30, 144, 255));
 	     		 		 		 GridBagConstraints gbc_goButton = new GridBagConstraints();
 	     		 		 		 gbc_goButton.fill = GridBagConstraints.BOTH;
