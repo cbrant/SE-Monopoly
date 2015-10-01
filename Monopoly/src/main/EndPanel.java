@@ -50,13 +50,13 @@ public class EndPanel extends JPanel {
 				gbc_lblst.gridy = 1;
 				add(lblst, gbc_lblst);
 				
-				JLabel lblDummy = new JLabel("Dummy");
-				lblDummy.setFont(new Font("Dialog", Font.BOLD, 24));
-				GridBagConstraints gbc_lblDummy = new GridBagConstraints();
-				gbc_lblDummy.insets = new Insets(0, 0, 5, 5);
-				gbc_lblDummy.gridx = 1;
-				gbc_lblDummy.gridy = 1;
-				add(lblDummy, gbc_lblDummy);
+				JLabel lbl1Place = new JLabel("Dummy");
+				lbl1Place.setFont(new Font("Dialog", Font.BOLD, 24));
+				GridBagConstraints gbc_lbl1Place = new GridBagConstraints();
+				gbc_lbl1Place.insets = new Insets(0, 0, 5, 5);
+				gbc_lbl1Place.gridx = 1;
+				gbc_lbl1Place.gridy = 1;
+				add(lbl1Place, gbc_lbl1Place);
 				
 				JLabel lblnd = new JLabel("2nd");
 				lblnd.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -67,13 +67,13 @@ public class EndPanel extends JPanel {
 				gbc_lblnd.gridy = 2;
 				add(lblnd, gbc_lblnd);
 				
-				JLabel lblDummy_1 = new JLabel("Dummy");
-				lblDummy_1.setFont(new Font("Dialog", Font.BOLD, 24));
-				GridBagConstraints gbc_lblDummy_1 = new GridBagConstraints();
-				gbc_lblDummy_1.insets = new Insets(0, 0, 5, 5);
-				gbc_lblDummy_1.gridx = 1;
-				gbc_lblDummy_1.gridy = 2;
-				add(lblDummy_1, gbc_lblDummy_1);
+				JLabel lbl2Place = new JLabel("Dummy");
+				lbl2Place.setFont(new Font("Dialog", Font.BOLD, 24));
+				GridBagConstraints gbc_lbl2Place = new GridBagConstraints();
+				gbc_lbl2Place.insets = new Insets(0, 0, 5, 5);
+				gbc_lbl2Place.gridx = 1;
+				gbc_lbl2Place.gridy = 2;
+				add(lbl2Place, gbc_lbl2Place);
 				
 				JLabel lblrd = new JLabel("3rd");
 				lblrd.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -84,13 +84,13 @@ public class EndPanel extends JPanel {
 				gbc_lblrd.gridy = 3;
 				add(lblrd, gbc_lblrd);
 				
-				JLabel lblDummy_2 = new JLabel("Dummy");
-				lblDummy_2.setFont(new Font("Dialog", Font.BOLD, 24));
-				GridBagConstraints gbc_lblDummy_2 = new GridBagConstraints();
-				gbc_lblDummy_2.insets = new Insets(0, 0, 5, 5);
-				gbc_lblDummy_2.gridx = 1;
-				gbc_lblDummy_2.gridy = 3;
-				add(lblDummy_2, gbc_lblDummy_2);
+				JLabel lbl3Place = new JLabel("Dummy");
+				lbl3Place.setFont(new Font("Dialog", Font.BOLD, 24));
+				GridBagConstraints gbc_lbl3Place = new GridBagConstraints();
+				gbc_lbl3Place.insets = new Insets(0, 0, 5, 5);
+				gbc_lbl3Place.gridx = 1;
+				gbc_lbl3Place.gridy = 3;
+				add(lbl3Place, gbc_lbl3Place);
 				
 				JLabel lblth = new JLabel("4th");
 				GridBagConstraints gbc_lblth = new GridBagConstraints();
@@ -100,13 +100,13 @@ public class EndPanel extends JPanel {
 				gbc_lblth.gridy = 4;
 				add(lblth, gbc_lblth);
 				
-				JLabel lblDummy_3 = new JLabel("Dummy");
-				lblDummy_3.setFont(new Font("Dialog", Font.BOLD, 24));
-				GridBagConstraints gbc_lblDummy_3 = new GridBagConstraints();
-				gbc_lblDummy_3.insets = new Insets(0, 0, 5, 5);
-				gbc_lblDummy_3.gridx = 1;
-				gbc_lblDummy_3.gridy = 4;
-				add(lblDummy_3, gbc_lblDummy_3);
+				JLabel lbl4Place = new JLabel("Dummy");
+				lbl4Place.setFont(new Font("Dialog", Font.BOLD, 24));
+				GridBagConstraints gbc_lbl4Place = new GridBagConstraints();
+				gbc_lbl4Place.insets = new Insets(0, 0, 5, 5);
+				gbc_lbl4Place.gridx = 1;
+				gbc_lbl4Place.gridy = 4;
+				add(lbl4Place, gbc_lbl4Place);
 		
 				restartButton = new JButton("Restart");
 				restartButton.setBackground(new Color(30, 144, 255));

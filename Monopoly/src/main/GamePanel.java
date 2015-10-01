@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
 import javax.swing.JSeparator;
 
