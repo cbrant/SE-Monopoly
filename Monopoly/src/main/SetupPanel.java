@@ -1,7 +1,5 @@
 package main;
 
-import java.awt.GridLayout;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -16,13 +14,6 @@ import java.awt.Font;
 public class SetupPanel extends JPanel {
 
 	private MainWindow parent;
-
-
-	private JPanel[] panelHolder;
-
-	private JLabel title; 
-
-	private JPanel[] playerPanels;
 
 	private JTextField[] playerNames;
 	private JComboBox<String>[] playerPieces;
