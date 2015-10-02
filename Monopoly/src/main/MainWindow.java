@@ -26,11 +26,12 @@ public class MainWindow{
 	final static String ENDPANEL = "End Screen";
 	// every game will have 4 players
 	final static int NUMPLAYERS = 4;
-	private static ArrayList<Property> properties;
-	
 	public Player[] players;
+	public ArrayList<Property> properties;
+	
 	
 	public MainWindow() {
+		properties = loadProperties();
 		this.players = new Player[NUMPLAYERS];
 		for (int i = 0; i < NUMPLAYERS; ++i) {
 			this.players[i] = new Player(i+1);
@@ -47,7 +48,6 @@ public class MainWindow{
 
 				CardLayout cl = (CardLayout)(cards.getLayout());
 				cl.next(cards);
-
 			}
 		};
 		
@@ -92,8 +92,8 @@ public class MainWindow{
 	private static ArrayList<Property> loadProperties()
 	{
 		ArrayList<Property> properties = new ArrayList<Property>();
-		//NOTE: You will need to change this to your path so that it will populate
-		String file = "/home/alexander/git/SE-Monopoly/Monopoly/src/main/properties.csv";
+		// use relative path so don't have to update it
+		String file = "src/main/properties.csv";
 		try
 		{
 			BufferedReader buffer = new BufferedReader(new FileReader(file));
@@ -132,7 +132,6 @@ public class MainWindow{
 	
 
 	public static void main(String[] args) {
-		properties = loadProperties();
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				createAndShowGUI();
