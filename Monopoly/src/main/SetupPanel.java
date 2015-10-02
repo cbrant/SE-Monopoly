@@ -160,6 +160,7 @@ public class SetupPanel extends JPanel {
 		startButton = new JButton("Start!");
 		startButton.setFont(new Font("Dialog", Font.BOLD, 24));
 		startButton.setBackground(new Color(30, 144, 255));
+		
 		GridBagConstraints gbc_btnStart = new GridBagConstraints();
 		gbc_btnStart.fill = GridBagConstraints.BOTH;
 		gbc_btnStart.insets = new Insets(0, 0, 5, 5);

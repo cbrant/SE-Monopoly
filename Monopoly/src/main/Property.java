@@ -26,6 +26,9 @@ public class Property {
 	public final int mortVal;
 	private final PropertyCategory group;
 	
+	// indicates the player number who owns the property -- if not yet sold, == -1
+	private int owner;
+	
 	private int numHouses;
 	//private boolean isMortgaged;
 	
@@ -39,6 +42,12 @@ public class Property {
 		this.mortVal = mort;		
 		this.group = category;
 		this.numHouses = 0;
+		this.setOwner(-1);
+	}
+	
+	
+	public void landedOn(int playerNum) {
+		// first case -- not yet bought, give player option to buy
 	}
 	
 	public String toString()
@@ -69,6 +78,13 @@ public class Property {
 	public String getName()
 	{
 		return this.name;
+	}
+
+	public int getOwner() {
+		return owner;
+	}
+	public void setOwner(int owner) {
+		this.owner = owner;
 	}
 	
 	
