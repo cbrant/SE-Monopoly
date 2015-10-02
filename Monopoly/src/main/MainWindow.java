@@ -26,35 +26,15 @@ public class MainWindow{
 	final static String ENDPANEL = "End Screen";
 	// every game will have 4 players
 	final static int NUMPLAYERS = 4;
-	public ArrayList<Property> properties;
-	
 	public Player[] players;
-	// index of player who is currently taking a turn
-	public int currPlayer;
+	public ArrayList<Property> properties;
 	
 	
 	public MainWindow() {
 		properties = loadProperties();
 		this.players = new Player[NUMPLAYERS];
-		this.currPlayer = 0;
 		for (int i = 0; i < NUMPLAYERS; ++i) {
-			this.players[i] = new Player(i+1, properties.size());
-		}
-	}
-
-	// updates the current player to the next still active player
-	public void nextTurn() {
-		this.currPlayer = (this.currPlayer + 1) % players.length;
-		int playersOut = 0;
-		while (!this.players[currPlayer].isActive()) {
-			this.currPlayer = (this.currPlayer + 1) % players.length;
-			playersOut++;	
-		}
-		
-		if (playersOut > players.length - 2) {
-			// gameover!
-			CardLayout cl = (CardLayout)(cards.getLayout());
-			cl.next(cards);
+			this.players[i] = new Player(i+1);
 		}
 	}
 	
@@ -68,7 +48,6 @@ public class MainWindow{
 
 				CardLayout cl = (CardLayout)(cards.getLayout());
 				cl.next(cards);
-
 			}
 		};
 		

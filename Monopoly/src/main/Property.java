@@ -15,7 +15,7 @@ public class Property {
 		GREEN, DARKBLUE, STATIONS, UTILITIES
 	}
 	public enum PropertyType{
-		NORM, RR, UTIL		
+		NORM, RR, UTIL, SPEC		
 	}
 	
 	/// DATA MEMBERS ///

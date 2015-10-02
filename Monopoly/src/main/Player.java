@@ -22,63 +22,74 @@ public class Player {
 	}
 	
 	/// DATA MEMBERS ///
-	private String pName;
+	private String name;
 	private PlayerType pType;
-	private GamePiece pPiece;
+	private GamePiece piece;
 	private int bank;
 	private boolean isActive;
-	private Vector<Property> properties;
+	private Vector<Property> ownedProperties;
 	// currLocation -- index into properties array in MainWindow, gives current location of player on board
 	private int currLocation;
 	
-	private final int TOTALPROPERTIES;
-
 	
 	/// CONSTRUCTORS ///
 	// set up initial default name for players
-	public Player(int id, int totProps) {
-		this.bank = 1200;		// TODO -- change this to something accurate!
-		setpName("Player " + id);
+	public Player(int id) {
+		this.bank = 300;		// TODO -- change this to something accurate!
+		setName("Player " + id);
 		setpType(PlayerType.HUMAN);
-		setpPiece(GamePiece.values()[id % (GamePiece.values().length)]);
+		setPiece(GamePiece.values()[id % (GamePiece.values().length)]);
 		setActive(true);
 		this.currLocation = 0;	// start at go!
-		this.properties = new Vector<Property>();
-		this.TOTALPROPERTIES = totProps;
+		this.ownedProperties = new Vector<Property>();
 	}
 	
-	// getter/setter for pName
-	public String getpName() {
-		return pName;
+	// getter/setter for name
+	public String getName() {
+		return name;
 	}
-	public void setpName(String pName) {
+	public void setName(String name) {
 		// TODO -- maybe set max length so it will display okay
-		this.pName = pName;
+		this.name = name;
 	}
 
 	// getter for bank
 	public int getBank() {
 		return this.bank;
 	}
-	// operators on bank
+	/* Function:	addToBank()
+	 * Purpose:		increase player's bank by <amount>
+	 */
 	public void addToBank(int amount) {
 		this.bank += amount;
 	}
-	public void deductFromBank(int amount) {
+	/* Function:	deductFromBank()
+	 * Purpose:		reduce the player's bank by <amount>, returns the amount actually deducted, less than 
+	 * 				<amount> if player is out of money
+	 */
+	public int deductFromBank(int amount) {
+		if (this.bank <= amount) {
+			int amountDeducted = this.bank;
+			this.bank = 0;
+			// TODO -- here we should check if the amount goes below 0, throw an error or something
+			// OR we could do this from wherever we call deductFromBank
+			setActive(false);
+			System.out.println("You are out of money!");
+			
+			return amountDeducted;
+		}
+		
 		this.bank -= amount;
-	
-		// TODO -- here we should check if the amount goes below 0, throw an error or something
-		// OR we could do this from wherever we call deductFromBank
-		if (this.bank <= 0) setActive(false);
+		return amount;
 	}
 	
 	// getter for properties
 	public Vector<Property> getProperties() {
-		return this.properties;
+		return this.ownedProperties;
 	}
 	// add a property to the player's holdings
 	public void addProperty(Property prop) {
-		this.properties.add(prop);
+		this.ownedProperties.add(prop);
 	}
 	
 	// getter/setter for player type (human or computer)
@@ -90,44 +101,40 @@ public class Player {
 	}
 	
 	// getter/setter for player's game piece
-	public GamePiece getpPiece() {
-		return pPiece;
+	public GamePiece getPiece() {
+		return piece;
 	}
-	public void setpPiece(GamePiece pPiece) {
-		this.pPiece = pPiece;
+	public void setPiece(GamePiece piece) {
+		this.piece = piece;
 	}
 	
-	// getter for player's location on board
+	// getter/setter for player's location on board
 	public int getCurrLocation() {
 		return currLocation;
 	}
-	// used when the player rolls the dice and moves around board
-	// updates the player's position and checks if they pass go
-	public void movePiece(int numMoves) {
-		this.currLocation += numMoves;
-		
-		// check if passed go, need to restart around board
-		if (this.currLocation >= this.TOTALPROPERTIES) {
-			// pass go! collect money and notify
-			passedGo();
-			// put correct index in the data member
-			this.currLocation %= this.TOTALPROPERTIES;
-		}
+	public void setCurrLocation(int currLocation) {
+		this.currLocation = currLocation;
 	}
 
-	public void passedGo() {
-		// collect money
-		this.addToBank(200);
-		// TODO notify player of passing go 
-		System.out.println("Congratulations, you passed go! Collect $200!");
-	}
-
+	// getter/setter for status in game
 	public boolean isActive() {
 		return isActive;
 	}
 	private void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
+	
+	/* Function:	passedGo()
+	 * Purpose:		called when the player passes all the way around the board, player gets 
+	 * 				$200 and notified
+	 */
+	public void passedGo() {
+		// collect money
+		this.addToBank(200);
+		// TODO notify player of passing go 
+		System.out.println("You passed go! Collect $200!");
+	}
+
 	
 	
 	
