@@ -5,32 +5,28 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import main.Player.PlayerType;
+
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
+import java.util.ArrayList;
 
-// TODO -- connect the information submitted from this panel to the players in the game (ie.
-//	name, piece selected, etc)
+
 // TODO -- only one player can have each piece in the game
 public class SetupPanel extends JPanel {
 
 	private MainWindow parent;
-
-	private JTextField[] playerNames;
-	private JComboBox<String>[] playerPieces;
-	private JComboBox<String>[] playerTypes;
-
+	
 	public JButton startButton;
-	private JTextField Player1NameText;
-	private JTextField Player2NameText;
-	private JTextField Player3NameText;
-	private JTextField Player4NameText;
-	private JComboBox<String> Player1TypeComboBox;
-	private JComboBox<String> Player2TypeComboBox;
-	private JComboBox<String> Player3TypeComboBox;
-	private JComboBox<String> Player4TypeComboBox;
+	
+	public JTextField[] playerNames;
+	public ArrayList<JComboBox<PlayerType> > playerTypes;
+	public ArrayList<JComboBox<Player.GamePiece>> playerPieces;
+	
 	private JComboBox<String> Player1PieceComboBox;
 	private JComboBox<String> Player2PieceComboBox;
 	private JComboBox<String> Player3PieceComboBox;
@@ -43,10 +39,15 @@ public class SetupPanel extends JPanel {
 		setBackground(new Color(255, 250, 205));
 		
 		this.parent = par;	//used to access outer window and data members (ie. players, etc)
+		playerNames = new JTextField[MainWindow.NUMPLAYERS];
+		playerTypes = new ArrayList<JComboBox<Player.PlayerType>>(MainWindow.NUMPLAYERS);
+		playerPieces = new ArrayList<JComboBox<Player.GamePiece>>(MainWindow.NUMPLAYERS);
 		
 		//Contents for Combo boxes
-		String[] pTypes = { "Human", "Computer" };
-		String[] pieces = { "Car", "Dog", "Shoe", "Hat" };
+		//String[] pTypes = { "Human", "Computer" };
+		Player.PlayerType[] pTypes = Player.PlayerType.values();
+		//String[] pieces = { "Car", "Dog", "Shoe", "Hat" };
+		Player.GamePiece[] pieces = Player.GamePiece.values();
 		
 		//Setup gridbag layout
 		setBounds(100, 100, 650, 725);
@@ -68,97 +69,97 @@ public class SetupPanel extends JPanel {
 		gbc_setupLabel.gridwidth = 3;
 		add(setupLabel, gbc_setupLabel);
 		
-		Player1NameText = new JTextField("Player 1");
+		playerNames[0] = new JTextField("Player 1");
 		GridBagConstraints gbc_Player1NameText = new GridBagConstraints();
 		gbc_Player1NameText.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Player1NameText.insets = new Insets(0, 0, 5, 5);
 		gbc_Player1NameText.gridx = 1;
 		gbc_Player1NameText.gridy = 3;
-		add(Player1NameText, gbc_Player1NameText);
-		Player1NameText.setColumns(10);
+		add(playerNames[0], gbc_Player1NameText);
+		playerNames[0].setColumns(10);
 		
-		Player1TypeComboBox = new JComboBox<String>(pTypes);
+		playerTypes.add(new JComboBox<Player.PlayerType>(pTypes));
 		GridBagConstraints gbc_Player1TypeComboBox = new GridBagConstraints();
 		gbc_Player1TypeComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_Player1TypeComboBox.gridx = 3;
 		gbc_Player1TypeComboBox.gridy = 3;
-		add(Player1TypeComboBox, gbc_Player1TypeComboBox);
+		add(playerTypes.get(0), gbc_Player1TypeComboBox);
 		
-		Player1PieceComboBox = new JComboBox<String>(pieces);
+		playerPieces.add(new JComboBox<Player.GamePiece>(pieces));
 		GridBagConstraints gbc_Player1PieceComboBox = new GridBagConstraints();
 		gbc_Player1PieceComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_Player1PieceComboBox.gridx = 5;
 		gbc_Player1PieceComboBox.gridy = 3;
-		add(Player1PieceComboBox, gbc_Player1PieceComboBox);
+		add(playerPieces.get(0), gbc_Player1PieceComboBox);
 		
-		Player2NameText = new JTextField("Player 2");
-		Player2NameText.setColumns(10);
+		playerNames[1] = new JTextField("Player 2");
+		playerNames[1].setColumns(10);
 		GridBagConstraints gbc_Player2NameText = new GridBagConstraints();
 		gbc_Player2NameText.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Player2NameText.insets = new Insets(0, 0, 5, 5);
 		gbc_Player2NameText.gridx = 1;
 		gbc_Player2NameText.gridy = 5;
-		add(Player2NameText, gbc_Player2NameText);
+		add(playerNames[1], gbc_Player2NameText);
 		
-		Player2TypeComboBox = new JComboBox<String>(pTypes);
+		playerTypes.add(new JComboBox<Player.PlayerType>(pTypes));
 		GridBagConstraints gbc_Player2TypeComboBox = new GridBagConstraints();
 		gbc_Player2TypeComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_Player2TypeComboBox.gridx = 3;
 		gbc_Player2TypeComboBox.gridy = 5;
-		add(Player2TypeComboBox, gbc_Player2TypeComboBox);
+		add(playerTypes.get(1), gbc_Player2TypeComboBox);
 		
-		Player2PieceComboBox = new JComboBox<String>(pieces);
+		playerPieces.add(new JComboBox<Player.GamePiece>(pieces));
 		GridBagConstraints gbc_Player2PieceComboBox = new GridBagConstraints();
 		gbc_Player2PieceComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_Player2PieceComboBox.gridx = 5;
 		gbc_Player2PieceComboBox.gridy = 5;
-		add(Player2PieceComboBox, gbc_Player2PieceComboBox);
+		add(playerPieces.get(1), gbc_Player2PieceComboBox);
 		
-		Player3NameText = new JTextField("Player 3");
-		Player3NameText.setColumns(10);
+		playerNames[2] = new JTextField("Player 3");
+		playerNames[2].setColumns(10);
 		GridBagConstraints gbc_Player3NameText = new GridBagConstraints();
 		gbc_Player3NameText.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Player3NameText.insets = new Insets(0, 0, 5, 5);
 		gbc_Player3NameText.gridx = 1;
 		gbc_Player3NameText.gridy = 7;
-		add(Player3NameText, gbc_Player3NameText);
+		add(playerNames[2], gbc_Player3NameText);
 		
-		Player3TypeComboBox = new JComboBox<String>(pTypes);
+		playerTypes.add(new JComboBox<Player.PlayerType>(pTypes));
 		GridBagConstraints gbc_Player3TypeComboBox = new GridBagConstraints();
 		gbc_Player3TypeComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_Player3TypeComboBox.gridx = 3;
 		gbc_Player3TypeComboBox.gridy = 7;
-		add(Player3TypeComboBox, gbc_Player3TypeComboBox);
+		add(playerTypes.get(2), gbc_Player3TypeComboBox);
 		
-		Player3PieceComboBox = new JComboBox<String>(pieces);
+		playerPieces.add(new JComboBox<Player.GamePiece>(pieces));
 		GridBagConstraints gbc_Player3PieceComboBox = new GridBagConstraints();
 		gbc_Player3PieceComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_Player3PieceComboBox.gridx = 5;
 		gbc_Player3PieceComboBox.gridy = 7;
-		add(Player3PieceComboBox, gbc_Player3PieceComboBox);
+		add(playerPieces.get(2), gbc_Player3PieceComboBox);
 		
-		Player4NameText = new JTextField("Player 4");
-		Player4NameText.setColumns(10);
+		playerNames[3] = new JTextField("Player 4");
+		playerNames[3].setColumns(10);
 		GridBagConstraints gbc_Player4NameText = new GridBagConstraints();
 		gbc_Player4NameText.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Player4NameText.insets = new Insets(0, 0, 5, 5);
 		gbc_Player4NameText.gridx = 1;
 		gbc_Player4NameText.gridy = 9;
-		add(Player4NameText, gbc_Player4NameText);
+		add(playerNames[3], gbc_Player4NameText);
 		
-		Player4TypeComboBox = new JComboBox<String>(pTypes);
+		playerTypes.add(new JComboBox<Player.PlayerType>(pTypes));
 		GridBagConstraints gbc_Player4TypeComboBox = new GridBagConstraints();
 		gbc_Player4TypeComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_Player4TypeComboBox.gridx = 3;
 		gbc_Player4TypeComboBox.gridy = 9;
-		add(Player4TypeComboBox, gbc_Player4TypeComboBox);
+		add(playerTypes.get(3), gbc_Player4TypeComboBox);
 		
-		Player4PieceComboBox = new JComboBox<String>(pieces);
+		playerPieces.add(new JComboBox<Player.GamePiece>(pieces));
 		GridBagConstraints gbc_Player4PieceComboBox = new GridBagConstraints();
 		gbc_Player4PieceComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_Player4PieceComboBox.gridx = 5;
 		gbc_Player4PieceComboBox.gridy = 9;
-		add(Player4PieceComboBox, gbc_Player4PieceComboBox);
+		add(playerPieces.get(3), gbc_Player4PieceComboBox);
 		
 		startButton = new JButton("Start!");
 		startButton.setFont(new Font("Dialog", Font.BOLD, 24));

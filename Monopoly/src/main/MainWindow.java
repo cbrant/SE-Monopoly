@@ -1,14 +1,15 @@
 package main;
 
 import java.awt.*;
-
 import java.awt.event.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.io.*;
+
 import javax.swing.*;
 
+import main.Player.PlayerType;
 import main.StartPanel;
 import main.Property.PropertyCategory;
 import main.SetupPanel;
@@ -44,9 +45,24 @@ public class MainWindow{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				CardLayout cl = (CardLayout)(cards.getLayout());
+				
+				// if leaving the set up screen, extract player names and pieces selected
+				if (cards.getComponents().length > 1) {
+					if (cards.getComponents()[1].isVisible()) {
+						SetupPanel setupP = ((SetupPanel)(cards.getComponents()[1]));
+						for (int i = 0; i < players.length; ++i) {
+							players[i].setName(setupP.playerNames[i].getText());
+							// hardcoded for now, but eventually will copy over from setup screen
+							players[i].setpType(PlayerType.HUMAN); //players[i].setpType((Player.PlayerType)setupP.playerTypes.get(i).getSelectedItem());
+							players[i].setPiece((Player.GamePiece)setupP.playerPieces.get(i).getSelectedItem());
+						}
+					}
+					
+				}
+				
 				cl.next(cards);
+				// if moving to the main game screen, execute a turn notification for the first player
 				if (cards.getComponents()[2].isVisible()) {
 					((GamePanel)(cards.getComponents()[2])).newTurnNotification();
 				}
