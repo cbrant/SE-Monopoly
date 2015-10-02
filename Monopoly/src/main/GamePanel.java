@@ -2,7 +2,6 @@ package main;
 
 
 import java.awt.CardLayout;
-
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -16,10 +15,13 @@ import java.io.InputStreamReader;
 import java.util.Random;
 import java.util.Vector;
 
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingUtilities;
@@ -78,7 +80,7 @@ public class GamePanel extends JPanel {
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 10;
 		gbc_btnNewButton.gridy = 8;
-				/////////////////// NOTE IMAGE CHANGED SO I CAN RUN IT /////////////////////
+		/////////////////// TODO: change image source back to dice when img is added to repo
 		Image img = new ImageIcon(this.getClass().getResource("/monopolyLogo.png")).getImage();
 		diceButton.setIcon(new ImageIcon(img));
 		diceButton.addActionListener(diceClicked);
@@ -103,8 +105,9 @@ public class GamePanel extends JPanel {
 			if (d1 == d2) doubles = true;	//player will roll again
 			
 			// display the result of the dice on the screen (for now, console only)
+			// TODO -- get dice results displayed on GUI
 			System.out.println("You rolled " + d1 + " and " + d2 + ".");
-
+			
 			// pause for a second
 			try {
 				Thread.sleep(1*1000);
@@ -115,26 +118,13 @@ public class GamePanel extends JPanel {
 			// advance the current player's position
 			movePlayer(d1+d2);		
 			// TODO -- update the GUI
-
-			// pause for a second
-			try {
-				Thread.sleep(1*1000);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
 			
 			// given the state of the current property, notify user or allow user to take action
 			takeAction(parent.properties.get(parent.players[currPlayer].getCurrLocation()));
-			// pause for a second
-			try {
-				Thread.sleep(1*1000);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
-			// go to next turn -- also checks for game termination condition
-			nextTurn();
 
-			// TODO -- enable dice again
+			// going to next turn will take place in takeAction or in an event handler for an event
+			//	that will be created by takeAction
+
 		}
 	};
 	
@@ -146,14 +136,34 @@ public class GamePanel extends JPanel {
 		return ranGen.nextInt(6) + 1;
 	}
 
+	/* Function:	movePlayer()
+	 * Purpose:		advance the current player around the board to the next space based on the dice roll
+	 */
+	private void movePlayer(int roll) {
+		int newLoc = parent.players[currPlayer].getCurrLocation() + roll;
+		// check if the player passed go
+		if (newLoc >= parent.properties.size()) {
+			parent.players[currPlayer].passedGo();
+		}
+		// set user's location to correct index into properties array
+		parent.players[currPlayer].setCurrLocation(newLoc % parent.properties.size());
+		
+		// TODO -- probably don't need to print this info when done on GUI
+		System.out.println("You moved " + roll + " spaces to "+ parent.properties.get(parent.players[currPlayer].getCurrLocation()).getName());
+					
+	}	
+	
 	/* Function:	takeAction()
 	 * Purpose:		given the property <prop> that the current player has landed on, give user notification or
 	 * 				require response from the current player based on the property type, the owner of it, etc
+	 * 				NOTE: nextTurn() is called from here for some scenarios (or called from event handlers
+	 * 				built in helper functions for other scenarios) to follow event based paradigm
 	 */
 	private void takeAction(Property prop) {
 		// space is a special space -- GO, draw card, taxes, etc; not a buyable property
 		if (prop.getType() == Property.PropertyType.SPEC) {
-			// DO NOTHING for vertical prototype			
+			// DO NOTHING for vertical prototype	
+			nextTurn();
 		}
 		// space is a buyable property
 		else {
@@ -168,27 +178,11 @@ public class GamePanel extends JPanel {
 			// it has been bought and the owner is the current player
 			else {
 				// DO NOTHING
+				nextTurn();
 			}
 			
 		}
 	}
-	
-	/* Function:	movePlayer()
-	 * Purpose:		advance the current player around the board to the next space based on the dice roll
-	 */
-	private void movePlayer(int roll) {
-		int newLoc = parent.players[currPlayer].getCurrLocation() + roll;
-		// check if the player passed go
-		if (newLoc >= parent.properties.size()) {
-			parent.players[currPlayer].passedGo();
-		}
-		// set user's location to correct index into properties array
-		parent.players[currPlayer].setCurrLocation(newLoc % parent.properties.size());
-		
-		// move the current player around the board
-		System.out.println("You moved " + roll + " spaces to "+ parent.properties.get(parent.players[currPlayer].getCurrLocation()).getName());
-					
-	}	
 
 	/* Function:	optionToBuy()
 	 * Purpose:		helper to takeAction(), used when a buyable property has not yet been purchased, for vertical
@@ -197,9 +191,8 @@ public class GamePanel extends JPanel {
 	private void optionToBuy(Property prop) {
 		// check if the current player has enough money to buy the property
 		if (parent.players[currPlayer].getBank() > prop.getPrice()) {
+			// TODO -- create a dialog for user interaction instead of command line
 			System.out.print("Do you want to buy " + prop.getName() + " for $" + prop.getPrice() + "? ");
-			
-			// TODO -- make this a dialog for user interaction instead of command line
 			BufferedReader b = new BufferedReader(new InputStreamReader(System.in));
 			String input = "";
 			try {
@@ -207,19 +200,23 @@ public class GamePanel extends JPanel {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
+
+			// **TODO -- put this (what's below here in the if body) in event handler for dialog response
+
 			// if they want to buy it, update the owner of the property, and deduct the cost from the current player
 			if (input.toUpperCase().equals(new String("YES"))) {
 				parent.players[currPlayer].deductFromBank(prop.getPrice());
 				prop.setOwner(currPlayer);
 				parent.players[currPlayer].addProperty(prop);;
-			}
+			}		
+			nextTurn();
 		}
 		else {
 			// notify player that they don't have money
+			// TODO -- put this notification somewhere on GUI
 			System.out.println("You do not have enough money to buy this property.");
-		}
-		
+			nextTurn();
+		}		
 	}
 	
 	/* Function:	payRent()
@@ -227,12 +224,13 @@ public class GamePanel extends JPanel {
 	 * 				rent to that owner
 	 */
 	private void payRent(Property prop) {
-		if (currPlayer == prop.getOwner()) return;
-		
-		int amountPaid = parent.players[currPlayer].deductFromBank(prop.getRent());
-		parent.players[prop.getOwner()].addToBank(amountPaid);
-		System.out.println(parent.players[currPlayer].getName() + " paid $" + amountPaid + 
+		if (currPlayer != prop.getOwner()) {		
+			int amountPaid = parent.players[currPlayer].deductFromBank(prop.getRent());
+			parent.players[prop.getOwner()].addToBank(amountPaid);
+			System.out.println(parent.players[currPlayer].getName() + " paid $" + amountPaid + 
 				" to " + parent.players[prop.getOwner()].getName() + " for rent on " + prop.getName());
+		}
+		nextTurn();
 	}
 
 	/* Function:	nextTurn()
@@ -257,8 +255,13 @@ public class GamePanel extends JPanel {
 		this.doubles = false;
 
 		newTurnNotification();
+
 	}
 	
+	/* Function:	newTurnNotification() 
+	 * Purpose:		display something on GUI to indicate that it is player X's turn and the
+	 * 				dice should be rolled
+	 */
 	public void newTurnNotification() {
 		// notify player X that it is their turn
 		System.out.println("\n" + parent.players[currPlayer].getName() + ", it is your turn!");
@@ -270,6 +273,7 @@ public class GamePanel extends JPanel {
 			sProps += props.elementAt(i).getName();
 		}
 		System.out.println("\tProperties: " + sProps);
+		// TODO -- enable dice again
 	}
 		
 	

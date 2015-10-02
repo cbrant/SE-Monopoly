@@ -18,8 +18,8 @@ import main.EndPanel;
 
 public class MainWindow{
 
-	static JFrame frame;
-	static JPanel cards;
+	public JFrame frame;
+	public JPanel cards;
 	final static String STARTPANEL = "Start Screen";
 	final static String SETUPPANEL = "Setup Screen";
 	final static String GAMEPANEL = "Game Screen";
@@ -45,9 +45,11 @@ public class MainWindow{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
 				CardLayout cl = (CardLayout)(cards.getLayout());
 				cl.next(cards);
+				if (cards.getComponents()[2].isVisible()) {
+					((GamePanel)(cards.getComponents()[2])).newTurnNotification();
+				}
 			}
 		};
 		
@@ -75,20 +77,21 @@ public class MainWindow{
     }
 	
 
-	private static void createAndShowGUI() {
+	private void createAndShowGUI() {
 		//Create and set up the window.
 		frame = new JFrame("MainWindow");
 		frame.setBounds(100, 100, 650, 725);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		//Create and set up the content pane.
-		MainWindow window = new MainWindow();
-		window.addComponentToPane(frame.getContentPane());
+		this.addComponentToPane(frame.getContentPane());
 
 		//Display the window.
 		frame.setVisible(true);
 	}
 	
+	
+	///// TODO: maybe change this to loadSpaces, and the properties array will change to include all spaces 
+	/////	users can be on (see GamePanel method movePlayer() for how the properties array is currently being used)
 	private static ArrayList<Property> loadProperties()
 	{
 		ArrayList<Property> properties = new ArrayList<Property>();
@@ -134,7 +137,9 @@ public class MainWindow{
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				createAndShowGUI();
+				//Create and set up the content pane.
+				MainWindow window = new MainWindow();
+				window.createAndShowGUI();
 			}
 		});
 	}

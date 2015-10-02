@@ -11,6 +11,9 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
 
+// TODO -- connect the information submitted from this panel to the players in the game (ie.
+//	name, piece selected, etc)
+// TODO -- only one player can have each piece in the game
 public class SetupPanel extends JPanel {
 
 	private MainWindow parent;

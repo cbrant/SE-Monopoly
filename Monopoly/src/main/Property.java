@@ -1,7 +1,9 @@
 package main;
 
 
-
+// TODO -- make a Spaces class from which this will inherit
+// TODO -- create another inheriting class for draw card spaces, tax space??
+// TODO -- maybe have this be a parent class for each of the property types listed below
 /* Class:	Property
  * Purpose:	maintains all information about a property object, including
  * 	constant information such as price, rent, etc and other information such
