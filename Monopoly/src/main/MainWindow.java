@@ -147,6 +147,8 @@ public class MainWindow{
 					}
 					case("ACTION"):
 					{
+						s = new ActionSpace(values[0], Space.SpaceType.valueOf(values[1]));
+						spaces.add(s);
 						break;
 					}
 					default:
@@ -172,7 +174,7 @@ public class MainWindow{
 		{
 			e.printStackTrace();
 		}
-		if(spaces.size() != 10)
+		if(spaces.size() != 40)
 			System.out.println("Incorrect number of properties in list, there are " + spaces.size());
 		return spaces;
 	}
