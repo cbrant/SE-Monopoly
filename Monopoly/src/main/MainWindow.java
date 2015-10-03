@@ -124,11 +124,36 @@ public class MainWindow{
 				values = line.split(",");
 				for(int i = 0; i < 12; i++)
 					values[i] = values[i].trim();
-				int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4]), Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]), Integer.parseInt(values[8])};
-				p = new Property(values[0], Property.PropertyType.valueOf(values[1]), Integer.parseInt(values[9]),rent, Integer.parseInt(values[10]), Property.PropertyCategory.valueOf(values[11]));
-				System.out.println(p);
-				if(p.getType() == Property.PropertyType.valueOf("NORM"))
-					properties.add(p);
+				switch(values[1])
+				{
+					case("NORM"):
+					{
+						int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4]), Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]), Integer.parseInt(values[8])};
+						p = new Property(values[0], Property.PropertyType.valueOf(values[1]), Integer.parseInt(values[9]),rent, Integer.parseInt(values[10]), Property.PropertyCategory.valueOf(values[11]));
+						System.out.println(p);
+						if(p.getType() == Property.PropertyType.valueOf("NORM"))
+							properties.add(p);
+						break;
+					}
+					case("RR"):
+					{
+						break;
+					}
+					case("UTIL"):
+					{
+						break;
+					}
+					case("ACTION"):
+					{
+						break;
+					}
+					default:
+					{
+						
+					}
+					
+				}
+				
 			}
 			buffer.close();
 		}
