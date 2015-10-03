@@ -20,7 +20,8 @@ public class Property extends Space {
 	/// DATA MEMBERS ///
 	private final int buyingPrice;
 	private final int[] rent;	//make this an array later to maintain rent based on numHouses
-	public final int mortVal;
+	private final int mortVal;
+	private int	houseCost;
 	private final PropertyCategory group;
 	
 	// indicates the player number who owns the property -- if not yet sold, == -1
@@ -32,7 +33,7 @@ public class Property extends Space {
 	
 	/// CONSTRUCTOR ///
 	// note: no default constructor
-	public Property(String name, Space.SpaceType type, int price, int[] rent, int mort, PropertyCategory category)
+	public Property(String name, Space.SpaceType type, int price, int[] rent, int mort, int houseCost, PropertyCategory category)
 	{
 		super(name, type);
 		this.buyable = true;
@@ -40,6 +41,7 @@ public class Property extends Space {
 		this.buyingPrice = price;
 		this.rent = rent;
 		this.mortVal = mort;		
+		this.houseCost = houseCost;
 		this.group = category;
 		this.numHouses = 0;
 		

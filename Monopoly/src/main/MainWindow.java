@@ -129,7 +129,7 @@ public class MainWindow{
 					case("NORM"):
 					{
 						int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4]), Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]), Integer.parseInt(values[8])};
-						p = new Property(values[0], Space.SpaceType.valueOf(values[1]), Integer.parseInt(values[9]),rent, Integer.parseInt(values[10]), Property.PropertyCategory.valueOf(values[11]));
+						p = new Property(values[0], Space.SpaceType.valueOf(values[1]), 0, rent, Integer.parseInt(values[9]), Integer.parseInt(values[10]), Property.PropertyCategory.valueOf(values[11]));
 						System.out.println(p);
 						spaces.add(p);
 						break;
@@ -140,6 +140,10 @@ public class MainWindow{
 					}
 					case("UTIL"):
 					{
+						int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4])};
+						p = new Property(values[0], Space.SpaceType.valueOf(values[1]), 0, rent,  Integer.parseInt(values[9]), Integer.parseInt(values[10]), Property.PropertyCategory.valueOf(values[11]));
+						System.out.println(p);
+						spaces.add(p);
 						break;
 					}
 					case("ACTION"):
