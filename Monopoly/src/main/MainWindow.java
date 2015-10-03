@@ -28,11 +28,11 @@ public class MainWindow{
 	// every game will have 4 players
 	final static int NUMPLAYERS = 4;
 	public Player[] players;
-	public ArrayList<Property> properties;
+	public ArrayList<Space> spaces;
 	
 	
 	public MainWindow() {
-		properties = loadProperties();
+		spaces = loadSpaces();
 		this.players = new Player[NUMPLAYERS];
 		for (int i = 0; i < NUMPLAYERS; ++i) {
 			this.players[i] = new Player(i+1);
@@ -108,9 +108,9 @@ public class MainWindow{
 	
 	///// TODO: maybe change this to loadSpaces, and the properties array will change to include all spaces 
 	/////	users can be on (see GamePanel method movePlayer() for how the properties array is currently being used)
-	private static ArrayList<Property> loadProperties()
+	private static ArrayList<Space> loadSpaces()
 	{
-		ArrayList<Property> properties = new ArrayList<Property>();
+		ArrayList<Space> spaces = new ArrayList<Space>();
 		// use relative path so don't have to update it
 		String file = "src/main/properties.csv";
 		try
@@ -129,10 +129,9 @@ public class MainWindow{
 					case("NORM"):
 					{
 						int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4]), Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]), Integer.parseInt(values[8])};
-						p = new Property(values[0], Property.PropertyType.valueOf(values[1]), Integer.parseInt(values[9]),rent, Integer.parseInt(values[10]), Property.PropertyCategory.valueOf(values[11]));
+						p = new Property(values[0], Space.SpaceType.valueOf(values[1]), Integer.parseInt(values[9]),rent, Integer.parseInt(values[10]), Property.PropertyCategory.valueOf(values[11]));
 						System.out.println(p);
-						if(p.getType() == Property.PropertyType.valueOf("NORM"))
-							properties.add(p);
+						spaces.add(p);
 						break;
 					}
 					case("RR"):
@@ -149,7 +148,8 @@ public class MainWindow{
 					}
 					default:
 					{
-						
+						System.out.println("Invalid entry type");
+						break;
 					}
 					
 				}
@@ -169,9 +169,9 @@ public class MainWindow{
 		{
 			e.printStackTrace();
 		}
-		if(properties.size() != 10)
-			System.out.println("Incorrect number of properties in list, there are " + properties.size());
-		return properties;
+		if(spaces.size() != 10)
+			System.out.println("Incorrect number of properties in list, there are " + spaces.size());
+		return spaces;
 	}
 	
 

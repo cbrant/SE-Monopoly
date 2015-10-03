@@ -120,7 +120,7 @@ public class GamePanel extends JPanel {
 			// TODO -- update the GUI
 			
 			// given the state of the current property, notify user or allow user to take action
-			takeAction(parent.properties.get(parent.players[currPlayer].getCurrLocation()));
+			takeAction(parent.spaces.get(parent.players[currPlayer].getCurrLocation()));
 
 			// going to next turn will take place in takeAction or in an event handler for an event
 			//	that will be created by takeAction
@@ -142,14 +142,14 @@ public class GamePanel extends JPanel {
 	private void movePlayer(int roll) {
 		int newLoc = parent.players[currPlayer].getCurrLocation() + roll;
 		// check if the player passed go
-		if (newLoc >= parent.properties.size()) {
+		if (newLoc >= parent.spaces.size()) {
 			parent.players[currPlayer].passedGo();
 		}
 		// set user's location to correct index into properties array
-		parent.players[currPlayer].setCurrLocation(newLoc % parent.properties.size());
+		parent.players[currPlayer].setCurrLocation(newLoc % parent.spaces.size());
 		
 		// TODO -- probably don't need to print this info when done on GUI
-		System.out.println("You moved " + roll + " spaces to "+ parent.properties.get(parent.players[currPlayer].getCurrLocation()).getName());
+		System.out.println("You moved " + roll + " spaces to "+ parent.spaces.get(parent.players[currPlayer].getCurrLocation()).getName());
 					
 	}	
 	
@@ -159,14 +159,15 @@ public class GamePanel extends JPanel {
 	 * 				NOTE: nextTurn() is called from here for some scenarios (or called from event handlers
 	 * 				built in helper functions for other scenarios) to follow event based paradigm
 	 */
-	private void takeAction(Property prop) {
+	private void takeAction(Space s) {
 		// space is a special space -- GO, draw card, taxes, etc; not a buyable property
-		if (prop.getType() == Property.PropertyType.SPEC) {
+		if (s.getType() == Space.SpaceType.ACTION) {
 			// DO NOTHING for vertical prototype	
 			nextTurn();
 		}
 		// space is a buyable property
 		else {
+			Property prop = (Property) s;
 			// it has not been bought yet
 			if (prop.getOwner() == -1) {
 				optionToBuy(prop);
