@@ -14,12 +14,12 @@ public class Property extends Space {
 	/// ProperyCategory enum ///
 	public enum PropertyCategory {
 		PURPLE, LIGHTBLUE, PINK, ORANGE, RED, YELLOW,
-		GREEN, DARKBLUE, STATIONS, UTILITIES
+		GREEN, DARKBLUE, RAILROAD, UTILITIES
 	}
 	
 	/// DATA MEMBERS ///
 	private final int buyingPrice;
-	private final int[] rent;	//make this an array later to maintain rent based on numHouses
+	protected final int[] rent;	//make this an array later to maintain rent based on numHouses
 	private final int mortVal;
 	private int	houseCost;
 	private final PropertyCategory group;
