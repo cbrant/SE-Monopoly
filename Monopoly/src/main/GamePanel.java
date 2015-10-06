@@ -78,8 +78,8 @@ public class GamePanel extends JPanel {
 		gbc_kentuckyAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_kentuckyAvenue.gridx = 8;
 		gbc_kentuckyAvenue.gridy = 2;
-//		Image img = new ImageIcon(this.getClass().getResource("/Untitled 1.png")).getImage();
-// 		kentuckyAvenue.setIcon(new ImageIcon(img));
+		Image red = new ImageIcon(this.getClass().getResource("/redspace.jpg")).getImage();
+ 		kentuckyAvenue.setIcon(new ImageIcon(red));
 		add(kentuckyAvenue, gbc_kentuckyAvenue);
 		
 		JButton chanceNorth = new JButton("");
@@ -98,6 +98,7 @@ public class GamePanel extends JPanel {
 		gbc_indianaAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_indianaAvenue.gridx = 10;
 		gbc_indianaAvenue.gridy = 2;
+		indianaAvenue.setIcon(new ImageIcon(red));
 		add(indianaAvenue, gbc_indianaAvenue);
 		
 		JButton illinoisAvenue = new JButton("");
@@ -107,6 +108,7 @@ public class GamePanel extends JPanel {
 		gbc_illinoisAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_illinoisAvenue.gridx = 11;
 		gbc_illinoisAvenue.gridy = 2;
+		illinoisAvenue.setIcon(new ImageIcon(red));
 		add(illinoisAvenue, gbc_illinoisAvenue);
 		
 		JButton bORailroad = new JButton("");
@@ -125,6 +127,8 @@ public class GamePanel extends JPanel {
 		gbc_atlanticAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_atlanticAvenue.gridx = 13;
 		gbc_atlanticAvenue.gridy = 2;
+		Image yellow = new ImageIcon(this.getClass().getResource("/yellowspace.jpg")).getImage();
+ 		atlanticAvenue.setIcon(new ImageIcon(yellow));
 		add(atlanticAvenue, gbc_atlanticAvenue);
 		
 		JButton ventnorAvenue = new JButton("");
@@ -134,6 +138,7 @@ public class GamePanel extends JPanel {
 		gbc_ventnorAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_ventnorAvenue.gridx = 14;
 		gbc_ventnorAvenue.gridy = 2;
+		ventnorAvenue.setIcon(new ImageIcon(yellow));
 		add(ventnorAvenue, gbc_ventnorAvenue);
 		
 		JButton waterWorks = new JButton("");
@@ -152,6 +157,7 @@ public class GamePanel extends JPanel {
 		gbc_marvinGardens.insets = new Insets(0, 0, 5, 5);
 		gbc_marvinGardens.gridx = 16;
 		gbc_marvinGardens.gridy = 2;
+		marvinGardens.setIcon(new ImageIcon(yellow));
 		add(marvinGardens, gbc_marvinGardens);
 		
 		JButton goToJail = new JButton("");
