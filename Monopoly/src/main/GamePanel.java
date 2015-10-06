@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingUtilities;
+import javax.swing.SwingConstants;
 
 public class GamePanel extends JPanel {
 
@@ -77,6 +78,8 @@ public class GamePanel extends JPanel {
 		gbc_kentuckyAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_kentuckyAvenue.gridx = 8;
 		gbc_kentuckyAvenue.gridy = 2;
+//		Image img = new ImageIcon(this.getClass().getResource("/Untitled 1.png")).getImage();
+// 		kentuckyAvenue.setIcon(new ImageIcon(img));
 		add(kentuckyAvenue, gbc_kentuckyAvenue);
 		
 		JButton chanceNorth = new JButton("");
@@ -223,6 +226,19 @@ public class GamePanel extends JPanel {
 		gbc_stJamesPlace.gridx = 5;
 		gbc_stJamesPlace.gridy = 8;
 		add(stJamesPlace, gbc_stJamesPlace);
+		
+		JButton diceButton = new JButton("");
+		GridBagConstraints gbc_diceButton = new GridBagConstraints();
+		gbc_diceButton.fill = GridBagConstraints.BOTH;
+		gbc_diceButton.gridwidth = 3;
+		gbc_diceButton.gridheight = 3;
+		gbc_diceButton.insets = new Insets(0, 0, 5, 5);
+		gbc_diceButton.gridx = 11;
+		gbc_diceButton.gridy = 8;
+		Image img = new ImageIcon(this.getClass().getResource("/dice.png")).getImage();
+ 		diceButton.setIcon(new ImageIcon(img));
+ 		diceButton.addActionListener(diceClicked);
+		add(diceButton, gbc_diceButton);
 		
 		JButton pennsylvaniaAvenue = new JButton("");
 		GridBagConstraints gbc_pennsylvaniaAvenue = new GridBagConstraints();
@@ -423,10 +439,6 @@ public class GamePanel extends JPanel {
 		gbc_go.gridx = 17;
 		gbc_go.gridy = 14;
 		add(go, gbc_go);
-		Image img = new ImageIcon(this.getClass().getResource("/dice.png")).getImage();
-		
-		
-		
 
 	}
 	
