@@ -176,7 +176,8 @@ public class GamePanel extends JPanel {
 		gbc_newYorkAvenue.gridwidth = 3;
 		gbc_newYorkAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_newYorkAvenue.gridx = 5;
-		gbc_newYorkAvenue.gridy = 5;
+		gbc_newYorkAvenue.gridy = 5;Image orange = new ImageIcon(this.getClass().getResource("/orangespace.jpg")).getImage();
+ 		newYorkAvenue.setIcon(new ImageIcon(orange));
 		add(newYorkAvenue, gbc_newYorkAvenue);
 		
 		JButton pacificAvenue = new JButton("");
@@ -186,6 +187,8 @@ public class GamePanel extends JPanel {
 		gbc_pacificAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_pacificAvenue.gridx = 17;
 		gbc_pacificAvenue.gridy = 5;
+		Image green = new ImageIcon(this.getClass().getResource("/greenspace.jpg")).getImage();
+ 		pacificAvenue.setIcon(new ImageIcon(green));
 		add(pacificAvenue, gbc_pacificAvenue);
 		
 		JButton tennesseeAvenue = new JButton("");
@@ -195,6 +198,7 @@ public class GamePanel extends JPanel {
 		gbc_tennesseeAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_tennesseeAvenue.gridx = 5;
 		gbc_tennesseeAvenue.gridy = 6;
+		tennesseeAvenue.setIcon(new ImageIcon(orange));
 		add(tennesseeAvenue, gbc_tennesseeAvenue);
 		
 		JButton northCarolinaAvenue = new JButton("");
@@ -204,6 +208,7 @@ public class GamePanel extends JPanel {
 		gbc_northCarolinaAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_northCarolinaAvenue.gridx = 17;
 		gbc_northCarolinaAvenue.gridy = 6;
+		northCarolinaAvenue.setIcon(new ImageIcon(green));
 		add(northCarolinaAvenue, gbc_northCarolinaAvenue);
 		
 		JButton communityChestWest = new JButton("");
@@ -231,6 +236,7 @@ public class GamePanel extends JPanel {
 		gbc_stJamesPlace.insets = new Insets(0, 0, 5, 5);
 		gbc_stJamesPlace.gridx = 5;
 		gbc_stJamesPlace.gridy = 8;
+		stJamesPlace.setIcon(new ImageIcon(orange));
 		add(stJamesPlace, gbc_stJamesPlace);
 		
 		JButton diceButton = new JButton("");
@@ -253,6 +259,7 @@ public class GamePanel extends JPanel {
 		gbc_pennsylvaniaAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_pennsylvaniaAvenue.gridx = 17;
 		gbc_pennsylvaniaAvenue.gridy = 8;
+		pennsylvaniaAvenue.setIcon(new ImageIcon(green));
 		add(pennsylvaniaAvenue, gbc_pennsylvaniaAvenue);
 		
 		JButton pennsylvaniaRailroad = new JButton("");
