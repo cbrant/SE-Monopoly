@@ -54,38 +54,338 @@ public class GamePanel extends JPanel {
 
 		setBounds(100, 100, 650, 725);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
+		JButton button = new JButton("");
+		GridBagConstraints gbc_button = new GridBagConstraints();
+		gbc_button.gridwidth = 3;
+		gbc_button.gridheight = 3;
+		gbc_button.insets = new Insets(0, 0, 5, 5);
+		gbc_button.gridx = 5;
+		gbc_button.gridy = 2;
+		add(button, gbc_button);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBackground(new Color(0, 0, 0));
-		separator.setForeground(new Color(0, 0, 0));
-		GridBagConstraints gbc_separator = new GridBagConstraints();
-		gbc_separator.fill = GridBagConstraints.BOTH;
-		gbc_separator.insets = new Insets(0, 0, 5, 5);
-		gbc_separator.gridx = 0;
-		gbc_separator.gridy = 18;
-		gbc_separator.gridwidth = 21;
-		add(separator, gbc_separator);
-
-		diceButton = new JButton("");
+		JButton btnNewButton_7 = new JButton("");
+		GridBagConstraints gbc_btnNewButton_7 = new GridBagConstraints();
+		gbc_btnNewButton_7.gridheight = 3;
+		gbc_btnNewButton_7.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_7.gridx = 8;
+		gbc_btnNewButton_7.gridy = 2;
+		add(btnNewButton_7, gbc_btnNewButton_7);
+		
+		JButton btnNewButton_6 = new JButton("");
+		GridBagConstraints gbc_btnNewButton_6 = new GridBagConstraints();
+		gbc_btnNewButton_6.gridheight = 3;
+		gbc_btnNewButton_6.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_6.gridx = 9;
+		gbc_btnNewButton_6.gridy = 2;
+		add(btnNewButton_6, gbc_btnNewButton_6);
+		
+		JButton btnNewButton_5 = new JButton("");
+		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
+		gbc_btnNewButton_5.gridheight = 3;
+		gbc_btnNewButton_5.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_5.gridx = 10;
+		gbc_btnNewButton_5.gridy = 2;
+		add(btnNewButton_5, gbc_btnNewButton_5);
+		
+		JButton btnNewButton_2 = new JButton("");
+		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+		gbc_btnNewButton_2.gridheight = 3;
+		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_2.gridx = 11;
+		gbc_btnNewButton_2.gridy = 2;
+		add(btnNewButton_2, gbc_btnNewButton_2);
+		
+		JButton btnNewButton = new JButton("");
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton.gridheight = 2;
-		gbc_btnNewButton.gridwidth = 2;
+		gbc_btnNewButton.gridheight = 3;
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 10;
-		gbc_btnNewButton.gridy = 8;
-		/////////////////// TODO: change image source back to dice when img is added to repo
-		Image img = new ImageIcon(this.getClass().getResource("/monopolyLogo.png")).getImage();
-		diceButton.setIcon(new ImageIcon(img));
-		diceButton.addActionListener(diceClicked);
-
-		add(diceButton, gbc_btnNewButton);
+		gbc_btnNewButton.gridx = 12;
+		gbc_btnNewButton.gridy = 2;
+		add(btnNewButton, gbc_btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("");
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.gridheight = 3;
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_1.gridx = 13;
+		gbc_btnNewButton_1.gridy = 2;
+		add(btnNewButton_1, gbc_btnNewButton_1);
+		
+		JButton btnNewButton_3 = new JButton("");
+		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
+		gbc_btnNewButton_3.gridheight = 3;
+		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_3.gridx = 14;
+		gbc_btnNewButton_3.gridy = 2;
+		add(btnNewButton_3, gbc_btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("");
+		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
+		gbc_btnNewButton_4.gridheight = 3;
+		gbc_btnNewButton_4.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_4.gridx = 15;
+		gbc_btnNewButton_4.gridy = 2;
+		add(btnNewButton_4, gbc_btnNewButton_4);
+		
+		JButton btnNewButton_8 = new JButton("");
+		GridBagConstraints gbc_btnNewButton_8 = new GridBagConstraints();
+		gbc_btnNewButton_8.gridheight = 3;
+		gbc_btnNewButton_8.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_8.gridx = 16;
+		gbc_btnNewButton_8.gridy = 2;
+		add(btnNewButton_8, gbc_btnNewButton_8);
+		
+		JButton button_20 = new JButton("");
+		GridBagConstraints gbc_button_20 = new GridBagConstraints();
+		gbc_button_20.gridheight = 3;
+		gbc_button_20.gridwidth = 3;
+		gbc_button_20.insets = new Insets(0, 0, 5, 5);
+		gbc_button_20.gridx = 17;
+		gbc_button_20.gridy = 2;
+		add(button_20, gbc_button_20);
+		
+		JButton button_1 = new JButton("");
+		GridBagConstraints gbc_button_1 = new GridBagConstraints();
+		gbc_button_1.gridwidth = 3;
+		gbc_button_1.insets = new Insets(0, 0, 5, 5);
+		gbc_button_1.gridx = 5;
+		gbc_button_1.gridy = 5;
+		add(button_1, gbc_button_1);
+		
+		JButton button_21 = new JButton("");
+		GridBagConstraints gbc_button_21 = new GridBagConstraints();
+		gbc_button_21.gridwidth = 3;
+		gbc_button_21.insets = new Insets(0, 0, 5, 5);
+		gbc_button_21.gridx = 17;
+		gbc_button_21.gridy = 5;
+		add(button_21, gbc_button_21);
+		
+		JButton button_2 = new JButton("");
+		GridBagConstraints gbc_button_2 = new GridBagConstraints();
+		gbc_button_2.gridwidth = 3;
+		gbc_button_2.insets = new Insets(0, 0, 5, 5);
+		gbc_button_2.gridx = 5;
+		gbc_button_2.gridy = 6;
+		add(button_2, gbc_button_2);
+		
+		JButton button_22 = new JButton("");
+		GridBagConstraints gbc_button_22 = new GridBagConstraints();
+		gbc_button_22.gridwidth = 3;
+		gbc_button_22.insets = new Insets(0, 0, 5, 5);
+		gbc_button_22.gridx = 17;
+		gbc_button_22.gridy = 6;
+		add(button_22, gbc_button_22);
+		
+		JButton button_3 = new JButton("");
+		GridBagConstraints gbc_button_3 = new GridBagConstraints();
+		gbc_button_3.gridwidth = 3;
+		gbc_button_3.insets = new Insets(0, 0, 5, 5);
+		gbc_button_3.gridx = 5;
+		gbc_button_3.gridy = 7;
+		add(button_3, gbc_button_3);
+		
+		JButton button_24 = new JButton("");
+		GridBagConstraints gbc_button_24 = new GridBagConstraints();
+		gbc_button_24.gridwidth = 3;
+		gbc_button_24.insets = new Insets(0, 0, 5, 5);
+		gbc_button_24.gridx = 17;
+		gbc_button_24.gridy = 7;
+		add(button_24, gbc_button_24);
+		
+		JButton button_4 = new JButton("");
+		GridBagConstraints gbc_button_4 = new GridBagConstraints();
+		gbc_button_4.gridwidth = 3;
+		gbc_button_4.insets = new Insets(0, 0, 5, 5);
+		gbc_button_4.gridx = 5;
+		gbc_button_4.gridy = 8;
+		add(button_4, gbc_button_4);
+		
+		JButton button_23 = new JButton("");
+		GridBagConstraints gbc_button_23 = new GridBagConstraints();
+		gbc_button_23.gridwidth = 3;
+		gbc_button_23.insets = new Insets(0, 0, 5, 5);
+		gbc_button_23.gridx = 17;
+		gbc_button_23.gridy = 8;
+		add(button_23, gbc_button_23);
+		
+		JButton button_5 = new JButton("");
+		GridBagConstraints gbc_button_5 = new GridBagConstraints();
+		gbc_button_5.gridwidth = 3;
+		gbc_button_5.insets = new Insets(0, 0, 5, 5);
+		gbc_button_5.gridx = 5;
+		gbc_button_5.gridy = 9;
+		add(button_5, gbc_button_5);
+		
+		JButton button_25 = new JButton("");
+		GridBagConstraints gbc_button_25 = new GridBagConstraints();
+		gbc_button_25.gridwidth = 3;
+		gbc_button_25.insets = new Insets(0, 0, 5, 5);
+		gbc_button_25.gridx = 17;
+		gbc_button_25.gridy = 9;
+		add(button_25, gbc_button_25);
+		
+		JButton button_6 = new JButton("");
+		GridBagConstraints gbc_button_6 = new GridBagConstraints();
+		gbc_button_6.gridwidth = 3;
+		gbc_button_6.insets = new Insets(0, 0, 5, 5);
+		gbc_button_6.gridx = 5;
+		gbc_button_6.gridy = 10;
+		add(button_6, gbc_button_6);
+		
+		JButton button_26 = new JButton("");
+		GridBagConstraints gbc_button_26 = new GridBagConstraints();
+		gbc_button_26.gridwidth = 3;
+		gbc_button_26.insets = new Insets(0, 0, 5, 5);
+		gbc_button_26.gridx = 17;
+		gbc_button_26.gridy = 10;
+		add(button_26, gbc_button_26);
+		
+		JButton button_7 = new JButton("");
+		GridBagConstraints gbc_button_7 = new GridBagConstraints();
+		gbc_button_7.gridwidth = 3;
+		gbc_button_7.insets = new Insets(0, 0, 5, 5);
+		gbc_button_7.gridx = 5;
+		gbc_button_7.gridy = 11;
+		add(button_7, gbc_button_7);
+		
+		JButton button_27 = new JButton("");
+		GridBagConstraints gbc_button_27 = new GridBagConstraints();
+		gbc_button_27.gridwidth = 3;
+		gbc_button_27.insets = new Insets(0, 0, 5, 5);
+		gbc_button_27.gridx = 17;
+		gbc_button_27.gridy = 11;
+		add(button_27, gbc_button_27);
+		
+		JButton button_8 = new JButton("");
+		GridBagConstraints gbc_button_8 = new GridBagConstraints();
+		gbc_button_8.gridwidth = 3;
+		gbc_button_8.insets = new Insets(0, 0, 5, 5);
+		gbc_button_8.gridx = 5;
+		gbc_button_8.gridy = 12;
+		add(button_8, gbc_button_8);
+		
+		JButton button_28 = new JButton("");
+		GridBagConstraints gbc_button_28 = new GridBagConstraints();
+		gbc_button_28.gridwidth = 3;
+		gbc_button_28.insets = new Insets(0, 0, 5, 5);
+		gbc_button_28.gridx = 17;
+		gbc_button_28.gridy = 12;
+		add(button_28, gbc_button_28);
+		
+		JButton button_9 = new JButton("");
+		GridBagConstraints gbc_button_9 = new GridBagConstraints();
+		gbc_button_9.gridwidth = 3;
+		gbc_button_9.insets = new Insets(0, 0, 5, 5);
+		gbc_button_9.gridx = 5;
+		gbc_button_9.gridy = 13;
+		add(button_9, gbc_button_9);
+		
+		JButton button_29 = new JButton("");
+		GridBagConstraints gbc_button_29 = new GridBagConstraints();
+		gbc_button_29.gridwidth = 3;
+		gbc_button_29.insets = new Insets(0, 0, 5, 5);
+		gbc_button_29.gridx = 17;
+		gbc_button_29.gridy = 13;
+		add(button_29, gbc_button_29);
+		
+		JButton button_10 = new JButton("");
+		GridBagConstraints gbc_button_10 = new GridBagConstraints();
+		gbc_button_10.gridheight = 3;
+		gbc_button_10.gridwidth = 3;
+		gbc_button_10.insets = new Insets(0, 0, 5, 5);
+		gbc_button_10.gridx = 5;
+		gbc_button_10.gridy = 14;
+		add(button_10, gbc_button_10);
+		
+		JButton button_11 = new JButton("");
+		GridBagConstraints gbc_button_11 = new GridBagConstraints();
+		gbc_button_11.gridheight = 3;
+		gbc_button_11.insets = new Insets(0, 0, 5, 5);
+		gbc_button_11.gridx = 8;
+		gbc_button_11.gridy = 14;
+		add(button_11, gbc_button_11);
+		
+		JButton button_12 = new JButton("");
+		GridBagConstraints gbc_button_12 = new GridBagConstraints();
+		gbc_button_12.gridheight = 3;
+		gbc_button_12.insets = new Insets(0, 0, 5, 5);
+		gbc_button_12.gridx = 9;
+		gbc_button_12.gridy = 14;
+		add(button_12, gbc_button_12);
+		
+		JButton button_13 = new JButton("");
+		GridBagConstraints gbc_button_13 = new GridBagConstraints();
+		gbc_button_13.gridheight = 3;
+		gbc_button_13.insets = new Insets(0, 0, 5, 5);
+		gbc_button_13.gridx = 10;
+		gbc_button_13.gridy = 14;
+		add(button_13, gbc_button_13);
+		
+		JButton button_14 = new JButton("");
+		GridBagConstraints gbc_button_14 = new GridBagConstraints();
+		gbc_button_14.gridheight = 3;
+		gbc_button_14.insets = new Insets(0, 0, 5, 5);
+		gbc_button_14.gridx = 11;
+		gbc_button_14.gridy = 14;
+		add(button_14, gbc_button_14);
+		
+		JButton button_15 = new JButton("");
+		GridBagConstraints gbc_button_15 = new GridBagConstraints();
+		gbc_button_15.gridheight = 3;
+		gbc_button_15.insets = new Insets(0, 0, 5, 5);
+		gbc_button_15.gridx = 12;
+		gbc_button_15.gridy = 14;
+		add(button_15, gbc_button_15);
+		
+		JButton button_16 = new JButton("");
+		GridBagConstraints gbc_button_16 = new GridBagConstraints();
+		gbc_button_16.gridheight = 3;
+		gbc_button_16.insets = new Insets(0, 0, 5, 5);
+		gbc_button_16.gridx = 13;
+		gbc_button_16.gridy = 14;
+		add(button_16, gbc_button_16);
+		
+		JButton button_17 = new JButton("");
+		GridBagConstraints gbc_button_17 = new GridBagConstraints();
+		gbc_button_17.gridheight = 3;
+		gbc_button_17.insets = new Insets(0, 0, 5, 5);
+		gbc_button_17.gridx = 14;
+		gbc_button_17.gridy = 14;
+		add(button_17, gbc_button_17);
+		
+		JButton button_18 = new JButton("");
+		GridBagConstraints gbc_button_18 = new GridBagConstraints();
+		gbc_button_18.gridheight = 3;
+		gbc_button_18.insets = new Insets(0, 0, 5, 5);
+		gbc_button_18.gridx = 15;
+		gbc_button_18.gridy = 14;
+		add(button_18, gbc_button_18);
+		
+		JButton button_19 = new JButton("");
+		GridBagConstraints gbc_button_19 = new GridBagConstraints();
+		gbc_button_19.gridheight = 3;
+		gbc_button_19.insets = new Insets(0, 0, 5, 5);
+		gbc_button_19.gridx = 16;
+		gbc_button_19.gridy = 14;
+		add(button_19, gbc_button_19);
+		
+		JButton button_30 = new JButton("");
+		GridBagConstraints gbc_button_30 = new GridBagConstraints();
+		gbc_button_30.gridwidth = 3;
+		gbc_button_30.gridheight = 3;
+		gbc_button_30.insets = new Insets(0, 0, 5, 5);
+		gbc_button_30.gridx = 17;
+		gbc_button_30.gridy = 14;
+		add(button_30, gbc_button_30);
+		Image img = new ImageIcon(this.getClass().getResource("/dice.png")).getImage();
+		
+		
 		
 
 	}
