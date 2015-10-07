@@ -56,9 +56,9 @@ public class GamePanel extends JPanel {
 		setBounds(100, 100, 900, 725);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50};
-		gridBagLayout.rowHeights = new int[]{50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50, 50};
+		gridBagLayout.rowHeights = new int[]{50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JButton freeParking = new JButton("");
@@ -199,6 +199,26 @@ public class GamePanel extends JPanel {
 		gbc_pacificAvenue.gridx = 14;
 		gbc_pacificAvenue.gridy = 5;
 		Image green = new ImageIcon(this.getClass().getResource("/greenspace.jpg")).getImage();
+ 		
+ 		JPanel panel = new JPanel();
+ 		GridBagConstraints gbc_panel = new GridBagConstraints();
+ 		gbc_panel.gridwidth = 4;
+ 		gbc_panel.gridheight = 4;
+ 		gbc_panel.insets = new Insets(0, 0, 5, 5);
+ 		gbc_panel.fill = GridBagConstraints.BOTH;
+ 		gbc_panel.gridx = 5;
+ 		gbc_panel.gridy = 5;
+ 		add(panel, gbc_panel);
+ 		
+ 		JPanel panel_1 = new JPanel();
+ 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+ 		gbc_panel_1.gridwidth = 4;
+ 		gbc_panel_1.gridheight = 4;
+ 		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
+ 		gbc_panel_1.fill = GridBagConstraints.BOTH;
+ 		gbc_panel_1.gridx = 10;
+ 		gbc_panel_1.gridy = 5;
+ 		add(panel_1, gbc_panel_1);
  		pacificAvenue.setIcon(new ImageIcon(green));
 		add(pacificAvenue, gbc_pacificAvenue);
 		
@@ -318,6 +338,26 @@ public class GamePanel extends JPanel {
 		gbc_chanceEast.gridx = 14;
 		gbc_chanceEast.gridy = 10;
 		Image chanceEastIcon = new ImageIcon(this.getClass().getResource("/chanceeast.jpg")).getImage();
+ 		
+ 		JPanel panel_2 = new JPanel();
+ 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+ 		gbc_panel_2.gridwidth = 4;
+ 		gbc_panel_2.gridheight = 4;
+ 		gbc_panel_2.insets = new Insets(0, 0, 5, 5);
+ 		gbc_panel_2.fill = GridBagConstraints.BOTH;
+ 		gbc_panel_2.gridx = 5;
+ 		gbc_panel_2.gridy = 10;
+ 		add(panel_2, gbc_panel_2);
+ 		
+ 		JPanel panel_3 = new JPanel();
+ 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
+ 		gbc_panel_3.gridwidth = 4;
+ 		gbc_panel_3.gridheight = 4;
+ 		gbc_panel_3.insets = new Insets(0, 0, 5, 5);
+ 		gbc_panel_3.fill = GridBagConstraints.BOTH;
+ 		gbc_panel_3.gridx = 10;
+ 		gbc_panel_3.gridy = 10;
+ 		add(panel_3, gbc_panel_3);
  		chanceEast.setIcon(new ImageIcon(chanceEastIcon));
 		add(chanceEast, gbc_chanceEast);
 		
