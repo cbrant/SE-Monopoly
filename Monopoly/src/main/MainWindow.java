@@ -106,7 +106,6 @@ public class MainWindow{
 	}
 	
 	
-	///// TODO: maybe change this to loadSpaces, and the properties array will change to include all spaces 
 	/////	users can be on (see GamePanel method movePlayer() for how the properties array is currently being used)
 	private static ArrayList<Space> loadSpaces()
 	{

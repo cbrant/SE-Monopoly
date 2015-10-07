@@ -13,7 +13,10 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 // TODO -- only one player can have each piece in the game
@@ -26,16 +29,15 @@ public class SetupPanel extends JPanel {
 	public JTextField[] playerNames;
 	public ArrayList<JComboBox<PlayerType> > playerTypes;
 	public ArrayList<JComboBox<Player.GamePiece>> playerPieces;
-	
-	private JComboBox<String> Player1PieceComboBox;
-	private JComboBox<String> Player2PieceComboBox;
-	private JComboBox<String> Player3PieceComboBox;
-	private JComboBox<String> Player4PieceComboBox;
 
+	private Random ranGen;
+	
 	/**
 	 * Create the panel.
 	 */
 	public SetupPanel(MainWindow par) {
+		this.ranGen = new Random(System.currentTimeMillis());
+		
 		setBackground(new Color(255, 250, 205));
 		
 		this.parent = par;	//used to access outer window and data members (ie. players, etc)
@@ -44,9 +46,9 @@ public class SetupPanel extends JPanel {
 		playerPieces = new ArrayList<JComboBox<Player.GamePiece>>(MainWindow.NUMPLAYERS);
 		
 		//Contents for Combo boxes
-		//String[] pTypes = { "Human", "Computer" };
-		Player.PlayerType[] pTypes = Player.PlayerType.values();
-		//String[] pieces = { "Car", "Dog", "Shoe", "Hat" };
+		//Player.PlayerType[] pTypes = Player.PlayerType.values();	//use later when want computer players
+		Player.PlayerType[] pTypes = new Player.PlayerType[1];
+		pTypes[0] = Player.PlayerType.HUMAN;
 		Player.GamePiece[] pieces = Player.GamePiece.values();
 		
 		//Setup gridbag layout
@@ -86,6 +88,8 @@ public class SetupPanel extends JPanel {
 		add(playerTypes.get(0), gbc_Player1TypeComboBox);
 		
 		playerPieces.add(new JComboBox<Player.GamePiece>(pieces));
+		playerPieces.get(0).setSelectedIndex(0);
+		playerPieces.get(0).addActionListener(pieceChanged);
 		GridBagConstraints gbc_Player1PieceComboBox = new GridBagConstraints();
 		gbc_Player1PieceComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_Player1PieceComboBox.gridx = 5;
@@ -109,6 +113,8 @@ public class SetupPanel extends JPanel {
 		add(playerTypes.get(1), gbc_Player2TypeComboBox);
 		
 		playerPieces.add(new JComboBox<Player.GamePiece>(pieces));
+		playerPieces.get(1).setSelectedIndex(1);
+		playerPieces.get(1).addActionListener(pieceChanged);
 		GridBagConstraints gbc_Player2PieceComboBox = new GridBagConstraints();
 		gbc_Player2PieceComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_Player2PieceComboBox.gridx = 5;
@@ -132,6 +138,8 @@ public class SetupPanel extends JPanel {
 		add(playerTypes.get(2), gbc_Player3TypeComboBox);
 		
 		playerPieces.add(new JComboBox<Player.GamePiece>(pieces));
+		playerPieces.get(2).setSelectedIndex(2);
+		playerPieces.get(2).addActionListener(pieceChanged);
 		GridBagConstraints gbc_Player3PieceComboBox = new GridBagConstraints();
 		gbc_Player3PieceComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_Player3PieceComboBox.gridx = 5;
@@ -155,6 +163,8 @@ public class SetupPanel extends JPanel {
 		add(playerTypes.get(3), gbc_Player4TypeComboBox);
 		
 		playerPieces.add(new JComboBox<Player.GamePiece>(pieces));
+		playerPieces.get(3).setSelectedIndex(3);
+		playerPieces.get(3).addActionListener(pieceChanged);
 		GridBagConstraints gbc_Player4PieceComboBox = new GridBagConstraints();
 		gbc_Player4PieceComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_Player4PieceComboBox.gridx = 5;
@@ -173,6 +183,23 @@ public class SetupPanel extends JPanel {
 		add(startButton, gbc_btnStart);
 
 	}
+	
+	private ActionListener pieceChanged = new ActionListener() {
+		@SuppressWarnings("unchecked")
+		@Override
+		public void actionPerformed(ActionEvent e){
+			System.out.println("in func");
+			JComboBox<Player.GamePiece> changedBox = (JComboBox<Player.GamePiece>)e.getSource();
+			for (int i = 0; i < playerPieces.size(); ++i) {
+				if (changedBox != playerPieces.get(i)) {
+					if (changedBox.getSelectedItem() == playerPieces.get(i).getSelectedItem()) {
+						System.out.println("have duplicates!");
+						playerPieces.get(i).setSelectedItem(Player.GamePiece.values()[ranGen.nextInt(Player.GamePiece.values().length)]);
+					}
+				}
+			}
+		}
+	};
 
 }
 

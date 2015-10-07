@@ -18,7 +18,7 @@ public class Player {
 	
 	/// GamePieces enum ///
 	public enum GamePiece {
-		CAR, DOG, SHOE, HAT		
+		RACECAR, DOG, SHOE, HAT, THIMBLE, SHIP	
 	}
 	
 	/// DATA MEMBERS ///
