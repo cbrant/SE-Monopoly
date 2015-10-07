@@ -96,7 +96,7 @@ public class MainWindow{
 	private void createAndShowGUI() {
 		//Create and set up the window.
 		frame = new JFrame("MainWindow");
-		frame.setBounds(100, 100, 650, 725);
+		frame.setBounds(100, 100, 900, 725);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		this.addComponentToPane(frame.getContentPane());

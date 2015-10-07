@@ -24,7 +24,7 @@ public class EndPanel extends JPanel {
 	public EndPanel(MainWindow par) {
 		setBackground(new Color(255, 250, 205));
 		this.parent = par;
-		setBounds(100, 100, 650, 725);
+		setBounds(100, 100, 900, 725);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{200, 200, 200, 0};
 		gridBagLayout.rowHeights = new int[]{200, 50, 50, 50, 50, 75, 75, 50, 0};

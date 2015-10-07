@@ -34,7 +34,7 @@ public class StartPanel extends JPanel {
 		this.parent = par;
 		
 		 setBackground(new Color(255, 250, 205));
-		 setBounds(100, 100, 650, 725);
+		 setBounds(100, 100, 900, 725);
 		 GridBagLayout gridBagLayout = new GridBagLayout();
 		 gridBagLayout.columnWidths = new int[]{200, 200, 200, 0};
 		 gridBagLayout.rowHeights = new int[]{350, 100, 75, 50, 25, 25, 25, 25, 75, 0};

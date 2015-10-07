@@ -53,11 +53,11 @@ public class GamePanel extends JPanel {
 		
 		setBackground(new Color(255, 250, 205));
 
-		setBounds(100, 100, 650, 725);
+		setBounds(100, 100, 900, 725);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50};
+		gridBagLayout.rowHeights = new int[]{50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50, 50};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0};
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
@@ -67,7 +67,7 @@ public class GamePanel extends JPanel {
 		gbc_freeParking.gridwidth = 3;
 		gbc_freeParking.gridheight = 3;
 		gbc_freeParking.insets = new Insets(0, 0, 5, 5);
-		gbc_freeParking.gridx = 5;
+		gbc_freeParking.gridx = 2;
 		gbc_freeParking.gridy = 2;
 		Image freeParkingIcon = new ImageIcon(this.getClass().getResource("/freeparking.jpg")).getImage();
  		freeParking.setIcon(new ImageIcon(freeParkingIcon));
@@ -78,7 +78,7 @@ public class GamePanel extends JPanel {
 		gbc_kentuckyAvenue.fill = GridBagConstraints.BOTH;
 		gbc_kentuckyAvenue.gridheight = 3;
 		gbc_kentuckyAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_kentuckyAvenue.gridx = 8;
+		gbc_kentuckyAvenue.gridx = 5;
 		gbc_kentuckyAvenue.gridy = 2;
 		Image red = new ImageIcon(this.getClass().getResource("/redspace.jpg")).getImage();
  		kentuckyAvenue.setIcon(new ImageIcon(red));
@@ -89,7 +89,7 @@ public class GamePanel extends JPanel {
 		gbc_chanceNorth.fill = GridBagConstraints.BOTH;
 		gbc_chanceNorth.gridheight = 3;
 		gbc_chanceNorth.insets = new Insets(0, 0, 5, 5);
-		gbc_chanceNorth.gridx = 9;
+		gbc_chanceNorth.gridx = 6;
 		gbc_chanceNorth.gridy = 2;
 		Image chanceNorthIcon = new ImageIcon(this.getClass().getResource("/chancenorth.jpg")).getImage();
  		chanceNorth.setIcon(new ImageIcon(chanceNorthIcon));
@@ -100,7 +100,7 @@ public class GamePanel extends JPanel {
 		gbc_indianaAvenue.fill = GridBagConstraints.BOTH;
 		gbc_indianaAvenue.gridheight = 3;
 		gbc_indianaAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_indianaAvenue.gridx = 10;
+		gbc_indianaAvenue.gridx = 7;
 		gbc_indianaAvenue.gridy = 2;
 		indianaAvenue.setIcon(new ImageIcon(red));
 		add(indianaAvenue, gbc_indianaAvenue);
@@ -110,7 +110,7 @@ public class GamePanel extends JPanel {
 		gbc_illinoisAvenue.fill = GridBagConstraints.BOTH;
 		gbc_illinoisAvenue.gridheight = 3;
 		gbc_illinoisAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_illinoisAvenue.gridx = 11;
+		gbc_illinoisAvenue.gridx = 8;
 		gbc_illinoisAvenue.gridy = 2;
 		illinoisAvenue.setIcon(new ImageIcon(red));
 		add(illinoisAvenue, gbc_illinoisAvenue);
@@ -120,7 +120,7 @@ public class GamePanel extends JPanel {
 		gbc_bORailroad.fill = GridBagConstraints.BOTH;
 		gbc_bORailroad.gridheight = 3;
 		gbc_bORailroad.insets = new Insets(0, 0, 5, 5);
-		gbc_bORailroad.gridx = 12;
+		gbc_bORailroad.gridx = 9;
 		gbc_bORailroad.gridy = 2;
 		Image rrNorth = new ImageIcon(this.getClass().getResource("/rrsouth.jpg")).getImage();
  		bORailroad.setIcon(new ImageIcon(rrNorth));
@@ -131,7 +131,7 @@ public class GamePanel extends JPanel {
 		gbc_atlanticAvenue.fill = GridBagConstraints.BOTH;
 		gbc_atlanticAvenue.gridheight = 3;
 		gbc_atlanticAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_atlanticAvenue.gridx = 13;
+		gbc_atlanticAvenue.gridx = 10;
 		gbc_atlanticAvenue.gridy = 2;
 		Image yellow = new ImageIcon(this.getClass().getResource("/yellowspace.jpg")).getImage();
  		atlanticAvenue.setIcon(new ImageIcon(yellow));
@@ -142,7 +142,7 @@ public class GamePanel extends JPanel {
 		gbc_ventnorAvenue.fill = GridBagConstraints.BOTH;
 		gbc_ventnorAvenue.gridheight = 3;
 		gbc_ventnorAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_ventnorAvenue.gridx = 14;
+		gbc_ventnorAvenue.gridx = 11;
 		gbc_ventnorAvenue.gridy = 2;
 		ventnorAvenue.setIcon(new ImageIcon(yellow));
 		add(ventnorAvenue, gbc_ventnorAvenue);
@@ -152,7 +152,7 @@ public class GamePanel extends JPanel {
 		gbc_waterWorks.fill = GridBagConstraints.BOTH;
 		gbc_waterWorks.gridheight = 3;
 		gbc_waterWorks.insets = new Insets(0, 0, 5, 5);
-		gbc_waterWorks.gridx = 15;
+		gbc_waterWorks.gridx = 12;
 		gbc_waterWorks.gridy = 2;
 		Image waterWorksIcon = new ImageIcon(this.getClass().getResource("/waterworkks.jpg")).getImage();
  		waterWorks.setIcon(new ImageIcon(waterWorksIcon));
@@ -163,7 +163,7 @@ public class GamePanel extends JPanel {
 		gbc_marvinGardens.fill = GridBagConstraints.BOTH;
 		gbc_marvinGardens.gridheight = 3;
 		gbc_marvinGardens.insets = new Insets(0, 0, 5, 5);
-		gbc_marvinGardens.gridx = 16;
+		gbc_marvinGardens.gridx = 13;
 		gbc_marvinGardens.gridy = 2;
 		marvinGardens.setIcon(new ImageIcon(yellow));
 		add(marvinGardens, gbc_marvinGardens);
@@ -174,7 +174,7 @@ public class GamePanel extends JPanel {
 		gbc_goToJail.gridheight = 3;
 		gbc_goToJail.gridwidth = 3;
 		gbc_goToJail.insets = new Insets(0, 0, 5, 5);
-		gbc_goToJail.gridx = 17;
+		gbc_goToJail.gridx = 14;
 		gbc_goToJail.gridy = 2;
 		Image goToJailIcon = new ImageIcon(this.getClass().getResource("/gotojail.jpg")).getImage();
  		goToJail.setIcon(new ImageIcon(goToJailIcon));
@@ -185,7 +185,7 @@ public class GamePanel extends JPanel {
 		gbc_newYorkAvenue.fill = GridBagConstraints.BOTH;
 		gbc_newYorkAvenue.gridwidth = 3;
 		gbc_newYorkAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_newYorkAvenue.gridx = 5;
+		gbc_newYorkAvenue.gridx = 2;
 		gbc_newYorkAvenue.gridy = 5;
 		Image orange = new ImageIcon(this.getClass().getResource("/orangespace.jpg")).getImage();
  		newYorkAvenue.setIcon(new ImageIcon(orange));
@@ -196,7 +196,7 @@ public class GamePanel extends JPanel {
 		gbc_pacificAvenue.fill = GridBagConstraints.BOTH;
 		gbc_pacificAvenue.gridwidth = 3;
 		gbc_pacificAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_pacificAvenue.gridx = 17;
+		gbc_pacificAvenue.gridx = 14;
 		gbc_pacificAvenue.gridy = 5;
 		Image green = new ImageIcon(this.getClass().getResource("/greenspace.jpg")).getImage();
  		pacificAvenue.setIcon(new ImageIcon(green));
@@ -207,7 +207,7 @@ public class GamePanel extends JPanel {
 		gbc_tennesseeAvenue.fill = GridBagConstraints.BOTH;
 		gbc_tennesseeAvenue.gridwidth = 3;
 		gbc_tennesseeAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_tennesseeAvenue.gridx = 5;
+		gbc_tennesseeAvenue.gridx = 2;
 		gbc_tennesseeAvenue.gridy = 6;
 		tennesseeAvenue.setIcon(new ImageIcon(orange));
 		add(tennesseeAvenue, gbc_tennesseeAvenue);
@@ -217,7 +217,7 @@ public class GamePanel extends JPanel {
 		gbc_northCarolinaAvenue.fill = GridBagConstraints.BOTH;
 		gbc_northCarolinaAvenue.gridwidth = 3;
 		gbc_northCarolinaAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_northCarolinaAvenue.gridx = 17;
+		gbc_northCarolinaAvenue.gridx = 14;
 		gbc_northCarolinaAvenue.gridy = 6;
 		northCarolinaAvenue.setIcon(new ImageIcon(green));
 		add(northCarolinaAvenue, gbc_northCarolinaAvenue);
@@ -227,7 +227,7 @@ public class GamePanel extends JPanel {
 		gbc_communityChestWest.fill = GridBagConstraints.BOTH;
 		gbc_communityChestWest.gridwidth = 3;
 		gbc_communityChestWest.insets = new Insets(0, 0, 5, 5);
-		gbc_communityChestWest.gridx = 5;
+		gbc_communityChestWest.gridx = 2;
 		gbc_communityChestWest.gridy = 7;
 		Image communityChestWestIcon = new ImageIcon(this.getClass().getResource("/commchestwest.jpg")).getImage();
  		communityChestWest.setIcon(new ImageIcon(communityChestWestIcon));
@@ -238,7 +238,7 @@ public class GamePanel extends JPanel {
 		gbc_communityChestEast.fill = GridBagConstraints.BOTH;
 		gbc_communityChestEast.gridwidth = 3;
 		gbc_communityChestEast.insets = new Insets(0, 0, 5, 5);
-		gbc_communityChestEast.gridx = 17;
+		gbc_communityChestEast.gridx = 14;
 		gbc_communityChestEast.gridy = 7;
 		Image communityChestEastIcon = new ImageIcon(this.getClass().getResource("/commchesteast.jpg")).getImage();
  		communityChestEast.setIcon(new ImageIcon(communityChestEastIcon));
@@ -249,7 +249,7 @@ public class GamePanel extends JPanel {
 		gbc_stJamesPlace.fill = GridBagConstraints.BOTH;
 		gbc_stJamesPlace.gridwidth = 3;
 		gbc_stJamesPlace.insets = new Insets(0, 0, 5, 5);
-		gbc_stJamesPlace.gridx = 5;
+		gbc_stJamesPlace.gridx = 2;
 		gbc_stJamesPlace.gridy = 8;
 		stJamesPlace.setIcon(new ImageIcon(orange));
 		add(stJamesPlace, gbc_stJamesPlace);
@@ -257,11 +257,11 @@ public class GamePanel extends JPanel {
 		JButton diceButton = new JButton("");
 		GridBagConstraints gbc_diceButton = new GridBagConstraints();
 		gbc_diceButton.fill = GridBagConstraints.BOTH;
-		gbc_diceButton.gridwidth = 3;
-		gbc_diceButton.gridheight = 3;
+		gbc_diceButton.gridwidth = 1;
+		gbc_diceButton.gridheight = 1;
 		gbc_diceButton.insets = new Insets(0, 0, 5, 5);
-		gbc_diceButton.gridx = 11;
-		gbc_diceButton.gridy = 8;
+		gbc_diceButton.gridx = 9;
+		gbc_diceButton.gridy = 9;
 		Image img = new ImageIcon(this.getClass().getResource("/dice.jpg")).getImage();
  		diceButton.setIcon(new ImageIcon(img));
  		diceButton.addActionListener(diceClicked);
@@ -272,7 +272,7 @@ public class GamePanel extends JPanel {
 		gbc_pennsylvaniaAvenue.fill = GridBagConstraints.BOTH;
 		gbc_pennsylvaniaAvenue.gridwidth = 3;
 		gbc_pennsylvaniaAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_pennsylvaniaAvenue.gridx = 17;
+		gbc_pennsylvaniaAvenue.gridx = 14;
 		gbc_pennsylvaniaAvenue.gridy = 8;
 		pennsylvaniaAvenue.setIcon(new ImageIcon(green));
 		add(pennsylvaniaAvenue, gbc_pennsylvaniaAvenue);
@@ -282,7 +282,7 @@ public class GamePanel extends JPanel {
 		gbc_pennsylvaniaRailroad.fill = GridBagConstraints.BOTH;
 		gbc_pennsylvaniaRailroad.gridwidth = 3;
 		gbc_pennsylvaniaRailroad.insets = new Insets(0, 0, 5, 5);
-		gbc_pennsylvaniaRailroad.gridx = 5;
+		gbc_pennsylvaniaRailroad.gridx = 2;
 		gbc_pennsylvaniaRailroad.gridy = 9;
 		Image rrWest = new ImageIcon(this.getClass().getResource("/rrwest.jpg")).getImage();
  		pennsylvaniaRailroad.setIcon(new ImageIcon(rrWest));
@@ -293,7 +293,7 @@ public class GamePanel extends JPanel {
 		gbc_shortLine.fill = GridBagConstraints.BOTH;
 		gbc_shortLine.gridwidth = 3;
 		gbc_shortLine.insets = new Insets(0, 0, 5, 5);
-		gbc_shortLine.gridx = 17;
+		gbc_shortLine.gridx = 14;
 		gbc_shortLine.gridy = 9;
 		Image rrEast = new ImageIcon(this.getClass().getResource("/rreast.jpg")).getImage();
  		shortLine.setIcon(new ImageIcon(rrEast));
@@ -304,7 +304,7 @@ public class GamePanel extends JPanel {
 		gbc_virginiaAvenue.fill = GridBagConstraints.BOTH;
 		gbc_virginiaAvenue.gridwidth = 3;
 		gbc_virginiaAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_virginiaAvenue.gridx = 5;
+		gbc_virginiaAvenue.gridx = 2;
 		gbc_virginiaAvenue.gridy = 10;
 		Image purple = new ImageIcon(this.getClass().getResource("/purplespace.jpg")).getImage();
  		virginiaAvenue.setIcon(new ImageIcon(purple));
@@ -315,7 +315,7 @@ public class GamePanel extends JPanel {
 		gbc_chanceEast.fill = GridBagConstraints.BOTH;
 		gbc_chanceEast.gridwidth = 3;
 		gbc_chanceEast.insets = new Insets(0, 0, 5, 5);
-		gbc_chanceEast.gridx = 17;
+		gbc_chanceEast.gridx = 14;
 		gbc_chanceEast.gridy = 10;
 		Image chanceEastIcon = new ImageIcon(this.getClass().getResource("/chanceeast.jpg")).getImage();
  		chanceEast.setIcon(new ImageIcon(chanceEastIcon));
@@ -326,7 +326,7 @@ public class GamePanel extends JPanel {
 		gbc_statesAvenue.fill = GridBagConstraints.BOTH;
 		gbc_statesAvenue.gridwidth = 3;
 		gbc_statesAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_statesAvenue.gridx = 5;
+		gbc_statesAvenue.gridx = 2;
 		gbc_statesAvenue.gridy = 11;
 		statesAvenue.setIcon(new ImageIcon(purple));
 		add(statesAvenue, gbc_statesAvenue);
@@ -336,7 +336,7 @@ public class GamePanel extends JPanel {
 		gbc_parkPlace.fill = GridBagConstraints.BOTH;
 		gbc_parkPlace.gridwidth = 3;
 		gbc_parkPlace.insets = new Insets(0, 0, 5, 5);
-		gbc_parkPlace.gridx = 17;
+		gbc_parkPlace.gridx = 14;
 		gbc_parkPlace.gridy = 11;
 		Image darkBlue = new ImageIcon(this.getClass().getResource("/darkbluespace.jpg")).getImage();
  		parkPlace.setIcon(new ImageIcon(darkBlue));
@@ -347,7 +347,7 @@ public class GamePanel extends JPanel {
 		gbc_electricCompany.fill = GridBagConstraints.BOTH;
 		gbc_electricCompany.gridwidth = 3;
 		gbc_electricCompany.insets = new Insets(0, 0, 5, 5);
-		gbc_electricCompany.gridx = 5;
+		gbc_electricCompany.gridx = 2;
 		gbc_electricCompany.gridy = 12;
 		Image eCIcon = new ImageIcon(this.getClass().getResource("/electriccompany.jpg")).getImage();
  		electicCompany.setIcon(new ImageIcon(eCIcon));
@@ -358,7 +358,7 @@ public class GamePanel extends JPanel {
 		gbc_luxuryTax.fill = GridBagConstraints.BOTH;
 		gbc_luxuryTax.gridwidth = 3;
 		gbc_luxuryTax.insets = new Insets(0, 0, 5, 5);
-		gbc_luxuryTax.gridx = 17;
+		gbc_luxuryTax.gridx = 14;
 		gbc_luxuryTax.gridy = 12;
 		Image luxuryTaxIcon = new ImageIcon(this.getClass().getResource("/luxtax.jpg")).getImage();
  		luxuryTax.setIcon(new ImageIcon(luxuryTaxIcon));
@@ -369,7 +369,7 @@ public class GamePanel extends JPanel {
 		gbc_stCharlesPlace.fill = GridBagConstraints.BOTH;
 		gbc_stCharlesPlace.gridwidth = 3;
 		gbc_stCharlesPlace.insets = new Insets(0, 0, 5, 5);
-		gbc_stCharlesPlace.gridx = 5;
+		gbc_stCharlesPlace.gridx = 2;
 		gbc_stCharlesPlace.gridy = 13;
 		stCharlesPlace.setIcon(new ImageIcon(purple));
 		add(stCharlesPlace, gbc_stCharlesPlace);
@@ -379,7 +379,7 @@ public class GamePanel extends JPanel {
 		gbc_boardwalk.fill = GridBagConstraints.BOTH;
 		gbc_boardwalk.gridwidth = 3;
 		gbc_boardwalk.insets = new Insets(0, 0, 5, 5);
-		gbc_boardwalk.gridx = 17;
+		gbc_boardwalk.gridx = 14;
 		gbc_boardwalk.gridy = 13;
 		boardwalk.setIcon(new ImageIcon(darkBlue));
 		add(boardwalk, gbc_boardwalk);
@@ -390,7 +390,7 @@ public class GamePanel extends JPanel {
 		gbc_jail.gridheight = 3;
 		gbc_jail.gridwidth = 3;
 		gbc_jail.insets = new Insets(0, 0, 5, 5);
-		gbc_jail.gridx = 5;
+		gbc_jail.gridx = 2;
 		gbc_jail.gridy = 14;
 		Image jailIcon = new ImageIcon(this.getClass().getResource("/injail.jpg")).getImage();
  		jail.setIcon(new ImageIcon(jailIcon));
@@ -401,7 +401,7 @@ public class GamePanel extends JPanel {
 		gbc_connecticutAvenue.fill = GridBagConstraints.BOTH;
 		gbc_connecticutAvenue.gridheight = 3;
 		gbc_connecticutAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_connecticutAvenue.gridx = 8;
+		gbc_connecticutAvenue.gridx = 5;
 		gbc_connecticutAvenue.gridy = 14;
 		Image lightBlue = new ImageIcon(this.getClass().getResource("/lightbluespace.jpg")).getImage();
  		connecticutAvenue.setIcon(new ImageIcon(lightBlue));
@@ -412,7 +412,7 @@ public class GamePanel extends JPanel {
 		gbc_vermontAvenue.fill = GridBagConstraints.BOTH;
 		gbc_vermontAvenue.gridheight = 3;
 		gbc_vermontAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_vermontAvenue.gridx = 9;
+		gbc_vermontAvenue.gridx = 6;
 		gbc_vermontAvenue.gridy = 14;
 		vermontAvenue.setIcon(new ImageIcon(lightBlue));
 		add(vermontAvenue, gbc_vermontAvenue);
@@ -422,7 +422,7 @@ public class GamePanel extends JPanel {
 		gbc_chanceSouth.fill = GridBagConstraints.BOTH;
 		gbc_chanceSouth.gridheight = 3;
 		gbc_chanceSouth.insets = new Insets(0, 0, 5, 5);
-		gbc_chanceSouth.gridx = 10;
+		gbc_chanceSouth.gridx = 7;
 		gbc_chanceSouth.gridy = 14;
 		Image chanceSouthIcon = new ImageIcon(this.getClass().getResource("/chancesouth.jpg")).getImage();
  		chanceSouth.setIcon(new ImageIcon(chanceSouthIcon));
@@ -433,7 +433,7 @@ public class GamePanel extends JPanel {
 		gbc_orientalAvenue.fill = GridBagConstraints.BOTH;
 		gbc_orientalAvenue.gridheight = 3;
 		gbc_orientalAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_orientalAvenue.gridx = 11;
+		gbc_orientalAvenue.gridx = 8;
 		gbc_orientalAvenue.gridy = 14;
 		orientalAvenue.setIcon(new ImageIcon(lightBlue));
 		add(orientalAvenue, gbc_orientalAvenue);
@@ -443,7 +443,7 @@ public class GamePanel extends JPanel {
 		gbc_readingRailroad.fill = GridBagConstraints.BOTH;
 		gbc_readingRailroad.gridheight = 3;
 		gbc_readingRailroad.insets = new Insets(0, 0, 5, 5);
-		gbc_readingRailroad.gridx = 12;
+		gbc_readingRailroad.gridx = 9;
 		gbc_readingRailroad.gridy = 14;
 		Image rrSouth = new ImageIcon(this.getClass().getResource("/rrnorth.jpg")).getImage();
  		readingRailroad.setIcon(new ImageIcon(rrSouth));
@@ -454,7 +454,7 @@ public class GamePanel extends JPanel {
 		gbc_incomeTax.fill = GridBagConstraints.BOTH;
 		gbc_incomeTax.gridheight = 3;
 		gbc_incomeTax.insets = new Insets(0, 0, 5, 5);
-		gbc_incomeTax.gridx = 13;
+		gbc_incomeTax.gridx = 10;
 		gbc_incomeTax.gridy = 14;
 		Image incomeTaxIcon = new ImageIcon(this.getClass().getResource("/incometax.jpg")).getImage();
  		incomeTax.setIcon(new ImageIcon(incomeTaxIcon));
@@ -465,7 +465,7 @@ public class GamePanel extends JPanel {
 		gbc_balticAvenue.fill = GridBagConstraints.BOTH;
 		gbc_balticAvenue.gridheight = 3;
 		gbc_balticAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_balticAvenue.gridx = 14;
+		gbc_balticAvenue.gridx = 11;
 		gbc_balticAvenue.gridy = 14;
 		Image brown = new ImageIcon(this.getClass().getResource("/brownspace.jpg")).getImage();
  		balticAvenue.setIcon(new ImageIcon(brown));
@@ -476,7 +476,7 @@ public class GamePanel extends JPanel {
 		gbc_communityChestSouth.fill = GridBagConstraints.BOTH;
 		gbc_communityChestSouth.gridheight = 3;
 		gbc_communityChestSouth.insets = new Insets(0, 0, 5, 5);
-		gbc_communityChestSouth.gridx = 15;
+		gbc_communityChestSouth.gridx = 12;
 		gbc_communityChestSouth.gridy = 14;
 		Image communityChestSouthIcon = new ImageIcon(this.getClass().getResource("/commchestsouth.jpg")).getImage();
  		communityChestSouth.setIcon(new ImageIcon(communityChestSouthIcon));	
@@ -487,7 +487,7 @@ public class GamePanel extends JPanel {
 		gbc_medditerraneanAvenue.fill = GridBagConstraints.BOTH;
 		gbc_medditerraneanAvenue.gridheight = 3;
 		gbc_medditerraneanAvenue.insets = new Insets(0, 0, 5, 5);
-		gbc_medditerraneanAvenue.gridx = 16;
+		gbc_medditerraneanAvenue.gridx = 13;
 		gbc_medditerraneanAvenue.gridy = 14;
 		medditerraneanAvenue.setIcon(new ImageIcon(brown));
 		add(medditerraneanAvenue, gbc_medditerraneanAvenue);
@@ -498,7 +498,7 @@ public class GamePanel extends JPanel {
 		gbc_go.gridwidth = 3;
 		gbc_go.gridheight = 3;
 		gbc_go.insets = new Insets(0, 0, 5, 5);
-		gbc_go.gridx = 17;
+		gbc_go.gridx = 14;
 		gbc_go.gridy = 14;
 		Image goIcon = new ImageIcon(this.getClass().getResource("/go.jpg")).getImage();
  		go.setIcon(new ImageIcon(goIcon));

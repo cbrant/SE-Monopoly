@@ -52,7 +52,7 @@ public class SetupPanel extends JPanel {
 		Player.GamePiece[] pieces = Player.GamePiece.values();
 		
 		//Setup gridbag layout
-		setBounds(100, 100, 650, 725);
+		setBounds(100, 100, 900, 725);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{75, 75, 50, 50, 50, 75, 75, 0};
 		gridBagLayout.rowHeights = new int[]{50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 0};
