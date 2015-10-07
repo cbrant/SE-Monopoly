@@ -188,16 +188,39 @@ public class SetupPanel extends JPanel {
 		@SuppressWarnings("unchecked")
 		@Override
 		public void actionPerformed(ActionEvent e){
-			System.out.println("in func");
+			// set up arrays for keeping track of what pieces are being used
+			Player.GamePiece[] pieces = Player.GamePiece.values(); 
+			boolean[] avail = new boolean[pieces.length];
+			for (int i = 0; i < avail.length; ++i) avail[i] = true;
+			
 			JComboBox<Player.GamePiece> changedBox = (JComboBox<Player.GamePiece>)e.getSource();
+			avail[getEnumIndex(pieces, (Player.GamePiece)changedBox.getSelectedItem())] = false;
 			for (int i = 0; i < playerPieces.size(); ++i) {
+				// if it is the same element, then skip it
 				if (changedBox != playerPieces.get(i)) {
+					avail[getEnumIndex(pieces, (Player.GamePiece)playerPieces.get(i).getSelectedItem())] = false;
+					// find a match for new selection? change original to available random piece
 					if (changedBox.getSelectedItem() == playerPieces.get(i).getSelectedItem()) {
-						System.out.println("have duplicates!");
-						playerPieces.get(i).setSelectedItem(Player.GamePiece.values()[ranGen.nextInt(Player.GamePiece.values().length)]);
+						// check for any other already selected pieces
+						for (int j = i + 1; j < playerPieces.size(); ++j) {
+							avail[getEnumIndex(pieces, (Player.GamePiece)playerPieces.get(j).getSelectedItem())] = false;			
+						}
+						ArrayList<Player.GamePiece> availOptions = new ArrayList<Player.GamePiece>();
+						for (int j = 0; j < pieces.length; ++j) {
+							if (avail[j]) availOptions.add(pieces[j]);
+						}
+						
+						playerPieces.get(i).setSelectedItem(availOptions.get(ranGen.nextInt(availOptions.size())));
 					}
 				}
 			}
+		}
+		
+		private int getEnumIndex(Player.GamePiece[] valArray, Player.GamePiece val) {
+			for (int i = 0; i < valArray.length; ++i) {
+				if (valArray[i] == val) return i;
+			}
+			return -1;
 		}
 	};
 
