@@ -55,8 +55,8 @@ public class GamePanel extends JPanel {
 
 		setBounds(100, 100, 650, 725);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40};
-		gridBagLayout.rowHeights = new int[]{40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40};
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
@@ -69,6 +69,8 @@ public class GamePanel extends JPanel {
 		gbc_freeParking.insets = new Insets(0, 0, 5, 5);
 		gbc_freeParking.gridx = 5;
 		gbc_freeParking.gridy = 2;
+		Image freeParkingIcon = new ImageIcon(this.getClass().getResource("/freeparking.jpg")).getImage();
+ 		freeParking.setIcon(new ImageIcon(freeParkingIcon));
 		add(freeParking, gbc_freeParking);
 		
 		JButton kentuckyAvenue = new JButton("");
@@ -89,6 +91,8 @@ public class GamePanel extends JPanel {
 		gbc_chanceNorth.insets = new Insets(0, 0, 5, 5);
 		gbc_chanceNorth.gridx = 9;
 		gbc_chanceNorth.gridy = 2;
+		Image chanceNorthIcon = new ImageIcon(this.getClass().getResource("/chancenorth.jpg")).getImage();
+ 		chanceNorth.setIcon(new ImageIcon(chanceNorthIcon));
 		add(chanceNorth, gbc_chanceNorth);
 		
 		JButton indianaAvenue = new JButton("");
@@ -118,6 +122,8 @@ public class GamePanel extends JPanel {
 		gbc_bORailroad.insets = new Insets(0, 0, 5, 5);
 		gbc_bORailroad.gridx = 12;
 		gbc_bORailroad.gridy = 2;
+		Image rrNorth = new ImageIcon(this.getClass().getResource("/rrsouth.jpg")).getImage();
+ 		bORailroad.setIcon(new ImageIcon(rrNorth));
 		add(bORailroad, gbc_bORailroad);
 		
 		JButton atlanticAvenue = new JButton("");
@@ -148,6 +154,8 @@ public class GamePanel extends JPanel {
 		gbc_waterWorks.insets = new Insets(0, 0, 5, 5);
 		gbc_waterWorks.gridx = 15;
 		gbc_waterWorks.gridy = 2;
+		Image waterWorksIcon = new ImageIcon(this.getClass().getResource("/waterworkks.jpg")).getImage();
+ 		waterWorks.setIcon(new ImageIcon(waterWorksIcon));
 		add(waterWorks, gbc_waterWorks);
 		
 		JButton marvinGardens = new JButton("");
@@ -168,6 +176,8 @@ public class GamePanel extends JPanel {
 		gbc_goToJail.insets = new Insets(0, 0, 5, 5);
 		gbc_goToJail.gridx = 17;
 		gbc_goToJail.gridy = 2;
+		Image goToJailIcon = new ImageIcon(this.getClass().getResource("/gotojail.jpg")).getImage();
+ 		goToJail.setIcon(new ImageIcon(goToJailIcon));
 		add(goToJail, gbc_goToJail);
 		
 		JButton newYorkAvenue = new JButton("");
@@ -176,7 +186,8 @@ public class GamePanel extends JPanel {
 		gbc_newYorkAvenue.gridwidth = 3;
 		gbc_newYorkAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_newYorkAvenue.gridx = 5;
-		gbc_newYorkAvenue.gridy = 5;Image orange = new ImageIcon(this.getClass().getResource("/orangespace.jpg")).getImage();
+		gbc_newYorkAvenue.gridy = 5;
+		Image orange = new ImageIcon(this.getClass().getResource("/orangespace.jpg")).getImage();
  		newYorkAvenue.setIcon(new ImageIcon(orange));
 		add(newYorkAvenue, gbc_newYorkAvenue);
 		
@@ -218,6 +229,8 @@ public class GamePanel extends JPanel {
 		gbc_communityChestWest.insets = new Insets(0, 0, 5, 5);
 		gbc_communityChestWest.gridx = 5;
 		gbc_communityChestWest.gridy = 7;
+		Image communityChestWestIcon = new ImageIcon(this.getClass().getResource("/commchestwest.jpg")).getImage();
+ 		communityChestWest.setIcon(new ImageIcon(communityChestWestIcon));
 		add(communityChestWest, gbc_communityChestWest);
 		
 		JButton communityChestEast = new JButton("");
@@ -227,6 +240,8 @@ public class GamePanel extends JPanel {
 		gbc_communityChestEast.insets = new Insets(0, 0, 5, 5);
 		gbc_communityChestEast.gridx = 17;
 		gbc_communityChestEast.gridy = 7;
+		Image communityChestEastIcon = new ImageIcon(this.getClass().getResource("/commchesteast.jpg")).getImage();
+ 		communityChestEast.setIcon(new ImageIcon(communityChestEastIcon));
 		add(communityChestEast, gbc_communityChestEast);
 		
 		JButton stJamesPlace = new JButton("");
@@ -247,7 +262,7 @@ public class GamePanel extends JPanel {
 		gbc_diceButton.insets = new Insets(0, 0, 5, 5);
 		gbc_diceButton.gridx = 11;
 		gbc_diceButton.gridy = 8;
-		Image img = new ImageIcon(this.getClass().getResource("/dice.png")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/dice.jpg")).getImage();
  		diceButton.setIcon(new ImageIcon(img));
  		diceButton.addActionListener(diceClicked);
 		add(diceButton, gbc_diceButton);
@@ -269,6 +284,8 @@ public class GamePanel extends JPanel {
 		gbc_pennsylvaniaRailroad.insets = new Insets(0, 0, 5, 5);
 		gbc_pennsylvaniaRailroad.gridx = 5;
 		gbc_pennsylvaniaRailroad.gridy = 9;
+		Image rrWest = new ImageIcon(this.getClass().getResource("/rrwest.jpg")).getImage();
+ 		pennsylvaniaRailroad.setIcon(new ImageIcon(rrWest));
 		add(pennsylvaniaRailroad, gbc_pennsylvaniaRailroad);
 		
 		JButton shortLine = new JButton("");
@@ -278,6 +295,8 @@ public class GamePanel extends JPanel {
 		gbc_shortLine.insets = new Insets(0, 0, 5, 5);
 		gbc_shortLine.gridx = 17;
 		gbc_shortLine.gridy = 9;
+		Image rrEast = new ImageIcon(this.getClass().getResource("/rreast.jpg")).getImage();
+ 		shortLine.setIcon(new ImageIcon(rrEast));
 		add(shortLine, gbc_shortLine);
 		
 		JButton virginiaAvenue = new JButton("");
@@ -287,6 +306,8 @@ public class GamePanel extends JPanel {
 		gbc_virginiaAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_virginiaAvenue.gridx = 5;
 		gbc_virginiaAvenue.gridy = 10;
+		Image purple = new ImageIcon(this.getClass().getResource("/purplespace.jpg")).getImage();
+ 		virginiaAvenue.setIcon(new ImageIcon(purple));
 		add(virginiaAvenue, gbc_virginiaAvenue);
 		
 		JButton chanceEast = new JButton("");
@@ -296,6 +317,8 @@ public class GamePanel extends JPanel {
 		gbc_chanceEast.insets = new Insets(0, 0, 5, 5);
 		gbc_chanceEast.gridx = 17;
 		gbc_chanceEast.gridy = 10;
+		Image chanceEastIcon = new ImageIcon(this.getClass().getResource("/chanceeast.jpg")).getImage();
+ 		chanceEast.setIcon(new ImageIcon(chanceEastIcon));
 		add(chanceEast, gbc_chanceEast);
 		
 		JButton statesAvenue = new JButton("");
@@ -305,6 +328,7 @@ public class GamePanel extends JPanel {
 		gbc_statesAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_statesAvenue.gridx = 5;
 		gbc_statesAvenue.gridy = 11;
+		statesAvenue.setIcon(new ImageIcon(purple));
 		add(statesAvenue, gbc_statesAvenue);
 		
 		JButton parkPlace = new JButton("");
@@ -314,6 +338,8 @@ public class GamePanel extends JPanel {
 		gbc_parkPlace.insets = new Insets(0, 0, 5, 5);
 		gbc_parkPlace.gridx = 17;
 		gbc_parkPlace.gridy = 11;
+		Image darkBlue = new ImageIcon(this.getClass().getResource("/darkbluespace.jpg")).getImage();
+ 		parkPlace.setIcon(new ImageIcon(darkBlue));
 		add(parkPlace, gbc_parkPlace);
 		
 		JButton electicCompany = new JButton("");
@@ -323,6 +349,8 @@ public class GamePanel extends JPanel {
 		gbc_electricCompany.insets = new Insets(0, 0, 5, 5);
 		gbc_electricCompany.gridx = 5;
 		gbc_electricCompany.gridy = 12;
+		Image eCIcon = new ImageIcon(this.getClass().getResource("/electriccompany.jpg")).getImage();
+ 		electicCompany.setIcon(new ImageIcon(eCIcon));
 		add(electicCompany, gbc_electricCompany);
 		
 		JButton luxuryTax = new JButton("");
@@ -332,6 +360,8 @@ public class GamePanel extends JPanel {
 		gbc_luxuryTax.insets = new Insets(0, 0, 5, 5);
 		gbc_luxuryTax.gridx = 17;
 		gbc_luxuryTax.gridy = 12;
+		Image luxuryTaxIcon = new ImageIcon(this.getClass().getResource("/luxtax.jpg")).getImage();
+ 		luxuryTax.setIcon(new ImageIcon(luxuryTaxIcon));
 		add(luxuryTax, gbc_luxuryTax);
 		
 		JButton stCharlesPlace = new JButton("");
@@ -341,6 +371,7 @@ public class GamePanel extends JPanel {
 		gbc_stCharlesPlace.insets = new Insets(0, 0, 5, 5);
 		gbc_stCharlesPlace.gridx = 5;
 		gbc_stCharlesPlace.gridy = 13;
+		stCharlesPlace.setIcon(new ImageIcon(purple));
 		add(stCharlesPlace, gbc_stCharlesPlace);
 		
 		JButton boardwalk = new JButton("");
@@ -350,6 +381,7 @@ public class GamePanel extends JPanel {
 		gbc_boardwalk.insets = new Insets(0, 0, 5, 5);
 		gbc_boardwalk.gridx = 17;
 		gbc_boardwalk.gridy = 13;
+		boardwalk.setIcon(new ImageIcon(darkBlue));
 		add(boardwalk, gbc_boardwalk);
 		
 		JButton jail = new JButton("");
@@ -360,6 +392,8 @@ public class GamePanel extends JPanel {
 		gbc_jail.insets = new Insets(0, 0, 5, 5);
 		gbc_jail.gridx = 5;
 		gbc_jail.gridy = 14;
+		Image jailIcon = new ImageIcon(this.getClass().getResource("/injail.jpg")).getImage();
+ 		jail.setIcon(new ImageIcon(jailIcon));
 		add(jail, gbc_jail);
 		
 		JButton connecticutAvenue = new JButton("");
@@ -369,6 +403,8 @@ public class GamePanel extends JPanel {
 		gbc_connecticutAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_connecticutAvenue.gridx = 8;
 		gbc_connecticutAvenue.gridy = 14;
+		Image lightBlue = new ImageIcon(this.getClass().getResource("/lightbluespace.jpg")).getImage();
+ 		connecticutAvenue.setIcon(new ImageIcon(lightBlue));
 		add(connecticutAvenue, gbc_connecticutAvenue);
 		
 		JButton vermontAvenue = new JButton("");
@@ -378,6 +414,7 @@ public class GamePanel extends JPanel {
 		gbc_vermontAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_vermontAvenue.gridx = 9;
 		gbc_vermontAvenue.gridy = 14;
+		vermontAvenue.setIcon(new ImageIcon(lightBlue));
 		add(vermontAvenue, gbc_vermontAvenue);
 		
 		JButton chanceSouth = new JButton("");
@@ -387,6 +424,8 @@ public class GamePanel extends JPanel {
 		gbc_chanceSouth.insets = new Insets(0, 0, 5, 5);
 		gbc_chanceSouth.gridx = 10;
 		gbc_chanceSouth.gridy = 14;
+		Image chanceSouthIcon = new ImageIcon(this.getClass().getResource("/chancesouth.jpg")).getImage();
+ 		chanceSouth.setIcon(new ImageIcon(chanceSouthIcon));
 		add(chanceSouth, gbc_chanceSouth);
 		
 		JButton orientalAvenue = new JButton("");
@@ -396,6 +435,7 @@ public class GamePanel extends JPanel {
 		gbc_orientalAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_orientalAvenue.gridx = 11;
 		gbc_orientalAvenue.gridy = 14;
+		orientalAvenue.setIcon(new ImageIcon(lightBlue));
 		add(orientalAvenue, gbc_orientalAvenue);
 		
 		JButton readingRailroad = new JButton("");
@@ -405,6 +445,8 @@ public class GamePanel extends JPanel {
 		gbc_readingRailroad.insets = new Insets(0, 0, 5, 5);
 		gbc_readingRailroad.gridx = 12;
 		gbc_readingRailroad.gridy = 14;
+		Image rrSouth = new ImageIcon(this.getClass().getResource("/rrnorth.jpg")).getImage();
+ 		readingRailroad.setIcon(new ImageIcon(rrSouth));
 		add(readingRailroad, gbc_readingRailroad);
 		
 		JButton incomeTax = new JButton("");
@@ -414,6 +456,8 @@ public class GamePanel extends JPanel {
 		gbc_incomeTax.insets = new Insets(0, 0, 5, 5);
 		gbc_incomeTax.gridx = 13;
 		gbc_incomeTax.gridy = 14;
+		Image incomeTaxIcon = new ImageIcon(this.getClass().getResource("/incometax.jpg")).getImage();
+ 		incomeTax.setIcon(new ImageIcon(incomeTaxIcon));
 		add(incomeTax, gbc_incomeTax);
 		
 		JButton balticAvenue = new JButton("");
@@ -423,6 +467,8 @@ public class GamePanel extends JPanel {
 		gbc_balticAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_balticAvenue.gridx = 14;
 		gbc_balticAvenue.gridy = 14;
+		Image brown = new ImageIcon(this.getClass().getResource("/brownspace.jpg")).getImage();
+ 		balticAvenue.setIcon(new ImageIcon(brown));
 		add(balticAvenue, gbc_balticAvenue);
 		
 		JButton communityChestSouth = new JButton("");
@@ -432,6 +478,8 @@ public class GamePanel extends JPanel {
 		gbc_communityChestSouth.insets = new Insets(0, 0, 5, 5);
 		gbc_communityChestSouth.gridx = 15;
 		gbc_communityChestSouth.gridy = 14;
+		Image communityChestSouthIcon = new ImageIcon(this.getClass().getResource("/commchestsouth.jpg")).getImage();
+ 		communityChestSouth.setIcon(new ImageIcon(communityChestSouthIcon));	
 		add(communityChestSouth, gbc_communityChestSouth);
 		
 		JButton medditerraneanAvenue = new JButton("");
@@ -441,6 +489,7 @@ public class GamePanel extends JPanel {
 		gbc_medditerraneanAvenue.insets = new Insets(0, 0, 5, 5);
 		gbc_medditerraneanAvenue.gridx = 16;
 		gbc_medditerraneanAvenue.gridy = 14;
+		medditerraneanAvenue.setIcon(new ImageIcon(brown));
 		add(medditerraneanAvenue, gbc_medditerraneanAvenue);
 		
 		JButton go = new JButton("");
@@ -451,6 +500,8 @@ public class GamePanel extends JPanel {
 		gbc_go.insets = new Insets(0, 0, 5, 5);
 		gbc_go.gridx = 17;
 		gbc_go.gridy = 14;
+		Image goIcon = new ImageIcon(this.getClass().getResource("/go.jpg")).getImage();
+ 		go.setIcon(new ImageIcon(goIcon));
 		add(go, gbc_go);
 
 	}
