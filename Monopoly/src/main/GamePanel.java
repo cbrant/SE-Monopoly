@@ -35,7 +35,7 @@ public class GamePanel extends JPanel {
 	public int currPlayer;
 
 	private JButton diceButton;
-	
+	boolean diceActive = true;
 	// flag set when a player rolls doubles -- will roll again
 	private boolean doubles;	
 	// random number generator used for dice rolling
@@ -464,32 +464,34 @@ public class GamePanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e){
 			// TODO -- disable dice button until enabled for next turn
-			
-			// roll the dice for the current player
-			int d1 = diceRoll(); int d2 = diceRoll();
-			if (d1 == d2) doubles = true;	//player will roll again
-			
-			// display the result of the dice on the screen (for now, console only)
-			// TODO -- get dice results displayed on GUI
-			System.out.println("You rolled " + d1 + " and " + d2 + ".");
-			
-			// pause for a second
-			try {
-				Thread.sleep(1*1000);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
+			if(diceActive == true) {
+				//deactivate dice
+				diceActive = false;
+				// roll the dice for the current player
+				int d1 = diceRoll(); int d2 = diceRoll();
+				if (d1 == d2) doubles = true;	//player will roll again
+				
+				// display the result of the dice on the screen (for now, console only)
+				// TODO -- get dice results displayed on GUI
+				System.out.println("You rolled " + d1 + " and " + d2 + ".");
+				
+				// pause for a second
+				try {
+					Thread.sleep(1*1000);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				
+				// advance the current player's position
+				movePlayer(d1+d2);		
+				// TODO -- update the GUI
+				
+				// given the state of the current property, notify user or allow user to take action
+				takeAction(parent.spaces.get(parent.players[currPlayer].getCurrLocation()));
+
+				// going to next turn will take place in takeAction or in an event handler for an event
+				//	that will be created by takeAction	
 			}
-			
-			// advance the current player's position
-			movePlayer(d1+d2);		
-			// TODO -- update the GUI
-			
-			// given the state of the current property, notify user or allow user to take action
-			takeAction(parent.spaces.get(parent.players[currPlayer].getCurrLocation()));
-
-			// going to next turn will take place in takeAction or in an event handler for an event
-			//	that will be created by takeAction
-
 		}
 	};
 	
@@ -557,30 +559,24 @@ public class GamePanel extends JPanel {
 	private void optionToBuy(Property prop) {
 		// check if the current player has enough money to buy the property
 		if (parent.players[currPlayer].getBank() > prop.getPrice()) {
-			// TODO -- create a dialog for user interaction instead of command line
-			System.out.print("Do you want to buy " + prop.getName() + " for $" + prop.getPrice() + "? ");
-			BufferedReader b = new BufferedReader(new InputStreamReader(System.in));
-			String input = "";
-			try {
-				input = b.readLine();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
+			
+			int buyProp = JOptionPane.showConfirmDialog(null, "Do you want to buy \n"+prop.getName()+"?", "Buy "+prop.getName(), JOptionPane.YES_NO_OPTION);
 			// **TODO -- put this (what's below here in the if body) in event handler for dialog response
-
 			// if they want to buy it, update the owner of the property, and deduct the cost from the current player
-			if (input.toUpperCase().equals(new String("YES"))) {
+			
+			
+			if (buyProp == 0) {
 				parent.players[currPlayer].deductFromBank(prop.getPrice());
 				prop.setOwner(currPlayer);
 				parent.players[currPlayer].addProperty(prop);;
-			}		
+			} else {
+				// **TODO -- put in an auction function if they decide not to buy
+			}
 			nextTurn();
 		}
 		else {
-			// notify player that they don't have money
-			// TODO -- put this notification somewhere on GUI
-			System.out.println("You do not have enough money to buy this property.");
+			// notify player that they don't have money via popup window
+			JOptionPane.showMessageDialog(null, "Insufficient funds in bank account!\nProperty cost: $"+prop.getPrice()+"\nAccount Balance: $"+parent.players[currPlayer].getBank(), "Bank error", JOptionPane.ERROR_MESSAGE);
 			nextTurn();
 		}		
 	}
@@ -593,8 +589,8 @@ public class GamePanel extends JPanel {
 		if (currPlayer != prop.getOwner()) {		
 			int amountPaid = parent.players[currPlayer].deductFromBank(prop.getRent());
 			parent.players[prop.getOwner()].addToBank(amountPaid);
-			System.out.println(parent.players[currPlayer].getName() + " paid $" + amountPaid + 
-				" to " + parent.players[prop.getOwner()].getName() + " for rent on " + prop.getName());
+			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + " paid $" + amountPaid + 
+				" to " + parent.players[prop.getOwner()].getName() + " for rent on " + prop.getName(), "Rent Paid", JOptionPane.INFORMATION_MESSAGE);
 		}
 		nextTurn();
 	}
@@ -621,7 +617,6 @@ public class GamePanel extends JPanel {
 		this.doubles = false;
 
 		newTurnNotification();
-
 	}
 	
 	/* Function:	newTurnNotification() 
@@ -639,7 +634,8 @@ public class GamePanel extends JPanel {
 			sProps += props.elementAt(i).getName();
 		}
 		System.out.println("\tProperties: " + sProps);
-		// TODO -- enable dice again
+		// enable dice again
+		diceActive = true;
 	}
 		
 	
