@@ -61,6 +61,8 @@ public class GamePanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
+		//TODO: Add listener to each space, pop a JOptionPane.showMessageDialog() with card image
+		
 		JButton freeParking = new JButton("");
 		GridBagConstraints gbc_freeParking = new GridBagConstraints();
 		gbc_freeParking.fill = GridBagConstraints.BOTH;
@@ -71,7 +73,8 @@ public class GamePanel extends JPanel {
 		gbc_freeParking.gridy = 2;
 		Image freeParkingIcon = new ImageIcon(this.getClass().getResource("/freeparking.jpg")).getImage();
  		freeParking.setIcon(new ImageIcon(freeParkingIcon));
-		add(freeParking, gbc_freeParking);
+		
+ 		add(freeParking, gbc_freeParking);
 		
 		JButton kentuckyAvenue = new JButton("");
 		GridBagConstraints gbc_kentuckyAvenue = new GridBagConstraints();
