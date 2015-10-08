@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Vector;
 
@@ -26,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
 
 public class GamePanel extends JPanel {
@@ -46,6 +48,12 @@ public class GamePanel extends JPanel {
 	//variables for the player panels
 	private JPanel panel, panel_1, panel_2, panel_3;
 	
+	// Array of piece images
+	private HashMap<Player.GamePiece, Image> playerPieces = new HashMap<Player.GamePiece, Image>(6);
+	
+	//variables for the player pieces
+	private JLabel player1, player2, player3, player4;
+	
 	private boolean doubles;	
 	// random number generator used for dice rolling
 	private Random ranGen;
@@ -61,7 +69,14 @@ public class GamePanel extends JPanel {
 
 		this.currPlayer = 0;
 		this.ranGen = new Random(System.currentTimeMillis());
-			
+		
+		this.playerPieces.put(Player.GamePiece.RACECAR ,new ImageIcon(this.getClass().getResource("/car.png")).getImage());
+		this.playerPieces.put(Player.GamePiece.DOG, new ImageIcon(this.getClass().getResource("/dog.png")).getImage());
+		this.playerPieces.put(Player.GamePiece.SHOE, new ImageIcon(this.getClass().getResource("/shoe.png")).getImage());
+		this.playerPieces.put(Player.GamePiece.HAT, new ImageIcon(this.getClass().getResource("/hat.png")).getImage());
+		this.playerPieces.put(Player.GamePiece.THIMBLE, new ImageIcon(this.getClass().getResource("/thimble.png")).getImage());
+		this.playerPieces.put(Player.GamePiece.SHIP, new ImageIcon(this.getClass().getResource("/ship.png")).getImage());
+		
 		setBackground(new Color(255, 250, 205));
 
 		setBounds(100, 100, 900, 725);
@@ -71,6 +86,52 @@ public class GamePanel extends JPanel {
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0};
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
+		
+		// Create labels for pieces, need them to dynamically move
+		player1 = new JLabel("");
+		GridBagConstraints gbc_player1 = new GridBagConstraints();
+		gbc_player1.fill = GridBagConstraints.NONE;
+		gbc_player1.anchor = GridBagConstraints.NORTHWEST;
+		gbc_player1.insets = new Insets(0, 0, 5, 5);
+		gbc_player1.gridx = 14;
+		gbc_player1.gridy = 14;
+		Image player1Icon = playerPieces.get(parent.players[0].getPiece());
+		player1.setIcon(new ImageIcon(player1Icon));
+		add(player1, gbc_player1);
+		
+		player2 = new JLabel("");
+		GridBagConstraints gbc_player2 = new GridBagConstraints();
+		gbc_player2.fill = GridBagConstraints.NONE;
+		gbc_player2.anchor = GridBagConstraints.NORTHEAST;
+		gbc_player2.insets = new Insets(0, 0, 5, 5);
+		gbc_player2.gridx = 14;
+		gbc_player2.gridy = 14;
+		Image player2Icon = playerPieces.get(parent.players[1].getPiece());
+		player2.setIcon(new ImageIcon(player2Icon));
+		add(player2, gbc_player2);
+		
+		player3 = new JLabel("");
+		GridBagConstraints gbc_player3 = new GridBagConstraints();
+		gbc_player3.fill = GridBagConstraints.NONE;
+		gbc_player3.anchor = GridBagConstraints.SOUTHWEST;
+		gbc_player3.insets = new Insets(0, 0, 5, 5);
+		gbc_player3.gridx = 14;
+		gbc_player3.gridy = 14;
+		Image player3Icon = playerPieces.get(parent.players[2].getPiece());
+		player3.setIcon(new ImageIcon(player3Icon));
+		add(player3, gbc_player3);
+		
+		player4 = new JLabel("");
+		GridBagConstraints gbc_player4 = new GridBagConstraints();
+		gbc_player4.fill = GridBagConstraints.NONE;
+		gbc_player4.anchor = GridBagConstraints.SOUTHEAST;
+		gbc_player4.insets = new Insets(0, 0, 5, 5);
+		gbc_player4.gridx = 14;
+		gbc_player4.gridy = 14;
+		//Image player4Icon = playerPieces.get(parent.players[3].getPiece());
+		//player4.setIcon(new ImageIcon(player4Icon));
+		add(player4, gbc_player4);
+		
 		
 		// Add listener to each space, pop a JOptionPane.showMessageDialog() with card image
 		
