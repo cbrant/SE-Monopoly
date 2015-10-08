@@ -39,9 +39,9 @@ public class GamePanel extends JPanel {
 	boolean diceActive = true;
 	// flag set when a player rolls doubles -- will roll again
 	
-	private static JLabel dice1;
+	private JLabel dice1;
 
-	private static JLabel dice2;
+	private JLabel dice2;
 	
 	private boolean doubles;	
 	// random number generator used for dice rolling
@@ -407,13 +407,13 @@ public class GamePanel extends JPanel {
  		this.diceButton.addActionListener(diceClicked);
  		add(this.diceButton, gbc_diceButton);
 		
-		GamePanel.dice1 = new JLabel("");
-		GamePanel.dice1.setFont(new Font("Dialog", Font.BOLD, 24));
+		dice1 = new JLabel("");
+		dice1.setFont(new Font("Dialog", Font.BOLD, 24));
 		GridBagConstraints gbc_dice1 = new GridBagConstraints();
 		gbc_dice1.insets = new Insets(0, 0, 5, 5);
 		gbc_dice1.gridx = 8;
 		gbc_dice1.gridy = 9;
-		add(GamePanel.dice1, gbc_dice1);
+		add(dice1, gbc_dice1);
 		
 		
 		JButton pennsylvaniaAvenue = new JButton("");
@@ -454,13 +454,13 @@ public class GamePanel extends JPanel {
 		shortLine.addActionListener(spaceClicked);
 		add(shortLine, gbc_shortLine);
  		
- 		GamePanel.dice2 = new JLabel("");
- 		GamePanel.dice2.setFont(new Font("Dialog", Font.BOLD, 24));
+ 		dice2 = new JLabel("");
+ 		dice2.setFont(new Font("Dialog", Font.BOLD, 24));
  		GridBagConstraints gbc_dice2 = new GridBagConstraints();
  		gbc_dice2.insets = new Insets(0, 0, 5, 5);
  		gbc_dice2.gridx = 10;
  		gbc_dice2.gridy = 9;
- 		add(GamePanel.dice2, gbc_dice2);
+ 		add(dice2, gbc_dice2);
 		
 		JButton virginiaAvenue = new JButton("");
 		GridBagConstraints gbc_virginiaAvenue = new GridBagConstraints();
@@ -815,20 +815,13 @@ public class GamePanel extends JPanel {
 				diceActive = false;
 				// roll the dice for the current player
 				int d1 = diceRoll(); int d2 = diceRoll();
-				GamePanel.dice1.setText(""+d1); GamePanel.dice2.setText(""+d2);
+				dice1.setText(""+d1); dice2.setText(""+d2);
 				if (d1 == d2) doubles = true;	//player will roll again
-				
+
 				// display the result of the dice on the screen (for now, console only)
 				// TODO -- get dice results displayed on GUI
 				System.out.println("You rolled " + d1 + " and " + d2 + ".");
-				
-				// pause for a second
-				try {
-					Thread.sleep(1*1000);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-				
+						
 				// advance the current player's position
 				movePlayer(d1+d2);		
 				// TODO -- update the GUI
@@ -874,6 +867,7 @@ public class GamePanel extends JPanel {
 	 * 				built in helper functions for other scenarios) to follow event based paradigm
 	 */
 	private void takeAction(Space s) {
+
 		// space is a special space -- GO, draw card, taxes, etc; not a buyable property
 		if (s.getType() == Space.SpaceType.ACTION) {
 			// DO NOTHING for vertical prototype	
