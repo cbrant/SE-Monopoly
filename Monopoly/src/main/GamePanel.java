@@ -26,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class GamePanel extends JPanel {
 
@@ -37,6 +38,11 @@ public class GamePanel extends JPanel {
 	private JButton diceButton;
 	boolean diceActive = true;
 	// flag set when a player rolls doubles -- will roll again
+	
+	private static JLabel dice1;
+
+	private static JLabel dice2;
+	
 	private boolean doubles;	
 	// random number generator used for dice rolling
 	private Random ranGen;
@@ -63,7 +69,7 @@ public class GamePanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		//TODO: Add listener to each space, pop a JOptionPane.showMessageDialog() with card image
+		// Add listener to each space, pop a JOptionPane.showMessageDialog() with card image
 		
 		JButton freeParking = new JButton("");
 		GridBagConstraints gbc_freeParking = new GridBagConstraints();
@@ -86,7 +92,7 @@ public class GamePanel extends JPanel {
 		gbc_kentuckyAvenue.gridy = 2;
 		Image red = new ImageIcon(this.getClass().getResource("/redspace.jpg")).getImage();
  		kentuckyAvenue.setIcon(new ImageIcon(red));
- 		kentuckyAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/kentuckyavenue.jpg")).getImage());
+ 		kentuckyAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/kentuckyavenue.jpg")).getImage());
  		kentuckyAvenue.addActionListener(spaceClicked);
 		add(kentuckyAvenue, gbc_kentuckyAvenue);
 		
@@ -370,7 +376,7 @@ public class GamePanel extends JPanel {
 		stJamesPlace.setIcon(new ImageIcon(orange));
 		add(stJamesPlace, gbc_stJamesPlace);
 		
-		JButton diceButton = new JButton("");
+		this.diceButton = new JButton("");
 		GridBagConstraints gbc_diceButton = new GridBagConstraints();
 		gbc_diceButton.fill = GridBagConstraints.BOTH;
 		gbc_diceButton.gridwidth = 1;
@@ -379,9 +385,18 @@ public class GamePanel extends JPanel {
 		gbc_diceButton.gridx = 9;
 		gbc_diceButton.gridy = 9;
 		Image img = new ImageIcon(this.getClass().getResource("/dice.jpg")).getImage();
- 		diceButton.setIcon(new ImageIcon(img));
- 		diceButton.addActionListener(diceClicked);
-		add(diceButton, gbc_diceButton);
+ 		this.diceButton.setIcon(new ImageIcon(img));
+ 		this.diceButton.addActionListener(diceClicked);
+ 		add(this.diceButton, gbc_diceButton);
+		
+		GamePanel.dice1 = new JLabel("");
+		GamePanel.dice1.setFont(new Font("Dialog", Font.BOLD, 24));
+		GridBagConstraints gbc_dice1 = new GridBagConstraints();
+		gbc_dice1.insets = new Insets(0, 0, 5, 5);
+		gbc_dice1.gridx = 8;
+		gbc_dice1.gridy = 9;
+		add(GamePanel.dice1, gbc_dice1);
+		
 		
 		JButton pennsylvaniaAvenue = new JButton("");
 		GridBagConstraints gbc_pennsylvaniaAvenue = new GridBagConstraints();
@@ -412,8 +427,16 @@ public class GamePanel extends JPanel {
 		gbc_shortLine.gridx = 14;
 		gbc_shortLine.gridy = 9;
 		Image rrEast = new ImageIcon(this.getClass().getResource("/rreast.jpg")).getImage();
- 		shortLine.setIcon(new ImageIcon(rrEast));
+		shortLine.setIcon(new ImageIcon(rrEast));
 		add(shortLine, gbc_shortLine);
+ 		
+ 		GamePanel.dice2 = new JLabel("");
+ 		GamePanel.dice2.setFont(new Font("Dialog", Font.BOLD, 24));
+ 		GridBagConstraints gbc_dice2 = new GridBagConstraints();
+ 		gbc_dice2.insets = new Insets(0, 0, 5, 5);
+ 		gbc_dice2.gridx = 10;
+ 		gbc_dice2.gridy = 9;
+ 		add(GamePanel.dice2, gbc_dice2);
 		
 		JButton virginiaAvenue = new JButton("");
 		GridBagConstraints gbc_virginiaAvenue = new GridBagConstraints();
@@ -746,6 +769,7 @@ public class GamePanel extends JPanel {
 				diceActive = false;
 				// roll the dice for the current player
 				int d1 = diceRoll(); int d2 = diceRoll();
+				GamePanel.dice1.setText(""+d1); GamePanel.dice2.setText(""+d2);
 				if (d1 == d2) doubles = true;	//player will roll again
 				
 				// display the result of the dice on the screen (for now, console only)
