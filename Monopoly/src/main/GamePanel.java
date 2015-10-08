@@ -52,7 +52,7 @@ public class GamePanel extends JPanel {
 
 		this.currPlayer = 0;
 		this.ranGen = new Random(System.currentTimeMillis());
-		
+			
 		setBackground(new Color(255, 250, 205));
 
 		setBounds(100, 100, 900, 725);
@@ -224,13 +224,12 @@ public class GamePanel extends JPanel {
  		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0};
  		panel.setLayout(gbl_panel);
  		
-	 		JLabel player1Name = new JLabel("Player 1");
 	 		GridBagConstraints gbc_player1Name = new GridBagConstraints();
 	 		gbc_player1Name.fill = GridBagConstraints.BOTH;
 	 		gbc_player1Name.insets = new Insets(0, 0, 5, 5);
 	 		gbc_player1Name.gridx = 0;
 	 		gbc_player1Name.gridy = 1;
-	 		panel.add(player1Name, gbc_player1Name);
+	 		panel.add(parent.players[0].nameL, gbc_player1Name);
 	 		
 	 		JLabel player1CashLabel = new JLabel("Cash: ");
 	 		GridBagConstraints gbc_player1CashLabel = new GridBagConstraints();
@@ -240,20 +239,18 @@ public class GamePanel extends JPanel {
 	 		gbc_player1CashLabel.gridy = 2;
 	 		panel.add(player1CashLabel, gbc_player1CashLabel);
 	 		
-	 		JLabel player1Cash = new JLabel("");
 	 		GridBagConstraints gbc_player1Cash = new GridBagConstraints();
 	 		gbc_player1Cash.fill = GridBagConstraints.VERTICAL;
 	 		gbc_player1Cash.insets = new Insets(0, 0, 5, 0);
 	 		gbc_player1Cash.gridx = 1;
-	 		gbc_player1Cash.gridy = 1;
-	 		panel.add(player1Cash, gbc_player1Cash);
+	 		gbc_player1Cash.gridy = 2;
+	 		panel.add(parent.players[0].bankL, gbc_player1Cash);
 	 		
-	 		JLabel player1Properties = new JLabel("");
 	 		GridBagConstraints gbc_player1Properties = new GridBagConstraints();
 	 		gbc_player1Properties.insets = new Insets(0, 0, 5, 0);
 	 		gbc_player1Properties.gridx = 1;
-	 		gbc_player1Properties.gridy = 2;
-	 		panel.add(player1Properties, gbc_player1Properties);
+	 		gbc_player1Properties.gridy = 3;
+	 		panel.add(parent.players[0].propertiesL, gbc_player1Properties);
 	 		
 	 		JLabel player1PropertiesLabel = new JLabel("Properties:");
 	 		GridBagConstraints gbc_player1PropertiesLabel = new GridBagConstraints();
@@ -279,13 +276,12 @@ public class GamePanel extends JPanel {
  		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0};
  		panel_1.setLayout(gbl_panel_1);
  			
-	 		JLabel player2Name = new JLabel("Player 2");
 	 		GridBagConstraints gbc_player2Name = new GridBagConstraints();
 	 		gbc_player2Name.fill = GridBagConstraints.BOTH;
 	 		gbc_player2Name.insets = new Insets(0, 0, 5, 5);
 	 		gbc_player2Name.gridx = 0;
 	 		gbc_player2Name.gridy = 1;
-	 		panel_1.add(player2Name, gbc_player2Name);
+	 		panel_1.add(parent.players[1].nameL, gbc_player2Name);
 	 		
 	 		JLabel player2CashLabel = new JLabel("Cash: ");
 	 		GridBagConstraints gbc_player2CashLabel = new GridBagConstraints();
@@ -295,20 +291,18 @@ public class GamePanel extends JPanel {
 	 		gbc_player2CashLabel.gridy = 2;
 	 		panel_1.add(player2CashLabel, gbc_player2CashLabel);
 	 		
-	 		JLabel player2Cash = new JLabel("");
 	 		GridBagConstraints gbc_player2Cash = new GridBagConstraints();
 	 		gbc_player2Cash.fill = GridBagConstraints.VERTICAL;
 	 		gbc_player2Cash.insets = new Insets(0, 0, 5, 0);
 	 		gbc_player2Cash.gridx = 1;
 	 		gbc_player2Cash.gridy = 2;
-	 		panel_1.add(player2Cash, gbc_player2Cash);
+	 		panel_1.add(parent.players[1].bankL, gbc_player2Cash);
 	 		
-	 		JLabel player2Properties = new JLabel("");
 	 		GridBagConstraints gbc_player2Properties = new GridBagConstraints();
 	 		gbc_player2Properties.insets = new Insets(0, 0, 5, 0);
 	 		gbc_player2Properties.gridx = 1;
 	 		gbc_player2Properties.gridy = 3;
-	 		panel_1.add(player2Properties, gbc_player2Properties);
+	 		panel_1.add(parent.players[1].propertiesL, gbc_player2Properties);
 	 		
 	 		JLabel player2PropertiesLabel = new JLabel("Properties:");
 	 		GridBagConstraints gbc_player2PropertiesLabel = new GridBagConstraints();
@@ -451,13 +445,12 @@ public class GamePanel extends JPanel {
  		gbl_panel_2.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0};
  		panel_2.setLayout(gbl_panel_2);
  			
-	 		JLabel player3Name = new JLabel("Player 3");
 	 		GridBagConstraints gbc_player3Name = new GridBagConstraints();
 	 		gbc_player3Name.fill = GridBagConstraints.BOTH;
 	 		gbc_player3Name.insets = new Insets(0, 0, 5, 5);
 	 		gbc_player3Name.gridx = 0;
 	 		gbc_player3Name.gridy = 1;
-	 		panel_2.add(player3Name, gbc_player3Name);
+	 		panel_2.add(parent.players[2].nameL, gbc_player3Name);
 	 		
 	 		JLabel player3CashLabel = new JLabel("Cash: ");
 	 		GridBagConstraints gbc_player3CashLabel = new GridBagConstraints();
@@ -467,20 +460,18 @@ public class GamePanel extends JPanel {
 	 		gbc_player3CashLabel.gridy = 2;
 	 		panel_2.add(player3CashLabel, gbc_player3CashLabel);
 	 		
-	 		JLabel player3Cash = new JLabel("");
 	 		GridBagConstraints gbc_player3Cash = new GridBagConstraints();
 	 		gbc_player3Cash.fill = GridBagConstraints.VERTICAL;
 	 		gbc_player3Cash.insets = new Insets(0, 0, 5, 0);
 	 		gbc_player3Cash.gridx = 1;
 	 		gbc_player3Cash.gridy = 2;
-	 		panel_2.add(player3Cash, gbc_player3Cash);
+	 		panel_2.add(parent.players[2].bankL, gbc_player3Cash);
 	 		
-	 		JLabel player3Properties = new JLabel("");
 	 		GridBagConstraints gbc_player3Properties = new GridBagConstraints();
 	 		gbc_player3Properties.insets = new Insets(0, 0, 5, 0);
 	 		gbc_player3Properties.gridx = 1;
 	 		gbc_player3Properties.gridy = 3;
-	 		panel_2.add(player3Properties, gbc_player3Properties);
+	 		panel_2.add(parent.players[2].propertiesL, gbc_player3Properties);
 	 		
 	 		JLabel player3PropertiesLabel = new JLabel("Properties:");
 	 		GridBagConstraints gbc_player3PropertiesLabel = new GridBagConstraints();
@@ -508,13 +499,12 @@ public class GamePanel extends JPanel {
  		gbl_panel_3.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0};
  		panel_3.setLayout(gbl_panel_3);
  			
-	 		JLabel player4Name = new JLabel("Player 4");
 	 		GridBagConstraints gbc_player4Name = new GridBagConstraints();
 	 		gbc_player4Name.fill = GridBagConstraints.BOTH;
 	 		gbc_player4Name.insets = new Insets(0, 0, 5, 5);
 	 		gbc_player4Name.gridx = 0;
 	 		gbc_player4Name.gridy = 1;
-	 		panel_3.add(player4Name, gbc_player4Name);
+	 		panel_3.add(parent.players[3].nameL, gbc_player4Name);
 	 		
 	 		JLabel player4CashLabel = new JLabel("Cash: ");
 	 		GridBagConstraints gbc_player4CashLabel = new GridBagConstraints();
@@ -524,20 +514,18 @@ public class GamePanel extends JPanel {
 	 		gbc_player4CashLabel.gridy = 2;
 	 		panel_3.add(player4CashLabel, gbc_player4CashLabel);
 	 		
-	 		JLabel player4Cash = new JLabel("");
 	 		GridBagConstraints gbc_player4Cash = new GridBagConstraints();
 	 		gbc_player4Cash.fill = GridBagConstraints.VERTICAL;
 	 		gbc_player4Cash.insets = new Insets(0, 0, 5, 0);
 	 		gbc_player4Cash.gridx = 1;
 	 		gbc_player4Cash.gridy = 2;
-	 		panel_3.add(player4Cash, gbc_player4Cash);
+	 		panel_3.add(parent.players[3].bankL, gbc_player4Cash);
 	 		
-	 		JLabel player4Properties = new JLabel("");
 	 		GridBagConstraints gbc_player4Properties = new GridBagConstraints();
 	 		gbc_player4Properties.insets = new Insets(0, 0, 5, 0);
 	 		gbc_player4Properties.gridx = 1;
 	 		gbc_player4Properties.gridy = 3;
-	 		panel_3.add(player4Properties, gbc_player4Properties);
+	 		panel_3.add(parent.players[3].propertiesL, gbc_player4Properties);
 	 		
 	 		JLabel player4PropertiesLabel = new JLabel("Properties:");
 	 		GridBagConstraints gbc_player4PropertiesLabel = new GridBagConstraints();
@@ -731,8 +719,7 @@ public class GamePanel extends JPanel {
 		add(go, gbc_go);
 
 	}
-	
-	
+		
 	/* Handler:		diceClicked
 	 * Purpose:		handles the dice button clicked event, rolls dice, moves the current player forward, and begins
 	 * 				any interaction the user will have on the new space he/she has landed on
@@ -837,11 +824,10 @@ public class GamePanel extends JPanel {
 		// check if the current player has enough money to buy the property
 		if (parent.players[currPlayer].getBank() > prop.getPrice()) {
 			
-			int buyProp = JOptionPane.showConfirmDialog(null, "Do you want to buy \n"+prop.getName()+"?", "Buy "+prop.getName(), JOptionPane.YES_NO_OPTION);
-			// **TODO -- put this (what's below here in the if body) in event handler for dialog response
+			int buyProp = JOptionPane.showConfirmDialog(null, parent.players[currPlayer].getName() + ", do you want to buy \n" + 
+					prop.getName() + " for $" + prop.getPrice() + "?", "Buy "+prop.getName(), JOptionPane.YES_NO_OPTION);
+			
 			// if they want to buy it, update the owner of the property, and deduct the cost from the current player
-			
-			
 			if (buyProp == 0) {
 				parent.players[currPlayer].deductFromBank(prop.getPrice());
 				prop.setOwner(currPlayer);

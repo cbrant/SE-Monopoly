@@ -18,8 +18,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-
-// TODO -- only one player can have each piece in the game
 public class SetupPanel extends JPanel {
 
 	private MainWindow parent;

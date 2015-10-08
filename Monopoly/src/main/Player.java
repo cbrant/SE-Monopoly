@@ -2,6 +2,9 @@ package main;
 
 import java.util.Vector;
 
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import main.Property;
 
 /* Class:	Player
@@ -31,17 +34,28 @@ public class Player {
 	// currLocation -- index into properties array in MainWindow, gives current location of player on board
 	private int currLocation;
 	
+	public JLabel nameL;
+	public JLabel bankL;
+	public JLabel propertiesL;
+	
 	
 	/// CONSTRUCTORS ///
 	// set up initial default name for players
 	public Player(int id) {
-		this.bank = 300;		// TODO -- change this to something accurate!
+		this.bank = 1500;		
+		
+		this.nameL = new JLabel();
+		this.bankL = new JLabel("$" + this.bank);
+		this.propertiesL = new JLabel("None");
+		
 		setName("Player " + id);
 		setpType(PlayerType.HUMAN);
 		setPiece(GamePiece.values()[id % (GamePiece.values().length)]);
 		setActive(true);
 		this.currLocation = 0;	// start at go!
 		this.ownedProperties = new Vector<Property>();
+		
+		
 	}
 	
 	// getter/setter for name
@@ -51,6 +65,7 @@ public class Player {
 	public void setName(String name) {
 		// TODO -- maybe set max length so it will display okay
 		this.name = name;
+		this.nameL.setText(this.name);
 	}
 
 	// getter for bank
@@ -62,6 +77,7 @@ public class Player {
 	 */
 	public void addToBank(int amount) {
 		this.bank += amount;
+		this.bankL.setText("$" + this.bank);
 	}
 	/* Function:	deductFromBank()
 	 * Purpose:		reduce the player's bank by <amount>, returns the amount actually deducted, less than 
@@ -71,6 +87,8 @@ public class Player {
 		if (this.bank <= amount) {
 			int amountDeducted = this.bank;
 			this.bank = 0;
+			this.bankL.setText("$" + this.bank);
+
 			// TODO -- here we should check if the amount goes below 0, throw an error or something
 			// OR we could do this from wherever we call deductFromBank
 			setActive(false);
@@ -80,6 +98,7 @@ public class Player {
 		}
 		
 		this.bank -= amount;
+		this.bankL.setText("$" + this.bank);
 		return amount;
 	}
 	
@@ -90,6 +109,13 @@ public class Player {
 	// add a property to the player's holdings
 	public void addProperty(Property prop) {
 		this.ownedProperties.add(prop);
+		String props = "<html>";
+		for (int i = 0; i < this.ownedProperties.size(); ++i) {
+			props += this.ownedProperties.get(i).getName();
+			if (i < this.ownedProperties.size() -1 ) props += ", <br>";
+		}
+		props += "</html>";
+		this.propertiesL.setText(props);
 	}
 	
 	// getter/setter for player type (human or computer)
@@ -131,8 +157,9 @@ public class Player {
 	public void passedGo() {
 		// collect money
 		this.addToBank(200);
-		// TODO notify player of passing go 
-		System.out.println("You passed go! Collect $200!");
+		// notify player of passing go 
+		JOptionPane.showMessageDialog(null, "You passed go! Collect $200.", "Passed Go", JOptionPane.INFORMATION_MESSAGE);
+		//System.out.println("You passed go! Collect $200!");
 	}
 
 	

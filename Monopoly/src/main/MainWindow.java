@@ -56,7 +56,7 @@ public class MainWindow{
 							// hardcoded for now, but eventually will copy over from setup screen
 							players[i].setpType(PlayerType.HUMAN); //players[i].setpType((Player.PlayerType)setupP.playerTypes.get(i).getSelectedItem());
 							players[i].setPiece((Player.GamePiece)setupP.playerPieces.get(i).getSelectedItem());
-						}
+						}						
 					}
 					
 				}
@@ -65,6 +65,7 @@ public class MainWindow{
 				// if moving to the main game screen, execute a turn notification for the first player
 				if (cards.getComponents()[2].isVisible()) {
 					((GamePanel)(cards.getComponents()[2])).newTurnNotification();
+
 				}
 			}
 		};
