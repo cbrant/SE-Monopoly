@@ -41,6 +41,8 @@ public class GamePanel extends JPanel {
 	// random number generator used for dice rolling
 	private Random ranGen;
 	
+	private final static String CARD = "card";
+	
 	/**
 	 * Create the panel.
 	 */
@@ -73,7 +75,6 @@ public class GamePanel extends JPanel {
 		gbc_freeParking.gridy = 2;
 		Image freeParkingIcon = new ImageIcon(this.getClass().getResource("/freeparking.jpg")).getImage();
  		freeParking.setIcon(new ImageIcon(freeParkingIcon));
-		
  		add(freeParking, gbc_freeParking);
 		
 		JButton kentuckyAvenue = new JButton("");
@@ -85,6 +86,8 @@ public class GamePanel extends JPanel {
 		gbc_kentuckyAvenue.gridy = 2;
 		Image red = new ImageIcon(this.getClass().getResource("/redspace.jpg")).getImage();
  		kentuckyAvenue.setIcon(new ImageIcon(red));
+ 		kentuckyAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/kentuckyavenue.jpg")).getImage());
+ 		kentuckyAvenue.addActionListener(spaceClicked);
 		add(kentuckyAvenue, gbc_kentuckyAvenue);
 		
 		JButton chanceNorth = new JButton("");
@@ -911,6 +914,23 @@ public class GamePanel extends JPanel {
 		// enable dice again
 		diceActive = true;
 	}
+	
+	private ActionListener spaceClicked = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+			Image spaceCard = (Image)((JButton)e.getSource()).getClientProperty(GamePanel.CARD);
+			
+			JOptionPane.showMessageDialog(null, "", "", JOptionPane.PLAIN_MESSAGE, new ImageIcon(spaceCard));
+			
+			
+		}
+		
+		
+		
+	};
 		
 	
 }
