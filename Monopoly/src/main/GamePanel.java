@@ -39,9 +39,13 @@ public class GamePanel extends JPanel {
 	boolean diceActive = true;
 	// flag set when a player rolls doubles -- will roll again
 	
+	//variables that repesent dice roll on board
 	private static JLabel dice1;
 
 	private static JLabel dice2;
+	
+	//variables for the player panels
+	private JPanel panel, panel_1, panel_2, panel_3;
 	
 	private boolean doubles;	
 	// random number generator used for dice rolling
@@ -115,7 +119,7 @@ public class GamePanel extends JPanel {
 		gbc_indianaAvenue.gridx = 7;
 		gbc_indianaAvenue.gridy = 2;
 		indianaAvenue.setIcon(new ImageIcon(red));
-		indianaAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/indianaavenue.jpg")).getImage());
+		indianaAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/indianaavenue.jpg")).getImage());
 		indianaAvenue.addActionListener(spaceClicked);
 		add(indianaAvenue, gbc_indianaAvenue);
 		
@@ -127,7 +131,7 @@ public class GamePanel extends JPanel {
 		gbc_illinoisAvenue.gridx = 8;
 		gbc_illinoisAvenue.gridy = 2;
 		illinoisAvenue.setIcon(new ImageIcon(red));
-		illinoisAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/illinoisavenue.jpg")).getImage());
+		illinoisAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/illinoisavenue.jpg")).getImage());
 		illinoisAvenue.addActionListener(spaceClicked);
 		add(illinoisAvenue, gbc_illinoisAvenue);
 		
@@ -140,7 +144,7 @@ public class GamePanel extends JPanel {
 		gbc_bORailroad.gridy = 2;
 		Image rrNorth = new ImageIcon(this.getClass().getResource("/rrsouth.jpg")).getImage();
  		bORailroad.setIcon(new ImageIcon(rrNorth));
- 		bORailroad.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/borailroad.jpg")).getImage());
+ 		bORailroad.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/borailroad.jpg")).getImage());
 		bORailroad.addActionListener(spaceClicked);
 		add(bORailroad, gbc_bORailroad);
 		
@@ -153,7 +157,7 @@ public class GamePanel extends JPanel {
 		gbc_atlanticAvenue.gridy = 2;
 		Image yellow = new ImageIcon(this.getClass().getResource("/yellowspace.jpg")).getImage();
  		atlanticAvenue.setIcon(new ImageIcon(yellow));
- 		atlanticAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/atlanticavenue.jpg")).getImage());
+ 		atlanticAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/atlanticavenue.jpg")).getImage());
 		atlanticAvenue.addActionListener(spaceClicked);
 		add(atlanticAvenue, gbc_atlanticAvenue);
 		
@@ -165,7 +169,7 @@ public class GamePanel extends JPanel {
 		gbc_ventnorAvenue.gridx = 11;
 		gbc_ventnorAvenue.gridy = 2;
 		ventnorAvenue.setIcon(new ImageIcon(yellow));
-		ventnorAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/ventnoravenue.jpg")).getImage());
+		ventnorAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/ventnoravenue.jpg")).getImage());
 		ventnorAvenue.addActionListener(spaceClicked);
 		add(ventnorAvenue, gbc_ventnorAvenue);
 		
@@ -178,7 +182,7 @@ public class GamePanel extends JPanel {
 		gbc_waterWorks.gridy = 2;
 		Image waterWorksIcon = new ImageIcon(this.getClass().getResource("/waterworkks.jpg")).getImage();
  		waterWorks.setIcon(new ImageIcon(waterWorksIcon));
- 		waterWorks.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/waterworkscard.jpg")).getImage());
+ 		waterWorks.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/waterworkscard.jpg")).getImage());
 		waterWorks.addActionListener(spaceClicked);
 		add(waterWorks, gbc_waterWorks);
 		
@@ -190,7 +194,7 @@ public class GamePanel extends JPanel {
 		gbc_marvinGardens.gridx = 13;
 		gbc_marvinGardens.gridy = 2;
 		marvinGardens.setIcon(new ImageIcon(yellow));
-		marvinGardens.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/marvingardens.jpg")).getImage());
+		marvinGardens.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/marvingardens.jpg")).getImage());
 		marvinGardens.addActionListener(spaceClicked);
 		add(marvinGardens, gbc_marvinGardens);
 		
@@ -215,7 +219,7 @@ public class GamePanel extends JPanel {
 		gbc_newYorkAvenue.gridy = 5;
 		Image orange = new ImageIcon(this.getClass().getResource("/orangespace.jpg")).getImage();
  		newYorkAvenue.setIcon(new ImageIcon(orange));
- 		newYorkAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/newyorkavenue.jpg")).getImage());
+ 		newYorkAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/newyorkavenue.jpg")).getImage());
 		newYorkAvenue.addActionListener(spaceClicked);
 		add(newYorkAvenue, gbc_newYorkAvenue);
 		
@@ -228,11 +232,11 @@ public class GamePanel extends JPanel {
 		gbc_pacificAvenue.gridy = 5;
 		Image green = new ImageIcon(this.getClass().getResource("/greenspace.jpg")).getImage();
 		pacificAvenue.setIcon(new ImageIcon(green));
-		pacificAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/pacificavenue.jpg")).getImage());
+		pacificAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/pacificavenue.jpg")).getImage());
 		pacificAvenue.addActionListener(spaceClicked);
 		add(pacificAvenue, gbc_pacificAvenue);
  		
- 		JPanel panel = new JPanel();
+ 		panel = new JPanel();
  		GridBagConstraints gbc_panel = new GridBagConstraints();
  		gbc_panel.gridwidth = 4;
  		gbc_panel.gridheight = 4;
@@ -284,7 +288,7 @@ public class GamePanel extends JPanel {
 	 		gbc_player1PropertiesLabel.gridy = 3;
 	 		panel.add(player1PropertiesLabel, gbc_player1PropertiesLabel);
  		
- 		JPanel panel_1 = new JPanel();
+	 	panel_1 = new JPanel();
  		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
  		gbc_panel_1.gridwidth = 4;
  		gbc_panel_1.gridheight = 4;
@@ -344,7 +348,7 @@ public class GamePanel extends JPanel {
 		gbc_tennesseeAvenue.gridx = 2;
 		gbc_tennesseeAvenue.gridy = 6;
 		tennesseeAvenue.setIcon(new ImageIcon(orange));
-		tennesseeAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/tennesseeavenue.jpg")).getImage());
+		tennesseeAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/tennesseeavenue.jpg")).getImage());
 		tennesseeAvenue.addActionListener(spaceClicked);
 		add(tennesseeAvenue, gbc_tennesseeAvenue);
 		
@@ -356,7 +360,7 @@ public class GamePanel extends JPanel {
 		gbc_northCarolinaAvenue.gridx = 14;
 		gbc_northCarolinaAvenue.gridy = 6;
 		northCarolinaAvenue.setIcon(new ImageIcon(green));
-		northCarolinaAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/northcarolinaavenue.jpg")).getImage());
+		northCarolinaAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/northcarolinaavenue.jpg")).getImage());
 		northCarolinaAvenue.addActionListener(spaceClicked);
 		add(northCarolinaAvenue, gbc_northCarolinaAvenue);
 		
@@ -390,7 +394,7 @@ public class GamePanel extends JPanel {
 		gbc_stJamesPlace.gridx = 2;
 		gbc_stJamesPlace.gridy = 8;
 		stJamesPlace.setIcon(new ImageIcon(orange));
-		stJamesPlace.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/stjamesplace.jpg")).getImage());
+		stJamesPlace.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/stjamesplace.jpg")).getImage());
 		stJamesPlace.addActionListener(spaceClicked);
 		add(stJamesPlace, gbc_stJamesPlace);
 		
@@ -424,7 +428,7 @@ public class GamePanel extends JPanel {
 		gbc_pennsylvaniaAvenue.gridx = 14;
 		gbc_pennsylvaniaAvenue.gridy = 8;
 		pennsylvaniaAvenue.setIcon(new ImageIcon(green));
-		pennsylvaniaAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/pennsylvaniaavenue.jpg")).getImage());
+		pennsylvaniaAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/pennsylvaniaavenue.jpg")).getImage());
 		pennsylvaniaAvenue.addActionListener(spaceClicked);
 		add(pennsylvaniaAvenue, gbc_pennsylvaniaAvenue);
 		
@@ -437,7 +441,7 @@ public class GamePanel extends JPanel {
 		gbc_pennsylvaniaRailroad.gridy = 9;
 		Image rrWest = new ImageIcon(this.getClass().getResource("/rrwest.jpg")).getImage();
  		pennsylvaniaRailroad.setIcon(new ImageIcon(rrWest));
- 		pennsylvaniaRailroad.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/pennsylvaniarailroad.jpg")).getImage());
+ 		pennsylvaniaRailroad.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/pennsylvaniarailroad.jpg")).getImage());
 		pennsylvaniaRailroad.addActionListener(spaceClicked);
 		add(pennsylvaniaRailroad, gbc_pennsylvaniaRailroad);
 		
@@ -450,7 +454,7 @@ public class GamePanel extends JPanel {
 		gbc_shortLine.gridy = 9;
 		Image rrEast = new ImageIcon(this.getClass().getResource("/rreast.jpg")).getImage();
  		shortLine.setIcon(new ImageIcon(rrEast));
- 		shortLine.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/shortline.jpg")).getImage());
+ 		shortLine.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/shortline.jpg")).getImage());
 		shortLine.addActionListener(spaceClicked);
 		add(shortLine, gbc_shortLine);
  		
@@ -471,7 +475,7 @@ public class GamePanel extends JPanel {
 		gbc_virginiaAvenue.gridy = 10;
 		Image purple = new ImageIcon(this.getClass().getResource("/purplespace.jpg")).getImage();
  		virginiaAvenue.setIcon(new ImageIcon(purple));
- 		virginiaAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/virginiaavenue.jpg")).getImage());
+ 		virginiaAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/virginiaavenue.jpg")).getImage());
 		virginiaAvenue.addActionListener(spaceClicked);
 		add(virginiaAvenue, gbc_virginiaAvenue);
 		
@@ -484,7 +488,7 @@ public class GamePanel extends JPanel {
 		gbc_chanceEast.gridy = 10;
 		Image chanceEastIcon = new ImageIcon(this.getClass().getResource("/chanceeast.jpg")).getImage();
  		
- 		JPanel panel_2 = new JPanel();
+		panel_2 = new JPanel();
  		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
  		gbc_panel_2.gridwidth = 4;
  		gbc_panel_2.gridheight = 4;
@@ -536,7 +540,7 @@ public class GamePanel extends JPanel {
 	 		gbc_player3PropertiesLabel.gridy = 3;
 	 		panel_2.add(player3PropertiesLabel, gbc_player3PropertiesLabel);
  		
- 		JPanel panel_3 = new JPanel();
+	 	panel_3 = new JPanel();
  		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
  		gbc_panel_3.gridwidth = 4;
  		gbc_panel_3.gridheight = 4;
@@ -598,7 +602,7 @@ public class GamePanel extends JPanel {
 		gbc_statesAvenue.gridx = 2;
 		gbc_statesAvenue.gridy = 11;
 		statesAvenue.setIcon(new ImageIcon(purple));
-		statesAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/statesavenue.jpg")).getImage());
+		statesAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/statesavenue.jpg")).getImage());
 		statesAvenue.addActionListener(spaceClicked);
 		add(statesAvenue, gbc_statesAvenue);
 		
@@ -611,7 +615,7 @@ public class GamePanel extends JPanel {
 		gbc_parkPlace.gridy = 11;
 		Image darkBlue = new ImageIcon(this.getClass().getResource("/darkbluespace.jpg")).getImage();
  		parkPlace.setIcon(new ImageIcon(darkBlue));
- 		parkPlace.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/parkplace.jpg")).getImage());
+ 		parkPlace.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/parkplace.jpg")).getImage());
 		parkPlace.addActionListener(spaceClicked);
 		add(parkPlace, gbc_parkPlace);
 		
@@ -624,7 +628,7 @@ public class GamePanel extends JPanel {
 		gbc_electricCompany.gridy = 12;
 		Image eCIcon = new ImageIcon(this.getClass().getResource("/electriccompany.jpg")).getImage();
  		electricCompany.setIcon(new ImageIcon(eCIcon));
- 		electricCompany.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/electriccompanycard.jpg")).getImage());
+ 		electricCompany.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/electriccompanycard.jpg")).getImage());
 		electricCompany.addActionListener(spaceClicked);
 		add(electricCompany, gbc_electricCompany);
 		
@@ -636,7 +640,7 @@ public class GamePanel extends JPanel {
 		gbc_luxuryTax.gridx = 14;
 		gbc_luxuryTax.gridy = 12;
 		Image luxuryTaxIcon = new ImageIcon(this.getClass().getResource("/luxtax.jpg")).getImage();
-		luxuryTax.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/luxurytaxcard.jpg")).getImage());
+		luxuryTax.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/luxurytaxcard.jpg")).getImage());
 		luxuryTax.addActionListener(spaceClicked);
  		luxuryTax.setIcon(new ImageIcon(luxuryTaxIcon));
  		
@@ -650,7 +654,7 @@ public class GamePanel extends JPanel {
 		gbc_stCharlesPlace.gridx = 2;
 		gbc_stCharlesPlace.gridy = 13;
 		stCharlesPlace.setIcon(new ImageIcon(purple));
-		stCharlesPlace.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/stcharlesplace.jpg")).getImage());
+		stCharlesPlace.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/stcharlesplace.jpg")).getImage());
 		stCharlesPlace.addActionListener(spaceClicked);
 		add(stCharlesPlace, gbc_stCharlesPlace);
 		
@@ -662,7 +666,7 @@ public class GamePanel extends JPanel {
 		gbc_boardwalk.gridx = 14;
 		gbc_boardwalk.gridy = 13;
 		boardwalk.setIcon(new ImageIcon(darkBlue));
-		boardwalk.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/boardwalk.jpg")).getImage());
+		boardwalk.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/boardwalk.jpg")).getImage());
 		boardwalk.addActionListener(spaceClicked);
 		add(boardwalk, gbc_boardwalk);
 		
@@ -687,7 +691,7 @@ public class GamePanel extends JPanel {
 		gbc_connecticutAvenue.gridy = 14;
 		Image lightBlue = new ImageIcon(this.getClass().getResource("/lightbluespace.jpg")).getImage();
  		connecticutAvenue.setIcon(new ImageIcon(lightBlue));
- 		connecticutAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/connecticutavenue.jpg")).getImage());
+ 		connecticutAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/connecticutavenue.jpg")).getImage());
 		connecticutAvenue.addActionListener(spaceClicked);
 		add(connecticutAvenue, gbc_connecticutAvenue);
 		
@@ -699,7 +703,7 @@ public class GamePanel extends JPanel {
 		gbc_vermontAvenue.gridx = 6;
 		gbc_vermontAvenue.gridy = 14;
 		vermontAvenue.setIcon(new ImageIcon(lightBlue));
-		vermontAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/vermontavenue.jpg")).getImage());
+		vermontAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/vermontavenue.jpg")).getImage());
 		vermontAvenue.addActionListener(spaceClicked);
 		add(vermontAvenue, gbc_vermontAvenue);
 		
@@ -722,7 +726,7 @@ public class GamePanel extends JPanel {
 		gbc_orientalAvenue.gridx = 8;
 		gbc_orientalAvenue.gridy = 14;
 		orientalAvenue.setIcon(new ImageIcon(lightBlue));
-		orientalAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/orientalavenue.jpg")).getImage());
+		orientalAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/orientalavenue.jpg")).getImage());
 		orientalAvenue.addActionListener(spaceClicked);
 		add(orientalAvenue, gbc_orientalAvenue);
 		
@@ -735,7 +739,7 @@ public class GamePanel extends JPanel {
 		gbc_readingRailroad.gridy = 14;
 		Image rrSouth = new ImageIcon(this.getClass().getResource("/rrnorth.jpg")).getImage();
  		readingRailroad.setIcon(new ImageIcon(rrSouth));
- 		readingRailroad.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/readingrailroad.jpg")).getImage());
+ 		readingRailroad.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/readingrailroad.jpg")).getImage());
 		readingRailroad.addActionListener(spaceClicked);
 		add(readingRailroad, gbc_readingRailroad);
 		
@@ -748,7 +752,7 @@ public class GamePanel extends JPanel {
 		gbc_incomeTax.gridy = 14;
 		Image incomeTaxIcon = new ImageIcon(this.getClass().getResource("/incometax.jpg")).getImage();
  		incomeTax.setIcon(new ImageIcon(incomeTaxIcon));
- 		incomeTax.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/incometaxcard.jpg")).getImage());
+ 		incomeTax.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/incometaxcard.jpg")).getImage());
 		incomeTax.addActionListener(spaceClicked);
 		add(incomeTax, gbc_incomeTax);
 		
@@ -761,7 +765,7 @@ public class GamePanel extends JPanel {
 		gbc_balticAvenue.gridy = 14;
 		Image brown = new ImageIcon(this.getClass().getResource("/brownspace.jpg")).getImage();
  		balticAvenue.setIcon(new ImageIcon(brown));
- 		balticAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/balticavenue.jpg")).getImage());
+ 		balticAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/balticavenue.jpg")).getImage());
 		balticAvenue.addActionListener(spaceClicked);
 		add(balticAvenue, gbc_balticAvenue);
 		
@@ -784,7 +788,7 @@ public class GamePanel extends JPanel {
 		gbc_medditerraneanAvenue.gridx = 13;
 		gbc_medditerraneanAvenue.gridy = 14;
 		mediterraneanAvenue.setIcon(new ImageIcon(brown));
-		mediterraneanAvenue.putClientProperty(this.CARD , new ImageIcon(this.getClass().getResource("/mediterraneanavenue.jpg")).getImage());
+		mediterraneanAvenue.putClientProperty(GamePanel.CARD , new ImageIcon(this.getClass().getResource("/mediterraneanavenue.jpg")).getImage());
 		mediterraneanAvenue.addActionListener(spaceClicked);
 		add(mediterraneanAvenue, gbc_medditerraneanAvenue);
 		
@@ -799,6 +803,8 @@ public class GamePanel extends JPanel {
 		Image goIcon = new ImageIcon(this.getClass().getResource("/go.jpg")).getImage();
  		go.setIcon(new ImageIcon(goIcon));
 		add(go, gbc_go);
+		
+		updateCurrentPlayer();
 
 	}
 		
@@ -962,7 +968,9 @@ public class GamePanel extends JPanel {
 		}
 		this.doubles = false;
 
-		newTurnNotification();
+		diceActive = true;
+		updateCurrentPlayer();
+		//newTurnNotification();	
 	}
 	
 	/* Function:	newTurnNotification() 
@@ -1000,22 +1008,38 @@ public class GamePanel extends JPanel {
 	
 	private void updateCurrentPlayer(){
 		
+		Color n = new Color(238, 238, 238);
+		Color y = new Color(153, 255, 153);
+		
+		
 		switch (this.currPlayer){
 		
 		case 0:
-			
+			panel.setBackground(y);
+			panel_1.setBackground(n);
+			panel_2.setBackground(n);
+			panel_3.setBackground(n);
 			break;
 			
 		case 1:
-			
+			panel.setBackground(n);
+			panel_1.setBackground(y);
+			panel_2.setBackground(n);
+			panel_3.setBackground(n);
 			break;
 			
 		case 2:
-			
+			panel.setBackground(n);
+			panel_1.setBackground(n);
+			panel_2.setBackground(y);
+			panel_3.setBackground(n);
 			break;
 			
 		case 3:
-			
+			panel.setBackground(n);
+			panel_1.setBackground(n);
+			panel_2.setBackground(n);
+			panel_3.setBackground(y);
 			break;
 		
 		}
