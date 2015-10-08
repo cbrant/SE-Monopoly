@@ -95,7 +95,7 @@ public class MainWindow{
 
 	private void createAndShowGUI() {
 		//Create and set up the window.
-		frame = new JFrame("MainWindow");
+		frame = new JFrame("Monopoly");
 		frame.setBounds(100, 100, 900, 725);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
