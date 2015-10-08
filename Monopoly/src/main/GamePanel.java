@@ -951,10 +951,32 @@ public class GamePanel extends JPanel {
 			
 			
 		}
-		
-		
-		
 	};
+	
+	private void updateCurrentPlayer(){
+		
+		switch (this.currPlayer){
+		
+		case 0:
+			
+			break;
+			
+		case 1:
+			
+			break;
+			
+		case 2:
+			
+			break;
+			
+		case 3:
+			
+			break;
+		
+		}
+			
+		
+	}
 		
 	
 }
