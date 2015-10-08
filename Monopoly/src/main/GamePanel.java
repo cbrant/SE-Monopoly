@@ -70,12 +70,12 @@ public class GamePanel extends JPanel {
 		this.currPlayer = 0;
 		this.ranGen = new Random(System.currentTimeMillis());
 		
-		this.playerPieces.put(Player.GamePiece.RACECAR ,new ImageIcon(this.getClass().getResource("/racecar.jpg")).getImage());
-		this.playerPieces.put(Player.GamePiece.DOG, new ImageIcon(this.getClass().getResource("/dog.jpg")).getImage());
-		this.playerPieces.put(Player.GamePiece.SHOE, new ImageIcon(this.getClass().getResource("/shoe.jpg")).getImage());
-		this.playerPieces.put(Player.GamePiece.HAT, new ImageIcon(this.getClass().getResource("/hat.jpg")).getImage());
-		this.playerPieces.put(Player.GamePiece.THIMBLE, new ImageIcon(this.getClass().getResource("/thimble.jpg")).getImage());
-		this.playerPieces.put(Player.GamePiece.SHIP, new ImageIcon(this.getClass().getResource("/ship.jpg")).getImage());
+		this.playerPieces.put(Player.GamePiece.RACECAR ,new ImageIcon(this.getClass().getResource("/car.png")).getImage());
+		this.playerPieces.put(Player.GamePiece.DOG, new ImageIcon(this.getClass().getResource("/dog.png")).getImage());
+		this.playerPieces.put(Player.GamePiece.SHOE, new ImageIcon(this.getClass().getResource("/shoe.png")).getImage());
+		this.playerPieces.put(Player.GamePiece.HAT, new ImageIcon(this.getClass().getResource("/hat.png")).getImage());
+		this.playerPieces.put(Player.GamePiece.THIMBLE, new ImageIcon(this.getClass().getResource("/thimble.png")).getImage());
+		this.playerPieces.put(Player.GamePiece.SHIP, new ImageIcon(this.getClass().getResource("/ship.png")).getImage());
 		
 		setBackground(new Color(255, 250, 205));
 
