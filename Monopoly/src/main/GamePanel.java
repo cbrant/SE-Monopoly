@@ -49,7 +49,7 @@ public class GamePanel extends JPanel {
 	private JPanel panel, panel_1, panel_2, panel_3;
 	
 	// Array of piece images
-	private HashMap<Player.GamePiece, Image> playerPieces = new HashMap<Player.GamePiece, Image>();
+	private HashMap<Player.GamePiece, Image> playerPieces = new HashMap<Player.GamePiece, Image>(6);
 	
 	//variables for the player pieces
 	private JLabel player1, player2, player3, player4;
@@ -70,12 +70,12 @@ public class GamePanel extends JPanel {
 		this.currPlayer = 0;
 		this.ranGen = new Random(System.currentTimeMillis());
 		
-		this.playerPieces.put(Player.GamePiece.RACECAR ,new ImageIcon(this.getClass().getResource("/racecar.jpg")).getImage());
-		this.playerPieces.put(Player.GamePiece.DOG, new ImageIcon(this.getClass().getResource("/dog.jpg")).getImage());
-		this.playerPieces.put(Player.GamePiece.SHOE, new ImageIcon(this.getClass().getResource("/shoe.jpg")).getImage());
-		this.playerPieces.put(Player.GamePiece.HAT, new ImageIcon(this.getClass().getResource("/hat.jpg")).getImage());
-		this.playerPieces.put(Player.GamePiece.THIMBLE, new ImageIcon(this.getClass().getResource("/thimble.jpg")).getImage());
-		this.playerPieces.put(Player.GamePiece.SHIP, new ImageIcon(this.getClass().getResource("/ship.jpg")).getImage());
+		this.playerPieces.put(Player.GamePiece.RACECAR , (new ImageIcon(this.getClass().getResource("/car.png")).getImage()));
+		this.playerPieces.put(Player.GamePiece.DOG, new ImageIcon(this.getClass().getResource("/dog.png")).getImage());
+		this.playerPieces.put(Player.GamePiece.SHOE, new ImageIcon(this.getClass().getResource("/shoe.png")).getImage());
+		this.playerPieces.put(Player.GamePiece.HAT, new ImageIcon(this.getClass().getResource("/hat.png")).getImage());
+		//this.playerPieces.put(Player.GamePiece.THIMBLE, new ImageIcon(this.getClass().getResource("/thimble.png")).getImage());
+		this.playerPieces.put(Player.GamePiece.SHIP, new ImageIcon(this.getClass().getResource("/ship.png")).getImage());
 		
 		setBackground(new Color(255, 250, 205));
 
@@ -128,8 +128,8 @@ public class GamePanel extends JPanel {
 		gbc_player4.insets = new Insets(0, 0, 5, 5);
 		gbc_player4.gridx = 14;
 		gbc_player4.gridy = 14;
-		Image player4Icon = playerPieces.get(parent.players[3].getPiece());
-		player4.setIcon(new ImageIcon(player4Icon));
+		//Image player4Icon = playerPieces.get(parent.players[3].getPiece());
+		//player4.setIcon(new ImageIcon(player4Icon));
 		add(player4, gbc_player4);
 		
 		
