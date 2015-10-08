@@ -814,18 +814,23 @@ public class GamePanel extends JPanel {
 	private ActionListener diceClicked = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e){
+			/*parent.players[0].deductFromBank(500, 0);
+			if (!parent.players[0].isActive()) {
+				JOptionPane.showMessageDialog(null, parent.players[0].getName() + ", you are out of money!", 
+						"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+			}*/
+			
 			// TODO -- disable dice button until enabled for next turn
 			if(diceActive == true) {
 				//deactivate dice
 				diceActive = false;
 				// roll the dice for the current player
 				int d1 = diceRoll(); int d2 = diceRoll();
-				dice1.setText(""+d1); dice2.setText(""+d2);
 				if (d1 == d2) doubles = true;	//player will roll again
 
 				// display the result of the dice on the screen (for now, console only)
-				// TODO -- get dice results displayed on GUI
-				System.out.println("You rolled " + d1 + " and " + d2 + ".");
+				dice1.setText(""+d1); dice2.setText(""+d2);
+				//System.out.println("You rolled " + d1 + " and " + d2 + ".");
 						
 				// advance the current player's position
 				movePlayer(d1+d2);		
@@ -860,8 +865,8 @@ public class GamePanel extends JPanel {
 		// set user's location to correct index into properties array
 		parent.players[currPlayer].setCurrLocation(newLoc % parent.spaces.size());
 		
-		// TODO -- probably don't need to print this info when done on GUI
-		System.out.println("You moved " + roll + " spaces to "+ parent.spaces.get(parent.players[currPlayer].getCurrLocation()).getName());
+		// probably don't need to print this info when done on GUI
+		//System.out.println("You moved " + roll + " spaces to "+ parent.spaces.get(parent.players[currPlayer].getCurrLocation()).getName());
 					
 	}	
 	
@@ -911,7 +916,11 @@ public class GamePanel extends JPanel {
 			
 			// if they want to buy it, update the owner of the property, and deduct the cost from the current player
 			if (buyProp == 0) {
-				parent.players[currPlayer].deductFromBank(prop.getPrice());
+				int playersOut = 0;
+				for (int i = 0; i < parent.players.length; ++i) {
+					if (!parent.players[i].isActive()) ++playersOut;
+				}
+				parent.players[currPlayer].deductFromBank(prop.getPrice(), playersOut);
 				prop.setOwner(currPlayer);
 				parent.players[currPlayer].addProperty(prop);;
 			} else {
@@ -921,7 +930,9 @@ public class GamePanel extends JPanel {
 		}
 		else {
 			// notify player that they don't have money via popup window
-			JOptionPane.showMessageDialog(null, "Insufficient funds in bank account!\nProperty cost: $"+prop.getPrice()+"\nAccount Balance: $"+parent.players[currPlayer].getBank(), "Bank error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Insufficient funds in bank account!\nProperty cost: $" +
+					prop.getPrice()+"\nAccount Balance: $"+parent.players[currPlayer].getBank(), 
+					"Bank error", JOptionPane.ERROR_MESSAGE);
 			nextTurn();
 		}		
 	}
@@ -931,11 +942,26 @@ public class GamePanel extends JPanel {
 	 * 				rent to that owner
 	 */
 	private void payRent(Property prop) {
-		if (currPlayer != prop.getOwner()) {		
-			int amountPaid = parent.players[currPlayer].deductFromBank(prop.getRent());
+		if (currPlayer != prop.getOwner() && parent.players[prop.getOwner()].isActive()) {	
+			int playersOut = 0;
+			for (int i = 0; i < parent.players.length; ++i) {
+				if (!parent.players[i].isActive()) ++playersOut;
+			}
+			
+			int amountPaid = parent.players[currPlayer].deductFromBank(prop.getRent(), playersOut);
 			parent.players[prop.getOwner()].addToBank(amountPaid);
+			
+			// inform users of rent payment
 			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + " paid $" + amountPaid + 
-				" to " + parent.players[prop.getOwner()].getName() + " for rent on " + prop.getName(), "Rent Paid", JOptionPane.INFORMATION_MESSAGE);
+				" to " + parent.players[prop.getOwner()].getName() + " for rent on " + prop.getName(), "Rent Paid", 
+				JOptionPane.INFORMATION_MESSAGE);
+			
+			// check if player exited game
+			if (!parent.players[currPlayer].isActive()) {
+				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you are out of money!", 
+						"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+			}
+
 		}
 		nextTurn();
 	}
@@ -955,8 +981,15 @@ public class GamePanel extends JPanel {
 			//check if game is still going
 			if (playersOut > parent.players.length - 2) {
 				// gameover!
-				CardLayout cl = (CardLayout)(parent.cards.getLayout());
-				cl.next(parent.cards);
+				for (int i = 0; i < parent.players.length; ++i) {
+					if (parent.players[i].isActive()) {
+						// last player left gets 1st
+						parent.players[i].setPlace(1);
+						break;
+					}
+				}
+				parent.flipCards();
+				return;
 			}
 		}
 		this.doubles = false;
@@ -1003,39 +1036,40 @@ public class GamePanel extends JPanel {
 		
 		Color n = new Color(238, 238, 238);
 		Color y = new Color(153, 255, 153);
-		
+		Color out = new Color(200, 200, 200);
 		
 		switch (this.currPlayer){
 		
 		case 0:
 			panel.setBackground(y);
-			panel_1.setBackground(n);
-			panel_2.setBackground(n);
-			panel_3.setBackground(n);
+			panel_1.setBackground((parent.players[1].isActive()? n : out));
+			panel_2.setBackground((parent.players[2].isActive()? n : out));
+			panel_3.setBackground((parent.players[3].isActive()? n : out));
 			break;
 			
 		case 1:
-			panel.setBackground(n);
+			panel.setBackground((parent.players[0].isActive()? n : out));
 			panel_1.setBackground(y);
-			panel_2.setBackground(n);
-			panel_3.setBackground(n);
+			panel_2.setBackground((parent.players[2].isActive()? n : out));
+			panel_3.setBackground((parent.players[3].isActive()? n : out));
 			break;
 			
 		case 2:
-			panel.setBackground(n);
-			panel_1.setBackground(n);
+			panel.setBackground((parent.players[0].isActive()? n : out));
+			panel_1.setBackground((parent.players[1].isActive()? n : out));
 			panel_2.setBackground(y);
-			panel_3.setBackground(n);
+			panel_3.setBackground((parent.players[3].isActive()? n : out));
 			break;
 			
 		case 3:
-			panel.setBackground(n);
-			panel_1.setBackground(n);
-			panel_2.setBackground(n);
+			panel.setBackground((parent.players[0].isActive()? n : out));
+			panel_1.setBackground((parent.players[1].isActive()? n : out));
+			panel_2.setBackground((parent.players[2].isActive()? n : out));
 			panel_3.setBackground(y);
 			break;
 		
 		}
+		
 			
 		
 	}

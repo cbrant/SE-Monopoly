@@ -28,8 +28,7 @@ public class MainWindow{
 	// every game will have 4 players
 	final static int NUMPLAYERS = 4;
 	public Player[] players;
-	public ArrayList<Space> spaces;
-	
+	public ArrayList<Space> spaces;	
 	
 	public MainWindow() {
 		spaces = loadSpaces();
@@ -39,34 +38,37 @@ public class MainWindow{
 		}
 	}
 	
+	public void flipCards() {
+		CardLayout cl = (CardLayout)(cards.getLayout());
+		
+		// if leaving the set up screen, extract player names and pieces selected
+		if (cards.getComponents().length > 1) {
+			if (cards.getComponents()[1].isVisible()) {
+				SetupPanel setupP = ((SetupPanel)(cards.getComponents()[1]));
+				for (int i = 0; i < players.length; ++i) {
+					players[i].setName(setupP.playerNames[i].getText());
+					// hardcoded for now, but eventually will copy over from setup screen
+					players[i].setpType(PlayerType.HUMAN); //players[i].setpType((Player.PlayerType)setupP.playerTypes.get(i).getSelectedItem());
+					players[i].setPiece((Player.GamePiece)setupP.playerPieces.get(i).getSelectedItem());
+				}						
+			}
+			
+		}
+		
+		cl.next(cards);
+		
+		if (cards.getComponents()[3].isVisible()) {
+			((EndPanel)cards.getComponents()[3]).setPlacesLabels();
+		}
+	}
+	
 	public void addComponentToPane(Container pane) {
 
 		ActionListener l = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CardLayout cl = (CardLayout)(cards.getLayout());
-				
-				// if leaving the set up screen, extract player names and pieces selected
-				if (cards.getComponents().length > 1) {
-					if (cards.getComponents()[1].isVisible()) {
-						SetupPanel setupP = ((SetupPanel)(cards.getComponents()[1]));
-						for (int i = 0; i < players.length; ++i) {
-							players[i].setName(setupP.playerNames[i].getText());
-							// hardcoded for now, but eventually will copy over from setup screen
-							players[i].setpType(PlayerType.HUMAN); //players[i].setpType((Player.PlayerType)setupP.playerTypes.get(i).getSelectedItem());
-							players[i].setPiece((Player.GamePiece)setupP.playerPieces.get(i).getSelectedItem());
-						}						
-					}
-					
-				}
-				
-				cl.next(cards);
-				// if moving to the main game screen, execute a turn notification for the first player
-				if (cards.getComponents()[2].isVisible()) {
-					((GamePanel)(cards.getComponents()[2])).newTurnNotification();
-
-				}
+				flipCards();
 			}
 		};
 		
@@ -127,21 +129,21 @@ public class MainWindow{
 					case("NORM"):
 					{
 						int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4]), Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]), Integer.parseInt(values[8])};
-						s = new Property(values[0], Space.SpaceType.valueOf(values[1]), 0, rent, Integer.parseInt(values[9]), Integer.parseInt(values[10]), Property.PropertyCategory.valueOf(values[11]));
+						s = new Property(values[0], Space.SpaceType.valueOf(values[1]), Integer.parseInt(values[2]), rent, Integer.parseInt(values[9]), Integer.parseInt(values[10]), Property.PropertyCategory.valueOf(values[11]));
 						spaces.add(s);
 						break;
 					}
 					case("RR"):
 					{
 						int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4]), Integer.parseInt(values[5]), Integer.parseInt(values[6])};
-						s = new Railroad(values[0], Space.SpaceType.valueOf(values[1]), 0, rent,  Integer.parseInt(values[9]), 0, Property.PropertyCategory.valueOf(values[11]));
+						s = new Railroad(values[0], Space.SpaceType.valueOf(values[1]), Integer.parseInt(values[2]), rent,  Integer.parseInt(values[9]), 0, Property.PropertyCategory.valueOf(values[11]));
 						spaces.add(s);
 						break;
 					}
 					case("UTIL"):
 					{
 						int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4])};
-						s = new Utility(values[0], Space.SpaceType.valueOf(values[1]), 0, rent,  Integer.parseInt(values[9]), 0, Property.PropertyCategory.valueOf(values[11]));
+						s = new Utility(values[0], Space.SpaceType.valueOf(values[1]), Integer.parseInt(values[2]), rent,  Integer.parseInt(values[9]), 0, Property.PropertyCategory.valueOf(values[11]));
 						spaces.add(s);
 						break;
 					}
