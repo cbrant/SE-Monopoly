@@ -199,6 +199,8 @@ public class GamePanel extends JPanel {
 		gbc_pacificAvenue.gridx = 14;
 		gbc_pacificAvenue.gridy = 5;
 		Image green = new ImageIcon(this.getClass().getResource("/greenspace.jpg")).getImage();
+		pacificAvenue.setIcon(new ImageIcon(green));
+		add(pacificAvenue, gbc_pacificAvenue);
  		
  		JPanel panel = new JPanel();
  		GridBagConstraints gbc_panel = new GridBagConstraints();
@@ -209,6 +211,51 @@ public class GamePanel extends JPanel {
  		gbc_panel.gridx = 5;
  		gbc_panel.gridy = 5;
  		add(panel, gbc_panel);
+ 		GridBagLayout gbl_panel = new GridBagLayout();
+ 		gbl_panel.columnWidths = new int[]{0, 0};
+ 		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0};
+ 		gbl_panel.columnWeights = new double[]{0.0, 1.0};
+ 		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0};
+ 		panel.setLayout(gbl_panel);
+ 		
+	 		JLabel player1Name = new JLabel("Player 1");
+	 		GridBagConstraints gbc_player1Name = new GridBagConstraints();
+	 		gbc_player1Name.fill = GridBagConstraints.BOTH;
+	 		gbc_player1Name.insets = new Insets(0, 0, 5, 5);
+	 		gbc_player1Name.gridx = 0;
+	 		gbc_player1Name.gridy = 1;
+	 		panel.add(player1Name, gbc_player1Name);
+	 		
+	 		JLabel player1CashLabel = new JLabel("Cash: ");
+	 		GridBagConstraints gbc_player1CashLabel = new GridBagConstraints();
+	 		gbc_player1CashLabel.fill = GridBagConstraints.BOTH;
+	 		gbc_player1CashLabel.insets = new Insets(0, 0, 5, 5);
+	 		gbc_player1CashLabel.gridx = 0;
+	 		gbc_player1CashLabel.gridy = 2;
+	 		panel.add(player1CashLabel, gbc_player1CashLabel);
+	 		
+	 		JLabel player1Cash = new JLabel("");
+	 		GridBagConstraints gbc_player1Cash = new GridBagConstraints();
+	 		gbc_player1Cash.fill = GridBagConstraints.VERTICAL;
+	 		gbc_player1Cash.insets = new Insets(0, 0, 5, 0);
+	 		gbc_player1Cash.gridx = 1;
+	 		gbc_player1Cash.gridy = 1;
+	 		panel.add(player1Cash, gbc_player1Cash);
+	 		
+	 		JLabel player1Properties = new JLabel("");
+	 		GridBagConstraints gbc_player1Properties = new GridBagConstraints();
+	 		gbc_player1Properties.insets = new Insets(0, 0, 5, 0);
+	 		gbc_player1Properties.gridx = 1;
+	 		gbc_player1Properties.gridy = 2;
+	 		panel.add(player1Properties, gbc_player1Properties);
+	 		
+	 		JLabel player1PropertiesLabel = new JLabel("Properties:");
+	 		GridBagConstraints gbc_player1PropertiesLabel = new GridBagConstraints();
+	 		gbc_player1PropertiesLabel.fill = GridBagConstraints.BOTH;
+	 		gbc_player1PropertiesLabel.insets = new Insets(0, 0, 5, 5);
+	 		gbc_player1PropertiesLabel.gridx = 0;
+	 		gbc_player1PropertiesLabel.gridy = 3;
+	 		panel.add(player1PropertiesLabel, gbc_player1PropertiesLabel);
  		
  		JPanel panel_1 = new JPanel();
  		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
@@ -219,8 +266,51 @@ public class GamePanel extends JPanel {
  		gbc_panel_1.gridx = 10;
  		gbc_panel_1.gridy = 5;
  		add(panel_1, gbc_panel_1);
- 		pacificAvenue.setIcon(new ImageIcon(green));
-		add(pacificAvenue, gbc_pacificAvenue);
+ 		GridBagLayout gbl_panel_1 = new GridBagLayout();
+ 		gbl_panel_1.columnWidths = new int[]{0, 0};
+ 		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0 ,0};
+ 		gbl_panel_1.columnWeights = new double[]{0.0, 1.0};
+ 		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0};
+ 		panel_1.setLayout(gbl_panel_1);
+ 			
+	 		JLabel player2Name = new JLabel("Player 2");
+	 		GridBagConstraints gbc_player2Name = new GridBagConstraints();
+	 		gbc_player2Name.fill = GridBagConstraints.BOTH;
+	 		gbc_player2Name.insets = new Insets(0, 0, 5, 5);
+	 		gbc_player2Name.gridx = 0;
+	 		gbc_player2Name.gridy = 1;
+	 		panel_1.add(player2Name, gbc_player2Name);
+	 		
+	 		JLabel player2CashLabel = new JLabel("Cash: ");
+	 		GridBagConstraints gbc_player2CashLabel = new GridBagConstraints();
+	 		gbc_player2CashLabel.fill = GridBagConstraints.BOTH;
+	 		gbc_player2CashLabel.insets = new Insets(0, 0, 5, 5);
+	 		gbc_player2CashLabel.gridx = 0;
+	 		gbc_player2CashLabel.gridy = 2;
+	 		panel_1.add(player2CashLabel, gbc_player2CashLabel);
+	 		
+	 		JLabel player2Cash = new JLabel("");
+	 		GridBagConstraints gbc_player2Cash = new GridBagConstraints();
+	 		gbc_player2Cash.fill = GridBagConstraints.VERTICAL;
+	 		gbc_player2Cash.insets = new Insets(0, 0, 5, 0);
+	 		gbc_player2Cash.gridx = 1;
+	 		gbc_player2Cash.gridy = 2;
+	 		panel_1.add(player2Cash, gbc_player2Cash);
+	 		
+	 		JLabel player2Properties = new JLabel("");
+	 		GridBagConstraints gbc_player2Properties = new GridBagConstraints();
+	 		gbc_player2Properties.insets = new Insets(0, 0, 5, 0);
+	 		gbc_player2Properties.gridx = 1;
+	 		gbc_player2Properties.gridy = 3;
+	 		panel_1.add(player2Properties, gbc_player2Properties);
+	 		
+	 		JLabel player2PropertiesLabel = new JLabel("Properties:");
+	 		GridBagConstraints gbc_player2PropertiesLabel = new GridBagConstraints();
+	 		gbc_player2PropertiesLabel.fill = GridBagConstraints.BOTH;
+	 		gbc_player2PropertiesLabel.insets = new Insets(0, 0, 5, 5);
+	 		gbc_player2PropertiesLabel.gridx = 0;
+	 		gbc_player2PropertiesLabel.gridy = 3;
+	 		panel_1.add(player2PropertiesLabel, gbc_player2PropertiesLabel);
 		
 		JButton tennesseeAvenue = new JButton("");
 		GridBagConstraints gbc_tennesseeAvenue = new GridBagConstraints();
@@ -348,6 +438,51 @@ public class GamePanel extends JPanel {
  		gbc_panel_2.gridx = 5;
  		gbc_panel_2.gridy = 10;
  		add(panel_2, gbc_panel_2);
+ 		GridBagLayout gbl_panel_2 = new GridBagLayout();
+ 		gbl_panel_2.columnWidths = new int[]{0, 0};
+ 		gbl_panel_2.rowHeights = new int[]{0, 0, 0, 0 ,0};
+ 		gbl_panel_2.columnWeights = new double[]{0.0, 1.0};
+ 		gbl_panel_2.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0};
+ 		panel_2.setLayout(gbl_panel_2);
+ 			
+	 		JLabel player3Name = new JLabel("Player 3");
+	 		GridBagConstraints gbc_player3Name = new GridBagConstraints();
+	 		gbc_player3Name.fill = GridBagConstraints.BOTH;
+	 		gbc_player3Name.insets = new Insets(0, 0, 5, 5);
+	 		gbc_player3Name.gridx = 0;
+	 		gbc_player3Name.gridy = 1;
+	 		panel_2.add(player3Name, gbc_player3Name);
+	 		
+	 		JLabel player3CashLabel = new JLabel("Cash: ");
+	 		GridBagConstraints gbc_player3CashLabel = new GridBagConstraints();
+	 		gbc_player3CashLabel.fill = GridBagConstraints.BOTH;
+	 		gbc_player3CashLabel.insets = new Insets(0, 0, 5, 5);
+	 		gbc_player3CashLabel.gridx = 0;
+	 		gbc_player3CashLabel.gridy = 2;
+	 		panel_2.add(player3CashLabel, gbc_player3CashLabel);
+	 		
+	 		JLabel player3Cash = new JLabel("");
+	 		GridBagConstraints gbc_player3Cash = new GridBagConstraints();
+	 		gbc_player3Cash.fill = GridBagConstraints.VERTICAL;
+	 		gbc_player3Cash.insets = new Insets(0, 0, 5, 0);
+	 		gbc_player3Cash.gridx = 1;
+	 		gbc_player3Cash.gridy = 2;
+	 		panel_2.add(player3Cash, gbc_player3Cash);
+	 		
+	 		JLabel player3Properties = new JLabel("");
+	 		GridBagConstraints gbc_player3Properties = new GridBagConstraints();
+	 		gbc_player3Properties.insets = new Insets(0, 0, 5, 0);
+	 		gbc_player3Properties.gridx = 1;
+	 		gbc_player3Properties.gridy = 3;
+	 		panel_2.add(player3Properties, gbc_player3Properties);
+	 		
+	 		JLabel player3PropertiesLabel = new JLabel("Properties:");
+	 		GridBagConstraints gbc_player3PropertiesLabel = new GridBagConstraints();
+	 		gbc_player3PropertiesLabel.fill = GridBagConstraints.BOTH;
+	 		gbc_player3PropertiesLabel.insets = new Insets(0, 0, 5, 5);
+	 		gbc_player3PropertiesLabel.gridx = 0;
+	 		gbc_player3PropertiesLabel.gridy = 3;
+	 		panel_2.add(player3PropertiesLabel, gbc_player3PropertiesLabel);
  		
  		JPanel panel_3 = new JPanel();
  		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
@@ -360,6 +495,51 @@ public class GamePanel extends JPanel {
  		add(panel_3, gbc_panel_3);
  		chanceEast.setIcon(new ImageIcon(chanceEastIcon));
 		add(chanceEast, gbc_chanceEast);
+		GridBagLayout gbl_panel_3 = new GridBagLayout();
+ 		gbl_panel_3.columnWidths = new int[]{0, 0};
+ 		gbl_panel_3.rowHeights = new int[]{0, 0, 0, 0 ,0};
+ 		gbl_panel_3.columnWeights = new double[]{0.0, 1.0};
+ 		gbl_panel_3.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0};
+ 		panel_3.setLayout(gbl_panel_3);
+ 			
+	 		JLabel player4Name = new JLabel("Player 4");
+	 		GridBagConstraints gbc_player4Name = new GridBagConstraints();
+	 		gbc_player4Name.fill = GridBagConstraints.BOTH;
+	 		gbc_player4Name.insets = new Insets(0, 0, 5, 5);
+	 		gbc_player4Name.gridx = 0;
+	 		gbc_player4Name.gridy = 1;
+	 		panel_3.add(player4Name, gbc_player4Name);
+	 		
+	 		JLabel player4CashLabel = new JLabel("Cash: ");
+	 		GridBagConstraints gbc_player4CashLabel = new GridBagConstraints();
+	 		gbc_player4CashLabel.fill = GridBagConstraints.BOTH;
+	 		gbc_player4CashLabel.insets = new Insets(0, 0, 5, 5);
+	 		gbc_player4CashLabel.gridx = 0;
+	 		gbc_player4CashLabel.gridy = 2;
+	 		panel_3.add(player4CashLabel, gbc_player4CashLabel);
+	 		
+	 		JLabel player4Cash = new JLabel("");
+	 		GridBagConstraints gbc_player4Cash = new GridBagConstraints();
+	 		gbc_player4Cash.fill = GridBagConstraints.VERTICAL;
+	 		gbc_player4Cash.insets = new Insets(0, 0, 5, 0);
+	 		gbc_player4Cash.gridx = 1;
+	 		gbc_player4Cash.gridy = 2;
+	 		panel_3.add(player4Cash, gbc_player4Cash);
+	 		
+	 		JLabel player4Properties = new JLabel("");
+	 		GridBagConstraints gbc_player4Properties = new GridBagConstraints();
+	 		gbc_player4Properties.insets = new Insets(0, 0, 5, 0);
+	 		gbc_player4Properties.gridx = 1;
+	 		gbc_player4Properties.gridy = 3;
+	 		panel_3.add(player4Properties, gbc_player4Properties);
+	 		
+	 		JLabel player4PropertiesLabel = new JLabel("Properties:");
+	 		GridBagConstraints gbc_player4PropertiesLabel = new GridBagConstraints();
+	 		gbc_player4PropertiesLabel.fill = GridBagConstraints.BOTH;
+	 		gbc_player4PropertiesLabel.insets = new Insets(0, 0, 5, 5);
+	 		gbc_player4PropertiesLabel.gridx = 0;
+	 		gbc_player4PropertiesLabel.gridy = 3;
+	 		panel_3.add(player4PropertiesLabel, gbc_player4PropertiesLabel);
 		
 		JButton statesAvenue = new JButton("");
 		GridBagConstraints gbc_statesAvenue = new GridBagConstraints();
