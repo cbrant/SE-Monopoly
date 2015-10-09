@@ -80,7 +80,7 @@ public class MainWindow{
         card2.startButton.addActionListener(l);
         
         GamePanel card3 = new GamePanel(this);
-        //card3.rollButton.addActionListener(l);
+        card3.btnEndGame.addActionListener(l);
         
         EndPanel card4 = new EndPanel(this);
         card4.restartButton.addActionListener(l);
