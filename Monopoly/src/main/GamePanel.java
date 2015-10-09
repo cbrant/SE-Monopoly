@@ -957,9 +957,9 @@ public class GamePanel extends JPanel {
 		btnEndGame.setVisible(false);
 		add(btnEndGame, gbc_btnEndGame);
 
-		for(int i = 0; i < 40; i++){
+		/*for(int i = 0; i < 40; i++){
 			System.out.println(gridLocations[i].gridy);
-		}
+		}*/
 
 
 		updateCurrentPlayer();
@@ -1239,11 +1239,11 @@ public class GamePanel extends JPanel {
 		switch (this.currPlayer){
 
 		case 0:
-			System.out.println("Moving player1");
+			//System.out.println("Moving player1");
 			this.gbc_player1.gridx = this.gridLocations[this.parent.players[this.currPlayer].getCurrLocation()].gridx;
 			this.gbc_player1.gridy = this.gridLocations[this.parent.players[this.currPlayer].getCurrLocation()].gridy;
-			System.out.println(this.gbc_player1.gridx);
-			System.out.println(this.gbc_player1.gridy);
+			//System.out.println(this.gbc_player1.gridx);
+			//System.out.println(this.gbc_player1.gridy);
 			this.remove(player1);
 			this.add(player1, gbc_player1);
 			setComponentZOrder(player1, 0);
@@ -1252,8 +1252,8 @@ public class GamePanel extends JPanel {
 		case 1:
 			this.gbc_player2.gridx = this.gridLocations[this.parent.players[this.currPlayer].getCurrLocation()].gridx;
 			this.gbc_player2.gridy = this.gridLocations[this.parent.players[this.currPlayer].getCurrLocation()].gridy;
-			System.out.println(this.gbc_player2.gridx);
-			System.out.println(this.gbc_player2.gridy);
+			//System.out.println(this.gbc_player2.gridx);
+			//System.out.println(this.gbc_player2.gridy);
 			this.remove(player2);
 			this.add(player2, gbc_player2);
 			player2.repaint();
@@ -1263,8 +1263,8 @@ public class GamePanel extends JPanel {
 		case 2:
 			this.gbc_player3.gridx = this.gridLocations[this.parent.players[this.currPlayer].getCurrLocation()].gridx;
 			this.gbc_player3.gridy = this.gridLocations[this.parent.players[this.currPlayer].getCurrLocation()].gridy;
-			System.out.println(this.parent.players[this.currPlayer].getCurrLocation());
-			System.out.println(this.gbc_player3.gridy);
+			//System.out.println(this.parent.players[this.currPlayer].getCurrLocation());
+			//System.out.println(this.gbc_player3.gridy);
 			this.remove(player3);
 			this.add(player3, gbc_player3);
 			setComponentZOrder(player3, 0);
@@ -1273,8 +1273,8 @@ public class GamePanel extends JPanel {
 		case 3:
 			this.gbc_player4.gridx = this.gridLocations[this.parent.players[this.currPlayer].getCurrLocation()].gridx;
 			this.gbc_player4.gridy = this.gridLocations[this.parent.players[this.currPlayer].getCurrLocation()].gridy;
-			System.out.println(this.parent.players[this.currPlayer].getCurrLocation());
-			System.out.println(this.gbc_player4.gridy);
+			//System.out.println(this.parent.players[this.currPlayer].getCurrLocation());
+			//System.out.println(this.gbc_player4.gridy);
 			this.remove(player4);
 			this.add(player4, gbc_player4);
 			setComponentZOrder(player4, 0);

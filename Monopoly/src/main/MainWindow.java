@@ -107,14 +107,14 @@ public class MainWindow{
 
 
 	/////	users can be on (see GamePanel method movePlayer() for how the properties array is currently being used)
-	private static ArrayList<Space> loadSpaces()
+	private ArrayList<Space> loadSpaces()
 	{
 		ArrayList<Space> spaces = new ArrayList<Space>();
 		// use relative path so don't have to update it
-		String file = "res/properties.csv";
+		String file = "properties.csv";
 		try
 		{
-			BufferedReader buffer = new BufferedReader(new FileReader(file));
+			BufferedReader buffer = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(file)));
 			String line = buffer.readLine();
 			String[] values = null;
 			Space s = null;
