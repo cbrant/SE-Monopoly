@@ -20,12 +20,15 @@ public class Property extends Space {
 	/// DATA MEMBERS ///
 	private final int buyingPrice;
 	protected final int[] rent;	//make this an array later to maintain rent based on numHouses
+	@SuppressWarnings("unused")
 	private final int mortVal;
+	@SuppressWarnings("unused")
 	private int	houseCost;
 	private final PropertyCategory group;
 	
 	// indicates the player number who owns the property -- if not yet sold, == -1
 	private int owner;
+	@SuppressWarnings("unused")
 	private boolean forSale;
 	
 	private int numHouses;
