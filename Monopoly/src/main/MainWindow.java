@@ -111,7 +111,7 @@ public class MainWindow{
 	{
 		ArrayList<Space> spaces = new ArrayList<Space>();
 		// use relative path so don't have to update it
-		String file = "src/main/properties.csv";
+		String file = "res/properties.csv";
 		try
 		{
 			BufferedReader buffer = new BufferedReader(new FileReader(file));
