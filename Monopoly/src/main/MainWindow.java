@@ -6,12 +6,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.io.*;
-
 import javax.swing.*;
-
 import main.Player.PlayerType;
 import main.StartPanel;
-import main.Property.PropertyCategory;
 import main.SetupPanel;
 import main.GamePanel;
 import main.EndPanel;
@@ -29,7 +26,7 @@ public class MainWindow{
 	final static int NUMPLAYERS = 4;
 	public Player[] players;
 	public ArrayList<Space> spaces;	
-	
+
 	public MainWindow() {
 		spaces = loadSpaces();
 		this.players = new Player[NUMPLAYERS];
@@ -37,10 +34,10 @@ public class MainWindow{
 			this.players[i] = new Player(i+1);
 		}
 	}
-	
+
 	public void flipCards() {
 		CardLayout cl = (CardLayout)(cards.getLayout());
-		
+
 		// if leaving the set up screen, extract player names and pieces selected
 		if (cards.getComponents().length > 1) {
 			if (cards.getComponents()[1].isVisible()) {
@@ -52,16 +49,16 @@ public class MainWindow{
 					players[i].setPiece((Player.GamePiece)setupP.playerPieces.get(i).getSelectedItem());
 				}						
 			}
-			
+
 		}
-		
+
 		cl.next(cards);
-		
+
 		if (cards.getComponents()[3].isVisible()) {
 			((EndPanel)cards.getComponents()[3]).setPlacesLabels();
 		}
 	}
-	
+
 	public void addComponentToPane(Container pane) {
 
 		ActionListener l = new ActionListener() {
@@ -71,30 +68,30 @@ public class MainWindow{
 				flipCards();
 			}
 		};
-		
-        //Create the "cards".
-        StartPanel card1 = new StartPanel(this);
-        card1.goButton.addActionListener(l);
-        
-        SetupPanel card2 = new SetupPanel(this);
-        card2.startButton.addActionListener(l);
-        
-        GamePanel card3 = new GamePanel(this);
-        card3.btnEndGame.addActionListener(l);
-        
-        EndPanel card4 = new EndPanel(this);
-        card4.restartButton.addActionListener(l);
-       
-        //Create the panel that contains the "cards".
-        cards = new JPanel(new CardLayout());
-        cards.add(card1, STARTPANEL);
-        cards.add(card2, SETUPPANEL);
-        cards.add(card3, GAMEPANEL);
-        cards.add(card4, ENDPANEL);
-        
-        pane.add(cards, BorderLayout.CENTER);
-    }
-	
+
+		//Create the "cards".
+		StartPanel card1 = new StartPanel(this);
+		card1.goButton.addActionListener(l);
+
+		SetupPanel card2 = new SetupPanel(this);
+		card2.startButton.addActionListener(l);
+
+		GamePanel card3 = new GamePanel(this);
+		card3.btnEndGame.addActionListener(l);
+
+		EndPanel card4 = new EndPanel(this);
+		card4.restartButton.addActionListener(l);
+
+		//Create the panel that contains the "cards".
+		cards = new JPanel(new CardLayout());
+		cards.add(card1, STARTPANEL);
+		cards.add(card2, SETUPPANEL);
+		cards.add(card3, GAMEPANEL);
+		cards.add(card4, ENDPANEL);
+
+		pane.add(cards, BorderLayout.CENTER);
+	}
+
 
 	private void createAndShowGUI() {
 		//Create and set up the window.
@@ -107,8 +104,8 @@ public class MainWindow{
 		//Display the window.
 		frame.setVisible(true);
 	}
-	
-	
+
+
 	/////	users can be on (see GamePanel method movePlayer() for how the properties array is currently being used)
 	private static ArrayList<Space> loadSpaces()
 	{
@@ -126,41 +123,41 @@ public class MainWindow{
 				values = line.split(",");
 				switch(values[1])
 				{
-					case("NORM"):
-					{
-						int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4]), Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]), Integer.parseInt(values[8])};
-						s = new Property(values[0], Space.SpaceType.valueOf(values[1]), Integer.parseInt(values[2]), rent, Integer.parseInt(values[9]), Integer.parseInt(values[10]), Property.PropertyCategory.valueOf(values[11]));
-						spaces.add(s);
-						break;
-					}
-					case("RR"):
-					{
-						int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4]), Integer.parseInt(values[5]), Integer.parseInt(values[6])};
-						s = new Railroad(values[0], Space.SpaceType.valueOf(values[1]), Integer.parseInt(values[2]), rent,  Integer.parseInt(values[9]), 0, Property.PropertyCategory.valueOf(values[11]));
-						spaces.add(s);
-						break;
-					}
-					case("UTIL"):
-					{
-						int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4])};
-						s = new Utility(values[0], Space.SpaceType.valueOf(values[1]), Integer.parseInt(values[2]), rent,  Integer.parseInt(values[9]), 0, Property.PropertyCategory.valueOf(values[11]));
-						spaces.add(s);
-						break;
-					}
-					case("ACTION"):
-					{
-						s = new ActionSpace(values[0], Space.SpaceType.valueOf(values[1]));
-						spaces.add(s);
-						break;
-					}
-					default:
-					{
-						System.out.println("Invalid entry type");
-						break;
-					}
-					
+				case("NORM"):
+				{
+					int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4]), Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]), Integer.parseInt(values[8])};
+					s = new Property(values[0], Space.SpaceType.valueOf(values[1]), Integer.parseInt(values[2]), rent, Integer.parseInt(values[9]), Integer.parseInt(values[10]), Property.PropertyCategory.valueOf(values[11]));
+					spaces.add(s);
+					break;
 				}
-				
+				case("RR"):
+				{
+					int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4]), Integer.parseInt(values[5]), Integer.parseInt(values[6])};
+					s = new Railroad(values[0], Space.SpaceType.valueOf(values[1]), Integer.parseInt(values[2]), rent,  Integer.parseInt(values[9]), 0, Property.PropertyCategory.valueOf(values[11]));
+					spaces.add(s);
+					break;
+				}
+				case("UTIL"):
+				{
+					int[] rent = {Integer.parseInt(values[3]), Integer.parseInt(values[4])};
+					s = new Utility(values[0], Space.SpaceType.valueOf(values[1]), Integer.parseInt(values[2]), rent,  Integer.parseInt(values[9]), 0, Property.PropertyCategory.valueOf(values[11]));
+					spaces.add(s);
+					break;
+				}
+				case("ACTION"):
+				{
+					s = new ActionSpace(values[0], Space.SpaceType.valueOf(values[1]));
+					spaces.add(s);
+					break;
+				}
+				default:
+				{
+					System.out.println("Invalid entry type");
+					break;
+				}
+
+				}
+
 			}
 			buffer.close();
 		}
@@ -180,7 +177,7 @@ public class MainWindow{
 			System.out.println("Incorrect number of properties in list, there are " + spaces.size());
 		return spaces;
 	}
-	
+
 
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
