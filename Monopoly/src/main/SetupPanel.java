@@ -36,7 +36,7 @@ public class SetupPanel extends JPanel {
 	public SetupPanel(MainWindow par) {
 		this.ranGen = new Random(System.currentTimeMillis());
 		
-		setBackground(new Color(255, 250, 205));
+		this.setBackground(new Color(255, 250, 205));
 		
 		this.parent = par;	//used to access outer window and data members (ie. players, etc)
 		playerNames = new JTextField[MainWindow.NUMPLAYERS];
