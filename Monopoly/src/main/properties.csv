@@ -1,4 +1,4 @@
-Name, Type, Cost, Rent, 1 House, 2 House, 3 Houses, 4 Houses, Hotel, Mortgage, HouseCost,"	Category"
+Name, Type, Cost, Rent, 1 House, 2 House, 3 Houses, 4 Houses, Hotel, Mortgage, HouseCost,	Category
 GO,ACTION,, , , , , , , , , 
 Mediterranean Ave.,NORM,60,2,10,30,90,160,250,30,50,PURPLE
 Community Chest,ACTION, , , , , , , , , , 
@@ -23,7 +23,7 @@ Free Parking,ACTION, , , , , , , , , ,
 Kentucky Avenue,NORM,220,18,90,250,700,875,1050,110,150,RED
 Chance,ACTION, , , , , , , , , , 
 Indiana Avenue,NORM,240,18,90,250,700,875,1050,110,150,RED
-Illinois Avenue,NORM,,20,100,300,750,925,110,120,150,RED
+Illinois Avenue,NORM,240,20,100,300,750,925,110,120,150,RED
 B & O Railroad,RR,200,25,50,100,200, , ,100, ,RAILROAD
 Atlantic Avenue,NORM,260,22,110,330,800,975,1150,130,150,YELLOW
 Ventnor Avenue,NORM,260,22,110,330,800,975,1150,130,150,YELLOW

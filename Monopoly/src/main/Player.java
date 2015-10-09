@@ -29,15 +29,21 @@ public class Player {
 	private PlayerType pType;
 	private GamePiece piece;
 	private int bank;
-	private boolean isActive;
 	private Vector<Property> ownedProperties;
+	
+	// true if the player is still playing in the game
+	private boolean isActive;
+	// the place the player got in the game -- 1 for first, 2 for second, etc; -1 until player exits game
+	private int place;
+	
 	// currLocation -- index into properties array in MainWindow, gives current location of player on board
 	private int currLocation;
 	
+	// labels for GUI 
 	public JLabel nameL;
 	public JLabel bankL;
 	public JLabel propertiesL;
-	
+
 	
 	/// CONSTRUCTORS ///
 	// set up initial default name for players
@@ -54,8 +60,7 @@ public class Player {
 		setActive(true);
 		this.currLocation = 0;	// start at go!
 		this.ownedProperties = new Vector<Property>();
-		
-		
+		setPlace(-1);
 	}
 	
 	// getter/setter for name
@@ -63,7 +68,6 @@ public class Player {
 		return name;
 	}
 	public void setName(String name) {
-		// TODO -- maybe set max length so it will display okay
 		this.name = name;
 		this.nameL.setText(this.name);
 	}
@@ -83,16 +87,17 @@ public class Player {
 	 * Purpose:		reduce the player's bank by <amount>, returns the amount actually deducted, less than 
 	 * 				<amount> if player is out of money
 	 */
-	public int deductFromBank(int amount) {
+	public int deductFromBank(int amount, int playersOut) {
 		if (this.bank <= amount) {
 			int amountDeducted = this.bank;
 			this.bank = 0;
 			this.bankL.setText("$" + this.bank);
 
-			// TODO -- here we should check if the amount goes below 0, throw an error or something
-			// OR we could do this from wherever we call deductFromBank
+			// player is out of money, so they are out of the game
 			setActive(false);
-			System.out.println("You are out of money!");
+			setPlace(4-playersOut);
+			
+			//System.out.println(getName() + ", you are out of money!");
 			
 			return amountDeducted;
 		}
@@ -146,6 +151,15 @@ public class Player {
 	public boolean isActive() {
 		return isActive;
 	}
+	
+	// getter/setter for place in game
+	public int getPlace() {
+		return place;
+	}
+	public void setPlace(int place) {
+		this.place = place;
+	}
+
 	private void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
@@ -155,6 +169,7 @@ public class Player {
 	 * 				$200 and notified
 	 */
 	public void passedGo() {
+		if (!this.isActive()) return;
 		// collect money
 		this.addToBank(200);
 		// notify player of passing go 

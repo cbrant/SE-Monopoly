@@ -18,10 +18,14 @@ public class EndPanel extends JPanel {
 
 	private MainWindow parent;
 
+	private JLabel [] lPlayerPlaces;
+	
 	/**
 	 * Create the panel.
 	 */
 	public EndPanel(MainWindow par) {
+		lPlayerPlaces = new JLabel[par.players.length];
+		
 		setBackground(new Color(255, 250, 205));
 		this.parent = par;
 		setBounds(100, 100, 900, 725);
@@ -50,13 +54,13 @@ public class EndPanel extends JPanel {
 				gbc_lblst.gridy = 1;
 				add(lblst, gbc_lblst);
 				
-				JLabel lbl1Place = new JLabel("Dummy");
-				lbl1Place.setFont(new Font("Dialog", Font.BOLD, 24));
+				lPlayerPlaces[0] = new JLabel("Dummy");
+				lPlayerPlaces[0].setFont(new Font("Dialog", Font.BOLD, 24));
 				GridBagConstraints gbc_lbl1Place = new GridBagConstraints();
 				gbc_lbl1Place.insets = new Insets(0, 0, 5, 5);
 				gbc_lbl1Place.gridx = 1;
 				gbc_lbl1Place.gridy = 1;
-				add(lbl1Place, gbc_lbl1Place);
+				add(lPlayerPlaces[0], gbc_lbl1Place);
 				
 				JLabel lblnd = new JLabel("2nd");
 				lblnd.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -67,13 +71,13 @@ public class EndPanel extends JPanel {
 				gbc_lblnd.gridy = 2;
 				add(lblnd, gbc_lblnd);
 				
-				JLabel lbl2Place = new JLabel("Dummy");
-				lbl2Place.setFont(new Font("Dialog", Font.BOLD, 24));
+				lPlayerPlaces[1] = new JLabel("Dummy");
+				lPlayerPlaces[1].setFont(new Font("Dialog", Font.BOLD, 24));
 				GridBagConstraints gbc_lbl2Place = new GridBagConstraints();
 				gbc_lbl2Place.insets = new Insets(0, 0, 5, 5);
 				gbc_lbl2Place.gridx = 1;
 				gbc_lbl2Place.gridy = 2;
-				add(lbl2Place, gbc_lbl2Place);
+				add(lPlayerPlaces[1], gbc_lbl2Place);
 				
 				JLabel lblrd = new JLabel("3rd");
 				lblrd.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -84,13 +88,13 @@ public class EndPanel extends JPanel {
 				gbc_lblrd.gridy = 3;
 				add(lblrd, gbc_lblrd);
 				
-				JLabel lbl3Place = new JLabel("Dummy");
-				lbl3Place.setFont(new Font("Dialog", Font.BOLD, 24));
+				lPlayerPlaces[2] = new JLabel("Dummy");
+				lPlayerPlaces[2].setFont(new Font("Dialog", Font.BOLD, 24));
 				GridBagConstraints gbc_lbl3Place = new GridBagConstraints();
 				gbc_lbl3Place.insets = new Insets(0, 0, 5, 5);
 				gbc_lbl3Place.gridx = 1;
 				gbc_lbl3Place.gridy = 3;
-				add(lbl3Place, gbc_lbl3Place);
+				add(lPlayerPlaces[2], gbc_lbl3Place);
 				
 				JLabel lblth = new JLabel("4th");
 				GridBagConstraints gbc_lblth = new GridBagConstraints();
@@ -100,13 +104,13 @@ public class EndPanel extends JPanel {
 				gbc_lblth.gridy = 4;
 				add(lblth, gbc_lblth);
 				
-				JLabel lbl4Place = new JLabel("Dummy");
-				lbl4Place.setFont(new Font("Dialog", Font.BOLD, 24));
+				lPlayerPlaces[3] = new JLabel("Dummy");
+				lPlayerPlaces[3].setFont(new Font("Dialog", Font.BOLD, 24));
 				GridBagConstraints gbc_lbl4Place = new GridBagConstraints();
 				gbc_lbl4Place.insets = new Insets(0, 0, 5, 5);
 				gbc_lbl4Place.gridx = 1;
 				gbc_lbl4Place.gridy = 4;
-				add(lbl4Place, gbc_lbl4Place);
+				add(lPlayerPlaces[3], gbc_lbl4Place);
 		
 				restartButton = new JButton("Restart");
 				restartButton.setBackground(new Color(30, 144, 255));
@@ -117,8 +121,12 @@ public class EndPanel extends JPanel {
 				gbc_restartButton.gridx = 1;
 				gbc_restartButton.gridy = 6;
 				add(restartButton, gbc_restartButton);
-
-
+	}
+	
+	public void setPlacesLabels() {
+		for (int i = 0; i < lPlayerPlaces.length; ++i) {
+			lPlayerPlaces[parent.players[i].getPlace() - 1].setText(parent.players[i].getName());
+		}
 	}
 
 }
