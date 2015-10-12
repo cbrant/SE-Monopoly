@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -10,13 +11,12 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Vector;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel {
@@ -1185,13 +1185,27 @@ public class GamePanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			
+			//Pop open new CardView with card info, just testing for now
+			
+			CardView popUp = new CardView(new Property("PropertyTest", Space.SpaceType.NORM, 1, null, 1 ,1, Property.PropertyCategory.GREEN));
+			CardView popUp2 = new CardView(new Property("PropertyTest", Space.SpaceType.RR, 1, null, 1 ,1, Property.PropertyCategory.RAILROAD));
+			CardView popUp3 = new CardView(new Property("PropertyTest", Space.SpaceType.UTIL, 1, null, 1 ,1, Property.PropertyCategory.RAILROAD));
+			CardView popUp4 = new CardView(new Property("PropertyTest", Space.SpaceType.ACTION, 1, null, 1 ,1, Property.PropertyCategory.RAILROAD));
+			
+			popUp.setVisible(true);
+			popUp2.setVisible(true);
+			popUp3.setVisible(true);
+			popUp4.setVisible(true);
 
-			Image spaceCard = (Image)((JButton)e.getSource()).getClientProperty(GamePanel.CARD);
-
-			JOptionPane.showMessageDialog(null, "", "", JOptionPane.PLAIN_MESSAGE, new ImageIcon(spaceCard));
+//			Image spaceCard = (Image)((JButton)e.getSource()).getClientProperty(GamePanel.CARD);
+//
+//			JOptionPane.showMessageDialog(null, "", "", JOptionPane.PLAIN_MESSAGE, new ImageIcon(spaceCard));
 
 
 		}
+
+
 	};
 	
 	/*
