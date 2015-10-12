@@ -1193,6 +1193,11 @@ public class GamePanel extends JPanel {
 
 		}
 	};
+	
+	/*
+	 * Funtion: updateCurrentPlayer()
+	 * Purpose: Graphically update the player panels to designate current turn
+	 */
 
 	private void updateCurrentPlayer(){
 
@@ -1233,6 +1238,11 @@ public class GamePanel extends JPanel {
 		}	
 
 	}
+	
+	/*
+	 * Function: movePlayer()
+	 * Purpose: Graphically move player to new space
+	 */
 
 	private void movePlayer(){
 
@@ -1256,7 +1266,6 @@ public class GamePanel extends JPanel {
 			//System.out.println(this.gbc_player2.gridy);
 			this.remove(player2);
 			this.add(player2, gbc_player2);
-			player2.repaint();
 			setComponentZOrder(player2, 0);
 			break;
 
@@ -1282,4 +1291,5 @@ public class GamePanel extends JPanel {
 
 		}	
 	}
+	
 }

@@ -3,7 +3,6 @@ package main;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.io.*;
 import javax.swing.*;
