@@ -1180,6 +1180,11 @@ public class GamePanel extends JPanel {
 		diceActive = true;
 	}
 
+	/*
+	 * Funtion: spaceClicked()
+	 * Purpose: Displays property card for given space
+	 */
+	
 	private ActionListener spaceClicked = new ActionListener() {
 
 		@Override

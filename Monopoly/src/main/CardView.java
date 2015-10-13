@@ -308,6 +308,7 @@ public class CardView extends JFrame {
 			hideLabels(utilityLabels);
 			hideLabels(specialLabels);
 			showLabels(normalLabels);
+			populateNormal(currentSpace);
 			
 			break;
 		
@@ -317,6 +318,7 @@ public class CardView extends JFrame {
 			hideLabels(utilityLabels);
 			hideLabels(specialLabels);
 			showLabels(railRoadLabels);
+			populateRailRoad(currentSpace);
 			
 			break;
 			
@@ -326,6 +328,7 @@ public class CardView extends JFrame {
 			hideLabels(normalLabels);
 			hideLabels(specialLabels);
 			showLabels(utilityLabels);
+			populateUtility(currentSpace);
 			
 			break;
 			
@@ -335,6 +338,7 @@ public class CardView extends JFrame {
 			hideLabels(utilityLabels);
 			hideLabels(normalLabels);
 			showLabels(specialLabels);
+			populateSpecial(currentSpace);
 			
 			break;
 		
@@ -360,6 +364,54 @@ public class CardView extends JFrame {
 		{
 			i.setVisible(true);
 		}
+		
+	}
+	
+	void populateNormal(Space input)
+	{
+		this.title.setText(((Property)input).getName());
+		//need a getRentArrayFunction
+//		this.rentVal.setText(""+((Property)input).getRent());
+//		this.house1Val.setText(""+((Property)input).getRent());
+//		this.house2Val.setText(""+((Property)input).getRent());
+//		this.house3Val.setText(""+((Property)input).getRent());
+//		this.house4Val.setText(""+((Property)input).getRent());
+//	NEED MORE GET FUNCTIONS FOR PROPERTY CLASS
+//		this.hotelVal.setText(""+((Property)input).get());
+//		this.houseCostVal.setText(""+((Property)input).get());
+//		this.hotelCostVal.setText(""+((Property)input).get());
+//		this.mortgageVal.setText(((Property)input).get);
+		
+		//set bar color too
+		
+	}
+	
+	void populateRailRoad(Space input)
+	{
+		this.title.setText(((Property)input).getName());
+		//need a getRentArrayFunction
+//		this.rentVal.setText(""+((Property)input).getRent());
+//		this.railRoad2Val.setText(""+((Property)input).getRent());
+//		this.railRoad3Val.setText(""+((Property)input).getRent());
+//		this.railRoad4Val.setText(""+((Property)input).getRent());
+//		this.mortgageVal.setText(((Property)input).get);
+		
+		//set bar color too
+		
+	}
+	;
+	void populateUtility(Space input)
+	{
+		this.title.setText(((Property)input).getName());
+//		this.cardDescription.setText(((Property)input).get);
+//		this.mortgageVal.setText(((Property)input).get);
+		
+	}
+	
+	void populateSpecial(Space input)
+	{
+		this.title.setText((input).getName());
+//		this.cardDescription.setText((input).get);
 		
 	}
 	
