@@ -1065,16 +1065,34 @@ public class GamePanel extends JPanel {
 		}
 		// space is a special space -- GO, draw card, taxes, etc; not a buyable property
 		if (s.getType() == Space.SpaceType.ACTION) {
-			if(s.getName().equals("Chance")) {
-				SpecialCard temp = getTopChance();
-				temp.act(parent.players[currPlayer], playersOut);
-				JOptionPane.showMessageDialog(null, temp.getText(), "Chance", JOptionPane.INFORMATION_MESSAGE);
+			switch(((ActionSpace)s).getAType()) {
+			case NOTHING:
+				break;
+			case CARD:
+				// check which card it is and draw from the pile
+				if(s.getName().equals("Chance")) {
+					SpecialCard temp = getTopChance();
+					temp.act(parent.players[currPlayer], playersOut);
+					JOptionPane.showMessageDialog(null, temp.getText(), "Chance", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else if(s.getName().equals("Community Chest")) {
+					SpecialCard temp = getTopCommunityChest();
+					temp.act(parent.players[currPlayer], playersOut);
+					JOptionPane.showMessageDialog(null, temp.getText(), "Community Chest", JOptionPane.INFORMATION_MESSAGE);
+				}
+				break;
+			case JAIL:
+				// TODO: move player to jail space
+				// 	set jailed to true for their next turn
+				break;
+			case TAX:
+				// check which tax it is and charge player
+				payTax((ActionSpace)s);
+				break;			
 			}
-			else if(s.getName().equals("Community Chest")) {
-				SpecialCard temp = getTopChance();
-				temp.act(parent.players[currPlayer], playersOut);
-				JOptionPane.showMessageDialog(null, temp.getText(), "Community Chest", JOptionPane.INFORMATION_MESSAGE);
-			}
+			
+			
+
 			nextTurn();
 		}
 		// space is a buyable property
@@ -1157,6 +1175,50 @@ public class GamePanel extends JPanel {
 			}
 
 		}
+		nextTurn();
+	}
+	
+	/* Function:	payTax()
+	 * Purpose:		helper to takeAction(), used when the space landed on is a tax space
+	 */
+	private void payTax(ActionSpace taxS) {
+		// luxury tax -- player must pay $100 (no option with this tax)
+		int deduction = 0;
+		
+		if (taxS.getName() == "Luxury Tax") {
+			int flatRate = 100;
+			// inform user that they are paying the tax
+			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you have to pay taxes!", 
+					"Luxury Tax", JOptionPane.INFORMATION_MESSAGE);
+			deduction = flatRate;
+		}
+		// income tax -- player gets option to pay 10% of net worth or flat rate of $200
+		else {
+			int tenPerc = parent.players[currPlayer].getNetWorth() / 10;
+			int flatRate = 200;
+			
+			Object [] options = (Object[])(new String[] {"Pay $" + flatRate, "Pay 10% ($" + tenPerc + ")"});
+			int percOrFlatRate = JOptionPane.showOptionDialog(null, parent.players[currPlayer].getName() + 
+					", you have to pay taxes!\n", "Income Tax", JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION, 
+					null, options, options[(flatRate > tenPerc ? 1 : 0)]);
+			
+			if (percOrFlatRate == 0) deduction = flatRate;				
+			else deduction = tenPerc;			
+		}
+		
+		// deduct the tax from the bank
+		int playersOut = 0;
+		for (int i = 0; i < parent.players.length; ++i) {
+			if (!parent.players[i].isActive()) ++playersOut;
+		}
+		parent.players[currPlayer].deductFromBank(deduction, playersOut);
+		
+		// check if player exited game
+		if (!parent.players[currPlayer].isActive()) {
+			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you are out of money!", 
+					"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+		}
+					
 		nextTurn();
 	}
 

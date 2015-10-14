@@ -145,7 +145,7 @@ public class MainWindow{
 				}
 				case("ACTION"):
 				{
-					s = new ActionSpace(values[0], Space.SpaceType.valueOf(values[1]));
+					s = new ActionSpace(values[0], Space.SpaceType.valueOf(values[1]), ActionSpace.ActionType.valueOf(values[11]));
 					spaces.add(s);
 					break;
 				}
