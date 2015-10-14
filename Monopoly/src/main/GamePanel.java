@@ -1269,7 +1269,7 @@ public class GamePanel extends JPanel {
 	}
 
 	/*
-	 * Function: spaceClicked()
+	 * Handler: spaceClicked()
 	 * Purpose: Displays property card for given space
 	 */
 	
