@@ -994,10 +994,11 @@ public class GamePanel extends JPanel {
 	private ActionListener diceClicked = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e){
-			for (int i =0; i < 4; ++i) {
+			// this loop good for testing end of game conditions
+			/*for (int i =0; i < 4; ++i) {
 				if (parent.players[i].getBank() <= 100) continue;
 				parent.players[i].deductFromBank(100, parent.playersOut);
-			}
+			}*/
 			
 			// do nothing if dice is currently disabled
 			if(diceActive == true) {
