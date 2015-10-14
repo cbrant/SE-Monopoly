@@ -973,16 +973,12 @@ public class GamePanel extends JPanel {
 		}*/
 
 		//set up chance deck
-		for(int x  = 0; x <  10; x++)
-		{
-			System.out.println("Added new chance card");
+		for(int x  = 0; x <  10; x++) {
 			chanceDeck.add(new SpecialCard(x, "Chance"));
 		}
 		Collections.shuffle(chanceDeck);
 		//set up community chest deck
-		for(int x  = 0; x <  10; x++)
-		{
-			System.out.println("Added new chest card");
+		for(int x  = 0; x <  10; x++) {
 			communityChestDeck.add(new SpecialCard(x, "Community Chest"));
 		}
 		Collections.shuffle(communityChestDeck);
@@ -1063,20 +1059,20 @@ public class GamePanel extends JPanel {
 	 * 				built in helper functions for other scenarios) to follow event based paradigm
 	 */
 	private void takeAction(Space s) {
-
+		int playersOut = 0;
+		for (int i = 0; i < parent.players.length; ++i) {
+			if (!parent.players[i].isActive()) ++playersOut;
+		}
 		// space is a special space -- GO, draw card, taxes, etc; not a buyable property
-		System.out.println(s.getType()+" "+s.getName());
 		if (s.getType() == Space.SpaceType.ACTION) {
 			if(s.getName().equals("Chance")) {
-				System.out.println("Made it: Chance");
 				SpecialCard temp = getTopChance();
-				temp.act(parent.players[currPlayer]);
+				temp.act(parent.players[currPlayer], playersOut);
 				JOptionPane.showMessageDialog(null, temp.getText(), "Chance", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else if(s.getName().equals("Community Chest")) {
-				System.out.println("Made it: Chest");
 				SpecialCard temp = getTopChance();
-				temp.act(parent.players[currPlayer]);
+				temp.act(parent.players[currPlayer], playersOut);
 				JOptionPane.showMessageDialog(null, temp.getText(), "Community Chest", JOptionPane.INFORMATION_MESSAGE);
 			}
 			nextTurn();
