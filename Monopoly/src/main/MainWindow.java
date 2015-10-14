@@ -24,6 +24,7 @@ public class MainWindow{
 	// every game will have 4 players
 	final static int NUMPLAYERS = 4;
 	public Player[] players;
+	public int playersOut;
 	public ArrayList<Space> spaces;	
 
 	public MainWindow() {
@@ -32,6 +33,7 @@ public class MainWindow{
 		for (int i = 0; i < NUMPLAYERS; ++i) {
 			this.players[i] = new Player(i+1);
 		}
+		this.playersOut = 0;
 	}
 
 	public void flipCards() {
