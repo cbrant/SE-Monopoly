@@ -10,6 +10,6 @@ public class Chance  extends ActionSpace{
 	
 	public void action()
 	{
-		//Chance ACTION
+		
 	}
 }

@@ -8,6 +8,8 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Vector;
@@ -45,7 +47,7 @@ public class GamePanel extends JPanel {
 	//variables for the player pieces
 	private JLabel player1, player2, player3, player4;
 	private GridBagConstraints gbc_player1, gbc_player2, gbc_player3, gbc_player4;
-
+	
 	private boolean doubles;	
 	// random number generator used for dice rolling
 	private Random ranGen;
@@ -54,6 +56,15 @@ public class GamePanel extends JPanel {
 
 	// array to track players
 	private GridBagConstraints[] gridLocations = new GridBagConstraints[40];
+	
+	//current indexes of each deck
+	int indexChance = 0;
+	int indexChest = 0;
+	
+	//current decks of community chest and chance cards
+	ArrayList<SpecialCard> chanceDeck = new ArrayList<SpecialCard>();
+	ArrayList<SpecialCard> communityChestDeck = new ArrayList<SpecialCard>();
+	
 
 	/**
 	 * Create the panel.
@@ -961,7 +972,20 @@ public class GamePanel extends JPanel {
 			System.out.println(gridLocations[i].gridy);
 		}*/
 
-
+		//set up chance deck
+		for(int x  = 0; x <  10; x++)
+		{
+			System.out.println("Added new chance card");
+			chanceDeck.add(new SpecialCard(x, "Chance"));
+		}
+		Collections.shuffle(chanceDeck);
+		//set up community chest deck
+		for(int x  = 0; x <  10; x++)
+		{
+			System.out.println("Added new chest card");
+			communityChestDeck.add(new SpecialCard(x, "Community Chest"));
+		}
+		Collections.shuffle(communityChestDeck);
 		updateCurrentPlayer();
 
 
@@ -1041,8 +1065,20 @@ public class GamePanel extends JPanel {
 	private void takeAction(Space s) {
 
 		// space is a special space -- GO, draw card, taxes, etc; not a buyable property
+		System.out.println(s.getType()+" "+s.getName());
 		if (s.getType() == Space.SpaceType.ACTION) {
-			// DO NOTHING for vertical prototype	
+			if(s.getName().equals("Chance")) {
+				System.out.println("Made it: Chance");
+				SpecialCard temp = getTopChance();
+				temp.act(parent.players[currPlayer]);
+				JOptionPane.showMessageDialog(null, temp.getText(), "Chance", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else if(s.getName().equals("Community Chest")) {
+				System.out.println("Made it: Chest");
+				SpecialCard temp = getTopChance();
+				temp.act(parent.players[currPlayer]);
+				JOptionPane.showMessageDialog(null, temp.getText(), "Community Chest", JOptionPane.INFORMATION_MESSAGE);
+			}
 			nextTurn();
 		}
 		// space is a buyable property
@@ -1311,4 +1347,33 @@ public class GamePanel extends JPanel {
 		}	
 	}
 	
+	/*
+	 * Function: getTopChance()
+	 * Purpose: returns the current top card of the chance deck and resets/shuffles when necessary
+	 */
+	public SpecialCard getTopChance() {
+		
+		SpecialCard top = chanceDeck.get(indexChance);
+		indexChance++;
+		if(indexChance == chanceDeck.size()) {
+			indexChance = 0;
+			Collections.shuffle(chanceDeck);
+		}
+		return top;
+	}
+	
+	/*
+	 * Function: getTopCommunityChest()
+	 * Purpose: returns the current top card of the community chest deck and resets/shuffles when necessary
+	 */
+public SpecialCard getTopCommunityChest() {
+		
+		SpecialCard top = communityChestDeck.get(indexChest);
+		indexChest++;
+		if(indexChest == communityChestDeck.size()) {
+			indexChest = 0;
+			Collections.shuffle(communityChestDeck);
+		}
+		return top;
+	}
 }
