@@ -106,6 +106,11 @@ public class Player {
 		this.bankL.setText("$" + this.bank);
 		return amount;
 	}
+	
+	public int calculateNetWorth() {
+		// need to add in property value
+		return this.bank;
+	}
 
 	// getter for properties
 	public Vector<Property> getProperties() {
