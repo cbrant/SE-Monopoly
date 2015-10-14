@@ -993,13 +993,13 @@ public class GamePanel extends JPanel {
 	private ActionListener diceClicked = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e){
-			/*parent.players[0].deductFromBank(500, 0);
-			if (!parent.players[0].isActive()) {
-				JOptionPane.showMessageDialog(null, parent.players[0].getName() + ", you are out of money!", 
-						"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+			// this loop good for testing end of game conditions
+			/*for (int i =0; i < 4; ++i) {
+				if (parent.players[i].getBank() <= 100) continue;
+				parent.players[i].deductFromBank(100, parent.playersOut);
 			}*/
-
-			// TODO -- disable dice button until enabled for next turn
+			
+			// do nothing if dice is currently disabled
 			if(diceActive == true) {
 				//deactivate dice
 				diceActive = false;
@@ -1058,22 +1058,37 @@ public class GamePanel extends JPanel {
 	 * 				built in helper functions for other scenarios) to follow event based paradigm
 	 */
 	private void takeAction(Space s) {
-		int playersOut = 0;
-		for (int i = 0; i < parent.players.length; ++i) {
-			if (!parent.players[i].isActive()) ++playersOut;
-		}
+
 		// space is a special space -- GO, draw card, taxes, etc; not a buyable property
 		if (s.getType() == Space.SpaceType.ACTION) {
-			if(s.getName().equals("Chance")) {
-				SpecialCard temp = getTopChance();
-				temp.act(parent.players[currPlayer], playersOut);
-				JOptionPane.showMessageDialog(null, temp.getText(), "Chance", JOptionPane.INFORMATION_MESSAGE);
+			switch(((ActionSpace)s).getAType()) {
+			case NOTHING:
+				break;
+			case CARD:
+				// check which card it is and draw from the pile
+				if(s.getName().equals("Chance")) {
+					SpecialCard temp = getTopChance();
+					temp.act(parent.players[currPlayer], parent.playersOut);
+					JOptionPane.showMessageDialog(null, temp.getText(), "Chance", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else if(s.getName().equals("Community Chest")) {
+					SpecialCard temp = getTopCommunityChest();
+					temp.act(parent.players[currPlayer], parent.playersOut);
+					JOptionPane.showMessageDialog(null, temp.getText(), "Community Chest", JOptionPane.INFORMATION_MESSAGE);
+				}
+				break;
+			case JAIL:
+				// TODO: move player to jail space
+				// 	set jailed to true for their next turn
+				break;
+			case TAX:
+				// check which tax it is and charge player
+				payTax((ActionSpace)s);
+				break;			
 			}
-			else if(s.getName().equals("Community Chest")) {
-				SpecialCard temp = getTopChance();
-				temp.act(parent.players[currPlayer], playersOut);
-				JOptionPane.showMessageDialog(null, temp.getText(), "Community Chest", JOptionPane.INFORMATION_MESSAGE);
-			}
+			
+			
+
 			nextTurn();
 		}
 		// space is a buyable property
@@ -1109,11 +1124,7 @@ public class GamePanel extends JPanel {
 
 			// if they want to buy it, update the owner of the property, and deduct the cost from the current player
 			if (buyProp == 0) {
-				int playersOut = 0;
-				for (int i = 0; i < parent.players.length; ++i) {
-					if (!parent.players[i].isActive()) ++playersOut;
-				}
-				parent.players[currPlayer].deductFromBank(prop.getPrice(), playersOut);
+				parent.players[currPlayer].deductFromBank(prop.getPrice(), parent.playersOut);
 				prop.setOwner(currPlayer);
 				parent.players[currPlayer].addProperty(prop);;
 			} else {
@@ -1136,12 +1147,8 @@ public class GamePanel extends JPanel {
 	 */
 	private void payRent(Property prop) {
 		if (currPlayer != prop.getOwner() && parent.players[prop.getOwner()].isActive()) {	
-			int playersOut = 0;
-			for (int i = 0; i < parent.players.length; ++i) {
-				if (!parent.players[i].isActive()) ++playersOut;
-			}
 
-			int amountPaid = parent.players[currPlayer].deductFromBank(prop.getRent(), playersOut);
+			int amountPaid = parent.players[currPlayer].deductFromBank(prop.getRent(), parent.playersOut);
 			parent.players[prop.getOwner()].addToBank(amountPaid);
 
 			// inform users of rent payment
@@ -1153,9 +1160,51 @@ public class GamePanel extends JPanel {
 			if (!parent.players[currPlayer].isActive()) {
 				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you are out of money!", 
 						"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+				++parent.playersOut;
 			}
 
 		}
+		nextTurn();
+	}
+	
+	/* Function:	payTax()
+	 * Purpose:		helper to takeAction(), used when the space landed on is a tax space
+	 */
+	private void payTax(ActionSpace taxS) {
+		// luxury tax -- player must pay $100 (no option with this tax)
+		int deduction = 0;
+		
+		if (taxS.getName() == "Luxury Tax") {
+			int flatRate = 100;
+			// inform user that they are paying the tax
+			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you have to pay taxes!", 
+					"Luxury Tax", JOptionPane.INFORMATION_MESSAGE);
+			deduction = flatRate;
+		}
+		// income tax -- player gets option to pay 10% of net worth or flat rate of $200
+		else {
+			int tenPerc = parent.players[currPlayer].getNetWorth() / 10;
+			int flatRate = 200;
+			
+			Object [] options = (Object[])(new String[] {"Pay $" + flatRate, "Pay 10% ($" + tenPerc + ")"});
+			int percOrFlatRate = JOptionPane.showOptionDialog(null, parent.players[currPlayer].getName() + 
+					", you have to pay taxes!\n", "Income Tax", JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION, 
+					null, options, options[(flatRate > tenPerc ? 1 : 0)]);
+			
+			if (percOrFlatRate == 0) deduction = flatRate;				
+			else deduction = tenPerc;			
+		}
+		
+		// deduct the tax from the bank
+		parent.players[currPlayer].deductFromBank(deduction, parent.playersOut);
+		
+		// check if player exited game
+		if (!parent.players[currPlayer].isActive()) {
+			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you are out of money!", 
+					"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+			++parent.playersOut;
+		}
+					
 		nextTurn();
 	}
 
@@ -1163,27 +1212,34 @@ public class GamePanel extends JPanel {
 	 * Purpose:		updates the current player to the next still active player in the game
 	 */
 	public void nextTurn() {
+		// figure out how many players are out of the game and update that in MainWindow
+		int playersOut = 0;
+		for (int i = 0; i < parent.players.length; ++i) {
+			if (!parent.players[i].isActive()) ++playersOut;
+		}
+		parent.playersOut = playersOut;
+		
+		//check if game is still going
+		if (parent.playersOut > parent.players.length - 2) {
+			// gameover!
+			for (int i = 0; i < parent.players.length; ++i) {
+				if (parent.players[i].isActive()) {
+					// last player left gets 1st
+					parent.players[i].setPlace(1);
+					break;
+				}
+			}
+			parent.flipCards();
+			return;
+		}
+		
 		if (!this.doubles) {
+			// update to next player
 			this.currPlayer = (this.currPlayer + 1) % parent.players.length;
-			int playersOut = 0;
 			while (!parent.players[currPlayer].isActive()) {
 				this.currPlayer = (this.currPlayer + 1) % parent.players.length;
-				playersOut++;	
 			}
-
-			//check if game is still going
-			if (playersOut > parent.players.length - 2) {
-				// gameover!
-				for (int i = 0; i < parent.players.length; ++i) {
-					if (parent.players[i].isActive()) {
-						// last player left gets 1st
-						parent.players[i].setPlace(1);
-						break;
-					}
-				}
-				parent.flipCards();
-				return;
-			}
+			
 		}
 		this.doubles = false;
 
