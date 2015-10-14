@@ -1202,11 +1202,11 @@ public class GamePanel extends JPanel {
 		System.out.println("\n" + parent.players[currPlayer].getName() + ", it is your turn!");
 		System.out.println("\tBank balance is: $" + parent.players[currPlayer].getBank());
 		String sProps = "";
-		Vector<Property> props = parent.players[currPlayer].getProperties();
-		for (int i = 0; i < props.size(); ++i) {
+		ArrayList<ArrayList<Property>> props = parent.players[currPlayer].getProperties();
+		/*for (int i = 0; i < props.size(); ++i) {
 			if (i != 0) sProps += ", ";
 			sProps += props.elementAt(i).getName();
-		}
+		}*/
 		System.out.println("\tProperties: " + sProps);
 		// enable dice again
 		diceActive = true;

@@ -32,6 +32,7 @@ public class Property extends Space {
 	private boolean forSale;
 	
 	private int numHouses;
+	protected boolean canBuyHouse;
 	//private boolean isMortgaged;
 	
 	/// CONSTRUCTOR ///
@@ -47,6 +48,7 @@ public class Property extends Space {
 		this.houseCost = houseCost;
 		this.group = category;
 		this.numHouses = 0;
+		this.canBuyHouse = false;
 		
 		this.owner = -1;
 		this.forSale = true;
@@ -77,6 +79,27 @@ public class Property extends Space {
 		return this.group;
 	}
 	
+	public int getNumHouses()
+	{
+		return this.numHouses;
+	}
+	
+	public void setNumHouses(int num)
+	{
+		if(num > 4)
+			num =4;
+		this.numHouses = 4;
+	}
+	
+	public boolean canBuyHoue()
+	{
+		return this.canBuyHouse;
+	}
+	
+	public void setBuyHouse(boolean canBuyHouse)
+	{
+		this.canBuyHouse = canBuyHouse;
+	}
 
 	public int getOwner() {
 		return owner;

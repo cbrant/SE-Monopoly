@@ -1,6 +1,6 @@
 package main;
 
-import java.util.Vector;
+import java.util.*;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,7 +29,7 @@ public class Player {
 	private PlayerType pType;
 	private GamePiece piece;
 	private int bank;
-	private Vector<Property> ownedProperties;
+	private ArrayList<ArrayList<Property>> ownedProperties;
 
 	// true if the player is still playing in the game
 	private boolean isActive;
@@ -59,7 +59,7 @@ public class Player {
 		setPiece(GamePiece.values()[id % (GamePiece.values().length)]);
 		setActive(true);
 		this.currLocation = 0;	// start at go!
-		this.ownedProperties = new Vector<Property>();
+		this.ownedProperties = new ArrayList<ArrayList<Property>>();
 		setPlace(-1);
 	}
 
@@ -113,20 +113,74 @@ public class Player {
 	}
 
 	// getter for properties
-	public Vector<Property> getProperties() {
-		return this.ownedProperties;
-	}
-	// add a property to the player's holdings
-	public void addProperty(Property prop) {
-		this.ownedProperties.add(prop);
-		String props = "<html>";
-		for (int i = 0; i < this.ownedProperties.size(); ++i) {
-			props += this.ownedProperties.get(i).getName();
-			if (i < this.ownedProperties.size() -1 ) props += ", <br>";
+	// getter for properties
+		public ArrayList<ArrayList<Property>> getProperties() {
+			return this.ownedProperties;
 		}
-		props += "</html>";
-		this.propertiesL.setText(props);
-	}
+		// add a property to the player's holdings
+		public void addProperty(Property prop) {
+			boolean added = false;
+			boolean canBuyHouses = false;
+			for(int i = 0; i < ownedProperties.size(); i++)
+			{
+				if(ownedProperties.get(i).get(0).getCategory() == prop.getCategory())
+				{
+					ownedProperties.get(i).add(prop);
+					added = true;
+					canBuyHouses = checkHouse(ownedProperties.get(i));
+					for(int ii = 0; i< ownedProperties.get(i).size(); ii++)
+					{
+						ownedProperties.get(i).get(ii).setBuyHouse(canBuyHouses);
+					}
+				}
+			}
+			if(!added)
+			{
+				ArrayList<Property> l = new ArrayList<Property>();
+				l.add(prop);
+				ownedProperties.add(l);
+			}
+			
+			String props = "<html>";
+			for(int j = 0; j< ownedProperties.size(); j++)
+			{
+				props += ownedProperties.get(j).get(0).getCategory().toString() + ":";
+				for(int k = 0; k < ownedProperties.get(j).size(); k++)
+				{
+					props += ownedProperties.get(j).get(k).getName() + ", ";
+				}
+				props = props.substring(0,props.length()-2) + "<br>";
+			}
+			//for (int i = 0; i < this.ownedProperties.size(); ++i) {
+				//props += this.ownedProperties.get(i).getName();
+				//if (i < this.ownedProperties.size() -1 ) props += ", <br>";
+			//}
+			props += "</html>";
+			this.propertiesL.setText(props);
+		}
+		
+		public boolean checkHouse(ArrayList<Property> props)
+		{
+			Property p = props.get(0);
+			if(p.getType() != Space.SpaceType.NORM)
+				return false;
+			if(p.getCategory() == Property.PropertyCategory.DARKBLUE || p.getCategory() == Property.PropertyCategory.PURPLE)
+			{
+				if(props.size() != 2)
+					return false;
+			}
+			else if(props.size() != 3)
+				return false;
+			
+			int maxHouse = 0;
+			int minHouse = 0;
+			for(Property pp : props)
+			{
+				if(pp.getNumHouses() != 0)
+						return false;
+			}
+			return true;
+		}
 
 	// getter/setter for player type (human or computer)
 	public PlayerType getpType() {
