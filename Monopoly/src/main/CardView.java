@@ -304,6 +304,7 @@ public class CardView extends JFrame {
 		{
 		case NORM:
 			
+			populateNormal(currentSpace);
 			hideLabels(railRoadLabels);
 			hideLabels(utilityLabels);
 			hideLabels(specialLabels);
@@ -314,6 +315,7 @@ public class CardView extends JFrame {
 		
 		case RR:
 			
+			populateRailRoad(currentSpace);
 			hideLabels(normalLabels);
 			hideLabels(utilityLabels);
 			hideLabels(specialLabels);
@@ -324,6 +326,7 @@ public class CardView extends JFrame {
 			
 		case UTIL:
 			
+			populateUtility(currentSpace);
 			hideLabels(railRoadLabels);
 			hideLabels(normalLabels);
 			hideLabels(specialLabels);
@@ -334,6 +337,7 @@ public class CardView extends JFrame {
 			
 		case ACTION:
 			
+			populateSpecial(currentSpace);
 			hideLabels(railRoadLabels);
 			hideLabels(utilityLabels);
 			hideLabels(normalLabels);
