@@ -26,6 +26,7 @@ public class MainWindow{
 	public Player[] players;
 	public int playersOut;
 	public ArrayList<Space> spaces;	
+	public int jailSpace;	// index of where jail is
 
 	public MainWindow() {
 		spaces = loadSpaces();
@@ -149,6 +150,9 @@ public class MainWindow{
 				{
 					s = new ActionSpace(values[0], Space.SpaceType.valueOf(values[1]), ActionSpace.ActionType.valueOf(values[11]));
 					spaces.add(s);
+					if (s.getName().equals("Jail")) {
+						jailSpace = spaces.size()-1;
+					}
 					break;
 				}
 				default:
