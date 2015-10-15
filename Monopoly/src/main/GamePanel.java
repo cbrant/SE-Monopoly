@@ -1270,10 +1270,10 @@ public class GamePanel extends JPanel {
 	 * Purpose: Displays property card for given space
 	 */
 	
-	private ActionListener spaceClicked = new ActionListener() { 
+	private ActionListener spaceClicked = new ActionListener() {  
 
 		@Override
-		public void actionPerformed(ActionEvent e) { 
+		public void actionPerformed(ActionEvent e) {  
 
 			if( ((JButton)e.getSource()).getClientProperty(GamePanel.CARD).equals(null) )
 			{
@@ -1285,7 +1285,7 @@ public class GamePanel extends JPanel {
 				int index = (int)(((JButton)e.getSource()).getClientProperty(GamePanel.CARD));
 				Space clicked = parent.spaces.get(index);
 				
-				CardView currentCard = new CardView(clicked);
+				CardView currentCard = new CardView(clicked, index);
 				currentCard.setVisible(true);
 			}
 		}

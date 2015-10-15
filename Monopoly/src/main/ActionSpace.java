@@ -2,6 +2,9 @@ package main;
 
 public class ActionSpace extends Space{
 	
+	private String luxuryString = "Pay $75";
+	private String incomeString = "Pay $200 or 10%";
+	
 	public enum ActionType {
 		NOTHING,	// go, visiting jail, free parking
 		CARD,
@@ -24,6 +27,14 @@ public class ActionSpace extends Space{
 	
 	public ActionType getAType() {
 		return this.aType;
+	}
+	
+	public String getCardDes(int luxOrIncome)
+	{
+		if(luxOrIncome == 4)
+			return incomeString;
+		else
+			return luxuryString;
 	}
 
 }

@@ -23,11 +23,12 @@ public class CardView extends JFrame {
 	private ArrayList<JLabel> utilityLabels = new ArrayList<JLabel>();
 	private ArrayList<JLabel> specialLabels = new ArrayList<JLabel>();
 	
-
+	private int index;
+	
 	/**
 	 * Create the panel.
 	 */
-	public CardView( Space currentSpace ) {
+	public CardView( Space currentSpace, int spaceIndex) {
 		getContentPane().setBackground(new Color(255, 250, 205));
 
 		this.setBackground(new Color(255, 250, 205));
@@ -35,6 +36,8 @@ public class CardView extends JFrame {
 		setBounds(100, 100, 450, 600);
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		index = spaceIndex;
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{20, 0, 0, 20};
@@ -411,9 +414,10 @@ public class CardView extends JFrame {
 	}
 	
 	void populateSpecial(Space input)
+
 	{
 		this.title.setText((input).getName());
-//		this.cardDescription.setText((input).get);
+		this.cardDescription.setText(((ActionSpace)(input)).getCardDes(index));
 		
 	}
 	
