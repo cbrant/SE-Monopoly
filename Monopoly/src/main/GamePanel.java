@@ -985,7 +985,9 @@ public class GamePanel extends JPanel {
 
 
 	}
-
+	public MainWindow getParentFrame(){
+		return parent;
+	}
 	/* Handler:		diceClicked
 	 * Purpose:		handles the dice button clicked event, rolls dice, moves the current player forward, and begins
 	 * 				any interaction the user will have on the new space he/she has landed on
@@ -1035,7 +1037,7 @@ public class GamePanel extends JPanel {
 	/* Function:	movePlayer()
 	 * Purpose:		advance the current player around the board to the next space based on the dice roll
 	 */
-	private void movePlayer(int roll) {
+	public void movePlayer(int roll) {
 		int newLoc = parent.players[currPlayer].getCurrLocation() + roll;
 		// check if the player passed go
 		if (newLoc >= parent.spaces.size()) {
@@ -1068,12 +1070,12 @@ public class GamePanel extends JPanel {
 				// check which card it is and draw from the pile
 				if(s.getName().equals("Chance")) {
 					SpecialCard temp = getTopChance();
-					temp.act(parent.players[currPlayer], parent.playersOut);
+					temp.act(parent.players[currPlayer], parent.playersOut, this);
 					JOptionPane.showMessageDialog(null, temp.getText(), "Chance", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else if(s.getName().equals("Community Chest")) {
 					SpecialCard temp = getTopCommunityChest();
-					temp.act(parent.players[currPlayer], parent.playersOut);
+					temp.act(parent.players[currPlayer], parent.playersOut, this);
 					JOptionPane.showMessageDialog(null, temp.getText(), "Community Chest", JOptionPane.INFORMATION_MESSAGE);
 				}
 				break;
