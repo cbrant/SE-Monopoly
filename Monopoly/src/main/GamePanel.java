@@ -1078,10 +1078,12 @@ public class GamePanel extends JPanel {
 					temp.act(parent.players[currPlayer], parent.playersOut, this);
 					JOptionPane.showMessageDialog(null, temp.getText(), "Community Chest", JOptionPane.INFORMATION_MESSAGE);
 				}
+				nextTurn();
 				break;
 			case JAIL:
 				// TODO: move player to jail space
 				// 	set jailed to true for their next turn
+				nextTurn();
 				break;
 			case TAX:
 				// check which tax it is and charge player
@@ -1089,9 +1091,6 @@ public class GamePanel extends JPanel {
 				break;			
 			}
 			
-			
-
-			nextTurn();
 		}
 		// space is a buyable property
 		else {
@@ -1164,7 +1163,6 @@ public class GamePanel extends JPanel {
 						"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
 				++parent.playersOut;
 			}
-
 		}
 		nextTurn();
 	}
@@ -1173,9 +1171,9 @@ public class GamePanel extends JPanel {
 	 * Purpose:		helper to takeAction(), used when the space landed on is a tax space
 	 */
 	private void payTax(ActionSpace taxS) {
-		// luxury tax -- player must pay $100 (no option with this tax)
 		int deduction = 0;
 		
+		// luxury tax -- player must pay $100 (no option with this tax)
 		if (taxS.getName() == "Luxury Tax") {
 			int flatRate = 100;
 			// inform user that they are paying the tax
@@ -1192,14 +1190,11 @@ public class GamePanel extends JPanel {
 			int percOrFlatRate = JOptionPane.showOptionDialog(null, parent.players[currPlayer].getName() + 
 					", you have to pay taxes!\n", "Income Tax", JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION, 
 					null, options, options[(flatRate > tenPerc ? 1 : 0)]);
-			
-			if (percOrFlatRate == 0) deduction = flatRate;				
-			else deduction = tenPerc;			
+			deduction = (percOrFlatRate == 0 ? flatRate : tenPerc);
 		}
 		
 		// deduct the tax from the bank
 		parent.players[currPlayer].deductFromBank(deduction, parent.playersOut);
-		
 		// check if player exited game
 		if (!parent.players[currPlayer].isActive()) {
 			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you are out of money!", 
@@ -1404,7 +1399,7 @@ public class GamePanel extends JPanel {
 	 * Function: getTopCommunityChest()
 	 * Purpose: returns the current top card of the community chest deck and resets/shuffles when necessary
 	 */
-public SpecialCard getTopCommunityChest() {
+	public SpecialCard getTopCommunityChest() {
 		
 		SpecialCard top = communityChestDeck.get(indexChest);
 		indexChest++;
