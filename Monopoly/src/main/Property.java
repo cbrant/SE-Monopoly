@@ -74,6 +74,21 @@ public class Property extends Space {
 		return this.rent[this.numHouses];
 	}
 	
+	public int[] getRentArray()
+	{
+		return this.rent;
+	}
+	
+	public int getHouseCost()
+	{
+		return this.houseCost;
+	}
+	
+	public int getMortgage()
+	{
+		return this.mortVal;
+	}
+	
 	public PropertyCategory getCategory()
 	{
 		return this.group;

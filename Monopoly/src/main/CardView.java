@@ -375,16 +375,15 @@ public class CardView extends JFrame {
 	{
 		this.title.setText(((Property)input).getName());
 		//need a getRentArrayFunction
-//		this.rentVal.setText(""+((Property)input).getRent());
-//		this.house1Val.setText(""+((Property)input).getRent());
-//		this.house2Val.setText(""+((Property)input).getRent());
-//		this.house3Val.setText(""+((Property)input).getRent());
-//		this.house4Val.setText(""+((Property)input).getRent());
-//	NEED MORE GET FUNCTIONS FOR PROPERTY CLASS
-//		this.hotelVal.setText(""+((Property)input).get());
-//		this.houseCostVal.setText(""+((Property)input).get());
-//		this.hotelCostVal.setText(""+((Property)input).get());
-//		this.mortgageVal.setText(((Property)input).get);
+		this.rentVal.setText(""+((Property)input).getRentArray()[0]);
+		this.house1Val.setText(""+((Property)input).getRentArray()[1]);
+		this.house2Val.setText(""+((Property)input).getRentArray()[2]);
+		this.house3Val.setText(""+((Property)input).getRentArray()[3]);
+		this.house4Val.setText(""+((Property)input).getRentArray()[4]);
+		this.hotelVal.setText(""+((Property)input).getRentArray()[5]);
+		this.houseCostVal.setText(""+((Property)input).getHouseCost());
+		this.hotelCostVal.setText(""+((Property)input).getHouseCost());
+		this.mortgageVal.setText(""+((Property)input).getMortgage());
 		
 		//set bar color too
 		
@@ -392,13 +391,12 @@ public class CardView extends JFrame {
 	
 	void populateRailRoad(Space input)
 	{
-		this.title.setText(((Property)input).getName());
-		//need a getRentArrayFunction
-//		this.rentVal.setText(""+((Property)input).getRent());
-//		this.railRoad2Val.setText(""+((Property)input).getRent());
-//		this.railRoad3Val.setText(""+((Property)input).getRent());
-//		this.railRoad4Val.setText(""+((Property)input).getRent());
-//		this.mortgageVal.setText(((Property)input).get);
+		this.title.setText(((Railroad)input).getName());
+		this.rentVal.setText(""+((Railroad)input).getRentArray()[0]);
+		this.railRoad2Val.setText(""+((Railroad)input).getRentArray()[1]);
+		this.railRoad3Val.setText(""+((Railroad)input).getRentArray()[2]);
+		this.railRoad4Val.setText(""+((Railroad)input).getRentArray()[3]);
+		this.mortgageVal.setText(""+((Railroad)input).getMortgage());
 		
 		//set bar color too
 		
@@ -406,9 +404,9 @@ public class CardView extends JFrame {
 	;
 	void populateUtility(Space input)
 	{
-		this.title.setText(((Property)input).getName());
-//		this.cardDescription.setText(((Property)input).get);
-//		this.mortgageVal.setText(((Property)input).get);
+		this.title.setText(((Utility)input).getName());
+		this.cardDescription.setText(((Utility)input).getCardDes());
+		this.mortgageVal.setText(""+((Utility)input).getMortgage());
 		
 	}
 	
