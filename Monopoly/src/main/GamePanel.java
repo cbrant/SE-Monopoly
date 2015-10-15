@@ -33,7 +33,7 @@ public class GamePanel extends JPanel {
 	boolean diceActive = true;
 	// flag set when a player rolls doubles -- will roll again
 
-	//variables that repesent dice roll on board
+	//variables that represent dice roll on board
 	private JLabel dice1;
 	private JLabel dice2;
 
@@ -92,6 +92,9 @@ public class GamePanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 
+		/////////////////////////
+		//TODO: Pieces are created on game start, need to be created when the setup screen is left! 
+		/////////////////////////
 		// Create labels for pieces, need them to dynamically move
 		player1 = new JLabel("");
 		gbc_player1 = new GridBagConstraints();
@@ -1285,7 +1288,7 @@ public class GamePanel extends JPanel {
 				int index = (int)(((JButton)e.getSource()).getClientProperty(GamePanel.CARD));
 				Space clicked = parent.spaces.get(index);
 				
-				CardView currentCard = new CardView(clicked, index);
+				CardView currentCard = new CardView(clicked);
 				currentCard.setVisible(true);
 			}
 		}

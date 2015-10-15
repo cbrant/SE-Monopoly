@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 
 @SuppressWarnings("serial")
@@ -23,12 +25,11 @@ public class CardView extends JFrame {
 	private ArrayList<JLabel> utilityLabels = new ArrayList<JLabel>();
 	private ArrayList<JLabel> specialLabels = new ArrayList<JLabel>();
 	
-	private int index;
 	
 	/**
 	 * Create the panel.
 	 */
-	public CardView( Space currentSpace, int spaceIndex) {
+	public CardView( Space currentSpace ) {
 		getContentPane().setBackground(new Color(255, 250, 205));
 
 		this.setBackground(new Color(255, 250, 205));
@@ -37,18 +38,17 @@ public class CardView extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		index = spaceIndex;
-		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{20, 0, 0, 20};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0};
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
 		title = new JLabel("New label");
+		title.setBackground(new Color(255, 250, 205));
 		GridBagConstraints gbc_title = new GridBagConstraints();
-		gbc_title.fill = GridBagConstraints.VERTICAL;
+		gbc_title.fill = GridBagConstraints.BOTH;
 		gbc_title.insets = new Insets(0, 0, 5, 0);
 		gbc_title.gridx = 0;
 		gbc_title.gridy = 0;
@@ -377,6 +377,7 @@ public class CardView extends JFrame {
 	void populateNormal(Space input)
 	{
 		this.title.setText(((Property)input).getName());
+		this.title.setHorizontalAlignment(SwingConstants.CENTER);
 		//need a getRentArrayFunction
 		this.rentVal.setText(""+((Property)input).getRentArray()[0]);
 		this.house1Val.setText(""+((Property)input).getRentArray()[1]);
@@ -390,11 +391,42 @@ public class CardView extends JFrame {
 		
 		//set bar color too
 		
+		this.title.setOpaque(true);
+		
+		switch( ((Property)input).getCategory() )
+		{
+		case LIGHTBLUE:
+			this.title.setBackground(new Color(153,255,255));
+			break;
+		case DARKBLUE:
+			this.title.setBackground(new Color(0,128,255));
+			break;
+		case GREEN:
+			this.title.setBackground(new Color(0,204,102));
+			break;
+		case ORANGE:
+			this.title.setBackground(new Color(255,128,0));
+			break;
+		case PINK:
+			this.title.setBackground(new Color(255,0,255));
+			break;
+		case PURPLE:
+			this.title.setBackground(new Color(153,76,0));
+			break;
+		case RED:
+			this.title.setBackground(new Color(255,0,0));
+			break;
+		case YELLOW:
+			this.title.setBackground(new Color(255,255,0));
+			break;
+		}
+		
 	}
 	
 	void populateRailRoad(Space input)
 	{
 		this.title.setText(((Railroad)input).getName());
+		this.title.setHorizontalAlignment(SwingConstants.CENTER);
 		this.rentVal.setText(""+((Railroad)input).getRentArray()[0]);
 		this.railRoad2Val.setText(""+((Railroad)input).getRentArray()[1]);
 		this.railRoad3Val.setText(""+((Railroad)input).getRentArray()[2]);
@@ -404,10 +436,11 @@ public class CardView extends JFrame {
 		//set bar color too
 		
 	}
-	;
+	
 	void populateUtility(Space input)
 	{
 		this.title.setText(((Utility)input).getName());
+		this.title.setHorizontalAlignment(SwingConstants.CENTER);
 		this.cardDescription.setText(((Utility)input).getCardDes());
 		this.mortgageVal.setText(""+((Utility)input).getMortgage());
 		
@@ -417,7 +450,8 @@ public class CardView extends JFrame {
 
 	{
 		this.title.setText((input).getName());
-		this.cardDescription.setText(((ActionSpace)(input)).getCardDes(index));
+		this.title.setHorizontalAlignment(SwingConstants.CENTER);
+		this.cardDescription.setText(((ActionSpace)(input)).getCardDes(((ActionSpace)input).getName()));
 		
 	}
 	
