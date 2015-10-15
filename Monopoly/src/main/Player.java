@@ -38,6 +38,10 @@ public class Player {
 
 	// currLocation -- index into properties array in MainWindow, gives current location of player on board
 	private int currLocation;
+	
+	// jailed -- greater than 0 if the player is currently in jail, indicates number of turns left in jail
+	//	if he/she doesn't pay the fine or successfully roll doubles
+	private int jailed;
 
 	// labels for GUI 
 	public JLabel nameL;
@@ -53,6 +57,8 @@ public class Player {
 		this.nameL = new JLabel();
 		this.bankL = new JLabel("$" + this.bank);
 		this.propertiesL = new JLabel("None");
+		
+		this.jailed = 0;
 
 		setName("Player " + id);
 		setpType(PlayerType.HUMAN);
@@ -165,10 +171,6 @@ public class Player {
 			}
 			props = props.substring(0,props.length()-2) + "<br>";
 		}
-		//for (int i = 0; i < this.ownedProperties.size(); ++i) {
-			//props += this.ownedProperties.get(i).getName();
-			//if (i < this.ownedProperties.size() -1 ) props += ", <br>";
-		//}
 		props += "</html>";
 		this.propertiesL.setText(props);
 	}
@@ -224,6 +226,9 @@ public class Player {
 	public boolean isActive() {
 		return isActive;
 	}
+	private void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
 
 	// getter/setter for place in game
 	public int getPlace() {
@@ -231,10 +236,6 @@ public class Player {
 	}
 	public void setPlace(int place) {
 		this.place = place;
-	}
-
-	private void setActive(boolean isActive) {
-		this.isActive = isActive;
 	}
 
 	/* Function:	passedGo()
@@ -248,6 +249,41 @@ public class Player {
 		// notify player of passing go 
 		JOptionPane.showMessageDialog(null, "You passed go! Collect $200.", "Passed Go", JOptionPane.INFORMATION_MESSAGE);
 		//System.out.println("You passed go! Collect $200!");
+	}
+	
+	/* Function:	inJail()
+	 * Purpose:		returns true if the player is currently in jail
+	 */
+	public boolean inJail() {
+		return jailed > 0;
+	}
+	
+	/* Function:	putInJail()
+	 * Purpose:		called when a player either (1) rolls doubles 3 times in a row, or 
+	 * 				(2) lands on the "Go to Jail" space
+	 */
+	public void putInJail() {
+		this.jailed = 3;
+	}
+	
+	/* Function:	stillInJail()
+	 * Purpose:		called when a player was previously in jail (ie. jailed > 0), attempted
+	 * 				to roll doubles to get out, and did not
+	 * 				returns true if after decrementing jailed is still > 0, else returns
+	 * 				false indicating that the player has to pay the fine anyways
+	 */
+	public boolean stillinJail() {
+		if (this.jailed == 0) return false;	//note this case should not happen
+		--this.jailed;
+		return inJail();
+	}
+	
+	/* Function:	outOfJail()
+	 * Purpose:		when a player pays the fine or successfully rolls doubles, this function is
+	 * 				called to free the player from jail
+	 */
+	public void outOfJail() {
+		this.jailed = 0;
 	}
 
 
