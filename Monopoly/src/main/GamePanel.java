@@ -32,6 +32,11 @@ public class GamePanel extends JPanel {
 	private JButton diceButton;
 	boolean diceActive = true;
 	// flag set when a player rolls doubles -- will roll again
+	private boolean doubles;	
+	// random number generator used for dice rolling
+	private Random ranGen;
+	// flag set when the dice roll is for attempting to get out of jail
+	private boolean jailRoll;
 
 	//variables that represent dice roll on board
 	private JLabel dice1;
@@ -46,10 +51,6 @@ public class GamePanel extends JPanel {
 	//variables for the player pieces
 	private JLabel player1, player2, player3, player4;
 	private GridBagConstraints gbc_player1, gbc_player2, gbc_player3, gbc_player4;
-	
-	private boolean doubles;	
-	// random number generator used for dice rolling
-	private Random ranGen;
 
 	private final static String CARD = "card";
 
@@ -73,6 +74,8 @@ public class GamePanel extends JPanel {
 		this.parent = par;
 
 		this.currPlayer = 0;
+		this.jailRoll = false;
+		this.diceActive = true;
 		this.ranGen = new Random(System.currentTimeMillis());
 
 		this.playerPieces.put(Player.GamePiece.RACECAR ,new ImageIcon(this.getClass().getResource("/car.png")).getImage());
@@ -982,7 +985,7 @@ public class GamePanel extends JPanel {
 
 	}
 	
-	/* Function:	diceRoll()
+	/* Function:	createChanceDeck()
 	 * Purpose:		creates and shuffles the chance deck
 	 * 				
 	 */
@@ -1029,30 +1032,60 @@ public class GamePanel extends JPanel {
 	private ActionListener diceClicked = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e){
-			// this loop good for testing end of game conditions
-			/*for (int i =0; i < 4; ++i) {
-				if (parent.players[i].getBank() <= 100) continue;
-				parent.players[i].deductFromBank(100, parent.playersOut);
-			}*/
-			
 			// do nothing if dice is currently disabled
 			if(diceActive == true) {
 				//deactivate dice
 				diceActive = false;
 				// roll the dice for the current player
 				int d1 = diceRoll(); int d2 = diceRoll();
-				if (d1 == d2) doubles = true;	//player will roll again
-
 				// display the result of the dice on the screen (for now, console only)
 				dice1.setText(""+d1); dice2.setText(""+d2);
-				//System.out.println("You rolled " + d1 + " and " + d2 + ".");
-
+				
+				if(jailRoll) {
+					jailRoll = false;
+					if (d1 != d2) {
+						// decrement player's time in jail and check if they have to pay the fine
+						boolean dontHaveToPay = parent.players[currPlayer].stillinJail();
+					
+						if (dontHaveToPay) {
+							JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+								", you did not roll doubles to get out of jail.", "Lost Turn", JOptionPane.INFORMATION_MESSAGE);
+							nextTurn();
+							return;
+						}
+						else {
+							// ran out of times to attempt to roll doubles -- so deduct the fine
+							parent.players[currPlayer].deductFromBank(50, parent.playersOut);
+							JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+								", you are out of attempts for rolling doubles! Pay $50.", "Pay Jail Fine", 
+								JOptionPane.INFORMATION_MESSAGE);
+							
+							// check if player exited game
+							if (!parent.players[currPlayer].isActive()) {
+								JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you are out of money!", 
+									"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+								++parent.playersOut;
+							}
+							// get the player out of jail
+							parent.players[currPlayer].outOfJail();	
+						}
+					}
+					else {
+						JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+							", you got out of jail!", "Got out of Jail", JOptionPane.INFORMATION_MESSAGE);
+						// get the player out of jail
+						parent.players[currPlayer].outOfJail();
+					}
+				}
+				// if rolling to get out of jail, then the doubles don't let you roll again
+				else if (d1 == d2) doubles = true;	//player will roll again
+				
 				// advance the current player's position
 				movePlayer(d1+d2);		
 				// TODO -- update the GUI
 
 				// given the state of the current property, notify user or allow user to take action
-				takeAction(parent.spaces.get(parent.players[currPlayer].getCurrLocation()));
+				takeAction(parent.spaces.get(parent.players[currPlayer].getCurrLocation()), d1+d2);
 
 				// going to next turn will take place in takeAction or in an event handler for an event
 				//	that will be created by takeAction	
@@ -1061,7 +1094,7 @@ public class GamePanel extends JPanel {
 	};
 
 	/* Function:	diceRoll()
-	 * Pur-pose:		produce random number in range 1-6, ranGen data member seeded with time at instantiation of 
+	 * Purpose:		produce random number in range 1-6, ranGen data member seeded with time at instantiation of 
 	 * 				the class
 	 */
 	private int diceRoll() {
@@ -1082,9 +1115,6 @@ public class GamePanel extends JPanel {
 
 		movePlayerIcon();
 
-		// probably don't need to print this info when done on GUI
-		//System.out.println("You moved " + roll + " spaces to "+ parent.spaces.get(parent.players[currPlayer].getCurrLocation()).getName());
-
 	}	
 
 	/* Function:	takeAction()
@@ -1093,12 +1123,12 @@ public class GamePanel extends JPanel {
 	 * 				NOTE: nextTurn() is called from here for some scenarios (or called from event handlers
 	 * 				built in helper functions for other scenarios) to follow event based paradigm
 	 */
-	private void takeAction(Space s) {
-
+	private void takeAction(Space s, int dice) {
 		// space is a special space -- GO, draw card, taxes, etc; not a buyable property
 		if (s.getType() == Space.SpaceType.ACTION) {
 			switch(((ActionSpace)s).getAType()) {
 			case NOTHING:
+				nextTurn();
 				break;
 			case CARD:
 				// check which card it is and draw from the pile
@@ -1115,8 +1145,14 @@ public class GamePanel extends JPanel {
 				nextTurn();
 				break;
 			case JAIL:
-				// TODO: move player to jail space
-				// 	set jailed to true for their next turn
+				// move player to jail space
+				parent.players[currPlayer].setCurrLocation(parent.jailSpace);
+				movePlayerIcon();
+				// inform the player of what happened
+				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you're going to jail!", 
+						"Go to Jail", JOptionPane.INFORMATION_MESSAGE);
+				// set jailed to true for their next turn
+				parent.players[currPlayer].putInJail();
 				nextTurn();
 				break;
 			case TAX:
@@ -1135,7 +1171,7 @@ public class GamePanel extends JPanel {
 			}
 			// it has been bought by a different player -- current player pays rent
 			else if (prop.getOwner() != currPlayer) {
-				payRent(prop);
+				payRent(prop, dice);
 			}
 			// it has been bought and the owner is the current player
 			else {
@@ -1180,10 +1216,15 @@ public class GamePanel extends JPanel {
 	 * Purpose:		helper to takeAction(), used when a property is already owned and the current player has to pay
 	 * 				rent to that owner
 	 */
-	private void payRent(Property prop) {
+	private void payRent(Property prop, int dice) {
 		if (currPlayer != prop.getOwner() && parent.players[prop.getOwner()].isActive()) {	
-
-			int amountPaid = parent.players[currPlayer].deductFromBank(prop.getRent(), parent.playersOut);
+			int amountPaid = 0;
+			if (prop.getCategory() == Property.PropertyCategory.UTILITIES) {
+				amountPaid = parent.players[currPlayer].deductFromBank(((Utility)prop).getRent(dice, false), parent.playersOut);
+			}
+			else {
+				amountPaid = parent.players[currPlayer].deductFromBank(prop.getRent(), parent.playersOut);
+			}
 			parent.players[prop.getOwner()].addToBank(amountPaid);
 
 			// inform users of rent payment
@@ -1208,10 +1249,10 @@ public class GamePanel extends JPanel {
 		int deduction = 0;
 		
 		// luxury tax -- player must pay $100 (no option with this tax)
-		if (taxS.getName() == "Luxury Tax") {
+		if (taxS.getName().equals("Luxury Tax")) {
 			int flatRate = 100;
 			// inform user that they are paying the tax
-			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you have to pay taxes!", 
+			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you have to pay a $100 luxury tax!", 
 					"Luxury Tax", JOptionPane.INFORMATION_MESSAGE);
 			deduction = flatRate;
 		}
@@ -1235,7 +1276,7 @@ public class GamePanel extends JPanel {
 					"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
 			++parent.playersOut;
 		}
-					
+			
 		nextTurn();
 	}
 
@@ -1260,23 +1301,47 @@ public class GamePanel extends JPanel {
 					break;
 				}
 			}
+			// go to endpanel -- display results to all players
 			parent.flipCards();
 			return;
 		}
 		
-		if (!this.doubles) {
+		if (!this.doubles || this.parent.players[currPlayer].inJail()) {
 			// update to next player
 			this.currPlayer = (this.currPlayer + 1) % parent.players.length;
 			while (!parent.players[currPlayer].isActive()) {
 				this.currPlayer = (this.currPlayer + 1) % parent.players.length;
-			}
-			
+			}			
 		}
 		this.doubles = false;
-
 		diceActive = true;
 		updateCurrentPlayer();
-		//newTurnNotification();	
+		
+		// finally, check if this next player is in jail
+		if (parent.players[currPlayer].inJail()) {
+			// show dialog asking player if they want to pay the fine or try 
+			//	to roll doubles to get out
+			Object [] options = (Object[])(new String[] {"Roll", "Pay $50"});
+			int rollOrPay = JOptionPane.showOptionDialog(null, parent.players[currPlayer].getName() + 
+					", do you want to attempt to roll doubles, or pay the $50 fine?\n" + 
+					"Turns left in Jail: " + parent.players[currPlayer].turnsLeftInJail(), "In Jail",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION,	null, options, options[0]);
+			// if player wants to roll the dice, set jailRoll flag
+			if (rollOrPay == 0) this.jailRoll = true;
+			// otherwise, deduct $50 from player's bank and let them continue with their turn as normal
+			else  {
+				// deduct the fine
+				parent.players[currPlayer].deductFromBank(50, parent.playersOut);
+				// check if player exited game
+				if (!parent.players[currPlayer].isActive()) {
+					JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you are out of money!", 
+							"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+					++parent.playersOut;
+				}
+				// get the player out of jail
+				parent.players[currPlayer].outOfJail();	
+			}
+		}
 	}
 
 	/* Function:	newTurnNotification() 

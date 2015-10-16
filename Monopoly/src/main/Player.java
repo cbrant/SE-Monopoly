@@ -278,6 +278,10 @@ public class Player {
 		return inJail();
 	}
 	
+	public int turnsLeftInJail() {
+		return this.jailed;
+	}
+	
 	/* Function:	outOfJail()
 	 * Purpose:		when a player pays the fine or successfully rolls doubles, this function is
 	 * 				called to free the player from jail
