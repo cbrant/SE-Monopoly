@@ -12,12 +12,12 @@ public class Utility extends Property{
 		super(name, type, price, rent, mort, house, category);
 	}
 	
-	public int getRent(int dice, boolean ownOtherUtility)
-	{
-		if(ownOtherUtility)
-			return 10*dice;
-		return dice*4;
-	}
+	public int getRent(int dice)
+    {
+        if(canBuyHouse)
+            return 10*dice;
+        return dice*4;
+    }
 	
 	public String getCardDes()
 	{

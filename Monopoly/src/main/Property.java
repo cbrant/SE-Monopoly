@@ -1,9 +1,6 @@
 package main;
 
 
-// TODO -- make a Spaces class from which this will inherit
-// TODO -- create another inheriting class for draw card spaces, tax space??
-// TODO -- maybe have this be a parent class for each of the property types listed below
 /* Class:	Property
  * Purpose:	maintains all information about a property object, including
  * 	constant information such as price, rent, etc and other information such
@@ -71,6 +68,11 @@ public class Property extends Space {
 	
 	public int getRent()
 	{
+		// double rent if own all of same category, but have no houses
+		if (this.numHouses == 0 && this.canBuyHouse) {
+			return this.rent[0]*2;
+		}
+		
 		return this.rent[this.numHouses];
 	}
 	

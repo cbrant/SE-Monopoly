@@ -1168,6 +1168,19 @@ public class GamePanel extends JPanel {
 			// it has not been bought yet
 			if (prop.getOwner() == -1) {
 				optionToBuy(prop);
+				//for testing rents
+		        /*for(int i = 0; i< parent.spaces.size(); i++)
+		        {
+		            Space sp = parent.spaces.get(i);
+		            if(sp.getType() == Space.SpaceType.NORM || sp.getType() == Space.SpaceType.UTIL)
+		            {
+		                Property p = (Property) sp;
+		                p.setOwner(0);
+		                //spaces.get(i).setForsale(false);
+		                parent.players[0].addProperty(p);
+		            }
+		        }
+		        nextTurn();*/
 			}
 			// it has been bought by a different player -- current player pays rent
 			else if (prop.getOwner() != currPlayer) {
@@ -1220,7 +1233,16 @@ public class GamePanel extends JPanel {
 		if (currPlayer != prop.getOwner() && parent.players[prop.getOwner()].isActive()) {	
 			int amountPaid = 0;
 			if (prop.getCategory() == Property.PropertyCategory.UTILITIES) {
-				amountPaid = parent.players[currPlayer].deductFromBank(((Utility)prop).getRent(dice, false), parent.playersOut);
+				amountPaid = parent.players[currPlayer].deductFromBank(((Utility)prop).getRent(dice), parent.playersOut);
+			}
+			else if (prop.getCategory() == Property.PropertyCategory.RAILROAD) {
+				int numRailroads = 0;
+				for (int i = 0; i < parent.players[prop.getOwner()].getProperties().size(); ++i) {
+					if (parent.players[prop.getOwner()].getProperties().get(i).get(0).getCategory() == Property.PropertyCategory.RAILROAD) {
+						numRailroads = parent.players[prop.getOwner()].getProperties().get(i).size(); 
+					}
+				}
+				amountPaid = parent.players[currPlayer].deductFromBank(((Railroad)prop).getRent(numRailroads), parent.playersOut);
 			}
 			else {
 				amountPaid = parent.players[currPlayer].deductFromBank(prop.getRent(), parent.playersOut);

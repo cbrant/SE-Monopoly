@@ -9,9 +9,9 @@ public class Railroad extends Property{
 	
 	public int getRent(int numRR)
 	{
-		if(numRR < 0 || numRR > 4)
+		if(numRR <= 0 || numRR > 4)
 			return rent[0];
-		return rent[numRR];
+		return rent[numRR - 1];
 	}
 
 }

@@ -137,66 +137,82 @@ public class Player {
 	public ArrayList<ArrayList<Property>> getProperties() {
 		return this.ownedProperties;
 	}
-	// add a property to the player's holdings
+	// add property for player's holdings
 	public void addProperty(Property prop) {
-		boolean added = false;
-		boolean canBuyHouses = false;
-		for(int i = 0; i < ownedProperties.size(); i++)
-		{
-			if(ownedProperties.get(i).get(0).getCategory() == prop.getCategory())
-			{
-				ownedProperties.get(i).add(prop);
-				added = true;
-				canBuyHouses = checkHouse(ownedProperties.get(i));
-				for(int ii = 0; ii < ownedProperties.get(i).size(); ii++)
-				{
-					ownedProperties.get(i).get(ii).setBuyHouse(canBuyHouses);
-				}
-			}
-		}
-		if(!added)
-		{
-			ArrayList<Property> l = new ArrayList<Property>();
-			l.add(prop);
-			ownedProperties.add(l);
-		}
-		
-		String props = "<html>";
-		for(int j = 0; j< ownedProperties.size(); j++)
-		{
-			props += ownedProperties.get(j).get(0).getCategory().toString() + ":";
-			for(int k = 0; k < ownedProperties.get(j).size(); k++)
-			{
-				props += ownedProperties.get(j).get(k).getName() + ", ";
-			}
-			props = props.substring(0,props.length()-2) + "<br>";
-		}
-		props += "</html>";
-		this.propertiesL.setText(props);
-	}
+        boolean added = false;
+        boolean canBuyHouses = false;
+        for(int i = 0; i < ownedProperties.size(); i++)
+        {
+            if(ownedProperties.get(i).get(0).getCategory() == prop.getCategory())
+            {
+                ownedProperties.get(i).add(prop);
+                added = true;
+                canBuyHouses = checkHouse(ownedProperties.get(i));
+                for(int ii = 0; ii < ownedProperties.get(i).size(); ii++)
+                {
+                    ownedProperties.get(i).get(ii).setBuyHouse(canBuyHouses);
+                }
+            }
+        }
+        if(!added)
+        {
+            ArrayList<Property> l = new ArrayList<Property>();
+            l.add(prop);
+            ownedProperties.add(l);
+        }
+       
+        String props = "<html>";
+        for(int j = 0; j< ownedProperties.size(); j++)
+        {
+            props += ownedProperties.get(j).get(0).getCategory().toString() + ":";
+            for(int k = 0; k < ownedProperties.get(j).size(); k++)
+            {
+                props += ownedProperties.get(j).get(k).getName() + ", ";
+            }
+            props = props.substring(0,props.length()-2) + "<br>";
+        }
+        props += "</html>";
+        this.propertiesL.setText(props);
+    }
+
+
 	
-	public boolean checkHouse(ArrayList<Property> props)
-	{
-		Property p = props.get(0);
-		if(p.getType() != Space.SpaceType.NORM)
-			return false;
-		if(p.getCategory() == Property.PropertyCategory.DARKBLUE || p.getCategory() == Property.PropertyCategory.PURPLE)
-		{
-			if(props.size() != 2)
-				return false;
-		}
-		else if(props.size() != 3)
-			return false;
-		
-		int maxHouse = 0;
-		int minHouse = 0;
-		for(Property pp : props)
-		{
-			if(pp.getNumHouses() != 0)
-					return false;
-		}
-		return true;
-	}
+
+public boolean checkHouse(ArrayList<Property> props)
+    {
+        Property p = props.get(0);
+        if(p.getType() == Space.SpaceType.NORM)
+        {
+            if(p.getCategory() == Property.PropertyCategory.DARKBLUE || p.getCategory() == Property.PropertyCategory.PURPLE)
+            {
+                if(props.size() != 2)
+                    return false;
+            }
+            else if(props.size() != 3)
+                return false;
+           
+            int maxHouse = 0;
+            int minHouse = 0;
+            for(Property pp : props)
+            {
+                if(pp.getNumHouses() >= maxHouse)
+                    maxHouse = pp.getNumHouses();
+                else if(pp.getNumHouses() < minHouse)
+                    minHouse = pp.getNumHouses();
+            }
+            if(Math.abs(maxHouse - minHouse) <= 1)
+                return true;
+        }
+        else if(p.getType() == Space.SpaceType.UTIL && props.size() >= 2)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        return false;           
+    }
 
 	// getter/setter for player type (human or computer)
 	public PlayerType getpType() {
