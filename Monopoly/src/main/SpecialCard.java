@@ -1,35 +1,14 @@
 package main;
 
-public class SpecialCard {
+public abstract class SpecialCard {
 	
-	String text = "You drew a ";
-	String option;
-	int number;
-	public SpecialCard(int i, String type)
+	private String text = "You drew a ";
+	public SpecialCard(String type, String line)
 	{
-		number = i;
-		if(i%3==1) {
-			option = "lost";
-			text+=type+" card!\nIt is number "+i+".\nYou "+option+" $100!!";
-		}
-		else if(i%3==2) {
-			text+=type+" card!\nIt is number "+i+".\nYou move to Go!";
-		}
-		else {
-			option = "gain";
-			text+=type+" card!\nIt is number "+i+".\nYou "+option+" $100!!";
-		}
+		text += type + "\n"+line;
 	}
 	
-	public void act(Player p, int playersOut, GamePanel eng) {
-		if(number%3==0)
-			p.addToBank(100);
-		else if(number%3 == 2) {
-			eng.movePlayer(eng.getParentFrame().spaces.size()-p.getCurrLocation());
-		}
-		else
-			p.deductFromBank(100, playersOut);
-	}
+	public abstract void act(Player p, int playersOut, GamePanel eng);
 	
 	public String getText() {
 		return text;

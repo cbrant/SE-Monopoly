@@ -974,20 +974,48 @@ public class GamePanel extends JPanel {
 			System.out.println(gridLocations[i].gridy);
 		}*/
 
-		//set up chance deck
-		for(int x  = 0; x <  10; x++) {
-			chanceDeck.add(new SpecialCard(x, "Chance"));
-		}
-		Collections.shuffle(chanceDeck);
-		//set up community chest deck
-		for(int x  = 0; x <  10; x++) {
-			communityChestDeck.add(new SpecialCard(x, "Community Chest"));
-		}
-		Collections.shuffle(communityChestDeck);
+		createChanceDeck();
+		createCommunityChanceDeck();
+		
 		updateCurrentPlayer();
 
 
 	}
+	
+	/* Function:	diceRoll()
+	 * Purpose:		creates and shuffles the chance deck
+	 * 				
+	 */
+	private void createChanceDeck()
+	{
+		//set up chance deck
+		chanceDeck.add(new BankSpecialCard("Chance", "Pay poor tax of $15.", -15));
+		chanceDeck.add(new BankSpecialCard("Chance", "You're building and loan matures.\nCollect $150.", 150));
+		Collections.shuffle(chanceDeck);
+	}
+	
+	/* Function:	createCommunityChestDeck()
+	 * Purpose:		creates and shuffles the community chest deck
+	 * 				
+	 */
+	private void createCommunityChanceDeck()
+	{
+		//set up community chest deck
+		communityChestDeck.add(new BankSpecialCard("Community Chest", "Bank error in your favor\nCollect $200", 200));
+		communityChestDeck.add(new BankSpecialCard("Community Chest", "Doctor's fee\nPay $50", -50));
+		communityChestDeck.add(new BankSpecialCard("Community Chest", "From sale of stock you gain $50", 50));
+		communityChestDeck.add(new BankSpecialCard("Community Chest", "Holiday fund matures\nReceive $100", 100));
+		communityChestDeck.add(new BankSpecialCard("Community Chest", "Income tax refund\nCollect $20", 20));
+		communityChestDeck.add(new BankSpecialCard("Community Chest", "Life insurance matures\nGain $100", 100));
+		communityChestDeck.add(new BankSpecialCard("Community Chest", "Pay hospital fee of $100", -100));
+		communityChestDeck.add(new BankSpecialCard("Community Chest", "Pay school tax of $150", -150));
+		communityChestDeck.add(new BankSpecialCard("Community Chest", "Receive $25 consultancy fee", 25));
+		communityChestDeck.add(new BankSpecialCard("Community Chest", "Receive $25 consultancy fee", 25));
+		communityChestDeck.add(new BankSpecialCard("Community Chest", "You have won second prize in a beauty contest\nCollect $10", 10));
+		communityChestDeck.add(new BankSpecialCard("Community Chest", "You inherit $100", 100));
+		Collections.shuffle(communityChestDeck);
+	}
+	
 	public MainWindow getParentFrame(){
 		return parent;
 	}
