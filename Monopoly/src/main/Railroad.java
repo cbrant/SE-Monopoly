@@ -2,7 +2,6 @@ package main;
 
 public class Railroad extends Property{
 	
-	
 	public Railroad(String name, Space.SpaceType type, int price, int[] rent, int mort, int house, Property.PropertyCategory category)
 	{
 		super(name, type, price, rent, mort, house, category);

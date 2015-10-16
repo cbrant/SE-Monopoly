@@ -20,7 +20,7 @@ public class Player {
 	}
 
 	/// GamePieces enum ///
-	public enum GamePiece {
+	public enum GamePiece { 
 		RACECAR, DOG, SHOE, HAT, THIMBLE, SHIP	
 	}
 
@@ -207,7 +207,7 @@ public class Player {
 	}
 
 	// getter/setter for player's game piece
-	public GamePiece getPiece() {
+	public GamePiece getPiece() { 
 		return piece;
 	}
 	public void setPiece(GamePiece piece) {

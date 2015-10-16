@@ -119,7 +119,8 @@ public class Property extends Space {
 	public int getOwner() {
 		return owner;
 	}
-	public void setOwner(int owner) {
+	
+public void setOwner(int owner) {
 		this.owner = owner;
 	}
 	

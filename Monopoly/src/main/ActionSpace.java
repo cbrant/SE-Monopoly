@@ -29,9 +29,9 @@ public class ActionSpace extends Space{
 		return this.aType;
 	}
 	
-	public String getCardDes(int luxOrIncome)
+	public String getCardDes(String luxOrIncome)
 	{
-		if(luxOrIncome == 4)
+		if(luxOrIncome.equals("Income Tax"))
 			return incomeString;
 		else
 			return luxuryString;

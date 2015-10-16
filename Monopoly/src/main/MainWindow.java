@@ -94,7 +94,6 @@ public class MainWindow{
 		pane.add(cards, BorderLayout.CENTER);
 	}
 
-
 	private void createAndShowGUI() {
 		//Create and set up the window.
 		frame = new JFrame("Monopoly");
@@ -106,7 +105,6 @@ public class MainWindow{
 		//Display the window.
 		frame.setVisible(true);
 	}
-
 
 	/////	users can be on (see GamePanel method movePlayer() for how the properties array is currently being used)
 	private ArrayList<Space> loadSpaces()
@@ -182,7 +180,6 @@ public class MainWindow{
 			System.out.println("Incorrect number of properties in list, there are " + spaces.size());
 		return spaces;
 	}
-
 
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
