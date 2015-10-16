@@ -991,6 +991,9 @@ public class GamePanel extends JPanel {
 		//set up chance deck
 		chanceDeck.add(new BankSpecialCard("Chance", "Pay poor tax of $15.", -15));
 		chanceDeck.add(new BankSpecialCard("Chance", "You're building and loan matures.\nCollect $150.", 150));
+		chanceDeck.add(new MoveSpecialCard("Chance", "Advance to Go!", 0));
+		chanceDeck.add(new MoveSpecialCard("Chance", "Take a ride on the Reading Railroad!\nAdvance to Reading Railroad", 5));
+		chanceDeck.add(new MoveSpecialCard("Chance", "Move back 3 spaces!", -3));
 		Collections.shuffle(chanceDeck);
 	}
 	
