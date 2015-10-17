@@ -17,9 +17,7 @@ public class Property extends Space {
 	/// DATA MEMBERS ///
 	private final int buyingPrice;
 	protected final int[] rent;	//make this an array later to maintain rent based on numHouses
-	@SuppressWarnings("unused")
 	private final int mortVal;
-	@SuppressWarnings("unused")
 	private int	houseCost;
 	private final PropertyCategory group;
 	

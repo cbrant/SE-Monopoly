@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 
 @SuppressWarnings("serial")
@@ -419,6 +418,8 @@ public class CardView extends JFrame {
 		case YELLOW:
 			this.title.setBackground(new Color(255,255,0));
 			break;
+			default:
+				break;
 		}
 		
 	}

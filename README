@@ -4,3 +4,8 @@ To Run Monopoly:
 (2) Run play.sh:
 	cd Monopoly
 	./play.sh
+
+Version 1.1:
+ - All spaces on the board are functional, including jail (NOTE: rolling doubles 3 times in a row does not send a player to jail).
+ - A limited set of Community Chest and Chance cards are available.
+ - All rents are correct (ie. doubled when a player owns all of one color).

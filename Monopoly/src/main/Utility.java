@@ -3,7 +3,7 @@ package main;
 
 public class Utility extends Property{
 	
-	private static String newLine = System.getProperty("line.separator");
+	//private static String newLine = System.getProperty("line.separator");
 	
 	private String cardDes = "<html><p> Pay the owner of this card 4 times the dice roll,<br> or 10 times the dice roll if two utilities are owned.</p></html>";
 	
