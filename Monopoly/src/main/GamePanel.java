@@ -53,7 +53,7 @@ public class GamePanel extends JPanel {
 	private GridBagConstraints gbc_player1, gbc_player2, gbc_player3, gbc_player4;
 
 	private final static String CARD = "card";
-
+	private final static String PLAYER = "player";
 	// array to track players
 	private GridBagConstraints[] gridLocations = new GridBagConstraints[40];
 	
@@ -381,11 +381,11 @@ public class GamePanel extends JPanel {
 		gbc_player1Cash.gridy = 2;
 		panel.add(parent.players[0].bankL, gbc_player1Cash);
 
-		GridBagConstraints gbc_player1Properties = new GridBagConstraints();
-		gbc_player1Properties.insets = new Insets(0, 0, 5, 0);
-		gbc_player1Properties.gridx = 1;
-		gbc_player1Properties.gridy = 3;
-		panel.add(parent.players[0].propertiesL, gbc_player1Properties);
+//		GridBagConstraints gbc_player1Properties = new GridBagConstraints();
+//		gbc_player1Properties.insets = new Insets(0, 0, 5, 0);
+//		gbc_player1Properties.gridx = 1;
+//		gbc_player1Properties.gridy = 3;
+//		panel.add(parent.players[0].propertiesL, gbc_player1Properties);
 
 		JLabel player1PropertiesLabel = new JLabel("Properties:");
 		GridBagConstraints gbc_player1PropertiesLabel = new GridBagConstraints();
@@ -394,6 +394,15 @@ public class GamePanel extends JPanel {
 		gbc_player1PropertiesLabel.gridx = 0;
 		gbc_player1PropertiesLabel.gridy = 3;
 		panel.add(player1PropertiesLabel, gbc_player1PropertiesLabel);
+		
+		JButton btnProperties = new JButton("Properties");
+		GridBagConstraints gbc_btnProperties = new GridBagConstraints();
+		gbc_btnProperties.insets = new Insets(0, 0, 5, 0);
+		gbc_btnProperties.gridx = 1;
+		gbc_btnProperties.gridy = 3;
+		btnProperties.putClientProperty(PLAYER, 0);
+		btnProperties.addActionListener(propertiesClicked);
+		panel.add(btnProperties, gbc_btnProperties);
 
 		panel_1 = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
@@ -433,11 +442,11 @@ public class GamePanel extends JPanel {
 		gbc_player2Cash.gridy = 2;
 		panel_1.add(parent.players[1].bankL, gbc_player2Cash);
 
-		GridBagConstraints gbc_player2Properties = new GridBagConstraints();
-		gbc_player2Properties.insets = new Insets(0, 0, 5, 0);
-		gbc_player2Properties.gridx = 1;
-		gbc_player2Properties.gridy = 3;
-		panel_1.add(parent.players[1].propertiesL, gbc_player2Properties);
+//		GridBagConstraints gbc_player2Properties = new GridBagConstraints();
+//		gbc_player2Properties.insets = new Insets(0, 0, 5, 0);
+//		gbc_player2Properties.gridx = 1;
+//		gbc_player2Properties.gridy = 3;
+//		panel_1.add(parent.players[1].propertiesL, gbc_player2Properties);
 
 		JLabel player2PropertiesLabel = new JLabel("Properties:");
 		GridBagConstraints gbc_player2PropertiesLabel = new GridBagConstraints();
@@ -446,6 +455,15 @@ public class GamePanel extends JPanel {
 		gbc_player2PropertiesLabel.gridx = 0;
 		gbc_player2PropertiesLabel.gridy = 3;
 		panel_1.add(player2PropertiesLabel, gbc_player2PropertiesLabel);
+		
+		JButton button = new JButton("Properties");
+		GridBagConstraints gbc_button = new GridBagConstraints();
+		gbc_button.insets = new Insets(0, 0, 5, 0);
+		gbc_button.gridx = 1;
+		gbc_button.gridy = 3;
+		button.putClientProperty(PLAYER, 1);
+		button.addActionListener(propertiesClicked);
+		panel_1.add(button, gbc_button);
 
 		JButton tennesseeAvenue = new JButton("");
 		GridBagConstraints gbc_tennesseeAvenue = new GridBagConstraints();
@@ -655,11 +673,11 @@ public class GamePanel extends JPanel {
 		gbc_player3Cash.gridy = 2;
 		panel_2.add(parent.players[2].bankL, gbc_player3Cash);
 
-		GridBagConstraints gbc_player3Properties = new GridBagConstraints();
-		gbc_player3Properties.insets = new Insets(0, 0, 5, 0);
-		gbc_player3Properties.gridx = 1;
-		gbc_player3Properties.gridy = 3;
-		panel_2.add(parent.players[2].propertiesL, gbc_player3Properties);
+//		GridBagConstraints gbc_player3Properties = new GridBagConstraints();
+//		gbc_player3Properties.insets = new Insets(0, 0, 5, 0);
+//		gbc_player3Properties.gridx = 1;
+//		gbc_player3Properties.gridy = 3;
+//		panel_2.add(parent.players[2].propertiesL, gbc_player3Properties);
 
 		JLabel player3PropertiesLabel = new JLabel("Properties:");
 		GridBagConstraints gbc_player3PropertiesLabel = new GridBagConstraints();
@@ -668,6 +686,15 @@ public class GamePanel extends JPanel {
 		gbc_player3PropertiesLabel.gridx = 0;
 		gbc_player3PropertiesLabel.gridy = 3;
 		panel_2.add(player3PropertiesLabel, gbc_player3PropertiesLabel);
+		
+		JButton button_1 = new JButton("Properties");
+		GridBagConstraints gbc_button_1 = new GridBagConstraints();
+		gbc_button_1.insets = new Insets(0, 0, 5, 0);
+		gbc_button_1.gridx = 1;
+		gbc_button_1.gridy = 3;
+		button_1.putClientProperty(PLAYER, 2);
+		button_1.addActionListener(propertiesClicked);
+		panel_2.add(button_1, gbc_button_1);
 
 		panel_3 = new JPanel();
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
@@ -709,11 +736,11 @@ public class GamePanel extends JPanel {
 		gbc_player4Cash.gridy = 2;
 		panel_3.add(parent.players[3].bankL, gbc_player4Cash);
 
-		GridBagConstraints gbc_player4Properties = new GridBagConstraints();
-		gbc_player4Properties.insets = new Insets(0, 0, 5, 0);
-		gbc_player4Properties.gridx = 1;
-		gbc_player4Properties.gridy = 3;
-		panel_3.add(parent.players[3].propertiesL, gbc_player4Properties);
+//		GridBagConstraints gbc_player4Properties = new GridBagConstraints();
+//		gbc_player4Properties.insets = new Insets(0, 0, 5, 0);
+//		gbc_player4Properties.gridx = 1;
+//		gbc_player4Properties.gridy = 3;
+//		panel_3.add(parent.players[3].propertiesL, gbc_player4Properties);
 
 		JLabel player4PropertiesLabel = new JLabel("Properties:");
 		GridBagConstraints gbc_player4PropertiesLabel = new GridBagConstraints();
@@ -722,6 +749,15 @@ public class GamePanel extends JPanel {
 		gbc_player4PropertiesLabel.gridx = 0;
 		gbc_player4PropertiesLabel.gridy = 3;
 		panel_3.add(player4PropertiesLabel, gbc_player4PropertiesLabel);
+		
+		JButton button_2 = new JButton("Properties");
+		GridBagConstraints gbc_button_2 = new GridBagConstraints();
+		gbc_button_2.insets = new Insets(0, 0, 5, 0);
+		gbc_button_2.gridx = 1;
+		gbc_button_2.gridy = 3;
+		button_2.putClientProperty(PLAYER, 3);
+		button_2.addActionListener(propertiesClicked);
+		panel_3.add(button_2, gbc_button_2);
 
 		JButton statesAvenue = new JButton("");
 		GridBagConstraints gbc_statesAvenue = new GridBagConstraints();
@@ -1530,4 +1566,20 @@ public class GamePanel extends JPanel {
 		}
 		return top;
 	}
+	
+	private ActionListener propertiesClicked = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+			int index = (int)(((JButton)e.getSource()).getClientProperty(GamePanel.PLAYER));
+			Player clicked = parent.players[index];
+			
+			PropertyView playerSelected = new PropertyView(clicked);
+			playerSelected.setVisible(true);
+			
+		}
+		
+	};
 }
