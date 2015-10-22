@@ -1,0 +1,41 @@
+Name, Type, Cost, Rent, 1 House, 2 House, 3 Houses, 4 Houses, Hotel, Mortgage, HouseCost,Category
+GO,ACTION,, , , , , , , , ,NOTHING
+Mediterranean Ave.,NORM,60,2,10,30,90,160,250,30,50,PURPLE
+Community Chest,ACTION, , , , , , , , , ,CARD
+Baltic Ave.,NORM,60,4,20,60,180,320,450,30,50,PURPLE
+Income Tax,ACTION, , , , , , , , , ,TAX
+Reading Railroad,RR,200,25,50,100,200, , ,100, ,RAILROAD
+Oriental Ave.,NORM,100,6,30,90,270,400,550,50,50,LIGHTBLUE
+Chance,ACTION, , , , , , , , , ,CARD
+Vermont Ave.,NORM,100,6,30,90,270,400,550,50,50,LIGHTBLUE
+Connecticut Ave.,NORM,120,8,40,100,300,450,600,60,50,LIGHTBLUE
+Jail,ACTION, , , , , , , , , ,NOTHING
+St. Charles Place,NORM,140,10,50,150,450,625,750,90,100,PINK
+Electric Company,UTIL,150,4,10, , , , ,75, ,UTILITIES
+States Ave.,NORM,140,10,50,150,450,625,750,90,100,PINK
+Virginia Ave.,NORM,160,12,60,180,500,700,900,100,100,PINK
+Pennsylvania Railroad,RR,200,25,50,100,200, , ,100, ,RAILROAD
+St. James Place,NORM,180,14,70,200,550,750,950,90,100,ORANGE
+Community Chest,ACTION, , , , , , , , , ,CARD
+Tennessee Avenue,NORM,180,14,70,200,550,750,950,90,100,ORANGE
+New York Avenue,NORM,200,16,80,220,600,800,1000,100,100,ORANGE
+Free Parking,ACTION, , , , , , , , , ,NOTHING
+Kentucky Avenue,NORM,220,18,90,250,700,875,1050,110,150,RED
+Chance,ACTION, , , , , , , , , ,CARD
+Indiana Avenue,NORM,240,18,90,250,700,875,1050,110,150,RED
+Illinois Avenue,NORM,240,20,100,300,750,925,110,120,150,RED
+B & O Railroad,RR,200,25,50,100,200, , ,100, ,RAILROAD
+Atlantic Avenue,NORM,260,22,110,330,800,975,1150,130,150,YELLOW
+Ventnor Avenue,NORM,260,22,110,330,800,975,1150,130,150,YELLOW
+Water Works,UTIL,150,4,10, , , , ,75, ,UTILITIES
+Marvin Gardens,NORM,280,24,120,360,850,1025,1200,140,150,YELLOW
+Go To Jail,ACTION, , , , , , , , , ,JAIL
+Pacific Avenue,NORM,300,26,130,390,900,110,1275,150,200,GREEN
+North Carolina Avenue,NORM,300,26,130,390,900,110,1275,150,200,GREEN
+Community Chest,ACTION, , , , , , , , , ,CARD
+Pennsylvania Avenue,NORM,320,28,150,450,1000,1200,1400,160,200,GREEN
+Short Line,RR,200,25,50,100,200, , ,100, ,RAILROAD
+Chance,ACTION, , , , , , , , , ,CARD
+Park Place,NORM,350,35,175,500,1100,1300,1500,175,200,DARKBLUE
+Luxury Tax,ACTION, , , , , , , , , ,TAX
+Boardwalk,NORM,400,50,200,600,1400,1700,2000,200,200,DARKBLUE

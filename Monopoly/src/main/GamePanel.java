@@ -22,7 +22,8 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel {
 
-	private MainWindow parent;	
+	private MainWindow parent;
+	private GamePanel thisGamePanel;
 
 	public JButton btnEndGame;
 
@@ -72,6 +73,7 @@ public class GamePanel extends JPanel {
 	public GamePanel(MainWindow par) {
 		setBackground(new Color(255, 250, 205));
 		this.parent = par;
+		thisGamePanel = this;
 
 		this.currPlayer = 0;
 		this.jailRoll = false;
@@ -1567,6 +1569,11 @@ public class GamePanel extends JPanel {
 		return top;
 	}
 	
+	public MainWindow getMyParent()
+	{
+		return parent;
+	}
+	
 	private ActionListener propertiesClicked = new ActionListener() {
 
 		@Override
@@ -1576,7 +1583,7 @@ public class GamePanel extends JPanel {
 			int index = (int)(((JButton)e.getSource()).getClientProperty(GamePanel.PLAYER));
 			Player clicked = parent.players[index];
 			
-			PropertyView playerSelected = new PropertyView(clicked);
+			PropertyView playerSelected = new PropertyView(clicked, thisGamePanel);
 			playerSelected.setVisible(true);
 			
 		}
