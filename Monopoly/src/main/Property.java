@@ -101,12 +101,13 @@ public class Property extends Space {
 	
 	public void setNumHouses(int num)
 	{
-		if(num > 4)
-			num =4;
-		this.numHouses = 4;
+		// 5 houses indicates that a hotel is owned
+		if(num > 5)	
+			num = 5;
+		this.numHouses = num;
 	}
 	
-	public boolean canBuyHoue()
+	public boolean canBuyHouse()
 	{
 		return this.canBuyHouse;
 	}
@@ -115,6 +116,8 @@ public class Property extends Space {
 	{
 		this.canBuyHouse = canBuyHouse;
 	}
+	
+
 
 	public int getOwner() {
 		return owner;

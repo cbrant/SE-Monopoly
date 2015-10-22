@@ -137,6 +137,19 @@ public class Player {
 	public ArrayList<ArrayList<Property>> getProperties() {
 		return this.ownedProperties;
 	}
+	
+	public boolean ownsProperty(Property prop) {
+		for (int i = 0; i < this.ownedProperties.size(); ++i) {
+			for (int j = 0; j < this.ownedProperties.get(i).size(); ++j) {
+				if (prop.getName().equals(this.ownedProperties.get(i).get(j).getName())) {
+					return true;
+				}
+			}
+		}
+		
+		return false;		
+	}
+	
 	// add property for player's holdings
 	public void addProperty(Property prop) {
         boolean added = false;

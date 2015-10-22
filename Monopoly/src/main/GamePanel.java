@@ -1206,7 +1206,7 @@ public class GamePanel extends JPanel {
 			// it has not been bought yet
 			if (prop.getOwner() == -1) {
 				optionToBuy(prop);
-				//for testing rents
+				//****for testing rents
 		        /*for(int i = 0; i< parent.spaces.size(); i++)
 		        {
 		            Space sp = parent.spaces.get(i);
@@ -1218,7 +1218,7 @@ public class GamePanel extends JPanel {
 		                parent.players[0].addProperty(p);
 		            }
 		        }
-		        nextTurn();*/
+		        nextTurn();*/	// COMMENT 'optionToBuy(prop);' AND UNCOMMENT THIS TO TEST BUYING HOUSES, DOUBLING RENT, ETC
 			}
 			// it has been bought by a different player -- current player pays rent
 			else if (prop.getOwner() != currPlayer) {

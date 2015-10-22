@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 @SuppressWarnings("serial")
 public class PropertyView extends JFrame {
@@ -23,6 +24,7 @@ public class PropertyView extends JFrame {
 	private final static String BUTTON = "button";
 	
 	private GamePanel parent;
+	private Player playerIn;
 	
 	private ArrayList<JLabel> propLabels = new ArrayList<JLabel>();
 	
@@ -78,6 +80,7 @@ public class PropertyView extends JFrame {
 	public PropertyView(Player playerIn, GamePanel par) {
 		
 		this.parent = par;
+		currentPlayer = playerIn;
 
 		getContentPane().setBackground(new Color(255, 250, 205));
 
@@ -87,7 +90,6 @@ public class PropertyView extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		currentPlayer = playerIn;
 		
 		setBackground(new Color(255, 250, 205));
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -882,17 +884,53 @@ public class PropertyView extends JFrame {
 	private ActionListener houseClicked = new ActionListener() {
 
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
+		public void actionPerformed(ActionEvent e) {			
 			int spaceSelected = (int)(((JButton)e.getSource()).getClientProperty(PropertyView.BUTTON));
 			
 			MainWindow main = parent.getMyParent();
 					
 			//This prints out what property is getting a house
 			//Need to write code to actually check if the house can be bought and then buy it
-			System.out.println(main.spaces.get(spaceSelected).name);
+			Property prop = (Property)main.spaces.get(spaceSelected);
 			
+			// can only buy a house if all of the following are satisfied: 
+			//	(1) the player owns the space
+			//	(2) the player owns all of the properties of that space
+			//	(3) it is that player's turn
+			// 	(4) the player has enough money to buy the house
+			//	(5) TODO -- the other properties from that category have the same number of houses
+			//		as the selected property (or 1 more)
+			//	(6) not all houses are bought for this property (5 can be bought -- means hotel bought)
+			if (currentPlayer.ownsProperty(prop) && prop.canBuyHouse() && 
+					main.players[parent.currPlayer] == currentPlayer && 
+					prop.getNumHouses() < 5) {
+				// check if the player has enough money
+				if (currentPlayer.getBank() > prop.getHouseCost()) {
+					int buyHouse = JOptionPane.showConfirmDialog(null, "Are you sure you would like to buy a house for " 
+							+ prop.getName() + "for $" + prop.getHouseCost() + "?", 
+							"Buy House for " + prop.getName(), JOptionPane.YES_NO_OPTION);	
+					// if player confirms buying it, then add a house to that property 
+					if (buyHouse == 0) 	{
+						// deduct house cost from bank
+						currentPlayer.deductFromBank(prop.getHouseCost(), main.playersOut);
+						// add 
+						prop.setNumHouses(prop.getNumHouses() + 1);
+					}
+					
+				}
+				// if they don't have enough money, give them a warning
+				else {
+					// notify player that they don't have money via popup window
+					JOptionPane.showMessageDialog(null, "Insufficient funds in bank account!\nHouse cost: $" +
+							prop.getHouseCost()+"\nAccount Balance: $"+currentPlayer.getBank(), 
+							"Bank error", JOptionPane.ERROR_MESSAGE);
+				}
+				
+			}
+			else {
+				// one of the above conditions is not met
+				System.out.println("DNFODK");
+			}
 			
 		}
 			
