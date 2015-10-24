@@ -23,5 +23,6 @@ public class MoveSpecialCard extends SpecialCard{
 				eng.movePlayer(amount-location);
 			}
 		}
+		eng.takeChanceAction(eng.getParentFrame().spaces.get(p.getCurrLocation()));
 	}
 }

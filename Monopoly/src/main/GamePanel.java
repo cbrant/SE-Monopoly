@@ -1166,7 +1166,6 @@ public class GamePanel extends JPanel {
 		if (s.getType() == Space.SpaceType.ACTION) {
 			switch(((ActionSpace)s).getAType()) {
 			case NOTHING:
-				nextTurn();
 				break;
 			case CARD:
 				// check which card it is and draw from the pile
@@ -1180,7 +1179,6 @@ public class GamePanel extends JPanel {
 					temp.act(parent.players[currPlayer], parent.playersOut, this);
 					JOptionPane.showMessageDialog(null, temp.getText(), "Community Chest", JOptionPane.INFORMATION_MESSAGE);
 				}
-				nextTurn();
 				break;
 			case JAIL:
 				// move player to jail space
@@ -1191,7 +1189,6 @@ public class GamePanel extends JPanel {
 						"Go to Jail", JOptionPane.INFORMATION_MESSAGE);
 				// set jailed to true for their next turn
 				parent.players[currPlayer].putInJail();
-				nextTurn();
 				break;
 			case TAX:
 				// check which tax it is and charge player
@@ -1227,12 +1224,63 @@ public class GamePanel extends JPanel {
 			// it has been bought and the owner is the current player
 			else {
 				// DO NOTHING
-				nextTurn();
 			}
 
 		}
+		nextTurn();	//moved to allow takeChanceAction() to 
 	}
 
+	
+	/*	Function:	takeChanceAction()
+	 * 	Purpose:	Acts on the space which a chance card causes the user to land on.
+	 * 				Works similarly to takeAction, but ignores the nextTurn() calls so it works within the normal takeAction()
+	 * 				Public to allow execution in the specialCard classes
+	 */
+	
+	public void takeChanceAction(Space s) {
+		// space is a special space -- GO, draw card, taxes, etc; not a buyable property
+				if (s.getType() == Space.SpaceType.ACTION) {
+					switch(((ActionSpace)s).getAType()) {
+					case NOTHING:
+						break;
+					case CARD:
+						// check which card it is and draw from the pile
+						if(s.getName().equals("Chance")) {
+							SpecialCard temp = getTopChance();
+							temp.act(parent.players[currPlayer], parent.playersOut, this);
+							JOptionPane.showMessageDialog(null, temp.getText(), "Chance", JOptionPane.INFORMATION_MESSAGE);
+						}
+						else if(s.getName().equals("Community Chest")) {
+							SpecialCard temp = getTopCommunityChest();
+							temp.act(parent.players[currPlayer], parent.playersOut, this);
+							JOptionPane.showMessageDialog(null, temp.getText(), "Community Chest", JOptionPane.INFORMATION_MESSAGE);
+						}
+						break;
+					case TAX:
+						// check which tax it is and charge player
+						payTax((ActionSpace)s);
+						break;
+					case JAIL:
+						break;
+					default:
+						break;			
+					}
+					
+				}
+				// space is a buyable property
+				else {
+					Property prop = (Property) s;
+					// it has not been bought yet
+					if (prop.getOwner() == -1) {
+						optionToBuy(prop);
+					}
+					// it has been bought by a different player -- current player pays rent
+					else if (prop.getOwner() != currPlayer) {
+						payChanceRent(prop);
+					}
+
+				}
+	}
 	/* Function:	optionToBuy()
 	 * Purpose:		helper to takeAction(), used when a buyable property has not yet been purchased, for vertical
 	 * 				prototype just offers current player to buy it or not
@@ -1252,14 +1300,12 @@ public class GamePanel extends JPanel {
 			} else {
 				// **TODO -- put in an auction function if they decide not to buy
 			}
-			nextTurn();
 		}
 		else {
 			// notify player that they don't have money via popup window
 			JOptionPane.showMessageDialog(null, "Insufficient funds in bank account!\nProperty cost: $" +
 					prop.getPrice()+"\nAccount Balance: $"+parent.players[currPlayer].getBank(), 
 					"Bank error", JOptionPane.ERROR_MESSAGE);
-			nextTurn();
 		}		
 	}
 
@@ -1299,9 +1345,44 @@ public class GamePanel extends JPanel {
 				++parent.playersOut;
 			}
 		}
-		nextTurn();
 	}
 	
+	
+	/* Function:	payChanceRent()
+	 * Purpose:		helper to takeChanceAction(), used when a property is already owned and the current player has to pay
+	 * 				rent to that owner
+	 * 				similar to payRent() but does not inculde a utilities option to remove dice parameter
+	 */
+	private void payChanceRent(Property prop) {
+		if (currPlayer != prop.getOwner() && parent.players[prop.getOwner()].isActive()) {	
+			int amountPaid = 0;
+			if (prop.getCategory() == Property.PropertyCategory.RAILROAD) {
+				int numRailroads = 0;
+				for (int i = 0; i < parent.players[prop.getOwner()].getProperties().size(); ++i) {
+					if (parent.players[prop.getOwner()].getProperties().get(i).get(0).getCategory() == Property.PropertyCategory.RAILROAD) {
+						numRailroads = parent.players[prop.getOwner()].getProperties().get(i).size(); 
+					}
+				}
+				amountPaid = parent.players[currPlayer].deductFromBank(((Railroad)prop).getRent(numRailroads), parent.playersOut);
+			}
+			else {
+				amountPaid = parent.players[currPlayer].deductFromBank(prop.getRent(), parent.playersOut);
+			}
+			parent.players[prop.getOwner()].addToBank(amountPaid);
+
+			// inform users of rent payment
+			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + " paid $" + amountPaid + 
+					" to " + parent.players[prop.getOwner()].getName() + " for rent on " + prop.getName(), "Rent Paid", 
+					JOptionPane.INFORMATION_MESSAGE);
+
+			// check if player exited game
+			if (!parent.players[currPlayer].isActive()) {
+				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you are out of money!", 
+						"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+				++parent.playersOut;
+			}
+		}
+	}
 	/* Function:	payTax()
 	 * Purpose:		helper to takeAction(), used when the space landed on is a tax space
 	 */
@@ -1336,8 +1417,6 @@ public class GamePanel extends JPanel {
 					"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
 			++parent.playersOut;
 		}
-			
-		nextTurn();
 	}
 
 	/* Function:	nextTurn()
