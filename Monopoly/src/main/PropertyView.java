@@ -949,34 +949,45 @@ public class PropertyView extends JFrame {
 			if (currentPlayer.ownsProperty(prop) && prop.canBuyHouse() && 
 					main.players[parent.currPlayer] == currentPlayer && 
 					prop.getNumHouses() < 5) {
-				// check if the player has enough money
-				if (currentPlayer.getBank() > prop.getHouseCost()) {
-					int buyHouse = JOptionPane.showConfirmDialog(null, "Are you sure you would like to buy a house for " 
-							+ prop.getName() + "for $" + prop.getHouseCost() + "?", 
-							"Buy House for " + prop.getName(), JOptionPane.YES_NO_OPTION);	
-					// if player confirms buying it, then add a house to that property 
-					if (buyHouse == 0) 	{
-						// deduct house cost from bank
-						currentPlayer.deductFromBank(prop.getHouseCost(), main.playersOut);
-						// add 
-						prop.setNumHouses(prop.getNumHouses() + 1);
-						updateHouses();
-					}
+				// check if the player is 'stacking' houses (see Player.java housesNotStacked() for 
+				//	description of what 'stacking houses' is)
+				if (currentPlayer.housesNotStacked(prop)) {
+					// check if the player has enough money
+					if (currentPlayer.getBank() > prop.getHouseCost()) {
+						int buyHouse = JOptionPane.showConfirmDialog(null, "Are you sure you would like to buy a house for " 
+								+ prop.getName() + " for $" + prop.getHouseCost() + "?", 
+								"Buy House for " + prop.getName(), JOptionPane.YES_NO_OPTION);	
+						// if player confirms buying it, then add a house to that property 
+						if (buyHouse == 0) 	{
+							// deduct house cost from bank
+							currentPlayer.deductFromBank(prop.getHouseCost(), main.playersOut);
+							// add 
+							prop.setNumHouses(prop.getNumHouses() + 1);
+							updateHouses();
+						}
 
+					}
+					// if they don't have enough money, give them a warning
+					else {
+						// notify player that they don't have money via popup window
+						JOptionPane.showMessageDialog(null, "Insufficient funds in bank account!\nHouse cost: $" +
+								prop.getHouseCost()+"\nAccount Balance: $"+currentPlayer.getBank(), 
+								"Bank error", JOptionPane.ERROR_MESSAGE);
+					}	
 				}
-				// if they don't have enough money, give them a warning
+				// if they are stacking, don't let them buy it and give them a warning
 				else {
-					// notify player that they don't have money via popup window
-					JOptionPane.showMessageDialog(null, "Insufficient funds in bank account!\nHouse cost: $" +
-							prop.getHouseCost()+"\nAccount Balance: $"+currentPlayer.getBank(), 
-							"Bank error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "You need to put houses on the other properties in this" + 
+							" category first!", "Error", JOptionPane.ERROR_MESSAGE);
 				}
+				
+				
 
 			}
 			else {
 				// one of the above conditions is not met
-				//System.out.println("DNFODK");
-				JOptionPane.showMessageDialog(null, "You can't buy that right now!", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "You can't buy that right now!", "Error", 
+						JOptionPane.ERROR_MESSAGE);
 			}
 
 		}

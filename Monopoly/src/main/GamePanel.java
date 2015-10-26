@@ -1203,8 +1203,10 @@ public class GamePanel extends JPanel {
 			// it has not been bought yet
 			if (prop.getOwner() == -1) {
 				optionToBuy(prop);
-				//****for testing rents
-		        /*for(int i = 0; i< parent.spaces.size(); i++)
+				//**for testing rents:
+				//		COMMENT 'optionToBuy(prop);' AND
+				//		UNCOMMENT BELOW TO TEST BUYING HOUSES, DOUBLING RENT, ETC
+				/*for(int i = 0; i< parent.spaces.size(); i++)
 		        {
 		            Space sp = parent.spaces.get(i);
 		            if(sp.getType() == Space.SpaceType.NORM || sp.getType() == Space.SpaceType.UTIL)
@@ -1214,8 +1216,7 @@ public class GamePanel extends JPanel {
 		                //spaces.get(i).setForsale(false);
 		                parent.players[0].addProperty(p);
 		            }
-		        }
-		        nextTurn();*/	// COMMENT 'optionToBuy(prop);' AND UNCOMMENT THIS TO TEST BUYING HOUSES, DOUBLING RENT, ETC
+		        }*/
 			}
 			// it has been bought by a different player -- current player pays rent
 			else if (prop.getOwner() != currPlayer) {
