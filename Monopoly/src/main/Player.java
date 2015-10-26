@@ -319,6 +319,28 @@ public boolean checkHouse(ArrayList<Property> props)
 		this.jailed = 0;
 	}
 
+	/* Function:	housesNotStacked()
+	 * Purpose:		when a player is trying to buy a house on <prop>, checks if that player is 
+	 * 				stacking the houses (ie. not buying an equal number on each property of that
+	 * 				category), PRECONDITION: player owns all properties in the category of <prop>'s
+	 * 				type
+	 */
+	public boolean housesNotStacked(Property prop) {
+		// the number of houses on <prop> needs to be less than or equal to the number of houses on 
+		//	the rest of the properties of the category in order for the player to not be stacking the houses
+		for (int i = 0; i < this.ownedProperties.size(); ++i) {
+			for (int j = 0; j < this.ownedProperties.get(i).size(); ++j) {
+				if (this.ownedProperties.get(i).get(j).getCategory() != prop.getCategory()) {
+					break;
+				}
+				if (this.ownedProperties.get(i).get(j).getNumHouses() < prop.getNumHouses()) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 
 
 
