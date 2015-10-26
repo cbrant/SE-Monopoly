@@ -12,23 +12,24 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 @SuppressWarnings("serial")
 public class PropertyView extends JFrame {
 
-	
+
 	private JLabel lblMediterraneanAve, lblBalticAve, lblOrientalAve, lblVermontAve, lblConnecticutAve, lblStCharlesPlace, lblStatesAve, lblVirginiaAve, lblStJamesPlace, lblTennesseeAve, lblNewYorkAve;
 	private JLabel lblKentuckyAve, lblIndianaAve, lblIllinoisAve, lblAtlanticAve, lblVentnorAve, lblMarvinGardens, lblPacificAve, lblNorthCarolinaAve, lblPennsylvaniaAve, lblParkPlace, lblBoardwalk;
 	private JLabel lblReadingRr, lblPennsylvaniaRr, lblBO, lblShortLine, lblElectricCompany, lblWaterWorks;
-	
+
 	private final static String BUTTON = "button";
 	private final static String HOUSE = "houseProperty";
-	
+
 	private GamePanel parent;
-	
+
 	private ArrayList<JLabel> propLabels = new ArrayList<JLabel>();
 	private ArrayList<JLabel> houseLabels = new ArrayList<JLabel>();
-	
+
 	private Player currentPlayer;
 	private JLabel label;
 	private JLabel label_1;
@@ -74,12 +75,12 @@ public class PropertyView extends JFrame {
 	private JButton button_18;
 	private JButton button_19;
 	private JButton button_20;
-	
+
 	/**
 	 * Create the panel.
 	 */
 	public PropertyView(Player playerIn, GamePanel par) {
-		
+
 		this.parent = par;
 		currentPlayer = playerIn;
 
@@ -88,10 +89,10 @@ public class PropertyView extends JFrame {
 		this.setBackground(new Color(255, 250, 205));
 
 		setBounds(100, 100, 1100, 500);
-		
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
-		
+
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+
 		setBackground(new Color(255, 250, 205));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20};
@@ -99,7 +100,7 @@ public class PropertyView extends JFrame {
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
-		
+
 		JLabel lblBrown = new JLabel("");
 		GridBagConstraints gbc_lblBrown = new GridBagConstraints();
 		gbc_lblBrown.fill = GridBagConstraints.BOTH;
@@ -109,7 +110,7 @@ public class PropertyView extends JFrame {
 		lblBrown.setBackground(new Color(153,76,0));
 		lblBrown.setOpaque(true);
 		getContentPane().add(lblBrown, gbc_lblBrown);
-		
+
 		JLabel lblLightBlue = new JLabel("");
 		GridBagConstraints gbc_lblLightBlue = new GridBagConstraints();
 		gbc_lblLightBlue.fill = GridBagConstraints.BOTH;
@@ -119,7 +120,7 @@ public class PropertyView extends JFrame {
 		lblLightBlue.setBackground(new Color(153,255,255));
 		lblLightBlue.setOpaque(true);
 		getContentPane().add(lblLightBlue, gbc_lblLightBlue);
-		
+
 		JLabel lblPink = new JLabel("");
 		GridBagConstraints gbc_lblPink = new GridBagConstraints();
 		gbc_lblPink.fill = GridBagConstraints.BOTH;
@@ -129,7 +130,7 @@ public class PropertyView extends JFrame {
 		lblPink.setBackground(new Color(255,0,255));
 		lblPink.setOpaque(true);
 		getContentPane().add(lblPink, gbc_lblPink);
-		
+
 		JLabel lblOrange = new JLabel("");
 		GridBagConstraints gbc_lblOrange = new GridBagConstraints();
 		gbc_lblOrange.fill = GridBagConstraints.BOTH;
@@ -139,7 +140,7 @@ public class PropertyView extends JFrame {
 		lblOrange.setBackground(new Color(255,128,0));
 		lblOrange.setOpaque(true);
 		getContentPane().add(lblOrange, gbc_lblOrange);
-		
+
 		JLabel lblRed = new JLabel("");
 		GridBagConstraints gbc_lblRed = new GridBagConstraints();
 		gbc_lblRed.fill = GridBagConstraints.BOTH;
@@ -149,7 +150,7 @@ public class PropertyView extends JFrame {
 		lblRed.setBackground(new Color(255,0,0));
 		lblRed.setOpaque(true);
 		getContentPane().add(lblRed, gbc_lblRed);
-		
+
 		lblMediterraneanAve = new JLabel("Mediterranean Ave");
 		lblMediterraneanAve.setBackground(new Color(255, 250, 205));
 		lblMediterraneanAve.setOpaque(true);
@@ -160,7 +161,7 @@ public class PropertyView extends JFrame {
 		gbc_lblMediterranean.gridy = 2;
 		getContentPane().add(lblMediterraneanAve, gbc_lblMediterranean);
 		propLabels.add(lblMediterraneanAve);
-		
+
 		label = new JLabel("0");
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.fill = GridBagConstraints.BOTH;
@@ -170,7 +171,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label, gbc_label);
 		houseLabels.add(label);
 		label.putClientProperty(HOUSE, "Mediterranean Ave");
-		
+
 		btnH = new JButton("H");
 		GridBagConstraints gbc_btnH = new GridBagConstraints();
 		gbc_btnH.insets = new Insets(0, 0, 5, 5);
@@ -179,7 +180,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(btnH, gbc_btnH);
 		btnH.putClientProperty(BUTTON, 1);
 		btnH.addActionListener(houseClicked);
-		
+
 		lblOrientalAve = new JLabel("Oriental Ave");
 		lblOrientalAve.setBackground(new Color(255, 250, 205));
 		lblOrientalAve.setOpaque(true);
@@ -190,7 +191,7 @@ public class PropertyView extends JFrame {
 		gbc_lblOrientalAve.gridy = 2;
 		getContentPane().add(lblOrientalAve, gbc_lblOrientalAve);
 		propLabels.add(lblOrientalAve);
-		
+
 		label_2 = new JLabel("0");
 		GridBagConstraints gbc_label_2 = new GridBagConstraints();
 		gbc_label_2.insets = new Insets(0, 0, 5, 5);
@@ -199,7 +200,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_2, gbc_label_2);
 		houseLabels.add(label_2);
 		label_2.putClientProperty(HOUSE, "Oriental Ave");
-		
+
 		button_1 = new JButton("H");
 		GridBagConstraints gbc_button_1 = new GridBagConstraints();
 		gbc_button_1.insets = new Insets(0, 0, 5, 5);
@@ -208,7 +209,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_1, gbc_button_1);
 		button_1.putClientProperty(BUTTON, 6);
 		button_1.addActionListener(houseClicked);
-		
+
 		lblStCharlesPlace = new JLabel("St. Charles Place");
 		lblStCharlesPlace.setBackground(new Color(255, 250, 205));
 		lblStCharlesPlace.setOpaque(true);
@@ -219,7 +220,7 @@ public class PropertyView extends JFrame {
 		gbc_lblStCharlesPlace.gridy = 2;
 		getContentPane().add(lblStCharlesPlace, gbc_lblStCharlesPlace);
 		propLabels.add(lblStCharlesPlace);
-		
+
 		label_5 = new JLabel("0");
 		GridBagConstraints gbc_label_5 = new GridBagConstraints();
 		gbc_label_5.insets = new Insets(0, 0, 5, 5);
@@ -228,7 +229,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_5, gbc_label_5);
 		houseLabels.add(label_5);
 		label_5.putClientProperty(HOUSE, "St. Charles Place");
-		
+
 		button_4 = new JButton("H");
 		GridBagConstraints gbc_button_4 = new GridBagConstraints();
 		gbc_button_4.insets = new Insets(0, 0, 5, 5);
@@ -237,7 +238,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_4, gbc_button_4);
 		button_4.putClientProperty(BUTTON, 11);
 		button_4.addActionListener(houseClicked);
-		
+
 		lblStJamesPlace = new JLabel("St. James Place");
 		lblStJamesPlace.setBackground(new Color(255, 250, 205));
 		lblStJamesPlace.setOpaque(true);
@@ -248,7 +249,7 @@ public class PropertyView extends JFrame {
 		gbc_lblStJamesPlace.gridy = 2;
 		getContentPane().add(lblStJamesPlace, gbc_lblStJamesPlace);
 		propLabels.add(lblStJamesPlace);
-		
+
 		label_8 = new JLabel("0");
 		GridBagConstraints gbc_label_8 = new GridBagConstraints();
 		gbc_label_8.insets = new Insets(0, 0, 5, 5);
@@ -257,7 +258,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_8, gbc_label_8);
 		houseLabels.add(label_8);
 		label_8.putClientProperty(HOUSE, "St. James Place");
-		
+
 		button_7 = new JButton("H");
 		GridBagConstraints gbc_button_7 = new GridBagConstraints();
 		gbc_button_7.insets = new Insets(0, 0, 5, 5);
@@ -266,7 +267,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_7, gbc_button_7);
 		button_7.putClientProperty(BUTTON, 16);
 		button_7.addActionListener(houseClicked);
-		
+
 		lblKentuckyAve = new JLabel("Kentucky Ave");
 		lblKentuckyAve.setBackground(new Color(255, 250, 205));
 		lblKentuckyAve.setOpaque(true);
@@ -277,7 +278,7 @@ public class PropertyView extends JFrame {
 		gbc_lblKentuckyAve.gridy = 2;
 		getContentPane().add(lblKentuckyAve, gbc_lblKentuckyAve);
 		propLabels.add(lblKentuckyAve);
-		
+
 		label_11 = new JLabel("0");
 		GridBagConstraints gbc_label_11 = new GridBagConstraints();
 		gbc_label_11.insets = new Insets(0, 0, 5, 5);
@@ -286,7 +287,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_11, gbc_label_11);
 		houseLabels.add(label_11);
 		label_11.putClientProperty(HOUSE, "Kentucky Ave");
-		
+
 		button_10 = new JButton("H");
 		GridBagConstraints gbc_button_10 = new GridBagConstraints();
 		gbc_button_10.insets = new Insets(0, 0, 5, 5);
@@ -295,7 +296,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_10, gbc_button_10);
 		button_10.putClientProperty(BUTTON, 21);
 		button_10.addActionListener(houseClicked);
-		
+
 		lblBalticAve = new JLabel ("Baltic Ave");
 		lblBalticAve.setBackground(new Color(255, 250, 205));
 		lblBalticAve.setOpaque(true);
@@ -306,8 +307,8 @@ public class PropertyView extends JFrame {
 		gbc_lblBalticAve.gridy = 3;
 		getContentPane().add(lblBalticAve, gbc_lblBalticAve);
 		propLabels.add(lblBalticAve);
-		
-		
+
+
 		label_1 = new JLabel("0");
 		GridBagConstraints gbc_label_1 = new GridBagConstraints();
 		gbc_label_1.insets = new Insets(0, 0, 5, 5);
@@ -316,7 +317,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_1, gbc_label_1);
 		houseLabels.add(label_1);
 		label_1.putClientProperty(HOUSE, "Baltic Ave");
-		
+
 		button = new JButton("H");
 		GridBagConstraints gbc_button = new GridBagConstraints();
 		gbc_button.insets = new Insets(0, 0, 5, 5);
@@ -325,7 +326,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button, gbc_button);
 		button.putClientProperty(BUTTON, 3);
 		button.addActionListener(houseClicked);
-		
+
 		lblVermontAve = new JLabel("Vermont Ave");
 		lblVermontAve.setBackground(new Color(255, 250, 205));
 		lblVermontAve.setOpaque(true);
@@ -336,7 +337,7 @@ public class PropertyView extends JFrame {
 		gbc_lblVermontAve.gridy = 3;
 		getContentPane().add(lblVermontAve, gbc_lblVermontAve);
 		propLabels.add(lblVermontAve);
-		
+
 		label_3 = new JLabel("0");
 		GridBagConstraints gbc_label_3 = new GridBagConstraints();
 		gbc_label_3.insets = new Insets(0, 0, 5, 5);
@@ -345,7 +346,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_3, gbc_label_3);
 		houseLabels.add(label_3);
 		label_3.putClientProperty(HOUSE, "Vermont Ave");
-		
+
 		button_2 = new JButton("H");
 		GridBagConstraints gbc_button_2 = new GridBagConstraints();
 		gbc_button_2.insets = new Insets(0, 0, 5, 5);
@@ -354,7 +355,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_2, gbc_button_2);
 		button_2.putClientProperty(BUTTON, 8);
 		button_2.addActionListener(houseClicked);
-		
+
 		lblStatesAve = new JLabel("States Ave");
 		lblStatesAve.setBackground(new Color(255, 250, 205));
 		lblStatesAve.setOpaque(true);
@@ -365,7 +366,7 @@ public class PropertyView extends JFrame {
 		gbc_lblStatesAve.gridy = 3;
 		getContentPane().add(lblStatesAve, gbc_lblStatesAve);
 		propLabels.add(lblStatesAve);
-		
+
 		label_6 = new JLabel("0");
 		GridBagConstraints gbc_label_6 = new GridBagConstraints();
 		gbc_label_6.insets = new Insets(0, 0, 5, 5);
@@ -374,7 +375,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_6, gbc_label_6);
 		houseLabels.add(label_6);
 		label_6.putClientProperty(HOUSE, "States Ave");
-		
+
 		button_5 = new JButton("H");
 		GridBagConstraints gbc_button_5 = new GridBagConstraints();
 		gbc_button_5.insets = new Insets(0, 0, 5, 5);
@@ -383,7 +384,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_5, gbc_button_5);
 		button_5.putClientProperty(BUTTON, 13);
 		button_5.addActionListener(houseClicked);
-		
+
 		lblTennesseeAve = new JLabel("Tennessee Ave");
 		lblTennesseeAve.setBackground(new Color(255, 250, 205));
 		lblTennesseeAve.setOpaque(true);
@@ -394,7 +395,7 @@ public class PropertyView extends JFrame {
 		gbc_lblTennesseeAve.gridy = 3;
 		getContentPane().add(lblTennesseeAve, gbc_lblTennesseeAve);
 		propLabels.add(lblTennesseeAve);
-		
+
 		label_9 = new JLabel("0");
 		GridBagConstraints gbc_label_9 = new GridBagConstraints();
 		gbc_label_9.insets = new Insets(0, 0, 5, 5);
@@ -403,7 +404,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_9, gbc_label_9);
 		houseLabels.add(label_9);
 		label_9.putClientProperty(HOUSE, "Tennessee Ave");
-		
+
 		button_8 = new JButton("H");
 		GridBagConstraints gbc_button_8 = new GridBagConstraints();
 		gbc_button_8.insets = new Insets(0, 0, 5, 5);
@@ -412,7 +413,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_8, gbc_button_8);
 		button_8.putClientProperty(BUTTON, 18);
 		button_8.addActionListener(houseClicked);
-		
+
 		lblIndianaAve = new JLabel("Indiana Ave");
 		lblIndianaAve.setBackground(new Color(255, 250, 205));
 		lblIndianaAve.setOpaque(true);
@@ -423,7 +424,7 @@ public class PropertyView extends JFrame {
 		gbc_lblIndianaAve.gridy = 3;
 		getContentPane().add(lblIndianaAve, gbc_lblIndianaAve);
 		propLabels.add(lblIndianaAve);
-		
+
 		label_12 = new JLabel("0");
 		GridBagConstraints gbc_label_12 = new GridBagConstraints();
 		gbc_label_12.insets = new Insets(0, 0, 5, 5);
@@ -432,7 +433,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_12, gbc_label_12);
 		houseLabels.add(label_12);
 		label_12.putClientProperty(HOUSE, "Indiana Ave");
-		
+
 		button_11 = new JButton("H");
 		GridBagConstraints gbc_button_11 = new GridBagConstraints();
 		gbc_button_11.insets = new Insets(0, 0, 5, 5);
@@ -441,7 +442,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_11, gbc_button_11);
 		button_11.putClientProperty(BUTTON, 23);
 		button_11.addActionListener(houseClicked);
-		
+
 		lblConnecticutAve = new JLabel("Connecticut Ave");
 		lblConnecticutAve.setBackground(new Color(255, 250, 205));
 		lblConnecticutAve.setOpaque(true);
@@ -452,7 +453,7 @@ public class PropertyView extends JFrame {
 		gbc_lblConnecticutAve.gridy = 4;
 		getContentPane().add(lblConnecticutAve, gbc_lblConnecticutAve);
 		propLabels.add(lblConnecticutAve);
-		
+
 		label_4 = new JLabel("0");
 		GridBagConstraints gbc_label_4 = new GridBagConstraints();
 		gbc_label_4.insets = new Insets(0, 0, 5, 5);
@@ -461,7 +462,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_4, gbc_label_4);
 		houseLabels.add(label_4);
 		label_4.putClientProperty(HOUSE, "Connecticut Ave");
-		
+
 		button_3 = new JButton("H");
 		GridBagConstraints gbc_button_3 = new GridBagConstraints();
 		gbc_button_3.insets = new Insets(0, 0, 5, 5);
@@ -470,7 +471,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_3, gbc_button_3);
 		button_3.putClientProperty(BUTTON, 9);
 		button_3.addActionListener(houseClicked);
-		
+
 		lblVirginiaAve = new JLabel("Virginia Ave");
 		lblVirginiaAve.setBackground(new Color(255, 250, 205));
 		lblVirginiaAve.setOpaque(true);
@@ -481,7 +482,7 @@ public class PropertyView extends JFrame {
 		gbc_lblVirginiaAve.gridy = 4;
 		getContentPane().add(lblVirginiaAve, gbc_lblVirginiaAve);
 		propLabels.add(lblVirginiaAve);		
-		
+
 		label_7 = new JLabel("0");
 		GridBagConstraints gbc_label_7 = new GridBagConstraints();
 		gbc_label_7.insets = new Insets(0, 0, 5, 5);
@@ -490,7 +491,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_7, gbc_label_7);
 		houseLabels.add(label_7);
 		label_7.putClientProperty(HOUSE, "Virginia Ave");
-		
+
 		button_6 = new JButton("H");
 		GridBagConstraints gbc_button_6 = new GridBagConstraints();
 		gbc_button_6.insets = new Insets(0, 0, 5, 5);
@@ -499,7 +500,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_6, gbc_button_6);
 		button_6.putClientProperty(BUTTON, 14);
 		button_6.addActionListener(houseClicked);
-		
+
 		lblNewYorkAve = new JLabel("New York Ave");
 		lblNewYorkAve.setBackground(new Color(255, 250, 205));
 		lblNewYorkAve.setOpaque(true);
@@ -510,7 +511,7 @@ public class PropertyView extends JFrame {
 		gbc_lblNewYorkAve.gridy = 4;
 		getContentPane().add(lblNewYorkAve, gbc_lblNewYorkAve);
 		propLabels.add(lblNewYorkAve);
-		
+
 		label_10 = new JLabel("0");
 		GridBagConstraints gbc_label_10 = new GridBagConstraints();
 		gbc_label_10.insets = new Insets(0, 0, 5, 5);
@@ -519,7 +520,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_10, gbc_label_10);
 		houseLabels.add(label_10);
 		label_10.putClientProperty(HOUSE, "New York Ave");
-		
+
 		button_9 = new JButton("H");
 		GridBagConstraints gbc_button_9 = new GridBagConstraints();
 		gbc_button_9.insets = new Insets(0, 0, 5, 5);
@@ -528,7 +529,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_9, gbc_button_9);
 		button_9.putClientProperty(BUTTON, 19);
 		button_9.addActionListener(houseClicked);
-		
+
 		lblIllinoisAve = new JLabel("Illinois Ave");
 		lblIllinoisAve.setBackground(new Color(255, 250, 205));
 		lblIllinoisAve.setOpaque(true);
@@ -539,7 +540,7 @@ public class PropertyView extends JFrame {
 		gbc_lblIllinoisAve.gridy = 4;
 		getContentPane().add(lblIllinoisAve, gbc_lblIllinoisAve);
 		propLabels.add(lblIllinoisAve);
-		
+
 		label_13 = new JLabel("0");
 		GridBagConstraints gbc_label_13 = new GridBagConstraints();
 		gbc_label_13.insets = new Insets(0, 0, 5, 5);
@@ -548,7 +549,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_13, gbc_label_13);
 		houseLabels.add(label_13);
 		label_13.putClientProperty(HOUSE, "Illinois Ave");
-		
+
 		button_12 = new JButton("H");
 		GridBagConstraints gbc_button_12 = new GridBagConstraints();
 		gbc_button_12.insets = new Insets(0, 0, 5, 5);
@@ -557,7 +558,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_12, gbc_button_12);
 		button_12.putClientProperty(BUTTON, 24);
 		button_12.addActionListener(houseClicked);
-		
+
 		JLabel lblYellow = new JLabel("");
 		GridBagConstraints gbc_lblYellow = new GridBagConstraints();
 		gbc_lblYellow.fill = GridBagConstraints.BOTH;
@@ -567,7 +568,7 @@ public class PropertyView extends JFrame {
 		lblYellow.setBackground(new Color(255,255,0));
 		lblYellow.setOpaque(true);
 		getContentPane().add(lblYellow, gbc_lblYellow);
-		
+
 		JLabel lblGreen = new JLabel("");
 		GridBagConstraints gbc_lblGreen = new GridBagConstraints();
 		gbc_lblGreen.fill = GridBagConstraints.BOTH;
@@ -577,7 +578,7 @@ public class PropertyView extends JFrame {
 		lblGreen.setBackground(new Color(0,204,102));
 		lblGreen.setOpaque(true);
 		getContentPane().add(lblGreen, gbc_lblGreen);
-		
+
 		JLabel lblDarkBlue = new JLabel("");
 		GridBagConstraints gbc_lblDarkBlue = new GridBagConstraints();
 		gbc_lblDarkBlue.fill = GridBagConstraints.BOTH;
@@ -587,21 +588,21 @@ public class PropertyView extends JFrame {
 		lblDarkBlue.setBackground(new Color(0,128,255));
 		lblDarkBlue.setOpaque(true);
 		getContentPane().add(lblDarkBlue, gbc_lblDarkBlue);
-		
+
 		JLabel lblRailroads = new JLabel("Railroads");
 		GridBagConstraints gbc_lblRailroads = new GridBagConstraints();
 		gbc_lblRailroads.insets = new Insets(0, 0, 5, 5);
 		gbc_lblRailroads.gridx = 13;
 		gbc_lblRailroads.gridy = 6;
 		getContentPane().add(lblRailroads, gbc_lblRailroads);
-		
+
 		JLabel lblUtilities = new JLabel("Utilities");
 		GridBagConstraints gbc_lblUtilities = new GridBagConstraints();
 		gbc_lblUtilities.insets = new Insets(0, 0, 5, 5);
 		gbc_lblUtilities.gridx = 17;
 		gbc_lblUtilities.gridy = 6;
 		getContentPane().add(lblUtilities, gbc_lblUtilities);
-		
+
 		lblAtlanticAve = new JLabel("Atlantic Ave");
 		lblAtlanticAve.setBackground(new Color(255, 250, 205));
 		lblAtlanticAve.setOpaque(true);
@@ -612,7 +613,7 @@ public class PropertyView extends JFrame {
 		gbc_lblAtlanticAve.gridy = 7;
 		getContentPane().add(lblAtlanticAve, gbc_lblAtlanticAve);
 		propLabels.add(lblAtlanticAve);
-		
+
 		label_19 = new JLabel("0");
 		GridBagConstraints gbc_label_19 = new GridBagConstraints();
 		gbc_label_19.insets = new Insets(0, 0, 5, 5);
@@ -621,7 +622,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_19, gbc_label_19);
 		houseLabels.add(label_19);
 		label_19.putClientProperty(HOUSE, "Atlantic Ave");
-		
+
 		button_18 = new JButton("H");
 		GridBagConstraints gbc_button_18 = new GridBagConstraints();
 		gbc_button_18.insets = new Insets(0, 0, 5, 5);
@@ -630,7 +631,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_18, gbc_button_18);
 		button_18.putClientProperty(BUTTON, 26);
 		button_18.addActionListener(houseClicked);
-		
+
 		lblPacificAve = new JLabel("Pacific Ave");
 		lblPacificAve.setBackground(new Color(255, 250, 205));
 		lblPacificAve.setOpaque(true);
@@ -641,7 +642,7 @@ public class PropertyView extends JFrame {
 		gbc_lblPacificAve.gridy = 7;
 		getContentPane().add(lblPacificAve, gbc_lblPacificAve);
 		propLabels.add(lblPacificAve);
-		
+
 		label_16 = new JLabel("0");
 		GridBagConstraints gbc_label_16 = new GridBagConstraints();
 		gbc_label_16.insets = new Insets(0, 0, 5, 5);
@@ -650,7 +651,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_16, gbc_label_16);
 		houseLabels.add(label_16);
 		label_16.putClientProperty(HOUSE, "Pacific Ave");
-		
+
 		button_15 = new JButton("H");
 		GridBagConstraints gbc_button_15 = new GridBagConstraints();
 		gbc_button_15.insets = new Insets(0, 0, 5, 5);
@@ -659,7 +660,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_15, gbc_button_15);
 		button_15.putClientProperty(BUTTON, 31);
 		button_15.addActionListener(houseClicked);
-		
+
 		lblParkPlace = new JLabel("Park Place");
 		lblParkPlace.setBackground(new Color(255, 250, 205));
 		lblParkPlace.setOpaque(true);
@@ -670,7 +671,7 @@ public class PropertyView extends JFrame {
 		gbc_lblParkPlace.gridy = 7;
 		getContentPane().add(lblParkPlace, gbc_lblParkPlace);
 		propLabels.add(lblParkPlace);
-		
+
 		label_14 = new JLabel("0");
 		GridBagConstraints gbc_label_14 = new GridBagConstraints();
 		gbc_label_14.insets = new Insets(0, 0, 5, 5);
@@ -679,7 +680,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_14, gbc_label_14);
 		houseLabels.add(label_14);
 		label_14.putClientProperty(HOUSE, "Park Place");
-		
+
 		button_13 = new JButton("H");
 		GridBagConstraints gbc_button_13 = new GridBagConstraints();
 		gbc_button_13.insets = new Insets(0, 0, 5, 5);
@@ -688,7 +689,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_13, gbc_button_13);
 		button_13.putClientProperty(BUTTON, 37);
 		button_13.addActionListener(houseClicked);
-		
+
 		lblReadingRr = new JLabel("Reading RR");
 		lblReadingRr.setBackground(new Color(255, 250, 205));
 		lblReadingRr.setOpaque(true);
@@ -699,7 +700,7 @@ public class PropertyView extends JFrame {
 		gbc_lblReadingRr.gridy = 7;
 		getContentPane().add(lblReadingRr, gbc_lblReadingRr);
 		propLabels.add(lblReadingRr);
-		
+
 		lblElectricCompany = new JLabel("Electric Company");
 		lblElectricCompany.setBackground(new Color(255, 250, 205));
 		lblElectricCompany.setOpaque(true);
@@ -710,7 +711,7 @@ public class PropertyView extends JFrame {
 		gbc_lblElectricCompany.gridy = 7;
 		getContentPane().add(lblElectricCompany, gbc_lblElectricCompany);
 		propLabels.add(lblElectricCompany);
-		
+
 		lblVentnorAve = new JLabel("Ventnor Ave");
 		lblVentnorAve.setBackground(new Color(255, 250, 205));
 		lblVentnorAve.setOpaque(true);
@@ -721,7 +722,7 @@ public class PropertyView extends JFrame {
 		gbc_lblVentnorAve.gridy = 8;
 		getContentPane().add(lblVentnorAve, gbc_lblVentnorAve);
 		propLabels.add(lblVentnorAve);	
-		
+
 		label_20 = new JLabel("0");
 		GridBagConstraints gbc_label_20 = new GridBagConstraints();
 		gbc_label_20.insets = new Insets(0, 0, 5, 5);
@@ -730,7 +731,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_20, gbc_label_20);
 		houseLabels.add(label_20);
 		label_20.putClientProperty(HOUSE, "Ventnor Ave");
-		
+
 		button_19 = new JButton("H");
 		GridBagConstraints gbc_button_19 = new GridBagConstraints();
 		gbc_button_19.insets = new Insets(0, 0, 5, 5);
@@ -739,7 +740,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_19, gbc_button_19);
 		button_19.putClientProperty(BUTTON, 27);
 		button_19.addActionListener(houseClicked);
-		
+
 		lblNorthCarolinaAve = new JLabel("North Carolina Ave");
 		lblNorthCarolinaAve.setBackground(new Color(255, 250, 205));
 		lblNorthCarolinaAve.setOpaque(true);
@@ -750,7 +751,7 @@ public class PropertyView extends JFrame {
 		gbc_lblNorthCarolinaAve.gridy = 8;
 		getContentPane().add(lblNorthCarolinaAve, gbc_lblNorthCarolinaAve);
 		propLabels.add(lblNorthCarolinaAve);
-		
+
 		label_17 = new JLabel("0");
 		GridBagConstraints gbc_label_17 = new GridBagConstraints();
 		gbc_label_17.insets = new Insets(0, 0, 5, 5);
@@ -759,7 +760,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_17, gbc_label_17);
 		houseLabels.add(label_17);
 		label_17.putClientProperty(HOUSE, "North Carolina Ave");
-		
+
 		button_16 = new JButton("H");
 		GridBagConstraints gbc_button_16 = new GridBagConstraints();
 		gbc_button_16.insets = new Insets(0, 0, 5, 5);
@@ -768,7 +769,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_16, gbc_button_16);
 		button_16.putClientProperty(BUTTON, 32);
 		button_16.addActionListener(houseClicked);
-		
+
 		lblBoardwalk = new JLabel("Boardwalk");
 		lblBoardwalk.setBackground(new Color(255, 250, 205));
 		lblBoardwalk.setOpaque(true);
@@ -779,7 +780,7 @@ public class PropertyView extends JFrame {
 		gbc_lblBoardwalk.gridy = 8;
 		getContentPane().add(lblBoardwalk, gbc_lblBoardwalk);
 		propLabels.add(lblBoardwalk);
-		
+
 		label_15 = new JLabel("0");
 		GridBagConstraints gbc_label_15 = new GridBagConstraints();
 		gbc_label_15.insets = new Insets(0, 0, 5, 5);
@@ -788,7 +789,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_15, gbc_label_15);
 		houseLabels.add(label_15);
 		label_15.putClientProperty(HOUSE, "Boardwalk");
-		
+
 		button_14 = new JButton("H");
 		GridBagConstraints gbc_button_14 = new GridBagConstraints();
 		gbc_button_14.insets = new Insets(0, 0, 5, 5);
@@ -797,7 +798,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_14, gbc_button_14);
 		button_14.putClientProperty(BUTTON, 39);
 		button_14.addActionListener(houseClicked);
-		
+
 		lblPennsylvaniaRr = new JLabel("Pennsylvania RR");
 		lblPennsylvaniaRr.setBackground(new Color(255, 250, 205));
 		lblPennsylvaniaRr.setOpaque(true);
@@ -808,7 +809,7 @@ public class PropertyView extends JFrame {
 		gbc_lblPennsylvaniaRr.gridy = 8;
 		getContentPane().add(lblPennsylvaniaRr, gbc_lblPennsylvaniaRr);
 		propLabels.add(lblPennsylvaniaRr);
-		
+
 		lblWaterWorks = new JLabel("Water Works");
 		lblWaterWorks.setBackground(new Color(255, 250, 205));
 		lblWaterWorks.setOpaque(true);
@@ -819,7 +820,7 @@ public class PropertyView extends JFrame {
 		gbc_lblWaterWorks.gridy = 8;
 		getContentPane().add(lblWaterWorks, gbc_lblWaterWorks);
 		propLabels.add(lblWaterWorks);
-		
+
 		lblMarvinGardens = new JLabel("Marvin Gardens");
 		lblMarvinGardens.setBackground(new Color(255, 250, 205));
 		lblMarvinGardens.setOpaque(true);
@@ -830,7 +831,7 @@ public class PropertyView extends JFrame {
 		gbc_lblMarvinGardens.gridy = 9;
 		getContentPane().add(lblMarvinGardens, gbc_lblMarvinGardens);
 		propLabels.add(lblMarvinGardens);
-		
+
 		label_21 = new JLabel("0");
 		GridBagConstraints gbc_label_21 = new GridBagConstraints();
 		gbc_label_21.insets = new Insets(0, 0, 5, 5);
@@ -839,7 +840,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_21, gbc_label_21);
 		houseLabels.add(label_21);
 		label_21.putClientProperty(HOUSE, "Marvin Gardens");
-		
+
 		button_20 = new JButton("H");
 		GridBagConstraints gbc_button_20 = new GridBagConstraints();
 		gbc_button_20.insets = new Insets(0, 0, 5, 5);
@@ -848,7 +849,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_20, gbc_button_20);
 		button_20.putClientProperty(BUTTON, 29);
 		button_20.addActionListener(houseClicked);
-		
+
 		lblPennsylvaniaAve = new JLabel("Pennsylvania Ave");
 		lblPennsylvaniaAve.setBackground(new Color(255, 250, 205));
 		lblPennsylvaniaAve.setOpaque(true);
@@ -859,7 +860,7 @@ public class PropertyView extends JFrame {
 		gbc_lblPennsylvaniaAve.gridy = 9;
 		getContentPane().add(lblPennsylvaniaAve, gbc_lblPennsylvaniaAve);
 		propLabels.add(lblPennsylvaniaAve);
-		
+
 		label_18 = new JLabel("0");
 		GridBagConstraints gbc_label_18 = new GridBagConstraints();
 		gbc_label_18.insets = new Insets(0, 0, 5, 5);
@@ -868,7 +869,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(label_18, gbc_label_18);
 		houseLabels.add(label_18);
 		label_18.putClientProperty(HOUSE, "Pennsylvania Ave");
-		
+
 		button_17 = new JButton("H");
 		GridBagConstraints gbc_button_17 = new GridBagConstraints();
 		gbc_button_17.insets = new Insets(0, 0, 5, 5);
@@ -877,7 +878,7 @@ public class PropertyView extends JFrame {
 		getContentPane().add(button_17, gbc_button_17);
 		button_17.putClientProperty(BUTTON, 34);
 		button_17.addActionListener(houseClicked);
-		
+
 		lblBO = new JLabel("B. & O. RR");
 		lblBO.setBackground(new Color(255, 250, 205));
 		lblBO.setOpaque(true);
@@ -888,7 +889,7 @@ public class PropertyView extends JFrame {
 		gbc_lblBO.gridy = 9;
 		getContentPane().add(lblBO, gbc_lblBO);
 		propLabels.add(lblBO);
-		
+
 		lblShortLine = new JLabel("Short Line");
 		lblShortLine.setBackground(new Color(255, 250, 205));
 		lblShortLine.setOpaque(true);
@@ -899,30 +900,30 @@ public class PropertyView extends JFrame {
 		gbc_lblShortLine.gridy = 10;
 		getContentPane().add(lblShortLine, gbc_lblShortLine);
 		propLabels.add(lblShortLine);
-		
+
 		highlightOwned();
 		updateHouses();
-		
+
 	}
-	
+
 	void highlightOwned()
 	{
-		
+
 		for(ArrayList<Property> x : currentPlayer.getProperties())
 		{
 			for(Property y : x)
 			{
 				String prop = y.getName();
-					for(JLabel z : propLabels)
+				for(JLabel z : propLabels)
+				{
+					if (z.getText().equals(prop))
 					{
-						if (z.getText().equals(prop))
-						{
-							z.setBackground(new Color(204, 255, 153) );
-						}
+						z.setBackground(new Color(204, 255, 153) );
 					}
+				}
 			}
 		}
-		
+
 	}
 
 	private ActionListener houseClicked = new ActionListener() { 
@@ -930,13 +931,13 @@ public class PropertyView extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {			 
 			int spaceSelected = (int)(((JButton)e.getSource()).getClientProperty(PropertyView.BUTTON));
-			
+
 			MainWindow main = parent.getMyParent();
-					
+
 			//This prints out what property is getting a house
 			//Need to write code to actually check if the house can be bought and then buy it
 			Property prop = (Property)main.spaces.get(spaceSelected);
-			
+
 			// can only buy a house if all of the following are satisfied: 
 			//	(1) the player owns the space
 			//	(2) the player owns all of the properties of that space
@@ -961,7 +962,7 @@ public class PropertyView extends JFrame {
 						prop.setNumHouses(prop.getNumHouses() + 1);
 						updateHouses();
 					}
-					
+
 				}
 				// if they don't have enough money, give them a warning
 				else {
@@ -970,18 +971,18 @@ public class PropertyView extends JFrame {
 							prop.getHouseCost()+"\nAccount Balance: $"+currentPlayer.getBank(), 
 							"Bank error", JOptionPane.ERROR_MESSAGE);
 				}
-				
+
 			}
 			else {
 				// one of the above conditions is not met
 				//System.out.println("DNFODK");
 				JOptionPane.showMessageDialog(null, "You can't buy that right now!", "Error", JOptionPane.ERROR_MESSAGE);
 			}
-			
+
 		}
-			
+
 	};
-	
+
 	public void updateHouses()
 	{
 		for( ArrayList<Property> propCategories : this.currentPlayer.getProperties() )
@@ -999,5 +1000,5 @@ public class PropertyView extends JFrame {
 			}
 		}
 	}
-	
+
 }
