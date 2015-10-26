@@ -22,11 +22,12 @@ public class PropertyView extends JFrame {
 	private JLabel lblReadingRr, lblPennsylvaniaRr, lblBO, lblShortLine, lblElectricCompany, lblWaterWorks;
 	
 	private final static String BUTTON = "button";
+	private final static String HOUSE = "houseProperty";
 	
 	private GamePanel parent;
-	private Player playerIn;
 	
 	private ArrayList<JLabel> propLabels = new ArrayList<JLabel>();
+	private ArrayList<JLabel> houseLabels = new ArrayList<JLabel>();
 	
 	private Player currentPlayer;
 	private JLabel label;
@@ -167,6 +168,8 @@ public class PropertyView extends JFrame {
 		gbc_label.gridx = 2;
 		gbc_label.gridy = 2;
 		getContentPane().add(label, gbc_label);
+		houseLabels.add(label);
+		label.putClientProperty(HOUSE, "Mediterranean Ave");
 		
 		btnH = new JButton("H");
 		GridBagConstraints gbc_btnH = new GridBagConstraints();
@@ -194,6 +197,8 @@ public class PropertyView extends JFrame {
 		gbc_label_2.gridx = 6;
 		gbc_label_2.gridy = 2;
 		getContentPane().add(label_2, gbc_label_2);
+		houseLabels.add(label_2);
+		label_2.putClientProperty(HOUSE, "Oriental Ave");
 		
 		button_1 = new JButton("H");
 		GridBagConstraints gbc_button_1 = new GridBagConstraints();
@@ -221,6 +226,8 @@ public class PropertyView extends JFrame {
 		gbc_label_5.gridx = 10;
 		gbc_label_5.gridy = 2;
 		getContentPane().add(label_5, gbc_label_5);
+		houseLabels.add(label_5);
+		label_5.putClientProperty(HOUSE, "St. Charles Place");
 		
 		button_4 = new JButton("H");
 		GridBagConstraints gbc_button_4 = new GridBagConstraints();
@@ -242,13 +249,14 @@ public class PropertyView extends JFrame {
 		getContentPane().add(lblStJamesPlace, gbc_lblStJamesPlace);
 		propLabels.add(lblStJamesPlace);
 		
-		
 		label_8 = new JLabel("0");
 		GridBagConstraints gbc_label_8 = new GridBagConstraints();
 		gbc_label_8.insets = new Insets(0, 0, 5, 5);
 		gbc_label_8.gridx = 14;
 		gbc_label_8.gridy = 2;
 		getContentPane().add(label_8, gbc_label_8);
+		houseLabels.add(label_8);
+		label_8.putClientProperty(HOUSE, "St. James Place");
 		
 		button_7 = new JButton("H");
 		GridBagConstraints gbc_button_7 = new GridBagConstraints();
@@ -276,6 +284,8 @@ public class PropertyView extends JFrame {
 		gbc_label_11.gridx = 18;
 		gbc_label_11.gridy = 2;
 		getContentPane().add(label_11, gbc_label_11);
+		houseLabels.add(label_11);
+		label_11.putClientProperty(HOUSE, "Kentucky Ave");
 		
 		button_10 = new JButton("H");
 		GridBagConstraints gbc_button_10 = new GridBagConstraints();
@@ -304,6 +314,8 @@ public class PropertyView extends JFrame {
 		gbc_label_1.gridx = 2;
 		gbc_label_1.gridy = 3;
 		getContentPane().add(label_1, gbc_label_1);
+		houseLabels.add(label_1);
+		label_1.putClientProperty(HOUSE, "Baltic Ave");
 		
 		button = new JButton("H");
 		GridBagConstraints gbc_button = new GridBagConstraints();
@@ -331,6 +343,8 @@ public class PropertyView extends JFrame {
 		gbc_label_3.gridx = 6;
 		gbc_label_3.gridy = 3;
 		getContentPane().add(label_3, gbc_label_3);
+		houseLabels.add(label_3);
+		label_3.putClientProperty(HOUSE, "Vermont Ave");
 		
 		button_2 = new JButton("H");
 		GridBagConstraints gbc_button_2 = new GridBagConstraints();
@@ -358,6 +372,8 @@ public class PropertyView extends JFrame {
 		gbc_label_6.gridx = 10;
 		gbc_label_6.gridy = 3;
 		getContentPane().add(label_6, gbc_label_6);
+		houseLabels.add(label_6);
+		label_6.putClientProperty(HOUSE, "States Ave");
 		
 		button_5 = new JButton("H");
 		GridBagConstraints gbc_button_5 = new GridBagConstraints();
@@ -385,6 +401,8 @@ public class PropertyView extends JFrame {
 		gbc_label_9.gridx = 14;
 		gbc_label_9.gridy = 3;
 		getContentPane().add(label_9, gbc_label_9);
+		houseLabels.add(label_9);
+		label_9.putClientProperty(HOUSE, "Tennessee Ave");
 		
 		button_8 = new JButton("H");
 		GridBagConstraints gbc_button_8 = new GridBagConstraints();
@@ -412,6 +430,8 @@ public class PropertyView extends JFrame {
 		gbc_label_12.gridx = 18;
 		gbc_label_12.gridy = 3;
 		getContentPane().add(label_12, gbc_label_12);
+		houseLabels.add(label_12);
+		label_12.putClientProperty(HOUSE, "Indiana Ave");
 		
 		button_11 = new JButton("H");
 		GridBagConstraints gbc_button_11 = new GridBagConstraints();
@@ -439,6 +459,8 @@ public class PropertyView extends JFrame {
 		gbc_label_4.gridx = 6;
 		gbc_label_4.gridy = 4;
 		getContentPane().add(label_4, gbc_label_4);
+		houseLabels.add(label_4);
+		label_4.putClientProperty(HOUSE, "Connecticut Ave");
 		
 		button_3 = new JButton("H");
 		GridBagConstraints gbc_button_3 = new GridBagConstraints();
@@ -458,7 +480,7 @@ public class PropertyView extends JFrame {
 		gbc_lblVirginiaAve.gridx = 9;
 		gbc_lblVirginiaAve.gridy = 4;
 		getContentPane().add(lblVirginiaAve, gbc_lblVirginiaAve);
-		propLabels.add(lblVirginiaAve);
+		propLabels.add(lblVirginiaAve);		
 		
 		label_7 = new JLabel("0");
 		GridBagConstraints gbc_label_7 = new GridBagConstraints();
@@ -466,6 +488,8 @@ public class PropertyView extends JFrame {
 		gbc_label_7.gridx = 10;
 		gbc_label_7.gridy = 4;
 		getContentPane().add(label_7, gbc_label_7);
+		houseLabels.add(label_7);
+		label_7.putClientProperty(HOUSE, "Virginia Ave");
 		
 		button_6 = new JButton("H");
 		GridBagConstraints gbc_button_6 = new GridBagConstraints();
@@ -493,6 +517,8 @@ public class PropertyView extends JFrame {
 		gbc_label_10.gridx = 14;
 		gbc_label_10.gridy = 4;
 		getContentPane().add(label_10, gbc_label_10);
+		houseLabels.add(label_10);
+		label_10.putClientProperty(HOUSE, "New York Ave");
 		
 		button_9 = new JButton("H");
 		GridBagConstraints gbc_button_9 = new GridBagConstraints();
@@ -520,6 +546,8 @@ public class PropertyView extends JFrame {
 		gbc_label_13.gridx = 18;
 		gbc_label_13.gridy = 4;
 		getContentPane().add(label_13, gbc_label_13);
+		houseLabels.add(label_13);
+		label_13.putClientProperty(HOUSE, "Illinois Ave");
 		
 		button_12 = new JButton("H");
 		GridBagConstraints gbc_button_12 = new GridBagConstraints();
@@ -591,6 +619,8 @@ public class PropertyView extends JFrame {
 		gbc_label_19.gridx = 2;
 		gbc_label_19.gridy = 7;
 		getContentPane().add(label_19, gbc_label_19);
+		houseLabels.add(label_19);
+		label_19.putClientProperty(HOUSE, "Atlantic Ave");
 		
 		button_18 = new JButton("H");
 		GridBagConstraints gbc_button_18 = new GridBagConstraints();
@@ -618,6 +648,8 @@ public class PropertyView extends JFrame {
 		gbc_label_16.gridx = 6;
 		gbc_label_16.gridy = 7;
 		getContentPane().add(label_16, gbc_label_16);
+		houseLabels.add(label_16);
+		label_16.putClientProperty(HOUSE, "Pacific Ave");
 		
 		button_15 = new JButton("H");
 		GridBagConstraints gbc_button_15 = new GridBagConstraints();
@@ -645,6 +677,8 @@ public class PropertyView extends JFrame {
 		gbc_label_14.gridx = 10;
 		gbc_label_14.gridy = 7;
 		getContentPane().add(label_14, gbc_label_14);
+		houseLabels.add(label_14);
+		label_14.putClientProperty(HOUSE, "Park Place");
 		
 		button_13 = new JButton("H");
 		GridBagConstraints gbc_button_13 = new GridBagConstraints();
@@ -686,8 +720,7 @@ public class PropertyView extends JFrame {
 		gbc_lblVentnorAve.gridx = 1;
 		gbc_lblVentnorAve.gridy = 8;
 		getContentPane().add(lblVentnorAve, gbc_lblVentnorAve);
-		propLabels.add(lblVentnorAve);
-		
+		propLabels.add(lblVentnorAve);	
 		
 		label_20 = new JLabel("0");
 		GridBagConstraints gbc_label_20 = new GridBagConstraints();
@@ -695,6 +728,8 @@ public class PropertyView extends JFrame {
 		gbc_label_20.gridx = 2;
 		gbc_label_20.gridy = 8;
 		getContentPane().add(label_20, gbc_label_20);
+		houseLabels.add(label_20);
+		label_20.putClientProperty(HOUSE, "Ventnor Ave");
 		
 		button_19 = new JButton("H");
 		GridBagConstraints gbc_button_19 = new GridBagConstraints();
@@ -722,6 +757,8 @@ public class PropertyView extends JFrame {
 		gbc_label_17.gridx = 6;
 		gbc_label_17.gridy = 8;
 		getContentPane().add(label_17, gbc_label_17);
+		houseLabels.add(label_17);
+		label_17.putClientProperty(HOUSE, "North Carolina Ave");
 		
 		button_16 = new JButton("H");
 		GridBagConstraints gbc_button_16 = new GridBagConstraints();
@@ -749,6 +786,8 @@ public class PropertyView extends JFrame {
 		gbc_label_15.gridx = 10;
 		gbc_label_15.gridy = 8;
 		getContentPane().add(label_15, gbc_label_15);
+		houseLabels.add(label_15);
+		label_15.putClientProperty(HOUSE, "Boardwalk");
 		
 		button_14 = new JButton("H");
 		GridBagConstraints gbc_button_14 = new GridBagConstraints();
@@ -798,6 +837,8 @@ public class PropertyView extends JFrame {
 		gbc_label_21.gridx = 2;
 		gbc_label_21.gridy = 9;
 		getContentPane().add(label_21, gbc_label_21);
+		houseLabels.add(label_21);
+		label_21.putClientProperty(HOUSE, "Marvin Gardens");
 		
 		button_20 = new JButton("H");
 		GridBagConstraints gbc_button_20 = new GridBagConstraints();
@@ -825,6 +866,8 @@ public class PropertyView extends JFrame {
 		gbc_label_18.gridx = 6;
 		gbc_label_18.gridy = 9;
 		getContentPane().add(label_18, gbc_label_18);
+		houseLabels.add(label_18);
+		label_18.putClientProperty(HOUSE, "Pennsylvania Ave");
 		
 		button_17 = new JButton("H");
 		GridBagConstraints gbc_button_17 = new GridBagConstraints();
@@ -858,6 +901,7 @@ public class PropertyView extends JFrame {
 		propLabels.add(lblShortLine);
 		
 		highlightOwned();
+		updateHouses();
 		
 	}
 	
@@ -881,10 +925,10 @@ public class PropertyView extends JFrame {
 		
 	}
 
-	private ActionListener houseClicked = new ActionListener() {
+	private ActionListener houseClicked = new ActionListener() { 
 
 		@Override
-		public void actionPerformed(ActionEvent e) {			
+		public void actionPerformed(ActionEvent e) {			 
 			int spaceSelected = (int)(((JButton)e.getSource()).getClientProperty(PropertyView.BUTTON));
 			
 			MainWindow main = parent.getMyParent();
@@ -915,6 +959,7 @@ public class PropertyView extends JFrame {
 						currentPlayer.deductFromBank(prop.getHouseCost(), main.playersOut);
 						// add 
 						prop.setNumHouses(prop.getNumHouses() + 1);
+						updateHouses();
 					}
 					
 				}
@@ -929,11 +974,30 @@ public class PropertyView extends JFrame {
 			}
 			else {
 				// one of the above conditions is not met
-				System.out.println("DNFODK");
+				//System.out.println("DNFODK");
+				JOptionPane.showMessageDialog(null, "You can't buy that right now!", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			
 		}
 			
 	};
+	
+	public void updateHouses()
+	{
+		for( ArrayList<Property> propCategories : this.currentPlayer.getProperties() )
+		{
+			for( Property x : propCategories )
+			{
+				for( JLabel houseLabel : this.houseLabels)
+				{
+					if( houseLabel.getClientProperty(HOUSE).equals(x.getName()) )
+					{
+						//if player owns spot, update number of houses shown
+						houseLabel.setText(""+x.getNumHouses());
+					}
+				}
+			}
+		}
+	}
 	
 }
