@@ -30,18 +30,24 @@ public class GamePanel extends JPanel {
 	// index of player who is currently taking a turn
 	public int currPlayer;
 
+	/// DICE DATA MEMBERS ///
 	private JButton diceButton;
 	boolean diceActive = true;
-	// flag set when a player rolls doubles -- will roll again
-	private boolean doubles;	
 	// random number generator used for dice rolling
 	private Random ranGen;
-	// flag set when the dice roll is for attempting to get out of jail
-	private boolean jailRoll;
-
 	//variables that represent dice roll on board
 	private JLabel dice1;
 	private JLabel dice2;
+
+	// flag set when a player rolls doubles -- will roll again
+	private boolean doubles;	
+	// reset to 0 each time it is a new player's turn, if reaches 3 for the same player, they
+	//	go to jail
+	private int numDoubles;
+	
+	// flag set when the dice roll is for attempting to get out of jail
+	private boolean jailRoll;
+
 
 	//variables for the player panels
 	private JPanel panel, panel_1, panel_2, panel_3;
@@ -78,6 +84,7 @@ public class GamePanel extends JPanel {
 		this.currPlayer = 0;
 		this.jailRoll = false;
 		this.diceActive = true;
+		this.numDoubles = 0;
 		this.ranGen = new Random(System.currentTimeMillis());
 
 		this.playerPieces.put(Player.GamePiece.RACECAR ,new ImageIcon(this.getClass().getResource("/car.png")).getImage());
@@ -1113,20 +1120,43 @@ public class GamePanel extends JPanel {
 							", you got out of jail!", "Got out of Jail", JOptionPane.INFORMATION_MESSAGE);
 						// get the player out of jail
 						parent.players[currPlayer].outOfJail();
+						numDoubles++;
 					}
 				}
 				// if rolling to get out of jail, then the doubles don't let you roll again
-				else if (d1 == d2) doubles = true;	//player will roll again
+				else if (d1 == d2) {
+					doubles = true;	//player will roll again
+					numDoubles++;
+				}
 				
-				// advance the current player's position
-				movePlayer(d1+d2);		
-				// TODO -- update the GUI
+				// check if the player has rolled 3 doubles in a row
+				if (numDoubles == 3) {
+					// in this case, the player goes directly to jail
+					// move player to jail space
+					parent.players[currPlayer].setCurrLocation(parent.jailSpace);
+					movePlayerIcon();
+					// inform the player of what happened
+					JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you rolled"
+							+ " doubles 3 times in a row.\nYou're going to jail!", "Go to Jail", 
+							JOptionPane.INFORMATION_MESSAGE);
+					// set jailed to true for their next turn
+					parent.players[currPlayer].putInJail();
+					
+					nextTurn();
+				}
+				
+				else {
+					// advance the current player's position
+					movePlayer(d1+d2);		
 
-				// given the state of the current property, notify user or allow user to take action
-				takeAction(parent.spaces.get(parent.players[currPlayer].getCurrLocation()), d1+d2);
+					// given the state of the current property, notify user or allow user to take action
+					takeAction(parent.spaces.get(parent.players[currPlayer].getCurrLocation()), d1+d2);
 
-				// going to next turn will take place in takeAction or in an event handler for an event
-				//	that will be created by takeAction	
+					// going to next turn will take place in takeAction or in an event handler for an event
+					//	that will be created by takeAction						
+				}
+				
+
 			}
 		}
 	};
@@ -1448,6 +1478,7 @@ public class GamePanel extends JPanel {
 		
 		if (!this.doubles || this.parent.players[currPlayer].inJail()) {
 			// update to next player
+			this.numDoubles = 0;	// reset doubles counter
 			this.currPlayer = (this.currPlayer + 1) % parent.players.length;
 			while (!parent.players[currPlayer].isActive()) {
 				this.currPlayer = (this.currPlayer + 1) % parent.players.length;
