@@ -223,6 +223,8 @@ public class PropertyView extends JFrame {
 		gbc_btnM.gridx = 4;
 		gbc_btnM.gridy = 2;
 		getContentPane().add(btnM, gbc_btnM);
+		btnM.putClientProperty(BUTTON, 1);
+		btnM.addActionListener(mortgageClicked);
 
 		lblOrientalAve = new JLabel("Oriental Ave");
 		lblOrientalAve.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -263,6 +265,8 @@ public class PropertyView extends JFrame {
 		gbc_button_22.gridx = 8;
 		gbc_button_22.gridy = 2;
 		getContentPane().add(button_22, gbc_button_22);
+		button_22.putClientProperty(BUTTON, 6);
+		button_22.addActionListener(mortgageClicked);
 
 		lblStCharlesPlace = new JLabel("St. Charles Place");
 		lblStCharlesPlace.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -303,7 +307,9 @@ public class PropertyView extends JFrame {
 		gbc_button_25.gridx = 12;
 		gbc_button_25.gridy = 2;
 		getContentPane().add(button_25, gbc_button_25);
-
+		button_25.putClientProperty(BUTTON, 11);
+		button_25.addActionListener(mortgageClicked);
+		
 		lblStJamesPlace = new JLabel("St. James Place");
 		lblStJamesPlace.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblStJamesPlace.setBackground(new Color(255, 250, 205));
@@ -343,6 +349,8 @@ public class PropertyView extends JFrame {
 		gbc_button_28.gridx = 16;
 		gbc_button_28.gridy = 2;
 		getContentPane().add(button_28, gbc_button_28);
+		button_28.putClientProperty(BUTTON, 16);
+		button_28.addActionListener(mortgageClicked);
 
 		lblKentuckyAve = new JLabel("Kentucky Ave");
 		lblKentuckyAve.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -383,6 +391,8 @@ public class PropertyView extends JFrame {
 		gbc_button_31.gridx = 20;
 		gbc_button_31.gridy = 2;
 		getContentPane().add(button_31, gbc_button_31);
+		button_31.putClientProperty(BUTTON, 21);
+		button_31.addActionListener(mortgageClicked);
 
 		lblBalticAve = new JLabel ("Baltic Ave");
 		lblBalticAve.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -424,6 +434,8 @@ public class PropertyView extends JFrame {
 		gbc_button_21.gridx = 4;
 		gbc_button_21.gridy = 3;
 		getContentPane().add(button_21, gbc_button_21);
+		button_21.putClientProperty(BUTTON, 3);
+		button_21.addActionListener(mortgageClicked);
 
 		lblVermontAve = new JLabel("Vermont Ave");
 		lblVermontAve.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -464,7 +476,9 @@ public class PropertyView extends JFrame {
 		gbc_button_23.gridx = 8;
 		gbc_button_23.gridy = 3;
 		getContentPane().add(button_23, gbc_button_23);
-
+		button_23.putClientProperty(BUTTON, 8);
+		button_23.addActionListener(mortgageClicked);
+		
 		lblStatesAve = new JLabel("States Ave");
 		lblStatesAve.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblStatesAve.setBackground(new Color(255, 250, 205));
@@ -504,7 +518,9 @@ public class PropertyView extends JFrame {
 		gbc_button_26.gridx = 12;
 		gbc_button_26.gridy = 3;
 		getContentPane().add(button_26, gbc_button_26);
-
+		button_26.putClientProperty(BUTTON, 13);
+		button_26.addActionListener(mortgageClicked);
+		
 		lblTennesseeAve = new JLabel("Tennessee Ave");
 		lblTennesseeAve.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblTennesseeAve.setBackground(new Color(255, 250, 205));
@@ -544,7 +560,9 @@ public class PropertyView extends JFrame {
 		gbc_button_29.gridx = 16;
 		gbc_button_29.gridy = 3;
 		getContentPane().add(button_29, gbc_button_29);
-
+		button_29.putClientProperty(BUTTON, 18);
+		button_29.addActionListener(mortgageClicked);
+		
 		lblIndianaAve = new JLabel("Indiana Ave");
 		lblIndianaAve.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblIndianaAve.setBackground(new Color(255, 250, 205));
@@ -584,7 +602,9 @@ public class PropertyView extends JFrame {
 		gbc_button_32.gridx = 20;
 		gbc_button_32.gridy = 3;
 		getContentPane().add(button_32, gbc_button_32);
-
+		button_32.putClientProperty(BUTTON, 23);
+		button_32.addActionListener(mortgageClicked);
+		
 		lblConnecticutAve = new JLabel("Connecticut Ave");
 		lblConnecticutAve.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblConnecticutAve.setBackground(new Color(255, 250, 205));
@@ -624,7 +644,9 @@ public class PropertyView extends JFrame {
 		gbc_button_24.gridx = 8;
 		gbc_button_24.gridy = 4;
 		getContentPane().add(button_24, gbc_button_24);
-
+		button_24.putClientProperty(BUTTON, 9);
+		button_24.addActionListener(mortgageClicked);
+		
 		lblVirginiaAve = new JLabel("Virginia Ave");
 		lblVirginiaAve.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblVirginiaAve.setBackground(new Color(255, 250, 205));
@@ -664,7 +686,9 @@ public class PropertyView extends JFrame {
 		gbc_button_27.gridx = 12;
 		gbc_button_27.gridy = 4;
 		getContentPane().add(button_27, gbc_button_27);
-
+		button_27.putClientProperty(BUTTON, 14);
+		button_27.addActionListener(mortgageClicked);
+		
 		lblNewYorkAve = new JLabel("New York Ave");
 		lblNewYorkAve.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblNewYorkAve.setBackground(new Color(255, 250, 205));
@@ -704,7 +728,9 @@ public class PropertyView extends JFrame {
 		gbc_button_30.gridx = 16;
 		gbc_button_30.gridy = 4;
 		getContentPane().add(button_30, gbc_button_30);
-
+		button_30.putClientProperty(BUTTON, 19);
+		button_30.addActionListener(mortgageClicked);
+		
 		lblIllinoisAve = new JLabel("Illinois Ave");
 		lblIllinoisAve.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblIllinoisAve.setBackground(new Color(255, 250, 205));
@@ -744,7 +770,9 @@ public class PropertyView extends JFrame {
 		gbc_button_33.gridx = 20;
 		gbc_button_33.gridy = 4;
 		getContentPane().add(button_33, gbc_button_33);
-
+		button_33.putClientProperty(BUTTON, 24);
+		button_33.addActionListener(mortgageClicked);
+		
 		JLabel lblYellow = new JLabel("");
 		GridBagConstraints gbc_lblYellow = new GridBagConstraints();
 		gbc_lblYellow.fill = GridBagConstraints.BOTH;
@@ -830,7 +858,9 @@ public class PropertyView extends JFrame {
 		gbc_button_34.gridx = 4;
 		gbc_button_34.gridy = 7;
 		getContentPane().add(button_34, gbc_button_34);
-
+		button_34.putClientProperty(BUTTON, 26);
+		button_34.addActionListener(mortgageClicked);
+		
 		lblPacificAve = new JLabel("Pacific Ave");
 		lblPacificAve.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblPacificAve.setBackground(new Color(255, 250, 205));
@@ -870,7 +900,9 @@ public class PropertyView extends JFrame {
 		gbc_button_37.gridx = 8;
 		gbc_button_37.gridy = 7;
 		getContentPane().add(button_37, gbc_button_37);
-
+		button_37.putClientProperty(BUTTON, 31);
+		button_37.addActionListener(mortgageClicked);
+		
 		lblParkPlace = new JLabel("Park Place");
 		lblParkPlace.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblParkPlace.setBackground(new Color(255, 250, 205));
@@ -910,6 +942,8 @@ public class PropertyView extends JFrame {
 		gbc_button_40.gridx = 12;
 		gbc_button_40.gridy = 7;
 		getContentPane().add(button_40, gbc_button_40);
+		button_40.putClientProperty(BUTTON, 37);
+		button_40.addActionListener(mortgageClicked);
 
 		lblReadingRr = new JLabel("Reading RR");
 		lblReadingRr.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -974,7 +1008,9 @@ public class PropertyView extends JFrame {
 		gbc_button_35.gridx = 4;
 		gbc_button_35.gridy = 8;
 		getContentPane().add(button_35, gbc_button_35);
-
+		button_35.putClientProperty(BUTTON, 27);
+		button_35.addActionListener(mortgageClicked);
+		
 		lblNorthCarolinaAve = new JLabel("North Carolina Ave");
 		lblNorthCarolinaAve.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblNorthCarolinaAve.setBackground(new Color(255, 250, 205));
@@ -1014,6 +1050,8 @@ public class PropertyView extends JFrame {
 		gbc_button_38.gridx = 8;
 		gbc_button_38.gridy = 8;
 		getContentPane().add(button_38, gbc_button_38);
+		button_38.putClientProperty(BUTTON, 32);
+		button_38.addActionListener(mortgageClicked);
 
 		lblBoardwalk = new JLabel("Boardwalk");
 		lblBoardwalk.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -1054,6 +1092,8 @@ public class PropertyView extends JFrame {
 		gbc_button_41.gridx = 12;
 		gbc_button_41.gridy = 8;
 		getContentPane().add(button_41, gbc_button_41);
+		button_41.putClientProperty(BUTTON, 39);
+		button_41.addActionListener(mortgageClicked);
 
 		lblPennsylvaniaRr = new JLabel("Pennsylvania RR");
 		lblPennsylvaniaRr.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -1118,6 +1158,8 @@ public class PropertyView extends JFrame {
 		gbc_button_36.gridx = 4;
 		gbc_button_36.gridy = 9;
 		getContentPane().add(button_36, gbc_button_36);
+		button_36.putClientProperty(BUTTON, 29);
+		button_36.addActionListener(mortgageClicked);
 
 		lblPennsylvaniaAve = new JLabel("Pennsylvania Ave");
 		lblPennsylvaniaAve.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -1158,7 +1200,9 @@ public class PropertyView extends JFrame {
 		gbc_button_39.gridx = 8;
 		gbc_button_39.gridy = 9;
 		getContentPane().add(button_39, gbc_button_39);
-
+		button_39.putClientProperty(BUTTON, 34);
+		button_39.addActionListener(mortgageClicked);
+		
 		lblBO = new JLabel("B. & O. RR");
 		lblBO.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblBO.setBackground(new Color(255, 250, 205));
@@ -1215,9 +1259,6 @@ public class PropertyView extends JFrame {
 			int spaceSelected = (int)(((JButton)e.getSource()).getClientProperty(PropertyView.BUTTON));
 
 			MainWindow main = parent.getMyParent();
-
-			//This prints out what property is getting a house
-			//Need to write code to actually check if the house can be bought and then buy it
 			Property prop = (Property)main.spaces.get(spaceSelected);
 
 			// can only buy a house if all of the following are satisfied: 
@@ -1225,7 +1266,7 @@ public class PropertyView extends JFrame {
 			//	(2) the player owns all of the properties of that space
 			//	(3) it is that player's turn
 			// 	(4) the player has enough money to buy the house
-			//	(5) TODO -- the other properties from that category have the same number of houses
+			//	(5) the other properties from that category have the same number of houses
 			//		as the selected property (or 1 more)
 			//	(6) not all houses are bought for this property (5 can be bought -- means hotel bought)
 			if (currentPlayer.ownsProperty(prop) && prop.canBuyHouse() && 
@@ -1263,8 +1304,6 @@ public class PropertyView extends JFrame {
 							" category first!", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				
-				
-
 			}
 			else {
 				// one of the above conditions is not met
@@ -1276,7 +1315,6 @@ public class PropertyView extends JFrame {
 
 	};
 	
-
 	public void updateHouses()
 	{
 		for( ArrayList<Property> propCategories : this.currentPlayer.getProperties() )
@@ -1294,5 +1332,18 @@ public class PropertyView extends JFrame {
 			}
 		}
 	}
+	
+	private ActionListener mortgageClicked = new ActionListener() { 
+
+		@Override
+		public void actionPerformed(ActionEvent e) {			 
+			int spaceSelected = (int)(((JButton)e.getSource()).getClientProperty(PropertyView.BUTTON));
+
+			MainWindow main = parent.getMyParent();
+			Property prop = (Property)main.spaces.get(spaceSelected);
+			System.out.println(prop.getName());
+		}
+
+	};
 
 }
