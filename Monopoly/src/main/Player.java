@@ -208,6 +208,8 @@ public boolean checkHouse(ArrayList<Property> props)
             int minHouse = 0;
             for(Property pp : props)
             {
+            	if(pp.isMortgaged())
+            		return false;
                 if(pp.getNumHouses() >= maxHouse)
                     maxHouse = pp.getNumHouses();
                 else if(pp.getNumHouses() < minHouse)

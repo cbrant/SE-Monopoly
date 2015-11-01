@@ -28,7 +28,7 @@ public class Property extends Space {
 	
 	private int numHouses;
 	protected boolean canBuyHouse;
-	//private boolean isMortgaged;
+	private boolean isMortgaged;
 	
 	/// CONSTRUCTOR ///
 	// note: no default constructor
@@ -47,6 +47,7 @@ public class Property extends Space {
 		
 		this.owner = -1;
 		this.forSale = true;
+		this.isMortgaged = false;
 	}
 	
 	
@@ -66,6 +67,8 @@ public class Property extends Space {
 	
 	public int getRent()
 	{
+		if(isMortgaged)
+			return 0;
 		// double rent if own all of same category, but have no houses
 		if (this.numHouses == 0 && this.canBuyHouse) {
 			return this.rent[0]*2;
@@ -87,6 +90,29 @@ public class Property extends Space {
 	public int getMortgage()
 	{
 		return this.mortVal;
+	}
+	
+	public int mortgage()
+	{
+		int mortValue = 0;
+		if(numHouses > 0)
+			mortValue += numHouses*houseCost/2;
+		mortValue += mortVal;
+		
+		numHouses = 0;
+		isMortgaged = true;
+		
+		return mortValue;
+	}
+	
+	public int unmortgage()
+	{
+		return this.buyingPrice/2;
+	}
+	
+	public boolean isMortgaged()
+	{
+		return this.isMortgaged;
 	}
 	
 	public PropertyCategory getCategory()
