@@ -1341,6 +1341,30 @@ public class PropertyView extends JFrame {
 
 			MainWindow main = parent.getMyParent();
 			Property prop = (Property)main.spaces.get(spaceSelected);
+			
+			if(currentPlayer.ownsProperty(prop))
+			{
+				if(!prop.isMortgaged())
+				{
+					int value = prop.mortgage();
+					currentPlayer.addToBank(value);
+				}
+				else
+				{
+					if(currentPlayer.getBank() <= prop.getUnmortgaged())
+						JOptionPane.showMessageDialog(null, "Insufficient funds to unmortgage this property.", "Error", JOptionPane.ERROR_MESSAGE);
+					else
+					{
+						int value = -1*prop.unmortgage();
+						currentPlayer.addToBank(value);
+					}
+				}
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "You do not own this property.", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			
 			System.out.println(prop.getName());
 		}
 

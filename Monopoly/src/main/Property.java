@@ -105,9 +105,16 @@ public class Property extends Space {
 		return mortValue;
 	}
 	
-	public int unmortgage()
+	public int getUnmortgaged()
 	{
-		return this.buyingPrice/2;
+		int value = (int) (this.buyingPrice/2*1.1);
+		return value;		
+	}
+	
+	public int unmortgage()
+	{	
+		isMortgaged = false;
+		return getUnmortgaged();
 	}
 	
 	public boolean isMortgaged()
