@@ -1353,11 +1353,24 @@ public class PropertyView extends JFrame {
 			{
 				if(!prop.isMortgaged())
 				{
-					int value = prop.mortgage();
-					currentPlayer.addToBank(value);
-					highlightOwned();
-					JOptionPane.showMessageDialog(null, prop.getName() + " has been mortgaged for $" + value 
+					int confirm = 0;
+					if (prop.getNumHouses() > 0) {
+						//confirm that the player still wants to mortgage the property
+						confirm = JOptionPane.showConfirmDialog(null, currentPlayer.getName() + 
+								", you have " + prop.getNumHouses() + " houses\non " + prop.getName() + 
+								" you will have to sell. Do you still want to mortgage it?", "Confirm Mortgage", 
+								JOptionPane.YES_NO_OPTION);
+
+					}
+					if (confirm == 0) {
+						int value = prop.mortgage();
+						currentPlayer.addToBank(value);
+						highlightOwned();
+						updateHouses();
+						JOptionPane.showMessageDialog(null, prop.getName() + " has been mortgaged for $" + value 
 							+ ".", "Mortaged " + prop.getName(), JOptionPane.INFORMATION_MESSAGE);
+						
+					}
 				}
 				else
 				{
