@@ -1244,7 +1244,14 @@ public class PropertyView extends JFrame {
 				{
 					if (z.getText().equals(prop))
 					{
-						z.setBackground(new Color(204, 255, 153) );
+						// mortgaged properties show up with a red-tint
+						if (y.isMortgaged()) {
+							z.setBackground(new Color(255, 200, 204));
+						}
+						// active properties have a green-tint
+						else {
+							z.setBackground(new Color(204, 255, 153) );
+						}
 					}
 				}
 			}
@@ -1348,6 +1355,9 @@ public class PropertyView extends JFrame {
 				{
 					int value = prop.mortgage();
 					currentPlayer.addToBank(value);
+					highlightOwned();
+					JOptionPane.showMessageDialog(null, prop.getName() + " has been mortgaged for $" + value 
+							+ ".", "Mortaged " + prop.getName(), JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
 				{
@@ -1355,8 +1365,11 @@ public class PropertyView extends JFrame {
 						JOptionPane.showMessageDialog(null, "Insufficient funds to unmortgage this property.", "Error", JOptionPane.ERROR_MESSAGE);
 					else
 					{
-						int value = -1*prop.unmortgage();
-						currentPlayer.addToBank(value);
+						int value = prop.unmortgage();
+						currentPlayer.deductFromBank(value, main.playersOut);
+						highlightOwned();
+						JOptionPane.showMessageDialog(null, prop.getName() + "'s mortgage has been paid for $" +
+								value + ".", "Unmortgaged " + prop.getName(), JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 			}
@@ -1365,7 +1378,6 @@ public class PropertyView extends JFrame {
 				JOptionPane.showMessageDialog(null, "You do not own this property.", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			
-			System.out.println(prop.getName());
 		}
 
 	};
