@@ -1355,7 +1355,7 @@ public class GamePanel extends JPanel {
 	 * 				rent to that owner
 	 */
 	private void payRent(Property prop, int dice) {
-		if (currPlayer != prop.getOwner() && parent.players[prop.getOwner()].isActive()) {	
+		if (currPlayer != prop.getOwner() && parent.players[prop.getOwner()].isActive() && !prop.isMortgaged()) {	
 			int amountPaid = 0;
 			if (prop.getCategory() == Property.PropertyCategory.UTILITIES) {
 				amountPaid = parent.players[currPlayer].deductFromBank(((Utility)prop).getRent(dice), parent.playersOut);
@@ -1395,7 +1395,7 @@ public class GamePanel extends JPanel {
 	 * 				similar to payRent() but does not inculde a utilities option to remove dice parameter
 	 */
 	private void payChanceRent(Property prop) {
-		if (currPlayer != prop.getOwner() && parent.players[prop.getOwner()].isActive()) {	
+		if (currPlayer != prop.getOwner() && parent.players[prop.getOwner()].isActive() && !prop.isMortgaged()) {	
 			int amountPaid = 0;
 			if (prop.getCategory() == Property.PropertyCategory.RAILROAD) {
 				int numRailroads = 0;
