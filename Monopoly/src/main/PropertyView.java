@@ -98,6 +98,13 @@ public class PropertyView extends JFrame {
 	private JButton button_39;
 	private JButton button_40;
 	private JButton button_41;
+	private JButton button_42;
+	private JButton button_43;
+	private JButton button_44;
+	private JButton button_45;
+	private JButton button_46;
+	private JButton button_47;
+
 	private JLabel lblPlayername;
 
 	/**
@@ -1454,11 +1461,5 @@ public class PropertyView extends JFrame {
 		}
 
 	};
-	private JButton button_42;
-	private JButton button_43;
-	private JButton button_44;
-	private JButton button_45;
-	private JButton button_46;
-	private JButton button_47;
-
+	
 }
