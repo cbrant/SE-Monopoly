@@ -1,36 +1,40 @@
 package main;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.GridBagLayout;
-import javax.swing.JComboBox;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class TradeView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField firstPlayerCash;
 	private JTextField secondPlayerCash;
-	private JComboBox firstPlayerBox, secondPlayerBox, firstPlayerProp, secondPlayerProp;
+	private JComboBox<Player> firstPlayerBox, secondPlayerBox;
+	private JComboBox<Property> firstPlayerProp, secondPlayerProp;
+	private GamePanel parent;
 
 	/**
 	 * Create the frame.
 	 */
-	public TradeView() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public TradeView( GamePanel par ) {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		
+		this.parent = par;
 		
 		getContentPane().setBackground(new Color(255, 250, 205));
 		GridBagLayout gbl_contentPane = new GridBagLayout();
@@ -47,7 +51,7 @@ public class TradeView extends JFrame {
 		gbc_lblMakeATrade.gridy = 0;
 		contentPane.add(lblMakeATrade, gbc_lblMakeATrade);
 		
-		firstPlayerBox = new JComboBox<Player>();
+		firstPlayerBox = new JComboBox<Player>(this.parent.getMyParent().players);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -55,7 +59,7 @@ public class TradeView extends JFrame {
 		gbc_comboBox.gridy = 1;
 		contentPane.add(firstPlayerBox, gbc_comboBox);
 		
-		secondPlayerBox = new JComboBox<Player>();
+		secondPlayerBox = new JComboBox<Player>(this.parent.getMyParent().players);
 		GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
 		gbc_comboBox_2.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_2.fill = GridBagConstraints.HORIZONTAL;
@@ -105,7 +109,32 @@ public class TradeView extends JFrame {
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 		this.setBackground(new Color(255, 250, 205));
 
+		populatePropBox();
 		
+	}
+	
+	
+	private void populatePropBox()
+	{
+		Player firstSelected = (Player)(this.firstPlayerBox.getSelectedItem());
+		Player secondSelected = (Player)(this.secondPlayerBox.getSelectedItem());
+		
+		for( ArrayList<Property> category : firstSelected.getProperties() )
+		{
+			for( Property x : category)
+			{
+				this.firstPlayerProp.addItem(x);
+				
+			}
+		}
+		for( ArrayList<Property> category : secondSelected.getProperties() )
+		{
+			for( Property x : category)
+			{
+				this.secondPlayerProp.addItem(x);
+				
+			}
+		}
 	}
 
 }

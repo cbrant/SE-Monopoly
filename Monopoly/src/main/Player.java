@@ -68,6 +68,12 @@ public class Player {
 		this.ownedProperties = new ArrayList<ArrayList<Property>>();
 		setPlace(-1);
 	}
+	
+	@Override
+	public String toString()
+	{
+		return this.name;
+	}
 
 	// getter/setter for name
 	public String getName() {

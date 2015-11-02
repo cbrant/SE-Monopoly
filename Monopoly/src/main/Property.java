@@ -55,9 +55,9 @@ public class Property extends Space {
 		// first case -- not yet bought, give player option to buy
 	}
 	
-	public String toString()
-	{
-		return this.name + " " + this.type + " " + this.getRent() + " " + this.group;
+	@Override
+	public String toString() {
+		return this.name;
 	}
 		
 	public int getPrice()
@@ -164,6 +164,7 @@ public void setOwner(int owner) {
 	{
 		getRent();
 	}
+	
 	
 	
 }

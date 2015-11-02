@@ -104,6 +104,16 @@ public class GamePanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 
+		
+		JButton btnTrade = new JButton("Trade");
+		GridBagConstraints gbc_btnTrade = new GridBagConstraints();
+		gbc_btnTrade.insets = new Insets(0, 0, 5, 5);
+		gbc_btnTrade.gridx = 9;
+		gbc_btnTrade.gridy = 6;
+		add(btnTrade, gbc_btnTrade);
+		btnTrade.addActionListener(tradeClicked);
+		
+		
 		/////////////////////////
 		//TODO: Pieces are created on game start, need to be created when the setup screen is left! 
 		/////////////////////////
@@ -1685,10 +1695,10 @@ public class GamePanel extends JPanel {
 		return parent;
 	}
 	
-	private ActionListener propertiesClicked = new ActionListener() {
+	private ActionListener propertiesClicked = new ActionListener() { 
 
 		@Override
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e) { 
 			// TODO Auto-generated method stub
 			
 			int index = (int)(((JButton)e.getSource()).getClientProperty(GamePanel.PLAYER));
@@ -1700,4 +1710,16 @@ public class GamePanel extends JPanel {
 		}
 		
 	};
+
+	private ActionListener tradeClicked = new ActionListener() {  
+
+		@Override
+		public void actionPerformed(ActionEvent e) {  
+
+			TradeView tradeOpened = new TradeView(thisGamePanel);
+			tradeOpened.setVisible(true);
+		
+		}
+	};
 }
+
