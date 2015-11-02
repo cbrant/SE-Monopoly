@@ -42,9 +42,9 @@ public class SetupPanel extends JPanel {
 		playerPieces = new ArrayList<JComboBox<Player.GamePiece>>(MainWindow.NUMPLAYERS);
 
 		//Contents for Combo boxes
-		//Player.PlayerType[] pTypes = Player.PlayerType.values();	//use later when want computer players
-		Player.PlayerType[] pTypes = new Player.PlayerType[1];
-		pTypes[0] = Player.PlayerType.HUMAN;
+		Player.PlayerType[] pTypes = Player.PlayerType.values();	//use later when want computer players
+		//Player.PlayerType[] pTypes = new Player.PlayerType[1];
+		//pTypes[0] = Player.PlayerType.HUMAN;
 		Player.GamePiece[] pieces = Player.GamePiece.values();
 
 		//Setup gridbag layout

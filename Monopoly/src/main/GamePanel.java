@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import main.Player.PlayerType;
+
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel {
 
@@ -1080,6 +1082,7 @@ public class GamePanel extends JPanel {
 	public MainWindow getParentFrame(){
 		return parent;
 	}
+
 	/* Handler:		diceClicked
 	 * Purpose:		handles the dice button clicked event, rolls dice, moves the current player forward, and begins
 	 * 				any interaction the user will have on the new space he/she has landed on
@@ -1088,7 +1091,7 @@ public class GamePanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e){
 			// do nothing if dice is currently disabled
-			if(diceActive == true) {
+			if(diceActive == true && parent.players[currPlayer].isHuman()) {
 				//deactivate dice
 				diceActive = false;
 				// roll the dice for the current player
@@ -1171,6 +1174,97 @@ public class GamePanel extends JPanel {
 		}
 	};
 
+	/* Function: 	compTurnBegin()
+	 * Purpose:		analogous to the diceClicked handler, but for a computer player's turn
+	 */
+	public void compTurnBegin() {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// roll the dice for the computer player
+		int d1 = diceRoll(); int d2 = diceRoll();
+		// display the result of the dice on the screen 
+		dice1.setText(""+d1); dice2.setText(""+d2);
+		
+		if(jailRoll) {
+			jailRoll = false;
+			if (d1 != d2) {
+				// decrement player's time in jail and check if they have to pay the fine
+				boolean dontHaveToPay = parent.players[currPlayer].stillinJail();
+			
+				if (dontHaveToPay) {
+					JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+						" (computer) did not roll doubles to get out of jail.", "Lost Turn", 
+						JOptionPane.INFORMATION_MESSAGE);
+					nextTurn();
+					return;
+				}
+				else {
+					// ran out of times to attempt to roll doubles -- so deduct the fine
+					parent.players[currPlayer].deductFromBank(50, parent.playersOut);
+					JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+						" (computer) is out of attempts for rolling doubles! Pay $50.", "Pay Jail Fine", 
+						JOptionPane.INFORMATION_MESSAGE);
+					
+					// check if player exited game
+					if (!parent.players[currPlayer].isActive()) {
+						JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+								" (computer) is are out of money!", "Out of Game!", 
+								JOptionPane.INFORMATION_MESSAGE);
+						++parent.playersOut;
+						nextTurn();
+						return;
+					}
+					// get the player out of jail
+					parent.players[currPlayer].outOfJail();	
+				}
+			}
+			else {
+				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+					" (computer) got out of jail!", "Got out of Jail", JOptionPane.INFORMATION_MESSAGE);
+				// get the player out of jail
+				parent.players[currPlayer].outOfJail();
+				numDoubles++;
+			}
+		}
+		// if rolling to get out of jail, then the doubles don't let you roll again
+		else if (d1 == d2) {
+			doubles = true;	//player will roll again
+			numDoubles++;
+		}
+		
+		// check if the player has rolled 3 doubles in a row
+		if (numDoubles == 3) {
+			// in this case, the player goes directly to jail
+			// move player to jail space
+			parent.players[currPlayer].setCurrLocation(parent.jailSpace);
+			movePlayerIcon();
+			// inform the player of what happened
+			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+					" (computer) rolled doubles 3 times in a row and is going to jail!", "Go to Jail", 
+					JOptionPane.INFORMATION_MESSAGE);
+			// set jailed to true for their next turn
+			parent.players[currPlayer].putInJail();
+			
+			nextTurn();
+		}
+		
+		else {
+			// advance the current player's position
+			movePlayer(d1+d2);		
+
+			// given the state of the current property, notify user or allow user to take action
+			takeAction(parent.spaces.get(parent.players[currPlayer].getCurrLocation()), d1+d2);
+
+			// going to next turn will take place in takeAction or in an event handler for an event
+			//	that will be created by takeAction						
+		}
+
+	}
+	
 	/* Function:	diceRoll()
 	 * Purpose:		produce random number in range 1-6, ranGen data member seeded with time at instantiation of 
 	 * 				the class
@@ -1225,8 +1319,13 @@ public class GamePanel extends JPanel {
 				parent.players[currPlayer].setCurrLocation(parent.jailSpace);
 				movePlayerIcon();
 				// inform the player of what happened
-				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you're going to jail!", 
-						"Go to Jail", JOptionPane.INFORMATION_MESSAGE);
+				if (parent.players[currPlayer].isHuman()) {
+					JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you're going to jail!", 
+							"Go to Jail", JOptionPane.INFORMATION_MESSAGE);	
+				} else {
+					JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+							" (computer) is going to jail!", "Go to Jail", JOptionPane.INFORMATION_MESSAGE);
+				}
 				// set jailed to true for their next turn
 				parent.players[currPlayer].putInJail();
 				break;
@@ -1329,10 +1428,20 @@ public class GamePanel extends JPanel {
 	private void optionToBuy(Property prop) {
 		// check if the current player has enough money to buy the property
 		if (parent.players[currPlayer].getBank() > prop.getPrice()) {
-
-			int buyProp = JOptionPane.showConfirmDialog(null, parent.players[currPlayer].getName() + ", do you want to buy \n" + 
-					prop.getName() + " for $" + prop.getPrice() + "?", "Buy "+prop.getName(), JOptionPane.YES_NO_OPTION);
-
+			int buyProp;
+			if (parent.players[currPlayer].isHuman()) {
+				buyProp = JOptionPane.showConfirmDialog(null, parent.players[currPlayer].getName() + 
+						", do you want to buy \n" + prop.getName() + " for $" + prop.getPrice() + "?", 
+						"Buy "+prop.getName(), JOptionPane.YES_NO_OPTION);	
+			}
+			// AI will always buy the property if it has enough money for it
+			else {
+				buyProp = 0;
+				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+						" (computer) bought " + prop.getName() + " for $" + prop.getPrice() + ".",
+						"Buy " + prop.getName(), JOptionPane.INFORMATION_MESSAGE);
+			}
+			
 			// if they want to buy it, update the owner of the property, and deduct the cost from the current player
 			if (buyProp == 0) {
 				parent.players[currPlayer].deductFromBank(prop.getPrice(), parent.playersOut);
@@ -1347,6 +1456,7 @@ public class GamePanel extends JPanel {
 			JOptionPane.showMessageDialog(null, "Insufficient funds in bank account!\nProperty cost: $" +
 					prop.getPrice()+"\nAccount Balance: $"+parent.players[currPlayer].getBank(), 
 					"Bank error", JOptionPane.ERROR_MESSAGE);
+			// action function would go here as well.
 		}		
 	}
 
@@ -1375,14 +1485,29 @@ public class GamePanel extends JPanel {
 			parent.players[prop.getOwner()].addToBank(amountPaid);
 
 			// inform users of rent payment
-			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + " paid $" + amountPaid + 
-					" to " + parent.players[prop.getOwner()].getName() + " for rent on " + prop.getName(), "Rent Paid", 
-					JOptionPane.INFORMATION_MESSAGE);
+			if (parent.players[currPlayer].isHuman()) {
+				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + " paid $" + amountPaid + 
+						" to " + parent.players[prop.getOwner()].getName() + " for rent on " + prop.getName(), "Rent Paid", 
+						JOptionPane.INFORMATION_MESSAGE);				
+			}
+			else {
+				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + " (computer) paid $" 
+						+ amountPaid + " to " + parent.players[prop.getOwner()].getName() + " for rent on " + 
+						prop.getName(), "Rent Paid", JOptionPane.INFORMATION_MESSAGE);
+			}
+
 
 			// check if player exited game
 			if (!parent.players[currPlayer].isActive()) {
-				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you are out of money!", 
-						"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+				if (parent.players[currPlayer].isHuman()) {
+					JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+							", you are out of money!", "Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+							" (computer) is out of money!", "Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+				}
+
 				++parent.playersOut;
 			}
 		}
@@ -1412,14 +1537,29 @@ public class GamePanel extends JPanel {
 			parent.players[prop.getOwner()].addToBank(amountPaid);
 
 			// inform users of rent payment
-			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + " paid $" + amountPaid + 
-					" to " + parent.players[prop.getOwner()].getName() + " for rent on " + prop.getName(), "Rent Paid", 
-					JOptionPane.INFORMATION_MESSAGE);
+			if (parent.players[currPlayer].isHuman()) {
+				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + " paid $" + amountPaid + 
+						" to " + parent.players[prop.getOwner()].getName() + " for rent on " + prop.getName(), "Rent Paid", 
+						JOptionPane.INFORMATION_MESSAGE);				
+			}
+			else {
+				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + " (computer) paid $" 
+						+ amountPaid + " to " + parent.players[prop.getOwner()].getName() + " for rent on " + 
+						prop.getName(), "Rent Paid", JOptionPane.INFORMATION_MESSAGE);
+			}
+
 
 			// check if player exited game
 			if (!parent.players[currPlayer].isActive()) {
-				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you are out of money!", 
-						"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+				if (parent.players[currPlayer].isHuman()) {
+					JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+							", you are out of money!", "Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+							" (computer) is out of money!", "Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+				}
+
 				++parent.playersOut;
 			}
 		}
@@ -1434,8 +1574,15 @@ public class GamePanel extends JPanel {
 		if (taxS.getName().equals("Luxury Tax")) {
 			int flatRate = 100;
 			// inform user that they are paying the tax
-			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you have to pay a $100 luxury tax!", 
-					"Luxury Tax", JOptionPane.INFORMATION_MESSAGE);
+			if (parent.players[currPlayer].isHuman()) {
+				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you have to pay a $100 luxury tax!", 
+						"Luxury Tax", JOptionPane.INFORMATION_MESSAGE);	
+			}
+			else {
+				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+						" (computer) has to pay a $100 luxury tax!", "Luxury Tax", 
+						JOptionPane.INFORMATION_MESSAGE);				
+			}
 			deduction = flatRate;
 		}
 		// income tax -- player gets option to pay 10% of net worth or flat rate of $200
@@ -1443,19 +1590,30 @@ public class GamePanel extends JPanel {
 			int tenPerc = parent.players[currPlayer].getNetWorth() / 10;
 			int flatRate = 200;
 			
-			Object [] options = (Object[])(new String[] {"Pay $" + flatRate, "Pay 10% ($" + tenPerc + ")"});
-			int percOrFlatRate = JOptionPane.showOptionDialog(null, parent.players[currPlayer].getName() + 
-					", you have to pay taxes!\n", "Income Tax", JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION, 
-					null, options, options[(flatRate > tenPerc ? 1 : 0)]);
-			deduction = (percOrFlatRate == 0 ? flatRate : tenPerc);
+			if (parent.players[currPlayer].isHuman()) {
+				Object [] options = (Object[])(new String[] {"Pay $" + flatRate, "Pay 10% ($" + tenPerc + ")"});
+				int percOrFlatRate = JOptionPane.showOptionDialog(null, parent.players[currPlayer].getName() + 
+						", you have to pay taxes!\n", "Income Tax", JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION, 
+						null, options, options[(flatRate > tenPerc ? 1 : 0)]);
+				deduction = (percOrFlatRate == 0 ? flatRate : tenPerc);
+			}
+			else {
+				// AI selects the smaller of the two tax options
+				deduction = (flatRate < tenPerc ? flatRate: tenPerc);
+			}
 		}
 		
 		// deduct the tax from the bank
 		parent.players[currPlayer].deductFromBank(deduction, parent.playersOut);
 		// check if player exited game
 		if (!parent.players[currPlayer].isActive()) {
-			JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you are out of money!", 
+			if (parent.players[currPlayer].isHuman()) {
+				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you are out of money!", 
 					"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+						" (computer) is out of money!", "Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+			}
 			++parent.playersOut;
 		}
 	}
@@ -1497,31 +1655,66 @@ public class GamePanel extends JPanel {
 		this.doubles = false;
 		diceActive = true;
 		updateCurrentPlayer();
-		
+				
 		// finally, check if this next player is in jail
 		if (parent.players[currPlayer].inJail()) {
 			// show dialog asking player if they want to pay the fine or try 
 			//	to roll doubles to get out
-			Object [] options = (Object[])(new String[] {"Roll", "Pay $50"});
-			int rollOrPay = JOptionPane.showOptionDialog(null, parent.players[currPlayer].getName() + 
-					", do you want to attempt to roll doubles, or pay the $50 fine?\n" + 
-					"Turns left in Jail: " + parent.players[currPlayer].turnsLeftInJail(), "In Jail",
-					JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION,	null, options, options[0]);
-			// if player wants to roll the dice, set jailRoll flag
-			if (rollOrPay == 0) this.jailRoll = true;
-			// otherwise, deduct $50 from player's bank and let them continue with their turn as normal
-			else  {
-				// deduct the fine
-				parent.players[currPlayer].deductFromBank(50, parent.playersOut);
-				// check if player exited game
-				if (!parent.players[currPlayer].isActive()) {
-					JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you are out of money!", 
-							"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
-					++parent.playersOut;
+			if (parent.players[currPlayer].isHuman()) {
+				Object [] options = (Object[])(new String[] {"Roll", "Pay $50"});
+				int rollOrPay = JOptionPane.showOptionDialog(null, parent.players[currPlayer].getName() + 
+						", do you want to attempt to roll doubles, or pay the $50 fine?\n" + 
+						"Turns left in Jail: " + parent.players[currPlayer].turnsLeftInJail(), "In Jail",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION,	null, options, options[0]);
+				// if player wants to roll the dice, set jailRoll flag
+				if (rollOrPay == 0) this.jailRoll = true;
+				// otherwise, deduct $50 from player's bank and let them continue with their turn as normal
+				else  {
+					// deduct the fine
+					parent.players[currPlayer].deductFromBank(50, parent.playersOut);
+					// check if player exited game
+					if (!parent.players[currPlayer].isActive()) {
+						JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + ", you are out of money!", 
+								"Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+						++parent.playersOut;
+						nextTurn();
+					}
+					else {
+						// get the player out of jail
+						parent.players[currPlayer].outOfJail();	
+					}
 				}
-				// get the player out of jail
-				parent.players[currPlayer].outOfJail();	
 			}
+			// otherwise, it is a computer player
+			// AI decision -- if I have > $100, pay to get out of jail
+			//				  else, roll to get out of jail
+			else {
+				if (parent.players[currPlayer].getBank() > 100) {
+					parent.players[currPlayer].deductFromBank(50, parent.playersOut);
+					// check if player exited game
+					if (!parent.players[currPlayer].isActive()) {
+						JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+								" (computer) is out of money!", "Out of Game!", JOptionPane.INFORMATION_MESSAGE);
+						++parent.playersOut;
+						nextTurn();
+					}
+					else {
+						// get the player out of jail
+						JOptionPane.showMessageDialog(null, parent.players[currPlayer].getName() + 
+								" (computer) paid $50 to get out of jail.", "Pay Jail Fine", 
+								JOptionPane.INFORMATION_MESSAGE);
+						parent.players[currPlayer].outOfJail();	
+					}
+				}
+				else {
+					this.jailRoll = true;
+					compTurnBegin();
+				}
+			}
+		}
+		// if the player is not in jail and the player is a computer player, then call compDiceClicked
+		else if (!parent.players[currPlayer].isHuman()) {
+			compTurnBegin();
 		}
 	}
 

@@ -46,15 +46,23 @@ public class MainWindow{
 				SetupPanel setupP = ((SetupPanel)(cards.getComponents()[1]));
 				for (int i = 0; i < players.length; ++i) {
 					players[i].setName(setupP.playerNames[i].getText());
-					// hardcoded for now, but eventually will copy over from setup screen
-					players[i].setpType(PlayerType.HUMAN); //players[i].setpType((Player.PlayerType)setupP.playerTypes.get(i).getSelectedItem());
+					//players[i].setpType(PlayerType.HUMAN); 
+					players[i].setpType((Player.PlayerType)setupP.playerTypes.get(i).getSelectedItem());
 					players[i].setPiece((Player.GamePiece)setupP.playerPieces.get(i).getSelectedItem());
-				}						
+				}	
 			}
 
 		}
 
 		cl.next(cards);
+		if (cards.getComponents().length > 2) {
+			if (cards.getComponents()[2].isVisible()) {
+				// if the first player is a computer player, then start that player's turn
+				if (!players[0].isHuman()) {
+					((GamePanel)(cards.getComponents()[2])).compTurnBegin();
+				}
+			}
+		}
 
 		if (cards.getComponents()[3].isVisible()) {
 			((EndPanel)cards.getComponents()[3]).setPlacesLabels();

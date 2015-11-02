@@ -237,8 +237,8 @@ public boolean checkHouse(ArrayList<Property> props)
     }
 
 	// getter/setter for player type (human or computer)
-	public PlayerType getpType() {
-		return pType;
+	public boolean isHuman() {
+		return pType == PlayerType.HUMAN;
 	}
 	public void setpType(PlayerType pType) {
 		this.pType = pType;
@@ -285,7 +285,13 @@ public boolean checkHouse(ArrayList<Property> props)
 		// collect money
 		this.addToBank(200);
 		// notify player of passing go 
-		JOptionPane.showMessageDialog(null, "You passed go! Collect $200.", "Passed Go", JOptionPane.INFORMATION_MESSAGE);
+		if (this.isHuman()) {
+			JOptionPane.showMessageDialog(null, "You passed go! Collect $200.", "Passed Go", 
+					JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null, this.getName() + " (computer) passed go"
+					+ " and collected $200.", "Passed Go", JOptionPane.INFORMATION_MESSAGE);
+		}
 		//System.out.println("You passed go! Collect $200!");
 	}
 	
