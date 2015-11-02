@@ -1704,6 +1704,7 @@ public class GamePanel extends JPanel {
 								" (computer) paid $50 to get out of jail.", "Pay Jail Fine", 
 								JOptionPane.INFORMATION_MESSAGE);
 						parent.players[currPlayer].outOfJail();	
+						compTurnBegin();
 					}
 				}
 				else {
