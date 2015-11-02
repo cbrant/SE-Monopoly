@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -26,8 +27,9 @@ public class TradeView extends JFrame {
 	private JComboBox<Property> firstPlayerProp, secondPlayerProp;
 	private GamePanel parent;
 	private TradeView myself;
-	
-
+	Player firstSelected;
+	Player secondSelected;
+	Property None = new Property("NONE");
 	/**
 	 * Create the frame.
 	 */
@@ -56,7 +58,8 @@ public class TradeView extends JFrame {
 		gbc_lblMakeATrade.gridy = 0;
 		contentPane.add(lblMakeATrade, gbc_lblMakeATrade);
 		
-		firstPlayerBox = new JComboBox<Player>(this.parent.getMyParent().players);
+		firstPlayerBox = new JComboBox<Player>();
+		firstPlayerBox.addItem(this.parent.getMyParent().players[this.parent.currPlayer]);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -132,9 +135,11 @@ public class TradeView extends JFrame {
 		firstPlayerProp.removeAllItems();
 		secondPlayerProp.removeAllItems();
 		
-		Player firstSelected = (Player)(this.firstPlayerBox.getSelectedItem());
-		Player secondSelected = (Player)(this.secondPlayerBox.getSelectedItem());
+		firstSelected = (Player)(this.firstPlayerBox.getSelectedItem());
+		secondSelected = (Player)(this.secondPlayerBox.getSelectedItem());
 		
+		firstPlayerProp.addItem(None);
+		secondPlayerProp.addItem(None);
 		for( ArrayList<Property> category : firstSelected.getProperties() )
 		{
 			for( Property x : category)
@@ -164,22 +169,84 @@ public class TradeView extends JFrame {
 	};
 	
 	private ActionListener tradeConfirmed = new ActionListener() {   
-
 		@Override
 		public void actionPerformed(ActionEvent e) {   
-
-			////////////////////
-			/*
-			 * DO THE BACKEND THINGS
-			 */
-			////////////////////
+			if(!checkPlayers()){
+				JOptionPane.showMessageDialog(null, "Error: Trading between same player.", 
+						"Trade Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			int val1;
+			int val2;
+			try {
+				val1 = Integer.parseInt(firstPlayerCash.getText());
+			}
+			catch(NumberFormatException nfe) 
+			{
+				JOptionPane.showMessageDialog(null, "Error: Invalid left cash entry.", 
+						"Trade Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			try {
+				val2 = Integer.parseInt(secondPlayerCash.getText());
+			}
+			catch(NumberFormatException nfe) 
+			{
+				JOptionPane.showMessageDialog(null, "Error: Invalid right cash entry.", 
+						"Trade Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+		/*	if(!firstPlayerProp.getSelectedItem().equals(None)) {
+				if(((Property)firstPlayerProp.getSelectedItem()).getNumHouses() != 0)
+				{
+					JOptionPane.showMessageDialog(null, "Error: Property 1 has houses present.", 
+							"Trade Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				((Property) firstPlayerProp.getSelectedItem()).setOwner(secondSelected.getId());
+				secondSelected.addProperty((Property) firstPlayerProp.getSelectedItem());
+				if(firstSelected.getProperties().remove(firstPlayerProp.getSelectedItem())==false)
+					System.out.println("Error, Property 1 not found");
+			}
+			if(!secondPlayerProp.getSelectedItem().equals(None)) {
+				if(((Property)secondPlayerProp.getSelectedItem()).getNumHouses() != 0)
+				{
+					JOptionPane.showMessageDialog(null, "Error: Property 2 has houses present.", 
+							"Trade Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				((Property) secondPlayerProp.getSelectedItem()).setOwner(firstSelected.getId());
+				firstSelected.addProperty((Property) secondPlayerProp.getSelectedItem());
+				if(secondSelected.getProperties().remove(secondPlayerProp.getSelectedItem())==false)
+					System.out.println("Error, Property 2 not found");
+			}
+			*/
 			
 			
+			
+			if(val1 != 0){
+				firstSelected.deductFromBank(val1, parent.getParentFrame().playersOut);
+				secondSelected.addToBank(val1);
+			}
+			if(val2 != 0){
+				secondSelected.deductFromBank(val2, parent.getParentFrame().playersOut);
+				firstSelected.addToBank(val2);
+			}
 			//Closes the window
 			myself.dispose();
 		
 		}
 	};
+	
+	boolean checkPlayers() {
+		firstSelected = (Player)(this.firstPlayerBox.getSelectedItem());
+		secondSelected = (Player)(this.secondPlayerBox.getSelectedItem());
+		if(firstSelected == secondSelected) { 
+			return false;
+		}
+		return true;
+	}
 
+	
 
 }

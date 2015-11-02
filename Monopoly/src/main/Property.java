@@ -51,6 +51,24 @@ public class Property extends Space {
 	}
 	
 	
+	public Property(String name) {
+		super(name, Space.SpaceType.ACTION);
+		this.buyable = true;
+
+		this.buyingPrice = 0;
+		this.rent = new int[1];
+		this.mortVal = 0;		
+		this.houseCost = 0;
+		this.group = PropertyCategory.UTILITIES;
+		this.numHouses = 0;
+		this.canBuyHouse = false;
+		
+		this.owner = -1;
+		this.forSale = true;
+		this.isMortgaged = false;
+	}
+
+
 	public void landedOn(int playerNum) {
 		// first case -- not yet bought, give player option to buy
 	}
@@ -156,7 +174,7 @@ public class Property extends Space {
 		return owner;
 	}
 	
-public void setOwner(int owner) {
+	public void setOwner(int owner) {
 		this.owner = owner;
 	}
 	

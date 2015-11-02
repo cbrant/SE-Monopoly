@@ -26,6 +26,7 @@ public class Player {
 
 	/// DATA MEMBERS ///
 	private String name;
+	private int id;
 	private PlayerType pType;
 	private GamePiece piece;
 	private int bank;
@@ -53,7 +54,7 @@ public class Player {
 	// set up initial default name for players
 	public Player(int id) {
 		this.bank = 1500;		
-
+		this.setId(id-1);
 		this.nameL = new JLabel();
 		this.bankL = new JLabel("$" + this.bank);
 		this.propertiesL = new JLabel("None");
@@ -347,6 +348,14 @@ public boolean checkHouse(ArrayList<Property> props)
 			}
 		}
 		return true;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
