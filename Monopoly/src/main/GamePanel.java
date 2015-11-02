@@ -1711,10 +1711,10 @@ public class GamePanel extends JPanel {
 		
 	};
 
-	private ActionListener tradeClicked = new ActionListener() {  
+	private ActionListener tradeClicked = new ActionListener() {   
 
 		@Override
-		public void actionPerformed(ActionEvent e) {  
+		public void actionPerformed(ActionEvent e) {   
 
 			TradeView tradeOpened = new TradeView(thisGamePanel);
 			tradeOpened.setVisible(true);

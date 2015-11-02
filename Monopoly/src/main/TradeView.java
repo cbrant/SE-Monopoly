@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+@SuppressWarnings("serial")
 public class TradeView extends JFrame {
 
 	private JPanel contentPane;
@@ -23,6 +25,8 @@ public class TradeView extends JFrame {
 	private JComboBox<Player> firstPlayerBox, secondPlayerBox;
 	private JComboBox<Property> firstPlayerProp, secondPlayerProp;
 	private GamePanel parent;
+	private TradeView myself;
+	
 
 	/**
 	 * Create the frame.
@@ -34,12 +38,13 @@ public class TradeView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
+		this.myself = this;
 		this.parent = par;
 		
 		getContentPane().setBackground(new Color(255, 250, 205));
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.columnWidths = new int[]{20, 0, 0, 0, 0, 20};
+		gbl_contentPane.rowHeights = new int[]{20, 0, 0, 0, 0, 0, 0, 0, 0, 20};
 		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
@@ -58,6 +63,7 @@ public class TradeView extends JFrame {
 		gbc_comboBox.gridx = 1;
 		gbc_comboBox.gridy = 1;
 		contentPane.add(firstPlayerBox, gbc_comboBox);
+		firstPlayerBox.addActionListener(playerSwitched);
 		
 		secondPlayerBox = new JComboBox<Player>(this.parent.getMyParent().players);
 		GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
@@ -66,6 +72,7 @@ public class TradeView extends JFrame {
 		gbc_comboBox_2.gridx = 3;
 		gbc_comboBox_2.gridy = 1;
 		contentPane.add(secondPlayerBox, gbc_comboBox_2);
+		secondPlayerBox.addActionListener(playerSwitched);
 		
 		firstPlayerProp = new JComboBox<Property>();
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
@@ -91,6 +98,8 @@ public class TradeView extends JFrame {
 		gbc_textField.gridy = 5;
 		contentPane.add(firstPlayerCash, gbc_textField);
 		firstPlayerCash.setColumns(10);
+		firstPlayerCash.setText("0");
+		firstPlayerCash.setToolTipText("Cash to trade (Optional)");
 		
 		secondPlayerCash = new JTextField();
 		secondPlayerCash.setColumns(10);
@@ -100,14 +109,17 @@ public class TradeView extends JFrame {
 		gbc_textField_1.gridx = 3;
 		gbc_textField_1.gridy = 5;
 		contentPane.add(secondPlayerCash, gbc_textField_1);
+		secondPlayerCash.setText("0");
+		secondPlayerCash.setToolTipText("Cash to trade (Optional)");
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton confirmButton = new JButton("Confirm");
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 2;
 		gbc_btnNewButton.gridy = 7;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
+		contentPane.add(confirmButton, gbc_btnNewButton);
 		this.setBackground(new Color(255, 250, 205));
+		confirmButton.addActionListener(tradeConfirmed);
 
 		populatePropBox();
 		
@@ -116,6 +128,10 @@ public class TradeView extends JFrame {
 	
 	private void populatePropBox()
 	{
+		
+		firstPlayerProp.removeAllItems();
+		secondPlayerProp.removeAllItems();
+		
 		Player firstSelected = (Player)(this.firstPlayerBox.getSelectedItem());
 		Player secondSelected = (Player)(this.secondPlayerBox.getSelectedItem());
 		
@@ -136,5 +152,34 @@ public class TradeView extends JFrame {
 			}
 		}
 	}
+	
+	private ActionListener playerSwitched = new ActionListener() {   
+
+		@Override
+		public void actionPerformed(ActionEvent e) {   
+
+			populatePropBox();
+		
+		}
+	};
+	
+	private ActionListener tradeConfirmed = new ActionListener() {   
+
+		@Override
+		public void actionPerformed(ActionEvent e) {   
+
+			////////////////////
+			/*
+			 * DO THE BACKEND THINGS
+			 */
+			////////////////////
+			
+			
+			//Closes the window
+			myself.dispose();
+		
+		}
+	};
+
 
 }
