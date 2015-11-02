@@ -956,6 +956,14 @@ public class PropertyView extends JFrame {
 		gbc_lblReadingRr.gridy = 7;
 		getContentPane().add(lblReadingRr, gbc_lblReadingRr);
 		propLabels.add(lblReadingRr);
+		
+		button_42 = new JButton("M");
+		button_42.setFont(new Font("Dialog", Font.BOLD, 10));
+		GridBagConstraints gbc_button_42 = new GridBagConstraints();
+		gbc_button_42.insets = new Insets(0, 0, 5, 5);
+		gbc_button_42.gridx = 15;
+		gbc_button_42.gridy = 7;
+		getContentPane().add(button_42, gbc_button_42);
 
 		lblElectricCompany = new JLabel("Electric Company");
 		lblElectricCompany.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -968,6 +976,14 @@ public class PropertyView extends JFrame {
 		gbc_lblElectricCompany.gridy = 7;
 		getContentPane().add(lblElectricCompany, gbc_lblElectricCompany);
 		propLabels.add(lblElectricCompany);
+		
+		button_44 = new JButton("M");
+		button_44.setFont(new Font("Dialog", Font.BOLD, 10));
+		GridBagConstraints gbc_button_44 = new GridBagConstraints();
+		gbc_button_44.insets = new Insets(0, 0, 5, 5);
+		gbc_button_44.gridx = 19;
+		gbc_button_44.gridy = 7;
+		getContentPane().add(button_44, gbc_button_44);
 
 		lblVentnorAve = new JLabel("Ventnor Ave");
 		lblVentnorAve.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -1106,6 +1122,14 @@ public class PropertyView extends JFrame {
 		gbc_lblPennsylvaniaRr.gridy = 8;
 		getContentPane().add(lblPennsylvaniaRr, gbc_lblPennsylvaniaRr);
 		propLabels.add(lblPennsylvaniaRr);
+		
+		button_43 = new JButton("M");
+		button_43.setFont(new Font("Dialog", Font.BOLD, 10));
+		GridBagConstraints gbc_button_43 = new GridBagConstraints();
+		gbc_button_43.insets = new Insets(0, 0, 5, 5);
+		gbc_button_43.gridx = 15;
+		gbc_button_43.gridy = 8;
+		getContentPane().add(button_43, gbc_button_43);
 
 		lblWaterWorks = new JLabel("Water Works");
 		lblWaterWorks.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -1118,6 +1142,14 @@ public class PropertyView extends JFrame {
 		gbc_lblWaterWorks.gridy = 8;
 		getContentPane().add(lblWaterWorks, gbc_lblWaterWorks);
 		propLabels.add(lblWaterWorks);
+		
+		button_45 = new JButton("M");
+		button_45.setFont(new Font("Dialog", Font.BOLD, 10));
+		GridBagConstraints gbc_button_45 = new GridBagConstraints();
+		gbc_button_45.insets = new Insets(0, 0, 5, 5);
+		gbc_button_45.gridx = 19;
+		gbc_button_45.gridy = 8;
+		getContentPane().add(button_45, gbc_button_45);
 
 		lblMarvinGardens = new JLabel("Marvin Gardens");
 		lblMarvinGardens.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -1214,6 +1246,14 @@ public class PropertyView extends JFrame {
 		gbc_lblBO.gridy = 9;
 		getContentPane().add(lblBO, gbc_lblBO);
 		propLabels.add(lblBO);
+		
+		button_46 = new JButton("M");
+		button_46.setFont(new Font("Dialog", Font.BOLD, 10));
+		GridBagConstraints gbc_button_46 = new GridBagConstraints();
+		gbc_button_46.insets = new Insets(0, 0, 5, 5);
+		gbc_button_46.gridx = 15;
+		gbc_button_46.gridy = 9;
+		getContentPane().add(button_46, gbc_button_46);
 
 		lblShortLine = new JLabel("Short Line");
 		lblShortLine.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -1226,6 +1266,14 @@ public class PropertyView extends JFrame {
 		gbc_lblShortLine.gridy = 10;
 		getContentPane().add(lblShortLine, gbc_lblShortLine);
 		propLabels.add(lblShortLine);
+		
+		button_47 = new JButton("M");
+		button_47.setFont(new Font("Dialog", Font.BOLD, 10));
+		GridBagConstraints gbc_button_47 = new GridBagConstraints();
+		gbc_button_47.insets = new Insets(0, 0, 0, 5);
+		gbc_button_47.gridx = 15;
+		gbc_button_47.gridy = 10;
+		getContentPane().add(button_47, gbc_button_47);
 
 		highlightOwned();
 		updateHouses();
@@ -1394,5 +1442,11 @@ public class PropertyView extends JFrame {
 		}
 
 	};
+	private JButton button_42;
+	private JButton button_43;
+	private JButton button_44;
+	private JButton button_45;
+	private JButton button_46;
+	private JButton button_47;
 
 }
