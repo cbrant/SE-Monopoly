@@ -964,7 +964,9 @@ public class PropertyView extends JFrame {
 		gbc_button_42.gridx = 15;
 		gbc_button_42.gridy = 7;
 		getContentPane().add(button_42, gbc_button_42);
-
+		button_42.putClientProperty(BUTTON, 5);
+		button_42.addActionListener(mortgageClicked);
+		
 		lblElectricCompany = new JLabel("Electric Company");
 		lblElectricCompany.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblElectricCompany.setBackground(new Color(255, 250, 205));
@@ -984,7 +986,9 @@ public class PropertyView extends JFrame {
 		gbc_button_44.gridx = 19;
 		gbc_button_44.gridy = 7;
 		getContentPane().add(button_44, gbc_button_44);
-
+		button_44.putClientProperty(BUTTON,  12);
+		button_44.addActionListener(mortgageClicked);
+		
 		lblVentnorAve = new JLabel("Ventnor Ave");
 		lblVentnorAve.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblVentnorAve.setBackground(new Color(255, 250, 205));
@@ -1130,6 +1134,8 @@ public class PropertyView extends JFrame {
 		gbc_button_43.gridx = 15;
 		gbc_button_43.gridy = 8;
 		getContentPane().add(button_43, gbc_button_43);
+		button_43.putClientProperty(BUTTON, 15);
+		button_43.addActionListener(mortgageClicked);
 
 		lblWaterWorks = new JLabel("Water Works");
 		lblWaterWorks.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -1150,6 +1156,8 @@ public class PropertyView extends JFrame {
 		gbc_button_45.gridx = 19;
 		gbc_button_45.gridy = 8;
 		getContentPane().add(button_45, gbc_button_45);
+		button_45.putClientProperty(BUTTON, 28);
+		button_45.addActionListener(mortgageClicked);
 
 		lblMarvinGardens = new JLabel("Marvin Gardens");
 		lblMarvinGardens.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -1254,6 +1262,8 @@ public class PropertyView extends JFrame {
 		gbc_button_46.gridx = 15;
 		gbc_button_46.gridy = 9;
 		getContentPane().add(button_46, gbc_button_46);
+		button_46.putClientProperty(BUTTON, 25);
+		button_46.addActionListener(mortgageClicked);
 
 		lblShortLine = new JLabel("Short Line");
 		lblShortLine.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -1274,6 +1284,8 @@ public class PropertyView extends JFrame {
 		gbc_button_47.gridx = 15;
 		gbc_button_47.gridy = 10;
 		getContentPane().add(button_47, gbc_button_47);
+		button_47.putClientProperty(BUTTON, 35);
+		button_47.addActionListener(mortgageClicked);
 
 		highlightOwned();
 		updateHouses();
