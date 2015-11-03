@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import main.Player.PlayerType;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel {
@@ -1184,6 +1183,7 @@ public class GamePanel extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		// roll the dice for the computer player
 		int d1 = diceRoll(); int d2 = diceRoll();
 		// display the result of the dice on the screen 

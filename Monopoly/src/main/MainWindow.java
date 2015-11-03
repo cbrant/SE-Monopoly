@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.io.*;
 import javax.swing.*;
-import main.Player.PlayerType;
 import main.StartPanel;
 import main.SetupPanel;
 import main.GamePanel;
