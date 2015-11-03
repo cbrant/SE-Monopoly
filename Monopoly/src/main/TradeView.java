@@ -176,6 +176,14 @@ public class TradeView extends JFrame {
 						"Trade Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
+			if (!secondSelected.isActive())
+			{
+				JOptionPane.showMessageDialog(null, "Error: Trading with a player already out of the game.", 
+						"Trade Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			
+			// check that the values entered are valid
 			int val1;
 			int val2;
 			try {
@@ -196,6 +204,32 @@ public class TradeView extends JFrame {
 						"Trade Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
+			
+			// check if they both have enough money
+			if (val1 > firstSelected.getBank()) {
+				if (firstSelected.isHuman()) {
+					JOptionPane.showMessageDialog(null, firstSelected.getName() + ", you don't " +
+							"have that much money!", "Trade Error", JOptionPane.ERROR_MESSAGE);	
+				}
+				else {
+					JOptionPane.showMessageDialog(null, firstSelected.getName() + " (computer) doesn't " +
+						"have that much money!", "Trade Error", JOptionPane.ERROR_MESSAGE);
+				}
+				return;
+			}
+			if (val2 > secondSelected.getBank()) {
+				if (secondSelected.isHuman()) {
+					JOptionPane.showMessageDialog(null, secondSelected.getName() + ", you don't " +
+							"have that much money!", "Trade Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, secondSelected.getName() + " (computer) doesn't " +
+						"have that much money!", "Trade Error", JOptionPane.ERROR_MESSAGE);
+				}
+					return;
+			}
+			
+			// check if there are houses on the property that have to be sold first			
 			if(!firstPlayerProp.getSelectedItem().equals(None)) {
 				if(((Property)firstPlayerProp.getSelectedItem()).getNumHouses() != 0)
 				{
@@ -203,13 +237,7 @@ public class TradeView extends JFrame {
 							"Trade Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				((Property) firstPlayerProp.getSelectedItem()).setOwner(secondSelected.getId());
-				System.out.println("Setting "+((Property) firstPlayerProp.getSelectedItem()).getName()+" owner to player "+secondSelected.getId());
-				secondSelected.addProperty((Property) firstPlayerProp.getSelectedItem());
-				firstSelected.removeProperty(((Property) firstPlayerProp.getSelectedItem()).getName());
-					
-				
-				
+											
 			}
 			if(!secondPlayerProp.getSelectedItem().equals(None)) {
 				if(((Property)secondPlayerProp.getSelectedItem()).getNumHouses() != 0)
@@ -218,13 +246,58 @@ public class TradeView extends JFrame {
 							"Trade Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
+				
+			}
+			
+			// confirm with the second player that this trade is okay
+			if (secondSelected.isHuman()) {
+				int tradeOkay = JOptionPane.showConfirmDialog(null, secondSelected.getName() +
+						", do you accept this trade?\n", "Accept Trade?", JOptionPane.YES_NO_OPTION);
+				if (tradeOkay == 1) {
+					//they said no
+					return;
+				}
+			} else {
+				// ai will check for total value of each side of the trade
+				// if the trade is beneficial or equal for the AI, then it will accept it
+				// NOTE: in this calculation, properties are 1.25x as valuable as money
+				int firstTotal = val1;
+				int secondTotal = val2;
+				if (!firstPlayerProp.getSelectedItem().equals(None)) {
+					firstTotal += ((Property)firstPlayerProp.getSelectedItem()).getPrice()*1.25;
+				}
+				if (!secondPlayerProp.getSelectedItem().equals(None)) {
+					secondTotal += ((Property)secondPlayerProp.getSelectedItem()).getPrice()*1.25;
+				}
+				if (secondTotal <= firstTotal) {
+					// accept the trade
+					JOptionPane.showConfirmDialog(null, secondSelected.getName() + " (computer) "
+							+ "accepted your trade, " + firstSelected.getName() + "!", "Trade Accepted",
+							JOptionPane.PLAIN_MESSAGE);
+				} else {
+					JOptionPane.showConfirmDialog(null, secondSelected.getName() + " (computer) did "
+							+ "not accept your trade, " + firstSelected.getName() + ".", "Trade Rejected", 
+							JOptionPane.PLAIN_MESSAGE);
+					return;
+				}
+				
+			}
+			
+			// now (after all of the checks) make the trade!
+			if(!firstPlayerProp.getSelectedItem().equals(None)) {
+				((Property) firstPlayerProp.getSelectedItem()).setOwner(secondSelected.getId());
+				System.out.println("Setting "+((Property) firstPlayerProp.getSelectedItem()).getName()+" owner to player "+secondSelected.getId());
+				secondSelected.addProperty((Property) firstPlayerProp.getSelectedItem());
+				firstSelected.removeProperty(((Property) firstPlayerProp.getSelectedItem()).getName());
+			}
+			if(!secondPlayerProp.getSelectedItem().equals(None)) {
 				((Property) secondPlayerProp.getSelectedItem()).setOwner(firstSelected.getId());
 				System.out.println("Setting "+((Property) secondPlayerProp.getSelectedItem()).getName()+" owner to player "+firstSelected.getId());
 				firstSelected.addProperty((Property) secondPlayerProp.getSelectedItem());
 				secondSelected.removeProperty(((Property) secondPlayerProp.getSelectedItem()).getName());
 			}
 			
-			
+			// trade the money
 			if(val1 != 0){
 				firstSelected.deductFromBank(val1, parent.getParentFrame().playersOut);
 				secondSelected.addToBank(val1);

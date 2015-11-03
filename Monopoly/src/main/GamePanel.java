@@ -1277,15 +1277,26 @@ public class GamePanel extends JPanel {
 	 * Purpose:		advance the current player around the board to the next space based on the dice roll
 	 */
 	public void movePlayer(int roll) {
-		int newLoc = parent.players[currPlayer].getCurrLocation() + roll;
-		// check if the player passed go
-		if (newLoc >= parent.spaces.size()) {
-			parent.players[currPlayer].passedGo();
-		}
-		// set user's location to correct index into properties array
-		parent.players[currPlayer].setCurrLocation(newLoc % parent.spaces.size());
+		for (int i = 0; i < roll; ++i) {
+			int newLoc = parent.players[currPlayer].getCurrLocation() + 1;
+			// check if the player passed go
+			if (newLoc >= parent.spaces.size()) {
+				parent.players[currPlayer].passedGo();
+			}
+			// set user's location to correct index into properties array
+			parent.players[currPlayer].setCurrLocation(newLoc % parent.spaces.size());
 
-		movePlayerIcon();
+			movePlayerIcon();
+			// when we can figure out how to get the gui to repaint, we can have this in here
+			// 	animate the player moving to the next space
+			/*try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+		}
+
 
 	}	
 
@@ -1825,6 +1836,9 @@ public class GamePanel extends JPanel {
 			this.remove(player1);
 			this.add(player1, gbc_player1);
 			setComponentZOrder(player1, 0);
+			player1.paintImmediately(getBounds());
+			player1.setVisible(true);
+			this.paintImmediately(getBounds());
 			break;
 
 		case 1:
@@ -1849,6 +1863,7 @@ public class GamePanel extends JPanel {
 			this.remove(player4);
 			this.add(player4, gbc_player4);
 			setComponentZOrder(player4, 0);
+			this.paintImmediately(getVisibleRect());
 			break;
 
 		}	
