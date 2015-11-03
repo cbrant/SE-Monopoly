@@ -194,7 +194,24 @@ public class Player {
         props += "</html>";
         this.propertiesL.setText(props);
     }
-
+	
+	public void removeProperty(String name) {
+		ArrayList<Property> tempProperties = new ArrayList<Property>();
+		for(int i = 0; i < ownedProperties.size(); i++) {
+			for(int j = 0; j < ownedProperties.get(i).size(); j++) {
+				if(!ownedProperties.get(i).get(j).getName().equals(name)) {
+					tempProperties.add(ownedProperties.get(i).get(j));
+				}
+				else {
+					System.out.println("Ignoring "+ ownedProperties.get(i).get(j).getName());
+				}
+			}
+		}
+		ownedProperties.clear();
+		for(int k = 0; k < tempProperties.size(); k++) {
+			this.addProperty(tempProperties.get(k));
+		}
+	}
 
 	
 

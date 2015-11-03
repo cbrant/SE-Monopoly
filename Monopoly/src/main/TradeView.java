@@ -196,7 +196,7 @@ public class TradeView extends JFrame {
 						"Trade Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-		/*	if(!firstPlayerProp.getSelectedItem().equals(None)) {
+			if(!firstPlayerProp.getSelectedItem().equals(None)) {
 				if(((Property)firstPlayerProp.getSelectedItem()).getNumHouses() != 0)
 				{
 					JOptionPane.showMessageDialog(null, "Error: Property 1 has houses present.", 
@@ -204,9 +204,12 @@ public class TradeView extends JFrame {
 					return;
 				}
 				((Property) firstPlayerProp.getSelectedItem()).setOwner(secondSelected.getId());
+				System.out.println("Setting "+((Property) firstPlayerProp.getSelectedItem()).getName()+" owner to player "+secondSelected.getId());
 				secondSelected.addProperty((Property) firstPlayerProp.getSelectedItem());
-				if(firstSelected.getProperties().remove(firstPlayerProp.getSelectedItem())==false)
-					System.out.println("Error, Property 1 not found");
+				firstSelected.removeProperty(((Property) firstPlayerProp.getSelectedItem()).getName());
+					
+				
+				
 			}
 			if(!secondPlayerProp.getSelectedItem().equals(None)) {
 				if(((Property)secondPlayerProp.getSelectedItem()).getNumHouses() != 0)
@@ -216,12 +219,10 @@ public class TradeView extends JFrame {
 					return;
 				}
 				((Property) secondPlayerProp.getSelectedItem()).setOwner(firstSelected.getId());
+				System.out.println("Setting "+((Property) secondPlayerProp.getSelectedItem()).getName()+" owner to player "+firstSelected.getId());
 				firstSelected.addProperty((Property) secondPlayerProp.getSelectedItem());
-				if(secondSelected.getProperties().remove(secondPlayerProp.getSelectedItem())==false)
-					System.out.println("Error, Property 2 not found");
+				secondSelected.removeProperty(((Property) secondPlayerProp.getSelectedItem()).getName());
 			}
-			*/
-			
 			
 			
 			if(val1 != 0){
