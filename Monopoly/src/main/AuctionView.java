@@ -36,8 +36,7 @@ public class AuctionView extends JFrame {
 		parent = par;
 		propForAuction = pfa;
 		// starting bidder is the next player
-		currBidder = -1;
-		//currBidder = (parent.currPlayer + 1) % 4;
+		currBidder = (parent.currPlayer + 1) % 4;
 		currBid = -1;
 		highestBidder = -1;
 		numPasses = 0;
@@ -59,11 +58,13 @@ public class AuctionView extends JFrame {
 			int bid = 0;	// parse this from input box
 			if (!checkBidInput(bid)) return;
 			
-			// update currBid
-			updateBid(bid);
+			
 			
 			// move to next player
 			updateBidder();
+			
+			// update currBid
+			updateBid(bid);
 			// graphics update here
 			updateBidGraphics();
 		}
@@ -76,7 +77,15 @@ public class AuctionView extends JFrame {
 		// check that current player has enough money for this bid
 		// check that this bid is greater than current bid
 		// return false if either is not right
-		throw new NotImplementedException();
+		if(bid <= 0)
+			return false;
+		if(bid <= currBid)
+			return false;
+
+		if(bid >= parent.getMyParent().players[currBidder].getBank())
+			return false;
+
+		return true;
 	}
 
 
@@ -87,12 +96,14 @@ public class AuctionView extends JFrame {
 
 
 	public void updateBid(int bid) {
-
+		currBid = bid;
+		numPasses = 0;
 	}
 
 
 	public void updateBidder() {
-		
+		currBidder = (currBidder+1)%4;
+		numPasses++;
 	}
 	
 	public ActionListener playerPasses = new ActionListener() {
@@ -123,13 +134,15 @@ public class AuctionView extends JFrame {
 	};
 
 	public boolean isEndAuction() {
-		// currBidder == highestBidder
-		throw new NotImplementedException();
+		if(currBidder == highestBidder)
+			return true;
+		return false;
 	}
 	
 	public boolean noBids() {
-		// numPasses == 4
-		throw new NotImplementedException();
+		if(numPasses == 4)
+			return true;
+		return false;
 	}
 	
 	public void bidWon() {
