@@ -51,7 +51,7 @@ public class GamePanel extends JPanel {
 
 
 	//variables for the player panels
-	private JPanel panel, panel_1, panel_2, panel_3;
+	public JPanel panel, panel_1, panel_2, panel_3;
 
 	// Array of piece images
 	private HashMap<Player.GamePiece, Image> playerPieces = new HashMap<Player.GamePiece, Image>(6);
@@ -1045,7 +1045,7 @@ public class GamePanel extends JPanel {
 	 * Purpose:		creates and shuffles the chance deck
 	 * 				
 	 */
-	private void createChanceDeck()
+	public void createChanceDeck()
 	{
 		//set up chance deck
 		chanceDeck.add(new BankSpecialCard("Chance", "Pay poor tax of $15.", -15));
@@ -1060,7 +1060,7 @@ public class GamePanel extends JPanel {
 	 * Purpose:		creates and shuffles the community chest deck
 	 * 				
 	 */
-	private void createCommunityChanceDeck()
+	public void createCommunityChanceDeck()
 	{
 		//set up community chest deck
 		communityChestDeck.add(new BankSpecialCard("Community Chest", "Bank error in your favor\nCollect $200", 200));
@@ -1086,7 +1086,7 @@ public class GamePanel extends JPanel {
 	 * Purpose:		handles the dice button clicked event, rolls dice, moves the current player forward, and begins
 	 * 				any interaction the user will have on the new space he/she has landed on
 	 */
-	private ActionListener diceClicked = new ActionListener() {
+	public ActionListener diceClicked = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e){
 			// do nothing if dice is currently disabled
@@ -1269,7 +1269,7 @@ public class GamePanel extends JPanel {
 	 * Purpose:		produce random number in range 1-6, ranGen data member seeded with time at instantiation of 
 	 * 				the class
 	 */
-	private int diceRoll() {
+	public int diceRoll() {
 		return ranGen.nextInt(6) + 1;
 	}
 
@@ -1306,7 +1306,7 @@ public class GamePanel extends JPanel {
 	 * 				NOTE: nextTurn() is called from here for some scenarios (or called from event handlers
 	 * 				built in helper functions for other scenarios) to follow event based paradigm
 	 */
-	private void takeAction(Space s, int dice) {
+	public void takeAction(Space s, int dice) {
 		// space is a special space -- GO, draw card, taxes, etc; not a buyable property
 		if (s.getType() == Space.SpaceType.ACTION) {
 			switch(((ActionSpace)s).getAType()) {
@@ -1436,10 +1436,11 @@ public class GamePanel extends JPanel {
 	 * Purpose:		helper to takeAction(), used when a buyable property has not yet been purchased, for vertical
 	 * 				prototype just offers current player to buy it or not
 	 */
-	private void optionToBuy(Property prop) {
+	public int optionToBuy(Property prop) {
 		// check if the current player has enough money to buy the property
+		int buyingPlayer = -1;
+		int buyProp;
 		if (parent.players[currPlayer].getBank() > prop.getPrice()) {
-			int buyProp;
 			if (parent.players[currPlayer].isHuman()) {
 				buyProp = JOptionPane.showConfirmDialog(null, parent.players[currPlayer].getName() + 
 						", do you want to buy \n" + prop.getName() + " for $" + prop.getPrice() + "?", 
@@ -1455,11 +1456,13 @@ public class GamePanel extends JPanel {
 			
 			// if they want to buy it, update the owner of the property, and deduct the cost from the current player
 			if (buyProp == 0) {
+				buyingPlayer = currPlayer;
 				parent.players[currPlayer].deductFromBank(prop.getPrice(), parent.playersOut);
 				prop.setOwner(currPlayer);
 				parent.players[currPlayer].addProperty(prop);;
 			} else {
 				// **TODO -- put in an auction function if they decide not to buy
+				// buyingPlayer = auctionTime(prop);
 			}
 		}
 		else {
@@ -1468,16 +1471,18 @@ public class GamePanel extends JPanel {
 					prop.getPrice()+"\nAccount Balance: $"+parent.players[currPlayer].getBank(), 
 					"Bank error", JOptionPane.ERROR_MESSAGE);
 			// action function would go here as well.
-		}		
+			// buyingPlayer = auctionTime(prop);
+		}	
+		return buyingPlayer;
 	}
 
 	/* Function:	payRent()
 	 * Purpose:		helper to takeAction(), used when a property is already owned and the current player has to pay
 	 * 				rent to that owner
 	 */
-	private void payRent(Property prop, int dice) {
+	public int payRent(Property prop, int dice) {
+		int amountPaid = 0;
 		if (currPlayer != prop.getOwner() && parent.players[prop.getOwner()].isActive() && !prop.isMortgaged()) {	
-			int amountPaid = 0;
 			if (prop.getCategory() == Property.PropertyCategory.UTILITIES) {
 				amountPaid = parent.players[currPlayer].deductFromBank(((Utility)prop).getRent(dice), parent.playersOut);
 			}
@@ -1522,6 +1527,7 @@ public class GamePanel extends JPanel {
 				++parent.playersOut;
 			}
 		}
+		return amountPaid;
 	}
 	
 	
@@ -1530,7 +1536,7 @@ public class GamePanel extends JPanel {
 	 * 				rent to that owner
 	 * 				similar to payRent() but does not inculde a utilities option to remove dice parameter
 	 */
-	private void payChanceRent(Property prop) {
+	public void payChanceRent(Property prop) {
 		if (currPlayer != prop.getOwner() && parent.players[prop.getOwner()].isActive() && !prop.isMortgaged()) {	
 			int amountPaid = 0;
 			if (prop.getCategory() == Property.PropertyCategory.RAILROAD) {
@@ -1578,7 +1584,7 @@ public class GamePanel extends JPanel {
 	/* Function:	payTax()
 	 * Purpose:		helper to takeAction(), used when the space landed on is a tax space
 	 */
-	private void payTax(ActionSpace taxS) {
+	public void payTax(ActionSpace taxS) {
 		int deduction = 0;
 		
 		// luxury tax -- player must pay $100 (no option with this tax)
@@ -1755,7 +1761,7 @@ public class GamePanel extends JPanel {
 	 * Purpose: Displays property card for given space
 	 */
 	
-	private ActionListener spaceClicked = new ActionListener() {  
+	public ActionListener spaceClicked = new ActionListener() {  
 
 		@Override
 		public void actionPerformed(ActionEvent e) {  
@@ -1781,7 +1787,7 @@ public class GamePanel extends JPanel {
 	 * Purpose: Graphically update the player panels to designate current turn
 	 */
 
-	private void updateCurrentPlayer(){
+	public void updateCurrentPlayer(){
 
 		Color n = new Color(238, 238, 238);
 		Color y = new Color(153, 255, 153);
@@ -1826,7 +1832,7 @@ public class GamePanel extends JPanel {
 	 * Purpose: Graphically move player to new space
 	 */
 
-	private void movePlayerIcon(){
+	public void movePlayerIcon(){
 
 		switch (this.currPlayer){
 
@@ -1904,7 +1910,7 @@ public class GamePanel extends JPanel {
 		return parent;
 	}
 	
-	private ActionListener propertiesClicked = new ActionListener() { 
+	public ActionListener propertiesClicked = new ActionListener() { 
 
 		@Override
 		public void actionPerformed(ActionEvent e) { 
@@ -1920,7 +1926,7 @@ public class GamePanel extends JPanel {
 		
 	};
 
-	private ActionListener tradeClicked = new ActionListener() {   
+	public ActionListener tradeClicked = new ActionListener() {   
 
 		@Override
 		public void actionPerformed(ActionEvent e) {   

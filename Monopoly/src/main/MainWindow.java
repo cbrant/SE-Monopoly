@@ -101,7 +101,7 @@ public class MainWindow{
 		pane.add(cards, BorderLayout.CENTER);
 	}
 
-	private void createAndShowGUI() {
+	public void createAndShowGUI() {
 		//Create and set up the window.
 		frame = new JFrame("Monopoly");
 		frame.setBounds(100, 100, 900, 725);
