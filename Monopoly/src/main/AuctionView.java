@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -37,7 +38,7 @@ public class AuctionView extends JFrame {
 		propForAuction = pfa;
 		// starting bidder is the next player
 		currBidder = (parent.currPlayer + 1) % 4;
-		currBid = -1;
+		currBid = 0;
 		highestBidder = -1;
 		numPasses = 0;
 	}
@@ -59,7 +60,6 @@ public class AuctionView extends JFrame {
 			if (!checkBidInput(bid)) return;
 			
 			
-			
 			// move to next player
 			updateBidder();
 			
@@ -77,14 +77,20 @@ public class AuctionView extends JFrame {
 		// check that current player has enough money for this bid
 		// check that this bid is greater than current bid
 		// return false if either is not right
-		if(bid <= 0)
+		if(bid <= currBid) {
+			// currBid will always be greater than or equal to 0
+			JOptionPane.showMessageDialog(null, "Your bid must exceed the current highest bid!\nYour bid: $" +
+					bid +"\nHighest Bid: $"+currBid, "Bid error", JOptionPane.ERROR_MESSAGE);
 			return false;
-		if(bid <= currBid)
+		}
+		// NOTE: as this is set up, no mortgaging/house selling will be able to occur after the
+		//	auction has begun (can only use existing cash for bids)
+		if(bid >= parent.getMyParent().players[currBidder].getBank()) {
+			JOptionPane.showMessageDialog(null, "Insufficient funds in bank account!\nYour bid: $" +
+					bid +"\nAccount Balance: $"+parent.getMyParent().players[currBidder].getBank(), 
+					"Bank error", JOptionPane.ERROR_MESSAGE);
 			return false;
-
-		if(bid >= parent.getMyParent().players[currBidder].getBank())
-			return false;
-
+		}
 		return true;
 	}
 
@@ -102,15 +108,17 @@ public class AuctionView extends JFrame {
 
 
 	public void updateBidder() {
+		++numPasses;
+		
 		currBidder = (currBidder+1)%4;
-		numPasses++;
+		
+		// check if the current bidder
+		
 	}
 	
 	public ActionListener playerPasses = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//++numPasses;
-			
 			// update to next bidder
 			updateBidder();
 			
@@ -134,14 +142,12 @@ public class AuctionView extends JFrame {
 	};
 
 	public boolean isEndAuction() {
-		if(currBidder == highestBidder)
-			return true;
+		if(currBidder == highestBidder) return true;
 		return false;
 	}
 	
 	public boolean noBids() {
-		if(numPasses == 4)
-			return true;
+		if(numPasses == 4) return true;
 		return false;
 	}
 	
@@ -151,6 +157,16 @@ public class AuctionView extends JFrame {
 		// deducts currBid from the highestBidder's bank
 		parent.getMyParent().players[highestBidder].deductFromBank(currBid,0);
 		parent.getMyParent().players[highestBidder].addProperty(propForAuction);
+		
+		// dialog message for the user's congratulations
+		if (parent.getMyParent().players[highestBidder].isHuman()) {
+			JOptionPane.showMessageDialog(null, ", you won the auction for " + this.propForAuction.getName() + 
+					" at $" + this.currBid, "Bid Won!", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			//computer player won, but still show information message
+			JOptionPane.showMessageDialog(null, " (computer) won the auction for " + this.propForAuction.getName() + 
+					" at $" + this.currBid, "Bid Won!", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 	
 
