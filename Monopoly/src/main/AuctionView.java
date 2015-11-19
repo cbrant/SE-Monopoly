@@ -17,15 +17,16 @@ public class AuctionView extends JFrame {
 
 	private GamePanel parent;
 	
-	private int currBidder;
-	private int currBid;
-	private int highestBidder;
-	private int numPasses;
+	public int currBidder;
+	public int currBid;
+	public int highestBidder;
+	public int numPasses;
+	public Property propForAuction;
 	
 	/**
 	 * Create the frame.
 	 */
-	public AuctionView(GamePanel par) {
+	public AuctionView(GamePanel par, Property pfa) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -33,9 +34,11 @@ public class AuctionView extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		parent = par;
+		propForAuction = pfa;
 		// starting bidder is the next player
-		currBidder = (parent.currPlayer + 1) % 4;
-		currBid = 0;
+		currBidder = -1;
+		//currBidder = (parent.currPlayer + 1) % 4;
+		currBid = -1;
 		highestBidder = -1;
 		numPasses = 0;
 	}
@@ -121,12 +124,12 @@ public class AuctionView extends JFrame {
 
 	public boolean isEndAuction() {
 		// currBidder == highestBidder
-		return false;
+		throw new NotImplementedException();
 	}
 	
 	public boolean noBids() {
 		// numPasses == 4
-		return false;
+		throw new NotImplementedException();
 	}
 	
 	public void bidWon() {
