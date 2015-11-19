@@ -1,0 +1,1 @@
+changed compile version to 1.7 in Eclipse (Window -> Preferences -> Java -> Compile) to run using "java -jar Monopoly.jar" 
