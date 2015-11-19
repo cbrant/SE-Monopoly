@@ -112,10 +112,39 @@ public class AuctionView extends JFrame {
 		
 		currBidder = (currBidder+1)%4;
 		
-		// check if the current bidder
+		// check if the current bidder is a computer player, if so, have to
+		//	perform a bid for the computer player
+		if (!parent.getMyParent().players[currBidder].isHuman()) {
+			compPlayerBid();
+		}
 		
 	}
 	
+	/* function:	compPlayerBid()
+	 * purpose:		perform auction actions/decision for computer player in the 
+	 * 				game
+	 */
+	public void compPlayerBid() {
+		if (isEndAuction()) {
+			bidWon();
+		}
+		else if (noBids()) {
+			//auction window closes -- TODO
+		}
+		else {
+			// straightforward approach first so game can continue when computer players in it
+			// don't bid on anything
+			updateBidder();	
+		
+			// more advanced approach -- TODO
+			// first check if the computer player wants to bid
+			//int propVal = 
+
+
+		}
+		
+	}
+
 	public ActionListener playerPasses = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
