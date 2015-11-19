@@ -149,6 +149,8 @@ public class AuctionView extends JFrame {
 		// adds the property to the highestBidder's property list
 		// updates the property's owner
 		// deducts currBid from the highestBidder's bank
+		parent.getMyParent().players[highestBidder].deductFromBank(currBid,0);
+		parent.getMyParent().players[highestBidder].addProperty(propForAuction);
 	}
 	
 
