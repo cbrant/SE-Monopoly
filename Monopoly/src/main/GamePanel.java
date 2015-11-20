@@ -1943,6 +1943,10 @@ public class GamePanel extends JPanel {
 	public void auctionOpened(Property prop)
 	{
 		auction = new AuctionView(thisGamePanel, prop);
+		
+		if (!parent.players[auction.currBidder].isHuman()) {
+			auction.compPlayerBid();
+		}
 	}
 }
 
