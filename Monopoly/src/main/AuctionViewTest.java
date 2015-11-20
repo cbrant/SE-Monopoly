@@ -36,7 +36,8 @@ public class AuctionViewTest {
 	@Test
 	public void testAuctionWindowVisible() {
 		// test AuctionView()
-		assertTrue(av.isVisible());
+		game.auctionOpened((Property)main.spaces.get(1));
+		assertTrue(game.auction.isVisible());
 	}
 
 	@Test

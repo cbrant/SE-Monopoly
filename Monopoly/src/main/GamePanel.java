@@ -49,7 +49,9 @@ public class GamePanel extends JPanel {
 	// flag set when the dice roll is for attempting to get out of jail
 	private boolean jailRoll;
 
-
+	//AuctionView Window (Used for testing)
+	public AuctionView auction;
+	
 	//variables for the player panels
 	public JPanel panel, panel_1, panel_2, panel_3;
 
@@ -1462,7 +1464,7 @@ public class GamePanel extends JPanel {
 				parent.players[currPlayer].addProperty(prop);;
 			} else {
 				// **TODO -- put in an auction function if they decide not to buy
-				// buyingPlayer = auctionTime(prop);
+				auctionOpened(prop);
 			}
 		}
 		else {
@@ -1936,5 +1938,11 @@ public class GamePanel extends JPanel {
 		
 		}
 	};
+
+	public void auctionOpened(Property prop)
+	{
+		auction = new AuctionView(thisGamePanel, prop);
+		auction.setVisible(true);	
+	}
 }
 

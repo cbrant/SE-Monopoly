@@ -1,7 +1,6 @@
 package main;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,8 +9,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import java.awt.GridBagLayout;
 
+import javax.swing.JLabel;
+
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+@SuppressWarnings("serial")
 public class AuctionView extends JFrame {
 
 	private JPanel contentPane;
@@ -24,16 +32,21 @@ public class AuctionView extends JFrame {
 	public int numPasses;
 	public Property propForAuction;
 	
+	private JLabel lblPlayer, lblPlayer_1, lblPlayer_2, lblPlayer_3;
+	private JLabel[] playerLabels = new JLabel[4];
+	
 	/**
 	 * Create the frame.
 	 */
 	public AuctionView(GamePanel par, Property pfa) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 450, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		getContentPane().setBackground(new Color(255, 250, 205));
+		
+		this.setBackground(new Color(255, 250, 205));
 		parent = par;
 		propForAuction = pfa;
 		// starting bidder is the next player
@@ -41,6 +54,103 @@ public class AuctionView extends JFrame {
 		currBid = 0;
 		highestBidder = -1;
 		numPasses = 0;
+		
+		
+		GridBagLayout gbl_contentPane = new GridBagLayout();
+		gbl_contentPane.columnWidths = new int[]{20, 0, 0, 0, 0, 20};
+		gbl_contentPane.rowHeights = new int[]{20, 0, 0, 0, 0, 0, 0, 0, 0, 20};
+		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE, 1.0, 1.0};
+		contentPane.setLayout(gbl_contentPane);
+		
+		JLabel lblAuction = new JLabel("Auction");
+		GridBagConstraints gbc_lblAuction = new GridBagConstraints();
+		gbc_lblAuction.fill = GridBagConstraints.VERTICAL;
+		gbc_lblAuction.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAuction.gridx = 2;
+		gbc_lblAuction.gridy = 1;
+		gbc_lblAuction.gridwidth = 2;
+		contentPane.add(lblAuction, gbc_lblAuction);
+		
+		JLabel lblProperty = new JLabel("Property");
+		GridBagConstraints gbc_lblProperty = new GridBagConstraints();
+		gbc_lblProperty.fill = GridBagConstraints.VERTICAL;
+		gbc_lblProperty.insets = new Insets(0, 0, 5, 5);
+		gbc_lblProperty.gridx = 2;
+		gbc_lblProperty.gridy = 3;
+		gbc_lblProperty.gridwidth = 2;
+		contentPane.add(lblProperty, gbc_lblProperty);
+		lblProperty.setText(propForAuction.getName());
+		
+		lblPlayer = new JLabel("Player 1");
+		GridBagConstraints gbc_lblPlayer = new GridBagConstraints();
+		gbc_lblPlayer.fill = GridBagConstraints.VERTICAL;
+		gbc_lblPlayer.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPlayer.gridx = 1;
+		gbc_lblPlayer.gridy = 5;
+		contentPane.add(lblPlayer, gbc_lblPlayer);
+		lblPlayer.setText(parent.getMyParent().players[0].getName());
+		playerLabels[0] = lblPlayer;
+		
+		lblPlayer_1 = new JLabel("Player 2");
+		GridBagConstraints gbc_lblPlayer_1 = new GridBagConstraints();
+		gbc_lblPlayer_1.fill = GridBagConstraints.VERTICAL;
+		gbc_lblPlayer_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPlayer_1.gridx = 2;
+		gbc_lblPlayer_1.gridy = 5;
+		contentPane.add(lblPlayer_1, gbc_lblPlayer_1);
+		lblPlayer_1.setText(parent.getMyParent().players[1].getName());
+		playerLabels[1] = lblPlayer_1;
+		
+		lblPlayer_2 = new JLabel("Player 3");
+		GridBagConstraints gbc_lblPlayer_2 = new GridBagConstraints();
+		gbc_lblPlayer_2.fill = GridBagConstraints.VERTICAL;
+		gbc_lblPlayer_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPlayer_2.gridx = 3;
+		gbc_lblPlayer_2.gridy = 5;
+		contentPane.add(lblPlayer_2, gbc_lblPlayer_2);
+		lblPlayer_2.setText(parent.getMyParent().players[2].getName());
+		playerLabels[2] = lblPlayer_2;
+		
+		lblPlayer_3 = new JLabel("Player 4");
+		GridBagConstraints gbc_lblPlayer_3 = new GridBagConstraints();
+		gbc_lblPlayer_3.fill = GridBagConstraints.VERTICAL;
+		gbc_lblPlayer_3.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPlayer_3.gridx = 4;
+		gbc_lblPlayer_3.gridy = 5;
+		contentPane.add(lblPlayer_3, gbc_lblPlayer_3);
+		lblPlayer_3.setText(parent.getMyParent().players[3].getName());
+		playerLabels[3] = lblPlayer_3;
+		
+		textField = new JTextField();
+		textField.setText("0");
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.insets = new Insets(0, 0, 5, 5);
+		gbc_textField.gridx = 2;
+		gbc_textField.gridy = 7;
+		contentPane.add(textField, gbc_textField);
+		textField.setColumns(10);
+		textField.setText("" + propForAuction.getPrice());
+		
+		JButton btnBid = new JButton("Bid");
+		GridBagConstraints gbc_btnBid = new GridBagConstraints();
+		gbc_btnBid.insets = new Insets(0, 0, 5, 5);
+		gbc_btnBid.gridx = 3;
+		gbc_btnBid.gridy = 7;
+		contentPane.add(btnBid, gbc_btnBid);
+		btnBid.addActionListener(bidMade);
+		
+		JButton button = new JButton("Pass");
+		GridBagConstraints gbc_button = new GridBagConstraints();
+		gbc_button.insets = new Insets(0, 0, 5, 5);
+		gbc_button.gridx = 2;
+		gbc_button.gridy = 8;
+		gbc_button.gridwidth = 2;
+		contentPane.add(button, gbc_button);
+		button.addActionListener(playerPasses);
+		
+		updateBidGraphics();
+		
 	}
 	
 	public ActionListener bidMade = new ActionListener() {
@@ -56,15 +166,15 @@ public class AuctionView extends JFrame {
 			// 	(3) not an integer
 			// if either fails, give dialog saying error and return from function
 			//	without updating current bidder
-			int bid = 0;	// parse this from input box
+			int bid = Integer.parseInt(textField.getText());	// parse this from input box
 			if (!checkBidInput(bid)) return;
 			
+			// update currBid
+			updateBid(bid);
 			
 			// move to next player
 			updateBidder();
 			
-			// update currBid
-			updateBid(bid);
 			// graphics update here
 			updateBidGraphics();
 		}
@@ -98,12 +208,24 @@ public class AuctionView extends JFrame {
 	public void updateBidGraphics() {
 		// TODO Auto-generated method stub
 		
+		for( JLabel x : playerLabels )
+		{
+			x.setOpaque(true);
+			x.setBackground(new Color(255, 250, 205));
+		}
+		
+		playerLabels[currBidder].setBackground(new Color(153, 255, 153));
+		
+		if ( highestBidder > -1 )
+			playerLabels[highestBidder].setBackground(new Color (0, 0, 200));
+		
 	}
 
 
 	public void updateBid(int bid) {
 		currBid = bid;
 		numPasses = 0;
+		highestBidder = currBidder;
 	}
 
 
@@ -129,7 +251,8 @@ public class AuctionView extends JFrame {
 			bidWon();
 		}
 		else if (noBids()) {
-			//auction window closes -- TODO
+			//auction window closes
+			this.dispose();
 		}
 		else {
 			// straightforward approach first so game can continue when computer players in it
@@ -169,6 +292,7 @@ public class AuctionView extends JFrame {
 		}
 		
 	};
+	private JTextField textField;
 
 	public boolean isEndAuction() {
 		if(currBidder == highestBidder) return true;
