@@ -21,7 +21,7 @@ import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class AuctionView extends JFrame {
-
+	
 	private JPanel contentPane;
 
 	private GamePanel parent;
@@ -38,6 +38,7 @@ public class AuctionView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("deprecation")
 	public AuctionView(GamePanel par, Property pfa) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
@@ -151,7 +152,10 @@ public class AuctionView extends JFrame {
 		
 		updateBidGraphics();
 		
+		this.setVisible(true);
+		
 	}
+	
 	
 	public ActionListener bidMade = new ActionListener() {
 		@Override
@@ -217,7 +221,7 @@ public class AuctionView extends JFrame {
 		playerLabels[currBidder].setBackground(new Color(153, 255, 153));
 		
 		if ( highestBidder > -1 )
-			playerLabels[highestBidder].setBackground(new Color (0, 0, 200));
+			playerLabels[highestBidder].setBackground(new Color (100, 100, 200));
 		
 	}
 
@@ -246,15 +250,22 @@ public class AuctionView extends JFrame {
 	 * purpose:		perform auction actions/decision for computer player in the 
 	 * 				game
 	 */
+	@SuppressWarnings("deprecation")
 	public void compPlayerBid() {
+		updateBidGraphics();
+		
 		if (isEndAuction()) {
 			bidWon();
+			this.dispose();
 		}
 		else if (noBids()) {
 			//auction window closes
 			this.dispose();
 		}
 		else {
+			JOptionPane.showMessageDialog(null, parent.getMyParent().players[currBidder].getName() + 
+					" (computer) did not bid.", "Computer Bid", JOptionPane.INFORMATION_MESSAGE);
+			
 			// straightforward approach first so game can continue when computer players in it
 			// don't bid on anything
 			updateBidder();	
@@ -279,11 +290,14 @@ public class AuctionView extends JFrame {
 				// player is given property, money gets deducted, property owner gets set
 				bidWon();
 				// auction window closes
-				// next turn is called in GamePanel.optionToBuy() after window is created
+				dispose();
 			}
 			else if (noBids()) {
+				// no one bidded for property, so remains unsold
+				JOptionPane.showMessageDialog(null, "No one bid on this property, so it will remain" +
+						" for sale!", "No bids", JOptionPane.INFORMATION_MESSAGE);
 				// auction window closes
-				// next turn is called in GamePanel.optionToBuy()
+				dispose();
 			}
 			else {
 				// graphics update
@@ -313,11 +327,13 @@ public class AuctionView extends JFrame {
 		
 		// dialog message for the user's congratulations
 		if (parent.getMyParent().players[highestBidder].isHuman()) {
-			JOptionPane.showMessageDialog(null, ", you won the auction for " + this.propForAuction.getName() + 
+			JOptionPane.showMessageDialog(null, parent.getMyParent().players[highestBidder].getName() + 
+					", you won the auction for " + this.propForAuction.getName() + 
 					" at $" + this.currBid, "Bid Won!", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			//computer player won, but still show information message
-			JOptionPane.showMessageDialog(null, " (computer) won the auction for " + this.propForAuction.getName() + 
+			JOptionPane.showMessageDialog(null,  parent.getMyParent().players[highestBidder].getName() + 
+					" (computer) won the auction for " + this.propForAuction.getName() + 
 					" at $" + this.currBid, "Bid Won!", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}

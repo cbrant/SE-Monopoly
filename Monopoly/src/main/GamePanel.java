@@ -1461,7 +1461,7 @@ public class GamePanel extends JPanel {
 				buyingPlayer = currPlayer;
 				parent.players[currPlayer].deductFromBank(prop.getPrice(), parent.playersOut);
 				prop.setOwner(currPlayer);
-				parent.players[currPlayer].addProperty(prop);;
+				parent.players[currPlayer].addProperty(prop);
 			} else {
 				// **TODO -- put in an auction function if they decide not to buy
 				auctionOpened(prop);
@@ -1473,7 +1473,7 @@ public class GamePanel extends JPanel {
 					prop.getPrice()+"\nAccount Balance: $"+parent.players[currPlayer].getBank(), 
 					"Bank error", JOptionPane.ERROR_MESSAGE);
 			// action function would go here as well.
-			// buyingPlayer = auctionTime(prop);
+			auctionOpened(prop);
 		}	
 		return buyingPlayer;
 	}
@@ -1939,10 +1939,10 @@ public class GamePanel extends JPanel {
 		}
 	};
 
+	@SuppressWarnings("deprecation")
 	public void auctionOpened(Property prop)
 	{
 		auction = new AuctionView(thisGamePanel, prop);
-		auction.setVisible(true);	
 	}
 }
 
