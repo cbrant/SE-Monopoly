@@ -5,7 +5,12 @@ To Run Monopoly:
 	cd Monopoly
 	./play.sh
 
-Version 1.3: - Players can mortgage properties they own (must sell houses) and can later unmortgage.
+Version 1.4: 
+- Auction occurs when a player decides not to buy a property they land on. 
+- Computer player will bid in an auction if it has enough money and the property is being sold for less than 85% of its value
+
+Version 1.3:
+- Players can mortgage properties they own (must sell houses) and can later unmortgage.
 - At the start of a turn, a player can initiate a trade of a property and/or money with another player. The second player must confirm the trade before it takes place.
 - Computer players are an available option. The game can be played with 0-4 computer players. Computer players can respond to trade requests.
 - Bugs include: Players exit game when they run out of cash (even if they still could mortgage properties, sell houses, etc)

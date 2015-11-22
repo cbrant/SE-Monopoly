@@ -1418,6 +1418,7 @@ public class PropertyView extends JFrame {
 			
 			if (main.players[parent.currPlayer] != currentPlayer) {
 				JOptionPane.showMessageDialog(null, "It's not your turn!", "Error", JOptionPane.ERROR_MESSAGE);
+				return;
 			}
 			
 			if(currentPlayer.ownsProperty(prop))

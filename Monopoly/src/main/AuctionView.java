@@ -3,7 +3,6 @@ package main;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
@@ -333,7 +332,7 @@ public class AuctionView extends JDialog {
 			int bidToBeat = currBid;
 			if (currBid == 0) bidToBeat += 20;
 			// if have not yet reached 85% of the property value, will bid on it
-			if (currBid < propVal*.85 && (parent.getMyParent().players[currBidder].getBank() > 1.5*bidToBeat ||
+			if (currBid < (int)(propVal*.85) && (parent.getMyParent().players[currBidder].getBank() > 1.5*bidToBeat ||
 					parent.getMyParent().players[currBidder].getBank() > .85*propVal)) {
 				// definitely want to bid, because getting a good deal on the property
 				// will bid 50% higher than the current bid OR to 95% of the propVal, whichever is smaller
@@ -406,6 +405,7 @@ public class AuctionView extends JDialog {
 		// deducts currBid from the highestBidder's bank
 		parent.getMyParent().players[highestBidder].deductFromBank(currBid, 0);
 		parent.getMyParent().players[highestBidder].addProperty(propForAuction);
+		propForAuction.setOwner(highestBidder);
 
 		// dialog message for the user's congratulations
 		if (parent.getMyParent().players[highestBidder].isHuman()) {

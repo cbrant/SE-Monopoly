@@ -1939,7 +1939,6 @@ public class GamePanel extends JPanel {
 		}
 	};
 
-	@SuppressWarnings("deprecation")
 	public void auctionOpened(Property prop)
 	{
 		auction = new AuctionView(thisGamePanel, prop);
