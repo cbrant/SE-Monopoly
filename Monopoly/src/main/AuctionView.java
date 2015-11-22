@@ -321,21 +321,38 @@ public class AuctionView extends JDialog {
 			this.dispose();
 		} else if (noBids()) {
 			// auction window closes
+			JOptionPane.showMessageDialog(null,
+					"No one bid on this property, so it will remain"
+							+ " for sale!", "No bids",
+					JOptionPane.INFORMATION_MESSAGE);
 			this.dispose();
 		} else {
-			JOptionPane.showMessageDialog(null,
-					parent.getMyParent().players[currBidder].getName()
-							+ " (computer) did not bid.", "Computer Bid",
-					JOptionPane.INFORMATION_MESSAGE);
+			// more advanced approach
+			int compBid = 0;
+			int propVal = this.propForAuction.getPrice();
+			int bidToBeat = currBid;
+			if (currBid == 0) bidToBeat += 20;
+			// if have not yet reached 85% of the property value, will bid on it
+			if (currBid < propVal*.85 && (parent.getMyParent().players[currBidder].getBank() > 1.5*bidToBeat ||
+					parent.getMyParent().players[currBidder].getBank() > .85*propVal)) {
+				// definitely want to bid, because getting a good deal on the property
+				// will bid 50% higher than the current bid OR to 95% of the propVal, whichever is smaller
+				compBid = ((int)(.85*propVal) < (int)(1.5*bidToBeat) ? (int)(.85*propVal) : (int)(1.5*bidToBeat));
+				
+			}
+			// more advanced -- if this property would complete a set for the computer, bid up to 2*propVal
+			//if ()
 
-			// straightforward approach first so game can continue when computer
-			// players in it
-			// don't bid on anything
+			if (compBid == 0) {
+				JOptionPane.showMessageDialog(null,	parent.getMyParent().players[currBidder].getName()
+						+ " (computer) did not bid.", "Computer Bid", JOptionPane.INFORMATION_MESSAGE);				
+			} else {
+				JOptionPane.showMessageDialog(null, parent.getMyParent().players[currBidder].getName()
+						+ " (computer) bid $" + compBid, "Computer Bid", JOptionPane.INFORMATION_MESSAGE);
+				updateBid(compBid);
+			}
 			updateBidder();
-
-			// more advanced approach -- TODO
-			// first check if the computer player wants to bid
-			// int propVal =
+			updateBidGraphics();
 
 		}
 
