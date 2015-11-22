@@ -3,6 +3,9 @@ package main;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -154,12 +157,57 @@ public class AuctionView extends JDialog {
 		button.addActionListener(playerPasses);
 
 		
-		if (!parent.getMyParent().players[currBidder].isHuman()) {
-			compPlayerBid();
-		}
+		this.addWindowListener(auctionOpened);
 		updateBidGraphics();
 		this.setVisible(true);		
 	}
+	
+	public WindowListener auctionOpened = new WindowListener() {
+		public void windowOpened(WindowEvent e) {
+			if (!parent.getMyParent().players[currBidder].isHuman()) {
+				compPlayerBid();
+				updateBidGraphics();
+			}
+		}
+
+		@Override
+		public void windowClosing(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowClosed(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowIconified(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowDeiconified(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowActivated(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowDeactivated(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+	};
+	
 
 	public ActionListener bidMade = new ActionListener() {
 		@Override
@@ -261,6 +309,12 @@ public class AuctionView extends JDialog {
 	 */
 	public void compPlayerBid() {
 		updateBidGraphics();
+		try {
+			Thread.sleep(250);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		if (isEndAuction()) {
 			bidWon();
