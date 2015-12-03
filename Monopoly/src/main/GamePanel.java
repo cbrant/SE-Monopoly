@@ -164,6 +164,7 @@ public class GamePanel extends JPanel {
 		Image freeParkingIcon = new ImageIcon(this.getClass().getResource("/freeparking.jpg")).getImage();
 		freeParking.setIcon(new ImageIcon(freeParkingIcon));
 		setComponentZOrder(freeParking, 1);
+		freeParking.setRolloverEnabled(false);
 		add(freeParking, gbc_freeParking);
 
 
@@ -180,6 +181,7 @@ public class GamePanel extends JPanel {
 		kentuckyAvenue.putClientProperty(GamePanel.CARD , 21);
 		kentuckyAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(kentuckyAvenue, 1);
+		kentuckyAvenue.setRolloverEnabled(false);
 		add(kentuckyAvenue, gbc_kentuckyAvenue);
 
 		JButton chanceNorth = new JButton("");
@@ -193,6 +195,7 @@ public class GamePanel extends JPanel {
 		Image chanceNorthIcon = new ImageIcon(this.getClass().getResource("/chancenorth.jpg")).getImage();
 		chanceNorth.setIcon(new ImageIcon(chanceNorthIcon));
 		setComponentZOrder(chanceNorth, 1);
+		chanceNorth.setRolloverEnabled(false);
 		add(chanceNorth, gbc_chanceNorth);
 
 
@@ -208,6 +211,7 @@ public class GamePanel extends JPanel {
 		indianaAvenue.putClientProperty(GamePanel.CARD , 23);
 		indianaAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(indianaAvenue, 1);
+		indianaAvenue.setRolloverEnabled(false);
 		add(indianaAvenue, gbc_indianaAvenue);
 
 
@@ -223,6 +227,7 @@ public class GamePanel extends JPanel {
 		illinoisAvenue.putClientProperty(GamePanel.CARD , 24);
 		illinoisAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(illinoisAvenue, 1);
+		illinoisAvenue.setRolloverEnabled(false);
 		add(illinoisAvenue, gbc_illinoisAvenue);
 
 
@@ -239,6 +244,7 @@ public class GamePanel extends JPanel {
 		bORailroad.putClientProperty(GamePanel.CARD , 25);
 		bORailroad.addActionListener(spaceClicked);
 		setComponentZOrder(bORailroad, 1);
+		bORailroad.setRolloverEnabled(false);
 		add(bORailroad, gbc_bORailroad);
 
 
@@ -255,8 +261,8 @@ public class GamePanel extends JPanel {
 		atlanticAvenue.putClientProperty(GamePanel.CARD , 26);
 		atlanticAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(atlanticAvenue, 1);
+		atlanticAvenue.setRolloverEnabled(false);
 		add(atlanticAvenue, gbc_atlanticAvenue);
-
 
 		JButton ventnorAvenue = new JButton("");
 		GridBagConstraints gbc_ventnorAvenue = new GridBagConstraints();
@@ -270,6 +276,7 @@ public class GamePanel extends JPanel {
 		ventnorAvenue.putClientProperty(GamePanel.CARD , 27);
 		ventnorAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(ventnorAvenue, 1);
+		ventnorAvenue.setRolloverEnabled(false);
 		add(ventnorAvenue, gbc_ventnorAvenue);
 
 		JButton waterWorks = new JButton("");
@@ -285,6 +292,7 @@ public class GamePanel extends JPanel {
 		waterWorks.putClientProperty(GamePanel.CARD , 28);
 		waterWorks.addActionListener(spaceClicked);
 		setComponentZOrder(waterWorks, 1);
+		waterWorks.setRolloverEnabled(false);
 		add(waterWorks, gbc_waterWorks);
 
 		JButton marvinGardens = new JButton("");
@@ -299,6 +307,7 @@ public class GamePanel extends JPanel {
 		marvinGardens.putClientProperty(GamePanel.CARD , 29);
 		marvinGardens.addActionListener(spaceClicked);
 		setComponentZOrder(marvinGardens, 1);
+		marvinGardens.setRolloverEnabled(false);
 		add(marvinGardens, gbc_marvinGardens);
 
 		JButton goToJail = new JButton("");
@@ -313,6 +322,7 @@ public class GamePanel extends JPanel {
 		Image goToJailIcon = new ImageIcon(this.getClass().getResource("/gotojail.jpg")).getImage();
 		goToJail.setIcon(new ImageIcon(goToJailIcon));
 		setComponentZOrder(goToJail, 1);
+		goToJail.setRolloverEnabled(false);
 		add(goToJail, gbc_goToJail);
 
 		JButton newYorkAvenue = new JButton("");
@@ -328,6 +338,7 @@ public class GamePanel extends JPanel {
 		newYorkAvenue.putClientProperty(GamePanel.CARD , 19);
 		newYorkAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(newYorkAvenue, 1);
+		newYorkAvenue.setRolloverEnabled(false);
 		add(newYorkAvenue, gbc_newYorkAvenue);
 
 		JButton pacificAvenue = new JButton("");
@@ -343,6 +354,7 @@ public class GamePanel extends JPanel {
 		pacificAvenue.putClientProperty(GamePanel.CARD , 31);
 		pacificAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(pacificAvenue, 1);
+		pacificAvenue.setRolloverEnabled(false);
 		add(pacificAvenue, gbc_pacificAvenue);
 
 		panel = new JPanel();
@@ -479,6 +491,7 @@ public class GamePanel extends JPanel {
 		tennesseeAvenue.putClientProperty(GamePanel.CARD , 18);
 		tennesseeAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(tennesseeAvenue, 1);
+		tennesseeAvenue.setRolloverEnabled(false);
 		add(tennesseeAvenue, gbc_tennesseeAvenue);
 
 		JButton northCarolinaAvenue = new JButton("");
@@ -493,6 +506,7 @@ public class GamePanel extends JPanel {
 		northCarolinaAvenue.putClientProperty(GamePanel.CARD , 32);
 		northCarolinaAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(northCarolinaAvenue, 1);
+		northCarolinaAvenue.setRolloverEnabled(false);
 		add(northCarolinaAvenue, gbc_northCarolinaAvenue);
 
 		JButton communityChestWest = new JButton("");
@@ -506,6 +520,7 @@ public class GamePanel extends JPanel {
 		Image communityChestWestIcon = new ImageIcon(this.getClass().getResource("/commchestwest.jpg")).getImage();
 		communityChestWest.setIcon(new ImageIcon(communityChestWestIcon));
 		setComponentZOrder(communityChestWest, 1);
+		communityChestWest.setRolloverEnabled(false);
 		add(communityChestWest, gbc_communityChestWest);
 
 		JButton communityChestEast = new JButton("");
@@ -519,6 +534,7 @@ public class GamePanel extends JPanel {
 		Image communityChestEastIcon = new ImageIcon(this.getClass().getResource("/commchesteast.jpg")).getImage();
 		communityChestEast.setIcon(new ImageIcon(communityChestEastIcon));
 		setComponentZOrder(communityChestEast, 1);
+		communityChestEast.setRolloverEnabled(false);
 		add(communityChestEast, gbc_communityChestEast);
 
 		JButton stJamesPlace = new JButton("");
@@ -533,6 +549,7 @@ public class GamePanel extends JPanel {
 		stJamesPlace.putClientProperty(GamePanel.CARD , 16);
 		stJamesPlace.addActionListener(spaceClicked);
 		setComponentZOrder(stJamesPlace, 1);
+		stJamesPlace.setRolloverEnabled(false);
 		add(stJamesPlace, gbc_stJamesPlace);
 
 		this.diceButton = new JButton("");
@@ -569,6 +586,7 @@ public class GamePanel extends JPanel {
 		pennsylvaniaAvenue.putClientProperty(GamePanel.CARD , 34);
 		pennsylvaniaAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(pennsylvaniaAvenue, 1);
+		pennsylvaniaAvenue.setRolloverEnabled(false);
 		add(pennsylvaniaAvenue, gbc_pennsylvaniaAvenue);
 
 		JButton pennsylvaniaRailroad = new JButton("");
@@ -584,6 +602,7 @@ public class GamePanel extends JPanel {
 		pennsylvaniaRailroad.putClientProperty(GamePanel.CARD , 15);
 		pennsylvaniaRailroad.addActionListener(spaceClicked);
 		setComponentZOrder(pennsylvaniaRailroad, 1);
+		pennsylvaniaRailroad.setRolloverEnabled(false);
 		add(pennsylvaniaRailroad, gbc_pennsylvaniaRailroad);
 
 		JButton shortLine = new JButton("");
@@ -599,6 +618,7 @@ public class GamePanel extends JPanel {
 		shortLine.putClientProperty(GamePanel.CARD , 35);
 		shortLine.addActionListener(spaceClicked);
 		setComponentZOrder(shortLine, 1);
+		shortLine.setRolloverEnabled(false);
 		add(shortLine, gbc_shortLine);
 
 		dice2 = new JLabel("");
@@ -622,6 +642,7 @@ public class GamePanel extends JPanel {
 		virginiaAvenue.putClientProperty(GamePanel.CARD , 14);
 		virginiaAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(virginiaAvenue, 1);
+		virginiaAvenue.setRolloverEnabled(false);
 		add(virginiaAvenue, gbc_virginiaAvenue);
 
 		JButton chanceEast = new JButton("");
@@ -635,6 +656,7 @@ public class GamePanel extends JPanel {
 		Image chanceEastIcon = new ImageIcon(this.getClass().getResource("/chanceeast.jpg")).getImage();
 		chanceEast.setIcon(new ImageIcon(chanceEastIcon));
 		setComponentZOrder(chanceEast, 1);
+		chanceEast.setRolloverEnabled(false);
 		add(chanceEast, gbc_chanceEast);
 
 		panel_2 = new JPanel();
@@ -773,6 +795,7 @@ public class GamePanel extends JPanel {
 		statesAvenue.putClientProperty(GamePanel.CARD , 13);
 		statesAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(statesAvenue, 1);
+		statesAvenue.setRolloverEnabled(false);
 		add(statesAvenue, gbc_statesAvenue);
 
 		JButton parkPlace = new JButton("");
@@ -788,6 +811,7 @@ public class GamePanel extends JPanel {
 		parkPlace.putClientProperty(GamePanel.CARD , 37);
 		parkPlace.addActionListener(spaceClicked);
 		setComponentZOrder(parkPlace, 1);
+		parkPlace.setRolloverEnabled(false);
 		add(parkPlace, gbc_parkPlace);
 
 		JButton electricCompany = new JButton("");
@@ -803,6 +827,7 @@ public class GamePanel extends JPanel {
 		electricCompany.putClientProperty(GamePanel.CARD , 12);
 		electricCompany.addActionListener(spaceClicked);
 		setComponentZOrder(electricCompany, 1);
+		electricCompany.setRolloverEnabled(false);
 		add(electricCompany, gbc_electricCompany);
 
 		JButton luxuryTax = new JButton("");
@@ -818,6 +843,7 @@ public class GamePanel extends JPanel {
 		luxuryTax.addActionListener(spaceClicked);
 		luxuryTax.setIcon(new ImageIcon(luxuryTaxIcon));
 		setComponentZOrder(luxuryTax, 1);
+		luxuryTax.setRolloverEnabled(false);
 		add(luxuryTax, gbc_luxuryTax);
 
 		JButton stCharlesPlace = new JButton("");
@@ -832,6 +858,7 @@ public class GamePanel extends JPanel {
 		stCharlesPlace.putClientProperty(GamePanel.CARD , 11);
 		stCharlesPlace.addActionListener(spaceClicked);
 		setComponentZOrder(stCharlesPlace, 1);
+		stCharlesPlace.setRolloverEnabled(false);
 		add(stCharlesPlace, gbc_stCharlesPlace);
 
 		JButton boardwalk = new JButton("");
@@ -845,6 +872,7 @@ public class GamePanel extends JPanel {
 		boardwalk.setIcon(new ImageIcon(darkBlue));
 		boardwalk.putClientProperty(GamePanel.CARD , 39);
 		boardwalk.addActionListener(spaceClicked);
+		boardwalk.setRolloverEnabled(false);
 		add(boardwalk, gbc_boardwalk);
 
 		JButton jail = new JButton("");
@@ -859,6 +887,7 @@ public class GamePanel extends JPanel {
 		Image jailIcon = new ImageIcon(this.getClass().getResource("/injail.jpg")).getImage();
 		jail.setIcon(new ImageIcon(jailIcon));
 		setComponentZOrder(jail, 1);
+		jail.setRolloverEnabled(false);
 		add(jail, gbc_jail);
 
 		JButton connecticutAvenue = new JButton("");
@@ -874,6 +903,7 @@ public class GamePanel extends JPanel {
 		connecticutAvenue.putClientProperty(GamePanel.CARD , 9);
 		connecticutAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(connecticutAvenue, 1);
+		connecticutAvenue.setRolloverEnabled(false);
 		add(connecticutAvenue, gbc_connecticutAvenue);
 
 		JButton vermontAvenue = new JButton("");
@@ -888,6 +918,7 @@ public class GamePanel extends JPanel {
 		vermontAvenue.putClientProperty(GamePanel.CARD , 8);
 		vermontAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(vermontAvenue, 1);
+		vermontAvenue.setRolloverEnabled(false);
 		add(vermontAvenue, gbc_vermontAvenue);
 
 		JButton chanceSouth = new JButton("");
@@ -901,6 +932,7 @@ public class GamePanel extends JPanel {
 		Image chanceSouthIcon = new ImageIcon(this.getClass().getResource("/chancesouth.jpg")).getImage();
 		chanceSouth.setIcon(new ImageIcon(chanceSouthIcon));
 		setComponentZOrder(chanceSouth, 1);
+		chanceSouth.setRolloverEnabled(false);
 		add(chanceSouth, gbc_chanceSouth);
 
 		JButton orientalAvenue = new JButton("");
@@ -915,6 +947,7 @@ public class GamePanel extends JPanel {
 		orientalAvenue.putClientProperty(GamePanel.CARD , 6);
 		orientalAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(orientalAvenue, 1);
+		orientalAvenue.setRolloverEnabled(false);
 		add(orientalAvenue, gbc_orientalAvenue);
 
 		JButton readingRailroad = new JButton("");
@@ -930,6 +963,7 @@ public class GamePanel extends JPanel {
 		readingRailroad.putClientProperty(GamePanel.CARD , 5);
 		readingRailroad.addActionListener(spaceClicked);
 		setComponentZOrder(readingRailroad, 1);
+		readingRailroad.setRolloverEnabled(false);
 		add(readingRailroad, gbc_readingRailroad);
 
 		JButton incomeTax = new JButton("");
@@ -945,6 +979,7 @@ public class GamePanel extends JPanel {
 		incomeTax.putClientProperty(GamePanel.CARD , 4);
 		incomeTax.addActionListener(spaceClicked);
 		setComponentZOrder(incomeTax, 1);
+		incomeTax.setRolloverEnabled(false);
 		add(incomeTax, gbc_incomeTax);
 
 		JButton balticAvenue = new JButton("");
@@ -960,6 +995,7 @@ public class GamePanel extends JPanel {
 		balticAvenue.putClientProperty(GamePanel.CARD , 3);
 		balticAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(balticAvenue, 1);
+		balticAvenue.setRolloverEnabled(false);
 		add(balticAvenue, gbc_balticAvenue);
 
 		JButton communityChestSouth = new JButton("");
@@ -973,6 +1009,7 @@ public class GamePanel extends JPanel {
 		Image communityChestSouthIcon = new ImageIcon(this.getClass().getResource("/commchestsouth.jpg")).getImage();
 		communityChestSouth.setIcon(new ImageIcon(communityChestSouthIcon));
 		setComponentZOrder(communityChestSouth, 1);
+		communityChestSouth.setRolloverEnabled(false);
 		add(communityChestSouth, gbc_communityChestSouth);
 
 		JButton mediterraneanAvenue = new JButton("");
@@ -987,6 +1024,7 @@ public class GamePanel extends JPanel {
 		mediterraneanAvenue.putClientProperty(GamePanel.CARD , 1);
 		mediterraneanAvenue.addActionListener(spaceClicked);
 		setComponentZOrder(mediterraneanAvenue, 1);
+		mediterraneanAvenue.setRolloverEnabled(false);
 		add(mediterraneanAvenue, gbc_medditerraneanAvenue);
 
 		JButton go = new JButton("");
@@ -1000,6 +1038,7 @@ public class GamePanel extends JPanel {
 		gridLocations[0] = gbc_go;
 		Image goIcon = new ImageIcon(this.getClass().getResource("/go.jpg")).getImage();
 		go.setIcon(new ImageIcon(goIcon));
+		go.setRolloverEnabled(false);
 		setComponentZOrder(go, 1);
 		add(go, gbc_go);
 
@@ -1010,10 +1049,6 @@ public class GamePanel extends JPanel {
 		gbc_btnEndGame.gridy = 17;
 		btnEndGame.setVisible(false);
 		add(btnEndGame, gbc_btnEndGame);
-
-		/*for(int i = 0; i < 40; i++){
-			System.out.println(gridLocations[i].gridy);
-		}*/
 
 		createChanceDeck();
 		createCommunityChanceDeck();
@@ -1928,7 +1963,7 @@ public class GamePanel extends JPanel {
 		}
 	}
 
-	public void setPlayerPieces()
+	public void setPlayerPieces() 
 	{
 		Image player1Icon = playerPieces.get(parent.players[0].getPiece());
 		player1.setIcon(new ImageIcon(player1Icon));
@@ -1950,5 +1985,6 @@ public class GamePanel extends JPanel {
 		add(player4, gbc_player4);
 		setComponentZOrder(player4, 0);
 	}
+
 }
 
