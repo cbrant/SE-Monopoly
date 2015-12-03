@@ -84,6 +84,11 @@ public class Player {
 		this.name = name;
 		this.nameL.setText(this.name);
 	}
+	
+	public void setBank(int b)
+	{
+		this.bank = b;
+	}
 
 	// getter for bank
 	public int getBank() {

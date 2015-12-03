@@ -26,6 +26,7 @@ public class MainWindow{
 	public int playersOut;
 	public ArrayList<Space> spaces;	
 	public int jailSpace;	// index of where jail is
+	public static String[] arg;
 	
 	public MainWindow() {
 		spaces = loadSpaces();
@@ -67,6 +68,14 @@ public class MainWindow{
 			((EndPanel)cards.getComponents()[3]).setPlacesLabels();
 		}
 	}
+	
+	public void restart()
+	{
+		for(int i = 0; i < 4; i++)
+		{
+			players[i].setBank(1500);
+		}
+	}
 
 	public void addComponentToPane(Container pane) {
 
@@ -75,6 +84,16 @@ public class MainWindow{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				flipCards();
+			}
+		};
+		
+		ActionListener reset = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				main(arg);
+
 			}
 		};
 
@@ -89,7 +108,7 @@ public class MainWindow{
 		card3.btnEndGame.addActionListener(l);
 
 		EndPanel card4 = new EndPanel(this);
-		card4.restartButton.addActionListener(l);
+		card4.restartButton.addActionListener(reset);
 
 		//Create the panel that contains the "cards".
 		cards = new JPanel(new CardLayout());
@@ -189,6 +208,7 @@ public class MainWindow{
 	}
 
 	public static void main(String[] args) {
+		arg = args;
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				//Create and set up the content pane.
