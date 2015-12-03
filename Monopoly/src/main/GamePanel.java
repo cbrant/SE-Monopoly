@@ -116,10 +116,6 @@ public class GamePanel extends JPanel {
 		add(btnTrade, gbc_btnTrade);
 		btnTrade.addActionListener(tradeClicked);
 		
-		
-		/////////////////////////
-		//TODO: Pieces are created on game start, need to be created when the setup screen is left! 
-		/////////////////////////
 		// Create labels for pieces, need them to dynamically move
 		player1 = new JLabel("");
 		gbc_player1 = new GridBagConstraints();
@@ -128,11 +124,7 @@ public class GamePanel extends JPanel {
 		gbc_player1.insets = new Insets(0, 0, 5, 5);
 		gbc_player1.gridx = 14;
 		gbc_player1.gridy = 14;
-		Image player1Icon = playerPieces.get(parent.players[0].getPiece());
-		player1.setIcon(new ImageIcon(player1Icon));
-		add(player1, gbc_player1);
-		setComponentZOrder(player1, 0);
-
+		
 		player2 = new JLabel("");
 		gbc_player2 = new GridBagConstraints();
 		gbc_player2.fill = GridBagConstraints.NONE;
@@ -140,10 +132,6 @@ public class GamePanel extends JPanel {
 		gbc_player2.insets = new Insets(0, 0, 5, 5);
 		gbc_player2.gridx = 14;
 		gbc_player2.gridy = 14;
-		Image player2Icon = playerPieces.get(parent.players[1].getPiece());
-		player2.setIcon(new ImageIcon(player2Icon));
-		add(player2, gbc_player2);
-		setComponentZOrder(player2, 0);
 
 		player3 = new JLabel("");
 		gbc_player3 = new GridBagConstraints();
@@ -152,10 +140,7 @@ public class GamePanel extends JPanel {
 		gbc_player3.insets = new Insets(0, 0, 5, 5);
 		gbc_player3.gridx = 14;
 		gbc_player3.gridy = 14;
-		Image player3Icon = playerPieces.get(parent.players[2].getPiece());
-		player3.setIcon(new ImageIcon(player3Icon));
-		add(player3, gbc_player3);
-		setComponentZOrder(player3, 0);
+
 
 		player4 = new JLabel("");
 		gbc_player4 = new GridBagConstraints();
@@ -164,11 +149,6 @@ public class GamePanel extends JPanel {
 		gbc_player4.insets = new Insets(0, 0, 5, 5);
 		gbc_player4.gridx = 14;
 		gbc_player4.gridy = 14;
-		Image player4Icon = playerPieces.get(parent.players[3].getPiece());
-		player4.setIcon(new ImageIcon(player4Icon));
-		add(player4, gbc_player4);
-		setComponentZOrder(player4, 0);
-
 
 		// Add listener to each space, pop a JOptionPane.showMessageDialog() with card image
 
@@ -1946,6 +1926,29 @@ public class GamePanel extends JPanel {
 		if (!parent.players[auction.currBidder].isHuman()) {
 			auction.compPlayerBid();
 		}
+	}
+
+	public void setPlayerPieces()
+	{
+		Image player1Icon = playerPieces.get(parent.players[0].getPiece());
+		player1.setIcon(new ImageIcon(player1Icon));
+		add(player1, gbc_player1);
+		setComponentZOrder(player1, 0);
+		
+		Image player2Icon = playerPieces.get(parent.players[1].getPiece());
+		player2.setIcon(new ImageIcon(player2Icon));
+		add(player2, gbc_player2);
+		setComponentZOrder(player2, 0);
+		
+		Image player3Icon = playerPieces.get(parent.players[2].getPiece());
+		player3.setIcon(new ImageIcon(player3Icon));
+		add(player3, gbc_player3);
+		setComponentZOrder(player3, 0);
+		
+		Image player4Icon = playerPieces.get(parent.players[3].getPiece());
+		player4.setIcon(new ImageIcon(player4Icon));
+		add(player4, gbc_player4);
+		setComponentZOrder(player4, 0);
 	}
 }
 

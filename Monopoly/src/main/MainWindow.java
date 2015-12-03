@@ -56,6 +56,8 @@ public class MainWindow{
 
 		cl.next(cards);
 		if (cards.getComponents().length > 2) {
+			//set player icons on board
+			((GamePanel)cards.getComponents()[2]).setPlayerPieces();
 			if (cards.getComponents()[2].isVisible()) {
 				// if the first player is a computer player, then start that player's turn
 				if (!players[0].isHuman()) {
@@ -79,10 +81,10 @@ public class MainWindow{
 
 	public void addComponentToPane(Container pane) {
 
-		ActionListener l = new ActionListener() {
+		ActionListener l = new ActionListener() { 
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { 
 				flipCards();
 			}
 		};
