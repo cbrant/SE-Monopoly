@@ -1333,13 +1333,13 @@ public class GamePanel extends JPanel {
 				// check which card it is and draw from the pile
 				if(s.getName().equals("Chance")) {
 					SpecialCard temp = getTopChance();
-					temp.act(parent.players[currPlayer], parent.playersOut, this);
 					JOptionPane.showMessageDialog(null, temp.getText(), "Chance", JOptionPane.INFORMATION_MESSAGE);
+					temp.act(parent.players[currPlayer], parent.playersOut, this);
 				}
 				else if(s.getName().equals("Community Chest")) {
 					SpecialCard temp = getTopCommunityChest();
-					temp.act(parent.players[currPlayer], parent.playersOut, this);
 					JOptionPane.showMessageDialog(null, temp.getText(), "Community Chest", JOptionPane.INFORMATION_MESSAGE);
+					temp.act(parent.players[currPlayer], parent.playersOut, this);
 				}
 				break;
 			case JAIL:
@@ -1415,13 +1415,13 @@ public class GamePanel extends JPanel {
 						// check which card it is and draw from the pile
 						if(s.getName().equals("Chance")) {
 							SpecialCard temp = getTopChance();
-							temp.act(parent.players[currPlayer], parent.playersOut, this);
 							JOptionPane.showMessageDialog(null, temp.getText(), "Chance", JOptionPane.INFORMATION_MESSAGE);
+							temp.act(parent.players[currPlayer], parent.playersOut, this);
 						}
 						else if(s.getName().equals("Community Chest")) {
 							SpecialCard temp = getTopCommunityChest();
-							temp.act(parent.players[currPlayer], parent.playersOut, this);
 							JOptionPane.showMessageDialog(null, temp.getText(), "Community Chest", JOptionPane.INFORMATION_MESSAGE);
+							temp.act(parent.players[currPlayer], parent.playersOut, this);
 						}
 						break;
 					case TAX:
