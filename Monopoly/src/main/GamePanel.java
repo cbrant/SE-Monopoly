@@ -1303,7 +1303,7 @@ public class GamePanel extends JPanel {
 			// set user's location to correct index into properties array
 			parent.players[currPlayer].setCurrLocation(newLoc % parent.spaces.size());
 
-			movePlayerIcon();
+			
 			// when we can figure out how to get the gui to repaint, we can have this in here
 			// 	animate the player moving to the next space
 			/*try {
@@ -1313,6 +1313,7 @@ public class GamePanel extends JPanel {
 				e.printStackTrace();
 			}*/
 		}
+		movePlayerIcon();
 
 
 	}	
